@@ -74,4 +74,7 @@
 ## Lưu ý
 
 	Bản trên GitHub là v2.0.1
-	v2.0 và v1.0 mọi người có thể xem trong file zip ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)
+	v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)
+[v1.0!](https://drive.google.com/open?id=0B2XjHVJwd5PSa0FtWXFMM2xhcjg)
+
+[v2.0!](https://drive.google.com/open?id=0B2XjHVJwd5PSdEpObFltbmZzZGc)
