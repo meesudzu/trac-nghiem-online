@@ -1,7 +1,7 @@
 # Hệ Thống Trắc Nghiệm Online
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế các thức làm bài tập và kiểm tra truyền thống
 ## Ảnh Demo
-( nút tròn tím có số không kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
+( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
 
 Học Sinh
 	
