@@ -5,6 +5,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 	- Thêm nhiều dạng bài tập hơn
 	- Giáo viên có thể thêm học sinh, sửa tên học sinh trong lớp (không sửa điểm)
 	- Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
+	- Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
 ## Ảnh Demo
 ( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
 
