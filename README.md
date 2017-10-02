@@ -1,5 +1,10 @@
 # Hệ Thống Trắc Nghiệm Online
-Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế các thức làm bài tập và kiểm tra truyền thống
+Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
+## Sắp Có
+	
+	- Thêm nhiều dạng bài tập hơn
+	- Giáo viên có thể thêm học sinh, sửa tên học sinh trong lớp (không sửa điểm)
+	- Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
 ## Ảnh Demo
 ( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
 
