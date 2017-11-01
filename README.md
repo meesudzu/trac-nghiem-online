@@ -3,6 +3,8 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 ## Sắp Có
 
    - Thêm nhiều dạng bài tập hơn
+   - Fix lỗi XSS các khung nhập dữ liệu vào
+   - Thêm kiểm tra và trả về thông báo nếu tài khoản thêm vào bị trùng.
    - Giáo viên có thể thêm học sinh, xoá học sinh, sửa học sinh trong lớp quản lý
    - Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
    - Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
