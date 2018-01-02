@@ -3,6 +3,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 ## Sắp Có
 
    - Thêm nhiều dạng bài tập hơn
+   - Tích hợp thêm nhập, xuất dữ liệu bằng XML
    - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
    - Sử dụng biến toàn cục cho các thông tin chung (như version, title...) thay vì viết sẵn vào HTML như hiện tại (tiện cho việc thay đổi nội dung).
    - Fix lỗi XSS các khung nhập dữ liệu vào
