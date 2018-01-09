@@ -14,6 +14,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
    - Chức năng quên mật khẩu thông qua email
    - Học sinh có thể có nhiều hơn 4 chương (hiện thời gian làm xong từng chương)
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
+Luư ý: Hiện tại chưa thật sự là MVC, Controller ở đây chỉ đóng vai trò đưa yêu cầu và dữ liệu qua lại giữa View và Modem, View vẫn là thành phần xử lý giữ liệu nhận từ Modem sau khi qua Controller.Mình sẽ cập nhật lại trong phiên bản sau.
 ## Ảnh Demo (Chụp Từ v2.0.1)
 ( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
 
