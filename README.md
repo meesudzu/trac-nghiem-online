@@ -11,6 +11,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
    - Giáo viên có thể thêm học sinh, xoá học sinh, sửa học sinh trong lớp quản lý
    - Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
    - Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
+   - Chức năng quên mật khẩu thông qua email
    - Học sinh có thể có nhiều hơn 4 chương (hiện thời gian làm xong từng chương)
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
 ## Ảnh Demo (Chụp Từ v2.0.1)
