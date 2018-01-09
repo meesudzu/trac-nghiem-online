@@ -1,4 +1,6 @@
 # Hệ Thống Trắc Nghiệm Online
+[![Build Status](https://travis-ci.org/meesudzu/trac-nghiem-online.svg?branch=master)](https://travis-ci.org/meesudzu/trac-nghiem-online)
+
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
 ## Sắp Có
 
