@@ -1,6 +1,6 @@
 <?php
  
-include_once ('config/db.php');
+include_once ('db.php');
 
 /**
  * Model Giáo Viên

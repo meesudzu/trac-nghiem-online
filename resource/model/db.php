@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * DATABASE
  * Author: Dzu
@@ -8,15 +9,11 @@
 class Database{
 	private	$db = '';
 	private $sql = '';
+
 	// hàm kết nối cơ sở dữ liệu
 	public function Database()
 	{
 		try{
-			/*host: tên host
-			dbname: tên database
-			root: tên user trong mysql
-			mật khẩu bỏ trống
-			kiểu encoding utf8*/
 			$this->db = new PDO('mysql:host=localhost; dbname=tracnghiem_online','root','');
 			$this->db->query('set names "utf8"');
 		}
