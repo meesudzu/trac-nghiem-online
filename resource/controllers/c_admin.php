@@ -235,8 +235,8 @@ class C_Admin extends Controller
     // thực hiện thêm tài khoản admin sau khi nhấn nút thêm. Nếu thông tin đúng thực hiện, sai báo ra màn hình
         if(isset($_POST['add-admin']))
         {
-            $ten = addslashes($_POST['ten']);
-            $tai_khoan = addslashes($_POST['tai_khoan']);
+            $ten = Htmlspecialchars(addslashes($_POST['ten']));
+            $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
             $mat_khau = md5($_POST['mat_khau']);
             if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
                 echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
@@ -249,16 +249,16 @@ class C_Admin extends Controller
     // thực hiện xóa tài khoản admin sau khi nhấn nút xóa.
         if(isset($_POST['del-admin']))
         {
-            $id_admin = $_POST['id_admin'];
+            $id_admin = Htmlspecialchars($_POST['id_admin']);
             $this->delAdmin($id_admin);
             echo '<meta http-equiv="refresh" content="0" />'; 
         }
         // thực hiện sửa tài khoản admin sau khi nhấn nút lưu. Nếu thông tin đúng thực hiện, sai báo ra màn hình
         if(isset($_POST['edit-admin']))
         {
-            $id_admin = $_POST['id_admin'];
-            $ten = addslashes($_POST['ten']);
-            $tai_khoan = addslashes($_POST['tai_khoan']);
+            $id_admin = Htmlspecialchars($_POST['id_admin']);
+            $ten = Htmlspecialchars(addslashes($_POST['ten']));
+            $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
             $mat_khau = md5($_POST['mat_khau']);
             if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
                 echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
@@ -278,8 +278,8 @@ class C_Admin extends Controller
 // thực hiện thêm giáo viên, nếu thông tin hợp lệ thì thực hiện, sai báo ra màn hình
         if(isset($_POST['add-gv']))
         {
-            $ten = addslashes($_POST['ten']);
-            $tai_khoan = addslashes($_POST['tai_khoan']);
+            $ten = Htmlspecialchars(addslashes($_POST['ten']));
+            $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
             $mat_khau = md5($_POST['mat_khau']);
             if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
                 echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
@@ -292,16 +292,16 @@ class C_Admin extends Controller
     // thực hiện xóa giáo viên
         if(isset($_POST['del-gv']))
         {
-            $id_gv = $_POST['id_gv'];
+            $id_gv = Htmlspecialchars($_POST['id_gv']);
             $this->delGV($id_gv);
             echo '<meta http-equiv="refresh" content="0" />'; 
         }
     // thực hiện sửa giáo viên, nếu thông tin hợp lệ thì thực hiện, sai báo ra màn hình
         if(isset($_POST['edit-gv']))
         {
-            $id_gv = $_POST['id_gv'];
-            $ten = addslashes($_POST['ten']);
-            $tai_khoan = addslashes($_POST['tai_khoan']);
+            $id_gv = Htmlspecialchars($_POST['id_gv']);
+            $ten = Htmlspecialchars(addslashes($_POST['ten']));
+            $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
             $mat_khau = md5($_POST['mat_khau']);
             if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
                 echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
@@ -328,10 +328,10 @@ class C_Admin extends Controller
     // thực hiện sửa thông tin lớp với các thông tin nhập vào, sai báo ra màn hình
         if(isset($_POST['edit-lop']))
         {
-            $id_lop = $_POST['id_lop'];
-            $ten_lop = addslashes($_POST['ten_lop']);
-            $id_khoi = addslashes($_POST['id_khoi']);
-            $id_gv = addslashes($_POST['id_gv']);
+            $id_lop = Htmlspecialchars($_POST['id_lop']);
+            $ten_lop = Htmlspecialchars(addslashes($_POST['ten_lop']));
+            $id_khoi = Htmlspecialchars(addslashes($_POST['id_khoi']));
+            $id_gv = Htmlspecialchars(addslashes($_POST['id_gv']));
             if(empty($ten_lop)||empty($id_khoi)||empty($id_gv))
                 echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
             else
@@ -343,16 +343,16 @@ class C_Admin extends Controller
     // thực hiện bắt sự kiện và xóa 1 lớp
         if(isset($_POST['del-lop']))
         {
-         $id_lop = $_POST['id_lop'];
+         $id_lop = Htmlspecialchars($_POST['id_lop']);
          $this->delLop($id_lop);
          echo '<meta http-equiv="refresh" content="0" />'; 
      }
    // thực hiện thêm 1 lớp với các thông tin nhập vào, sai báo ra màn hình
      if(isset($_POST['add-lop']))
      {
-        $ten_lop = addslashes($_POST['ten_lop']);
-        $id_khoi = addslashes($_POST['id_khoi']);
-        $id_gv = addslashes($_POST['id_gv']);
+        $ten_lop = Htmlspecialchars(addslashes($_POST['ten_lop']));
+        $id_khoi = Htmlspecialchars(addslashes($_POST['id_khoi']));
+        $id_gv = Htmlspecialchars(addslashes($_POST['id_gv']));
         if(empty($ten_lop)||empty($id_khoi)||empty($id_gv))
             echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
         else
@@ -377,10 +377,10 @@ $admin->showQLHocSinh($dshs,$dsl,$tenlop,$last_id);
 // thực hiện thêm học sinh với các thông tin nhập vào
 if(isset($_POST['add-hs']))
 {
-    $ten = addslashes($_POST['ten']);
-    $tai_khoan = addslashes($_POST['tai_khoan']);
+    $ten = Htmlspecialchars(addslashes($_POST['ten']));
+    $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
     $mat_khau = md5($_POST['mat_khau']);
-    $id_lop = addslashes($_POST['id_lop']);
+    $id_lop = Htmlspecialchars(addslashes($_POST['id_lop']));
     if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
         echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
     else
@@ -393,19 +393,19 @@ if(isset($_POST['add-hs']))
 // thực hiện xóa 1 học sinh
 if(isset($_POST['del-hs']))
 {
-    $id_hs = $_POST['id_hs'];
-    $id_lop = $_POST['id_lop'];
+    $id_hs = Htmlspecialchars($_POST['id_hs']);
+    $id_lop = Htmlspecialchars($_POST['id_lop']);
     $this->delHS($id_hs,$id_lop);
     echo '<meta http-equiv="refresh" content="0" />'; 
 }
 // thực hiện sửa thông tin học sinh, nếu thông tin hợp lệ thực hiện, sai báo ra màn hình
 if(isset($_POST['edit-hs']))
 {
-    $id_hs = $_POST['id_hs'];
-    $ten = addslashes($_POST['ten']);
-    $tai_khoan = addslashes($_POST['tai_khoan']);
+    $id_hs = Htmlspecialchars($_POST['id_hs']);
+    $ten = Htmlspecialchars(addslashes($_POST['ten']));
+    $tai_khoan = Htmlspecialchars(addslashes($_POST['tai_khoan']));
     $mat_khau = md5($_POST['mat_khau']);
-    $id_lop = addslashes($_POST['id_lop']);
+    $id_lop = Htmlspecialchars(addslashes($_POST['id_lop']));
     if(empty($ten)||empty($tai_khoan)||empty($mat_khau))
         echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
     else
@@ -427,14 +427,14 @@ public function showQLCauHoi()
    // thực hiện thêm câu hỏi, nếu thông tin đúng thực hiện, sai báo ra màn hình
    if(isset($_POST['add-ch']))
    {
-    $cau_hoi = addslashes($_POST['cau_hoi']);
-    $id_khoi = addslashes($_POST['id_khoi']);
-    $unit = addslashes($_POST['unit']);
-    $da_1 = addslashes($_POST['da_1']);
-    $da_2 = addslashes($_POST['da_2']);
-    $da_3 = addslashes($_POST['da_3']);
-    $da_4 = addslashes($_POST['da_4']);
-    $da_dung = $_POST['da_dung'];
+    $cau_hoi = Htmlspecialchars(addslashes($_POST['cau_hoi']));
+    $id_khoi = Htmlspecialchars(addslashes($_POST['id_khoi']));
+    $unit = Htmlspecialchars(addslashes($_POST['unit']));
+    $da_1 = Htmlspecialchars(addslashes($_POST['da_1']));
+    $da_2 = Htmlspecialchars(addslashes($_POST['da_2']));
+    $da_3 = Htmlspecialchars(addslashes($_POST['da_3']));
+    $da_4 = Htmlspecialchars(addslashes($_POST['da_4']));
+    $da_dung = Htmlspecialchars(addslashes($_POST['da_dung']));
     if(empty($cau_hoi)||empty($id_khoi)||empty($unit)||empty($da_1)||empty($da_2)||empty($da_3)||empty($da_4)||empty($da_dung))
        echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
    else
@@ -446,21 +446,21 @@ public function showQLCauHoi()
 // thực hiện xóa câu hỏi
 if(isset($_POST['del-ch']))
 {
-    $id_cauhoi = $_POST['id_cauhoi'];
+    $id_cauhoi = Htmlspecialchars($_POST['id_cauhoi']);
     $this->delCH($id_cauhoi);
     echo '<meta http-equiv="refresh" content="0" />'; 
 }
 // thực hiện sửa câu hỏi, nếu thông tin đúng thực hiện, sai báo ra màn hình 
 if(isset($_POST['edit-ch']))
 {
-    $id_cauhoi = $_POST['id_cauhoi'];
-    $cau_hoi = addslashes($_POST['cau_hoi']);
-    $id_khoi = addslashes($_POST['id_khoi']);
-    $unit = addslashes($_POST['unit']);
-    $da_1 = addslashes($_POST['da_1']);
-    $da_2 = addslashes($_POST['da_2']);
-    $da_3 = addslashes($_POST['da_3']);
-    $da_4 = addslashes($_POST['da_4']);
+    $id_cauhoi = Htmlspecialchars($_POST['id_cauhoi']);
+    $cau_hoi = Htmlspecialchars(addslashes($_POST['cau_hoi']));
+    $id_khoi = Htmlspecialchars(addslashes($_POST['id_khoi']));
+    $unit = Htmlspecialchars(addslashes($_POST['unit']));
+    $da_1 = Htmlspecialchars(addslashes($_POST['da_1']));
+    $da_2 = Htmlspecialchars(addslashes($_POST['da_2']));
+    $da_3 = Htmlspecialchars(addslashes($_POST['da_3']));
+    $da_4 = Htmlspecialchars(addslashes($_POST['da_4']));
     $da_dung = addslashes($_POST['da_dung']);
     if(empty($cau_hoi)||empty($id_khoi)||empty($unit)||empty($da_1)||empty($da_2)||empty($da_3)||empty($da_4)||empty($da_dung))
         echo '<script type="text/javascript">alert("không được bỏ trống các trường khi nhập");</script>';
@@ -481,8 +481,8 @@ public function showSendNotify()
  //kiểm tra nội dung và chủ đè không bỏ trống, thực hiện thêm vào CSDL
     if(isset($_POST['send_gv']))
     {
-        $chu_de = trim(addslashes($_POST['chu_de_gv']));
-        $noi_dung = trim(addslashes($_POST['noi_dung_gv']));
+        $chu_de = Htmlspecialchars(trim(addslashes($_POST['chu_de_gv'])));
+        $noi_dung = Htmlspecialchars(trim(addslashes($_POST['noi_dung_gv'])));
         if($chu_de != '' && $noi_dung != '')
         {
             $this->sendGV($chu_de,$noi_dung);
@@ -492,8 +492,8 @@ public function showSendNotify()
     //kiểm tra nội dung và chủ đè không bỏ trống, thực hiện thêm vào CSDL
     if(isset($_POST['send_hs']))
     {
-        $chu_de = trim(addslashes($_POST['chu_de_hs']));
-        $noi_dung = trim(addslashes($_POST['noi_dung_hs']));
+        $chu_de = Htmlspecialchars(trim(addslashes($_POST['chu_de_hs'])));
+        $noi_dung = Htmlspecialchars(trim(addslashes($_POST['noi_dung_hs'])));
         if($chu_de != '' && $noi_dung != '')
         {
             $this->sendHS($chu_de,$noi_dung);

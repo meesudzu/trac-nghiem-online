@@ -95,8 +95,8 @@ class C_Giao_Vien extends Controller
         //kiểm tra nội dung và chủ đè không bỏ trống, thực hiện thêm vào CSDL
         if(isset($_POST['send_hs']))
         {
-            $chu_de = trim(addslashes($_POST['chu_de_hs']));
-            $noi_dung = trim(addslashes($_POST['noi_dung_hs']));
+            $chu_de =  Htmlspecialchars(trim(addslashes($_POST['chu_de_hs'])));
+            $noi_dung =  Htmlspecialchars(trim(addslashes($_POST['noi_dung_hs'])));
             if($chu_de != '' && $noi_dung != '')
             {
                 $this->sendHS($chu_de,$noi_dung);

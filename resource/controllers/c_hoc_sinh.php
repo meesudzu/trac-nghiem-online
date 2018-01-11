@@ -126,7 +126,7 @@ class C_Hoc_Sinh extends Controller
          // kiểm tra nút gửi chat được nhấn và đoạn chat có rỗng không
         if(isset($_POST['send']))
                 {
-                    $txt = trim(addslashes($_POST['txt']));
+                    $txt =  Htmlspecialchars(trim(addslashes($_POST['txt'])));
                     if($txt != '')
                         {
                                 $this->chat($txt);
@@ -152,7 +152,7 @@ class C_Hoc_Sinh extends Controller
    public function doEx($unit)
    {
         //lấy số chương học sinh muốn làm từ url
-         $unit = addslashes($_GET['unit']);
+         $unit =  Htmlspecialchars(addslashes($_GET['unit']));
        $this->loadView("hoc_sinh");
         $hoc_sinh = new V_Hoc_Sinh();
         $cau_hoi = $this->getCauHoi($unit);
@@ -169,8 +169,8 @@ class C_Hoc_Sinh extends Controller
         // vòng lặp gán các ID câu hỏi đã hiển thị trên view làm bài và các đáp án tương ứng của học sinh vào 2 mảng $id_cauhoi[] và $da_cauhoi[]
         for ($i = 0; $i < $ts_ch; $i++) 
                 {
-                    $id_cauhoi[$i] = addslashes($_POST['id_ch_'.$i.'']);
-                    $da_cauhoi[$i] = addslashes($_POST['da_'.$i.'']);
+                    $id_cauhoi[$i] =  Htmlspecialchars(addslashes($_POST['id_ch_'.$i.'']));
+                    $da_cauhoi[$i] =  Htmlspecialchars(addslashes($_POST['da_'.$i.'']));
                 }
         // vòng lặp load các câu hỏi và các đáp án ra
         for ($i = 0; $i < $ts_ch; $i++)
