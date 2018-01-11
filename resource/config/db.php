@@ -12,11 +12,6 @@ class Database{
 	public function Database()
 	{
 		try{
-			/*host: tên host
-			dbname: tên database
-			root: tên user trong mysql
-			mật khẩu bỏ trống
-			kiểu encoding utf8*/
 			$this->db = new PDO('mysql:host=localhost; dbname=tracnghiem_online','root','');
 			$this->db->query('set names "utf8"');
 		}

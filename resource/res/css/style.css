@@ -362,3 +362,6 @@ body ::-ms-input-placeholder {
 	padding-right: 5px !important;
   padding-left: 5px !important;
 }
+.lbl-white {
+  color: white;
+}
