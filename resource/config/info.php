@@ -12,7 +12,7 @@ class Info
 	private $copyright = "Copyright © 2016 By Dzu";
 	private $version = "2.1.0";
 	private $contributes = "Nhóm phát triển:<br />Nông Văn Du (dzu6996@gmail.com)<br />Trịnh Văn Dương<br />Trần Văn Huy<br />Vương Văn Huy<br />Hoàng Phương Nam";
-	private $release = "Release 13/01/2018";
+	private $release = "Release 12/01/2018";
 
 	public function getTitle()
 	{

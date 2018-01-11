@@ -1,3 +1,4 @@
+<!-- view gửi thông báo đến gíao viên -->
 <div class="col-lg-5">
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -62,6 +63,7 @@
 	</div>
 </div>
 <!-- Kết thúc gửi thông báo đến giáo viên -->
+<!-- view gửi thông báo đến học sinh -->
 <div class="col-lg-5">
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -127,4 +129,4 @@
 		</div>
 	</div>
 </div>
-<!-- Kết thúc gửi thông báo đến học sinh -->
+<!-- Kết thúc gửi thông báo đến học sinh

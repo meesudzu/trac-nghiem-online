@@ -1,7 +1,7 @@
 <?php
 
 /**
- * View đăng nhập
+ * View Login
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
@@ -12,9 +12,9 @@ class V_Login {
 		$info = new Info();
 		include 'res/templates/t_login.php';
 	}
-	public function loginNotify($status)
+	public function status($status)
 	{
-		include 'res/templates/t_login_status.php';
+		include 'res/templates/t_status.php';
 	}
 	public function forGotPassWord()
 	{

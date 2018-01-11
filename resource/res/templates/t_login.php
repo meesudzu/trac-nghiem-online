@@ -16,7 +16,7 @@
 			<h1 class="font">Đăng Nhập Hệ Thống Trắc Nghiệm Online</h1>
 			<form action="?login" method="POST" class="f">
 				<input type="text" name="tai_khoan" placeholder="Tài Khoản">
-				<input type="password" name="mat_khau" placeholder="mật khẩu">
+				<input type="password" name="mat_khau" placeholder="Mật Khẩu">
 				<input type="radio" name="chuc_vu" id="hocSinh" value="hocSinh" checked>
 				<label class="lbl-white" for="hocSinh">Học Sinh</label>
 				<input type="radio" name="chuc_vu" id="giaoVien" value="giaoVien">

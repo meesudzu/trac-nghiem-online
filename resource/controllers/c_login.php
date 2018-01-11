@@ -16,17 +16,17 @@ class C_Login extends Controller
     }
     public function forGotPassWord()
     {
-       $this->loadView("login");
-       $login = new V_Login();
-       $login->forGotPassWord();
+     $this->loadView("login");
+     $login = new V_Login();
+     $login->forGotPassWord();
        //goi thu vien
-       if(isset($_POST['forgotpw']))
-       {
+     if(isset($_POST['forgotpw']))
+     {
         require_once 'res/libs/class.phpmailer.php';
         require_once 'res/libs/class.smtp.php';
         $email = Htmlspecialchars($_POST['email']);
         $chuc_vu = Htmlspecialchars($_POST['chuc_vu']);
-        $get = $this->getEmail($email,$chuc_vu);
+        $get = $this->getPassWord($email,$chuc_vu);
         if($get)
         {
             $passWord = $get->mat_khau;
@@ -34,16 +34,22 @@ class C_Login extends Controller
             $mailTo = $email;
             $mail = $this->sendMail($passWord, $nameTo, $mailTo);
             if($mail)
-                $status = true;
+            {
+                $status = "Gửi email thành công. Kiểm tra hộp thư để lấy mật khẩu (có thể trong hộp thư rác)";
+                echo '<META http-equiv="refresh" content="3;URL=index.php">';
+            }
             else
-                $status = false;
+                $status = "Gửi email thất bại, vui lòng thử lại trong giây lát.";
         }
         else
-            $status = false;
+            $status = "Email không tồn tại, vui lòng thử lại";
+        $this->loadView("login");
+        $login = new V_Login();
+        $login->status($status);
     }
 }
 //hàm kiểm tra email nhập vào có tồn tại không và cập nhật mật khẩu mới
-public function getEmail($email,$chuc_vu)
+public function getPassWord($email,$chuc_vu)
 {
     $this->loadModel('login');
     $login = new M_Login();
@@ -80,7 +86,10 @@ public function sendMail($pw, $nTo, $mTo){
 }
 public function checkLogin()
 {
-    $status = "Đang kiểm tra...!";
+    $this->loadView("login");
+    $login = new V_Login();
+    $status = "Đang kiểm tra......";
+    $login->status($status);
     if(isset($_POST['tai_khoan']))
         $tai_khoan = addslashes($_POST['tai_khoan']);
     if(isset($_POST['mat_khau']))
@@ -92,6 +101,9 @@ public function checkLogin()
         $user = $this->$chuc_vu($tai_khoan,$mat_khau);
         if($user == true)
         {
+            $status = "Đăng nhập thành công. Chuẩn bị chuyển trang....";
+            $login->status($status);
+            echo '<meta http-equiv="refresh" content="1.5" />';
             if($chuc_vu=="giaoVien")
                 $_SESSION['id_gv'] = $user->id_gv;
             if($chuc_vu=="admin")
@@ -105,16 +117,13 @@ public function checkLogin()
             $_SESSION['ten'] = $user->ten;
             $_SESSION['chuc_vu'] = $user->chuc_vu;
             $_SESSION['login'] = true;
-            $status = true;
         }
         else
         {
-            $status = false;
+            $status = "Đăng nhập thất bại, vui lòng kiếm tra lại tài khoản hoặc mật khẩu. Nêu quên mật khẩu, chọn 'Quên Mật Khẩu' để được gíup đỡ.";
+            $login->status($status);
         }
     }
-    $this->loadView("login");
-    $login = new V_Login();
-    $login->loginNotify($status);
 }
     // hàm kiểm tra đăng nhập tài khoản ngừoi dùng giáo viên và trả kết quả về $user
 public function giaoVien($tai_khoan,$mat_khau)

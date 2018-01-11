@@ -1,3 +1,4 @@
+<!-- View Quản lý gíao viên -->
 <div class="col-lg-7">
 	<div class="alert">
 		<div class="panel panel-info">
@@ -89,6 +90,8 @@
 		</div>
 	</div>
 </div>
+<!-- kết thúc quản lý gíao viên -->
+<!-- vview thêm tài khoản gíao viên -->
 <div class="col-lg-3">
 	<div class="alert">
 		<div class="panel panel-info">
@@ -111,3 +114,4 @@
 		</div>
 	</div>
 </div>
+<!-- kết thúc thêm tài khoản gíao viên -->

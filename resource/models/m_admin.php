@@ -8,7 +8,6 @@ include_once ('config/db.php');
  **/
 class M_Admin extends Database
 {
-    // hàm đăng nhập
     public function login($tai_khoan,$mat_khau)
     {
     	$sql = "SELECT * FROM admin WHERE tai_khoan='$tai_khoan' and mat_khau = '$mat_khau'";
@@ -22,28 +21,25 @@ class M_Admin extends Database
     	$this->setQuery($sql);
     	return $this->loadRow();
     }
-    // hàm lấy danh sách admin từ CSDL
+    // hàm lấy danh sách admin
     public function getDSA()
     {
         $sql = "SELECT * FROM admin";
         $this->setQuery($sql);
         return $this->loadRows();
     }
-    // hàm sửa admin
     public function editAdmin($id_admin,$tai_khoan,$mat_khau,$ten)
     {
         $sql="UPDATE admin set tai_khoan='$tai_khoan', mat_khau='$mat_khau', ten ='$ten' where id_admin='$id_admin'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm xóa admin
     public function delAdmin($id_admin)
     {
         $sql="DELETE FROM admin where id_admin='$id_admin'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm thêm admin
     public function addAdmin($tai_khoan,$mat_khau,$ten)
     {
         $sql="INSERT INTO admin (tai_khoan,mat_khau,ten,chuc_vu) VALUES ('$tai_khoan','$mat_khau','$ten',1)";
@@ -57,21 +53,18 @@ class M_Admin extends Database
         $this->setQuery($sql);
         return $this->loadRows();
     }
-    // hàm sửa giáo viên
     public function editGV($id_gv,$tai_khoan,$mat_khau,$ten)
     {
         $sql="UPDATE giao_vien set tai_khoan='$tai_khoan', mat_khau='$mat_khau', ten ='$ten' where id_gv='$id_gv'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm xóa giáo viên
     public function delGV($id_gv)
     {
         $sql="DELETE FROM giao_vien where id_gv='$id_gv'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm thêm giáo viên
     public function addGV($tai_khoan,$mat_khau,$ten)
     {
         $sql="INSERT INTO giao_vien (tai_khoan,mat_khau,ten,chuc_vu) VALUES ('$tai_khoan','$mat_khau','$ten',2)";
@@ -105,7 +98,7 @@ class M_Admin extends Database
         $this->setQuery($sql);
         $this->loadRow();
     }
-    // hàm thêm điểm của 1 học sinh mới bảng điểm
+    // hàm thêm điểm của 1 học sinh mới vao bảng điểm
     public function addDiem($id_hs,$id_lop)
     {
         $sql="INSERT INTO diem (id_hs,unit_1,unit_2,unit_3,unit_4,id_lop) VALUES ('$id_hs',-1,-1,-1,-1,'$id_lop')";
@@ -122,7 +115,6 @@ class M_Admin extends Database
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm lấy tên lớp
     public function getTenLop($id_lop)
     {
         $sql = "SELECT ten_lop from lop where id_lop = '$id_lop'";
@@ -136,28 +128,24 @@ class M_Admin extends Database
         $this->setQuery($sql);
         return $this->loadRows();
     }
-    // hàm sửa thông tin lớp
     public function editLop($id_lop,$id_khoi,$ten_lop,$id_gv)
     {
         $sql="UPDATE lop set id_khoi='$id_khoi', ten_lop='$ten_lop', id_gv ='$id_gv'  where id_lop ='$id_lop'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm xóa lớp
     public function delLop($id_lop)
     {
         $sql="DELETE FROM lop where id_lop='$id_lop'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm thêm lớp
     public function addLop($id_khoi,$ten_lop,$id_gv)
     {
         $sql="INSERT INTO lop (id_khoi,ten_lop,id_gv) VALUES ('$id_khoi','$ten_lop','$id_gv')";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm lấy tên khối
     public function getTenKhoi($id_khoi)
     {
         $sql = "SELECT mo_ta from khoi where id_khoi = '$id_khoi'";
@@ -171,7 +159,6 @@ class M_Admin extends Database
         $this->setQuery($sql);
         return $this->loadRows();
     }
-    // hàm lấy tên giáo viên
     public function getTenGV($id_gv)
     {
         $sql = "SELECT ten from giao_vien where id_gv = '$id_gv'";
@@ -185,21 +172,18 @@ class M_Admin extends Database
         $this->setQuery($sql);
         return $this->loadRows();
     }
-    // hàm sửa câu hỏi
     public function editCH($id_cauhoi,$cau_hoi,$id_khoi,$unit,$da_1,$da_2,$da_3,$da_4,$da_dung)
     {
         $sql="UPDATE cau_hoi set cau_hoi='$cau_hoi', id_khoi='$id_khoi', unit ='$unit',da_1 ='$da_1',da_2 ='$da_2',da_3 ='$da_3',da_4 ='$da_4',da_dung ='$da_dung' where id_cauhoi='$id_cauhoi'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm xóa câu hỏi
     public function delCH($id_cauhoi)
     {
         $sql="DELETE FROM cau_hoi where id_cauhoi='$id_cauhoi'";
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm thêm câu hỏi
     public function addCH($cau_hoi,$id_khoi,$unit,$da_1,$da_2,$da_3,$da_4,$da_dung)
     {
         $sql="INSERT INTO cau_hoi (id_khoi,unit,cau_hoi,da_1,da_2,da_3,da_4,da_dung) VALUES ($id_khoi,$unit,'$cau_hoi','$da_1','$da_2','$da_3','$da_4','$da_dung')";

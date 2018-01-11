@@ -1,3 +1,4 @@
+<!-- View quản lý thông tin học sinh -->
 <div class="col-lg-7">
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -103,6 +104,8 @@
 		</div>
 	</div>
 </div>
+<!-- end quản lý thông tin học sinh -->
+<!-- view thêm tài khoản học sinh -->
 <div class="col-lg-3">
 	<div class="alert">
 		<div class="panel panel-info">
@@ -136,3 +139,4 @@
 		</div>
 	</div>
 </div>
+<!-- end thêm tài khoản học sinh -->

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * View giáo viên
+ * View Giáo Viên
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/

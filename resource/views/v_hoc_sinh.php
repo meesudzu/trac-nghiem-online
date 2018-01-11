@@ -1,7 +1,7 @@
 <?php
 
 /**
- * View học sinh 
+ * View Học Sinh 
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/

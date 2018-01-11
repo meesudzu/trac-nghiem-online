@@ -1,3 +1,4 @@
+<!-- view quẳn lý câu hỏi -->
 <div class="col-lg-10">
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -117,6 +118,8 @@
 		</div>
 	</div>
 </div>
+<!-- end quẳn lý câu hỏi -->
+<!-- view thêm câu hỏi -->
 <div class="col-lg-12">
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -162,3 +165,4 @@
 		</div>
 	</div>
 </div>
+<!-- end thêm câu hỏi -->

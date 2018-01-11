@@ -8,7 +8,6 @@ include_once ('config/db.php');
  **/
 class M_Hoc_Sinh extends Database
 {
-    // hàm đăng nhập
     public function login($tai_khoan,$mat_khau)
     {
     	$sql = "SELECT * FROM hoc_sinh WHERE tai_khoan='$tai_khoan' and mat_khau = '$mat_khau'";
@@ -43,7 +42,7 @@ class M_Hoc_Sinh extends Database
         $this->setQuery($sql);
         return $this->loadRow();
     }
-    // hàm lấy ngẫu nhiên 5 câu hỏi trong CSDL dựa theo khối và chương (cơ sở dữ liệu lớn sẽ load lâu)
+    // hàm lấy ngẫu nhiên 10 câu hỏi trong CSDL dựa theo khối và chương (cơ sở dữ liệu lớn sẽ load lâu)
     public function getCauHoi($id_khoi,$unit)
     {
     	$sql = "SELECT * from cau_hoi where id_khoi = '$id_khoi' and unit = '$unit' ORDER BY RAND() LIMIT 10";

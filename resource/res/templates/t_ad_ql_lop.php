@@ -1,3 +1,4 @@
+<!-- view quản lý lớp -->
 <div class="col-lg-7">
 	<div class="alert">
 		<div class="panel panel-info">
@@ -109,6 +110,8 @@
 		</div>
 	</div>
 </div>
+<!-- end quản lý lớp -->
+<!-- view thêm lớp -->
 <div class="col-lg-3">
 	<div class="alert">
 		<div class="panel panel-info">
@@ -149,3 +152,4 @@
 		</div>
 	</div>
 </div>
+<!-- end thêm lớp -->
