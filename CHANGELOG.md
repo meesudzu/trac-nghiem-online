@@ -1,7 +1,12 @@
+v2.1.0 (12/01/2018)
+
+	- Thay đổi toàn bộ cấu trúc thư mục hệ thống theo chuẩn MVC nhất có thể
+	- Fix các lỗi XSS từ các phiên bản cũ
+	- Thêm chức năng quên mật khẩu qua email
+	- Fix các lỗi còn tồn tại và tối ưu hóa code
 v2.0.1 (20/09/2017)
 
 	- Sửa lỗi khi chạy trên Xampp
-
 v2.0 (19/09/2017)
 
 	- Nâng cấp toàn bộ hệ thống (xây dựng lại bằng OOP PHP trên mô hình MVC để thuận tiện trong nâng cấp và bảo trì sau này)
@@ -16,7 +21,6 @@ v2.0 (19/09/2017)
 	- Model Admin:
 		+ Gửi thông báo đến các giáo viên
 		+ Gửi thông báo đến các lớp
-
 v1.0 (16/05/2017)
 
 	- Xây dựng trên php thuần

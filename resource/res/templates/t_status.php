@@ -1,0 +1,1 @@
+<div class="status"><span><?=$status?></span></div>
