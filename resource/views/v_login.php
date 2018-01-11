@@ -16,5 +16,9 @@ class V_Login {
 	{
 		include 'res/templates/t_login_status.php';
 	}
+	public function forGotPassWord()
+	{
+		include 'res/templates/t_forgot_password.php';
+	}
 }
 ?>

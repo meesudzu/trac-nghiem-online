@@ -66,7 +66,10 @@ else
 {
 	require_once 'controllers/c_login.php';
 	$login = new C_Login();
-	$login->showLogin();
+	if(isset($_GET['forgotpw']))
+		$login->forGotPassWord();
+	else
+		$login->showLogin();
 	if(isset($_GET['login']))
 		$login->checkLogin();
 }

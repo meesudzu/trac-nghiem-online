@@ -14,17 +14,6 @@
 	<div class="full">
 		<div class="login">
 			<h1 class="font">Đăng Nhập Hệ Thống Trắc Nghiệm Online</h1>
-			<?php
-		// hiển thị thông báo đăng nhập lỗi
-			if(isset($_SESSION['login_error_gv'])){
-				echo '<h3>'.$_SESSION['login_error_gv'].'</h3>';
-			}
-		// hiển thị thông báo đăng nhập thành công
-			if(isset($_SESSION['login'])){
-				echo '<h3>'.$_SESSION['login'].'</h3>';
-			}
-
-			?>
 			<form action="?login" method="POST" class="f">
 				<input type="text" name="tai_khoan" placeholder="Tài Khoản">
 				<input type="password" name="mat_khau" placeholder="mật khẩu">
@@ -36,6 +25,7 @@
 				<label class="lbl-white" for="admin">Admin</label><br />
 				<button type="submit" name='dang_nhap'>Đăng Nhập</button>
 			</form>
+			<a href="?forgotpw=true">Quên Mật Khẩu?</a>
 		</div>
 	</div>
 </body>
