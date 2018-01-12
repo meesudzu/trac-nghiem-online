@@ -1,11 +1,12 @@
 <?php
 
+require_once 'view.php';
 /**
  * View Admin
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class V_Admin {
+class V_Admin extends View{
 	
 	public function showHeadLeft($info)
 	{
@@ -31,7 +32,7 @@ class V_Admin {
 	{
 		include 'res/templates/t_ad_ql_lop.php';
 	}
-	public function showQLHocSinh($dshs,$dsl,$tenlop,$last_id)
+	public function showQLHocSinh($dshs,$dsl,$tenlop)
 	{
 		include 'res/templates/t_ad_ql_hoc_sinh.php';
 	}

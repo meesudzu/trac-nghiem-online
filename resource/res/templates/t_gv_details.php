@@ -26,20 +26,17 @@ if($id_lop<$tsl&&$id_lop>=0)
 					<tbody class="scrollbar">
 						<?php
 
-					 		//load danh sách học sinh từng học sinh của lớp 
+							//load danh sách học sinh từng học sinh của lớp 
 						for ($j = 0; $j < count($getCTL); $j++) 
 						{ 
 							?>
 							<tr>
 								<td class="col-lg-1"><?=$getCTL[$j]->id_hs?></td>
-								<!-- ID của học sinh -->
 								<td class="col-xs-3"><?=$dsTenHS[$j]->ten?></td>
-								<!-- lấy tên học sinh từ ID học sinh -->
 								<td class="col-xs-2"><?=$getCTL[$j]->unit_1?></td>
 								<td class="col-xs-2"><?=$getCTL[$j]->unit_2?></td>
 								<td class="col-xs-2"><?=$getCTL[$j]->unit_3?></td>
 								<td class="col-xs-2"><?=$getCTL[$j]->unit_4?></td>
-								<!-- Điểm các bài kiểm tra 1,2,3,4 -->
 							</tr>
 							<div class="clearfix">
 

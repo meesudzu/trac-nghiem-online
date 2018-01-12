@@ -21,13 +21,9 @@
 						for ($i = 0; $i < count($dsgv); $i++) { ?>
 						<tr>	
 							<td class="col-lg-1"><?=$dsgv[$i]->id_gv?></td>
-							<!-- ID giáo viên -->
 							<td class="col-lg-3"><?=$dsgv[$i]->tai_khoan?></td>
-							<!-- tài khoản -->
 							<td class="col-lg-3">******</td>
-							<!-- mật khẩu không hiện-->
 							<td class="col-lg-3"><?=$dsgv[$i]->ten?></td>
-							<!-- tên -->
 							<td class="col-lg-2">
 								<a class="btn btn-info" data-toggle="modal" href="#edit-<?=$dsgv[$i]->id_gv?>">Sửa</a>
 								<div class="modal fade" id="edit-<?=$dsgv[$i]->id_gv?>">
@@ -45,7 +41,7 @@
 														<label for="">Tên</label>
 														<input type="text" class="form-control" name="ten" value="<?=$dsgv[$i]->ten?>"></br >
 														<label for="">Tài khoản</label>
-														<input type="text" class="form-control" name="tai_khoan" value="<?=$dsgv[$i]->tai_khoan?>"></br >
+														<input type="text" class="form-control" name="tai_khoan" value="<?=$dsgv[$i]->tai_khoan?>" disabled></br >
 														<label for="">Mật khẩu</label>
 														<input type="password" class="form-control" name="mat_khau" placeholder="Nhập mật khẩu">
 													</div>

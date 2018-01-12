@@ -21,15 +21,10 @@
 					for ($i = 0; $i < count($dshs); $i++) { ?>
 					<tr>	
 						<td class="col-lg-1"><?=$dshs[$i]->id_hs?></td>
-						<!-- ID học sinh -->
 						<td class="col-lg-2"><?=$dshs[$i]->tai_khoan?></td>
-						<!-- tài khoản -->
 						<td class="col-lg-2">******</td>
-						<!-- mật khẩu không  hiện -->
 						<td class="col-lg-3"><?=$dshs[$i]->ten?></td>
-						<!-- tên -->
 						<td class="col-lg-2"><?=$tenlop[$i]->ten_lop?></td>
-						<!-- thuộc lớp -->
 						<td class="col-lg-2">
 							<a class="btn btn-info" data-toggle="modal" href="#edit-<?=$dshs[$i]->id_hs?>">Sửa</a>
 							<div class="modal fade" id="edit-<?=$dshs[$i]->id_hs?>">
@@ -47,7 +42,7 @@
 													<label for="">Tên</label>
 													<input type="text" class="form-control" name="ten" value="<?=$dshs[$i]->ten?>"></br >
 													<label for="">Tài khoản</label>
-													<input type="text" class="form-control" name="tai_khoan" value="<?=$dshs[$i]->tai_khoan?>"></br >
+													<input type="text" class="form-control" name="tai_khoan" value="<?=$dshs[$i]->tai_khoan?>" disabled></br >
 													<label for="">Mật khẩu</label>
 													<input type="password" class="form-control" name="mat_khau" placeholder="Nhập mật khẩu"></br >
 													<label for="">Lớp</label>

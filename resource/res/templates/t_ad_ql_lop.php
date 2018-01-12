@@ -22,13 +22,8 @@
 							?>
 							<tr>	
 								<td class="col-lg-1"><?=$dsl[$i]->id_lop?></td>
-								<!-- ID lớp -->
-								<td class="col-lg-1"><?=$khoi[$i]->mo_ta?></td>
-								<!-- tên khối -->
 								<td class="col-lg-3"><?=$dsl[$i]->ten_lop?></td>
-								<!-- tên lớp -->
 								<td class="col-lg-4"><?=$gv[$i]->ten?></td>
-								<!-- tên giáo viên quản lý -->
 								<td class="col-lg-3">
 									<a class="btn btn-info" data-toggle="modal" href="#edit-<?=$dsl[$i]->id_lop?>">Sửa</a>
 									<div class="modal fade" id="edit-<?=$dsl[$i]->id_lop?>">
@@ -128,8 +123,8 @@
 							<?php
 							 // vòng lặp load danh sách khối cho các option của thẻ select
 							for ($k = 0; $k < count($dskhoi); $k++) {
-							?>
-							<option value="<?=$dskhoi[$k]->id_khoi?>"><?=$dskhoi[$k]->mo_ta?></option>
+								?>
+								<option value="<?=$dskhoi[$k]->id_khoi?>"><?=$dskhoi[$k]->mo_ta?></option>
 								<?php 
 							}
 							?>
@@ -142,7 +137,7 @@
 								?>
 								<option value="<?=$dsgv[$j]->id_gv?>"><?=$dsgv[$j]->ten?></option>
 								<?php 
-							 }
+							}
 							?>
 						</select><br />
 					</div>   

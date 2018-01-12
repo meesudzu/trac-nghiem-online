@@ -7,26 +7,17 @@
 					<a><?=$info_config->getTitle()?><br />
 						Phiên Bản <?=$info_config->getVersion()?><br />
 						<?=$info_config->getRelease()?></a>
-					<a><?=$info_config->getCopyright()?></a>
-				</li>
-			</ul>
-			<!-- Kết thúc thông tin phiên bản -->
-			<ul class="nav navbar-nav navbar-right" style="margin-right: 15px">
-				<li><a><?=$info_config->getContributes()?></a></li>
-			</ul>
-			<!-- Kết thúc thông tin nhóm thực hiện -->
-		</div>
-	</nav>
-</div>
-<!-- Kết thúc footer -->
-<script type="text/javascript">
-	$(document).ready(function () {
-		if (!$.browser.webkit) {
-			$('.table-fixed').html('<p>Trình duyệt không hỗ trợ Scrollbar. :(</p>');
-		}
-	});
-</script>
-<script src="../res/js/jquery.js"></script>
-<script src="../res/js/bootstrap.min.js"></script>
+						<a><?=$info_config->getCopyright()?></a>
+					</li>
+				</ul>
+				<!-- Kết thúc thông tin phiên bản -->
+				<ul class="nav navbar-nav navbar-right" style="margin-right: 15px">
+					<li><a><?=$info_config->getContributes()?></a></li>
+				</ul>
+				<!-- Kết thúc thông tin nhóm thực hiện -->
+			</div>
+		</nav>
+	</div>
+	<!-- Kết thúc footer -->
 </body>
 </html>

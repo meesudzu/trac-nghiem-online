@@ -15,69 +15,69 @@ if(isset($unit))
 				<div class="overflow-kq scrollbar">
 					<?php 
 					for ($i = 0; $i < $ts_ch; $i++) { ?>
-				<div class="panel panel-default rlambai">
-					<div class="panel-body lambai">
+					<div class="panel panel-default rlambai">
+						<div class="panel-body lambai">
 
-						<h3 class="panel-title">
-							Câu <?=$i+1?> - #<?=$cau_hoi[$i]->id_cauhoi?> :   <?=$cau_hoi[$i]->cau_hoi?>
-							<!-- $cau_hoi[$i]->id_cauhoi hiển thị id câu hỏi thứ i -->
-							<!-- $cau_hoi[$i]->cau_hoi hiển thị nội dung câu hỏi thứ i -->
-						</h3>
-						<ul>
-							<?php
+							<h3 class="panel-title">
+								Câu <?=$i+1?> - #<?=$cau_hoi[$i]->id_cauhoi?> :   <?=$cau_hoi[$i]->cau_hoi?>
+								<!-- $cau_hoi[$i]->id_cauhoi hiển thị id câu hỏi thứ i -->
+								<!-- $cau_hoi[$i]->cau_hoi hiển thị nội dung câu hỏi thứ i -->
+							</h3>
+							<ul>
+								<?php
 							// kiểm tra đáp án, nếu đúng + điểm
-							if($da_cauhoi[$i]==$cau_hoi[$i]->da_dung)
-								$diem++;
-							?>
-							<?php
+								if($da_cauhoi[$i]==$cau_hoi[$i]->da_dung)
+									$diem++;
+								?>
+								<?php
 							// kiểm tra xem đáp án nào học sinh đã trả lời thì checked
-							if($da_cauhoi[$i]==$cau_hoi[$i]->da_1)
-								echo '<li><input type="radio" checked="checked">
-							<label>'.$cau_hoi[$i]->da_1.'</label></li>';
-							else
-								echo '<li><input type="radio" disabled="disabled">
-							<label>'.$cau_hoi[$i]->da_1.'</label></li>';
-							?>
-							<?php
+								if($da_cauhoi[$i]==$cau_hoi[$i]->da_1)
+									echo '<li><input type="radio" checked="checked">
+								<label>'.$cau_hoi[$i]->da_1.'</label></li>';
+								else
+									echo '<li><input type="radio" disabled="disabled">
+								<label>'.$cau_hoi[$i]->da_1.'</label></li>';
+								?>
+								<?php
 							// kiểm tra xem đáp án nào học sinh đã trả lời thì checked
-							if($da_cauhoi[$i]==$cau_hoi[$i]->da_2)
-								echo '<li><input type="radio" checked="checked">
-							<label>'.$cau_hoi[$i]->da_2.'</label></li>';
-							else
-								echo '<li><input type="radio" disabled="disabled">
-							<label>'.$cau_hoi[$i]->da_2.'</label></li>';
-							?>
-							<?php
+								if($da_cauhoi[$i]==$cau_hoi[$i]->da_2)
+									echo '<li><input type="radio" checked="checked">
+								<label>'.$cau_hoi[$i]->da_2.'</label></li>';
+								else
+									echo '<li><input type="radio" disabled="disabled">
+								<label>'.$cau_hoi[$i]->da_2.'</label></li>';
+								?>
+								<?php
 							// kiểm tra xem đáp án nào học sinh đã trả lời thì checked
-							if($da_cauhoi[$i]==$cau_hoi[$i]->da_3)
-								echo '<li><input type="radio" checked="checked">
-							<label>'.$cau_hoi[$i]->da_3.'</label></li>';
-							else
-								echo '<li><input type="radio" disabled="disabled">
-							<label>'.$cau_hoi[$i]->da_3.'</label></li>';
-							?>
-							<?php
+								if($da_cauhoi[$i]==$cau_hoi[$i]->da_3)
+									echo '<li><input type="radio" checked="checked">
+								<label>'.$cau_hoi[$i]->da_3.'</label></li>';
+								else
+									echo '<li><input type="radio" disabled="disabled">
+								<label>'.$cau_hoi[$i]->da_3.'</label></li>';
+								?>
+								<?php
 							// kiểm tra xem đáp án nào học sinh đã trả lời thì checked
-							if($da_cauhoi[$i]==$cau_hoi[$i]->da_4)
-								echo '<li><input type="radio" checked="checked">
-							<label>'.$cau_hoi[$i]->da_4.'</label></li>';
-							else
-								echo '<li><input type="radio" disabled="disabled">
-							<label>'.$cau_hoi[$i]->da_4.'</label></li>';
-							?>
-						</ul>
+								if($da_cauhoi[$i]==$cau_hoi[$i]->da_4)
+									echo '<li><input type="radio" checked="checked">
+								<label>'.$cau_hoi[$i]->da_4.'</label></li>';
+								else
+									echo '<li><input type="radio" disabled="disabled">
+								<label>'.$cau_hoi[$i]->da_4.'</label></li>';
+								?>
+							</ul>
+						</div>
+						<span class="dap_an">Đáp án: <span class="da_dung"><?=$cau_hoi[$i]->da_dung?></span></span>
 					</div>
-					<span class="dap_an">Đáp án: <span class="da_dung"><?=$cau_hoi[$i]->da_dung?></span></span>
+					<?php }
+					?>
 				</div>
-				<?php }
-				?>
-			</div>
-			<span class="ket_qua">Điểm: <span class="diem"><?=$diem?></span></span>
-			<a href="?"><button class="btn btn-success" style="float: right;">Xác nhận</button></a>
-		</div>	
-	</div>
-</div><!-- Kết thúc trả về kết quả bài làm lớp -->
-<?php
+				<span class="ket_qua">Điểm: <span class="diem"><?=$diem?></span></span>
+				<a href="?"><button class="btn btn-success" style="float: right;">Xác nhận</button></a>
+			</div>	
+		</div>
+	</div><!-- Kết thúc trả về kết quả bài làm lớp -->
+	<?php
 }
 else
 {

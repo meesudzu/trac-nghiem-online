@@ -20,13 +20,9 @@
 						for ($i = 0; $i < count($dsa); $i++) { ?>
 						<tr>	
 							<td class="col-lg-1"><?=$dsa[$i]->id_admin?></td>
-							<!-- ID Admin -->
 							<td class="col-lg-3"><?=$dsa[$i]->tai_khoan?></td>
-							<!-- Tài khoản admin -->
 							<td class="col-lg-3">******</td>
-							<!-- Mật khẩu không hiện-->
 							<td class="col-lg-3"><?=$dsa[$i]->ten?></td>
-							<!-- Tên Admin -->
 							<td class="col-lg-2">
 								<a class="btn btn-info" data-toggle="modal" href="#edit-<?=$dsa[$i]->id_admin?>">Sửa</a>
 								<div class="modal fade" id="edit-<?=$dsa[$i]->id_admin?>">
@@ -40,11 +36,11 @@
 												<div class="modal-body">
 													<div class="form-group">
 														<!-- input hidden để gửi id_admin về cho controller -->
-													<input type="hidden" value="<?=$dsa[$i]->id_admin?>" name="id_admin">
+														<input type="hidden" value="<?=$dsa[$i]->id_admin?>" name="id_admin">
 														<label for="">Tên</label>
 														<input type="text" class="form-control" name="ten" value="<?=$dsa[$i]->ten?>"></br >
 														<label for="">Tài khoản</label>
-														<input type="text" class="form-control" name="tai_khoan" value="<?=$dsa[$i]->tai_khoan?>"></br >
+														<input type="text" class="form-control" name="tai_khoan" value="<?=$dsa[$i]->tai_khoan?>" disabled></br >
 														<label for="">Mật khẩu</label>
 														<input type="password" class="form-control" name="mat_khau" value="" placeholder="Nhập mật khẩu">
 													</div>

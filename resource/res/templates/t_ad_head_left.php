@@ -6,6 +6,16 @@
 	<title><?=$info_config->getAdminTitle()?></title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="../res/css/style.css">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			if (!$.browser.webkit) {
+				$('.table-fixed').html('<p>Trình duyệt không hỗ trợ Scrollbar. :(</p>');
+			}
+		});
+	</script>
+	<script src="../res/js/jquery.js"></script>
+	<script src="../res/js/script.js"></script>
+	<script src="../res/js/bootstrap.min.js"></script>
 </head>
 <body style="overflow-x: hidden;">
 	<div class="col-lg-12">

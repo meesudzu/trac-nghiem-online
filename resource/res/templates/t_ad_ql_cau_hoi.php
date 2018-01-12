@@ -26,19 +26,14 @@
 						?>
 						<tr>	
 							<td class="col-lg-1"><?=$dsch[$i]->id_cauhoi?></td>
-							<!-- ID câu hỏi -->
 							<td class="col-lg-1"><?=$khoi[$i]->mo_ta?></td>
-							<!-- Tên khối -->
 							<td class="col-lg-1"><?=$dsch[$i]->unit?></td>
-							<!-- Câu hỏi thuộc chương -->
 							<td class="col-lg-2"><?=$dsch[$i]->cau_hoi?></td>
-							<!-- nội dung câu hỏi -->
 							<td class="col-lg-1"><?=$dsch[$i]->da_1?></td>
 							<td class="col-lg-1"><?=$dsch[$i]->da_2?></td>
 							<td class="col-lg-1"><?=$dsch[$i]->da_3?></td>
 							<td class="col-lg-1"><?=$dsch[$i]->da_4?></td>
 							<td class="col-lg-1"><?=$dsch[$i]->da_dung?></td>
-							<!-- đáp án 1,2,3,4, đúng -->
 							<td class="col-lg-2">
 								<a class="btn btn-info" data-toggle="modal" href="#edit-<?=$dsch[$i]->id_cauhoi?>">Sửa</a>
 								<div class="modal fade" id="edit-<?=$dsch[$i]->id_cauhoi?>">
