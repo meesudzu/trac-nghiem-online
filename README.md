@@ -7,7 +7,6 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
    - Thêm nhiều dạng bài tập hơn
    - Tích hợp thêm nhập, xuất dữ liệu bằng XML
    - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
-   - Thêm kiểm tra và trả về thông báo nếu tài khoản thêm vào bị trùng.
    - Giáo viên có thể thêm học sinh, xoá học sinh, sửa học sinh trong lớp quản lý
    - Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
    - Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
@@ -16,16 +15,13 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 
 [Hướng dẫn sử dụng](GUIDE.md)
 ## Lưu ý
-Trên GitHub chỉ lưu từ v2.0.1 trở đi.
-Xem thêm tại [CHANGELOG](CHANGELOG.md)
-v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)
-## v2.0 (19/09/2017)
-[Download v2.0!](https://drive.google.com/open?id=0B2XjHVJwd5PSdEpObFltbmZzZGc)
-## v1.0 (16/05/2017)
-[Download v1.0!](https://drive.google.com/open?id=0B2XjHVJwd5PSa0FtWXFMM2xhcjg)
+Trên GitHub chỉ lưu từ v2.0.1 trở đi.<br />
+Xem thêm tại [CHANGELOG](CHANGELOG.md)<br />
+v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)<br />
+[Download v2.0 (19/09/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSdEpObFltbmZzZGc)<br />
+[Download v1.0 (16/05/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSa0FtWXFMM2xhcjg)
 ## Ảnh Demo (Chụp Từ v2.0.1)
-( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )
-
+( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )<br />
 Học Sinh
 	
 	Đăng nhập

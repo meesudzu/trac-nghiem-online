@@ -1,11 +1,12 @@
 <?php
 
+require_once 'view.php';
 /**
  * View Học Sinh 
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class V_Hoc_Sinh{
+class V_Hoc_Sinh extends View{
 
 	public function showHeadLeft($info,$diem)
 	{

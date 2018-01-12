@@ -70,8 +70,6 @@ else
 		$login->forGotPassWord();
 	else
 		$login->showLogin();
-	if(isset($_GET['login']))
-		$login->checkLogin();
 }
 
 ?>

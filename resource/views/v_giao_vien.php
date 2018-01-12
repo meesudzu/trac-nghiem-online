@@ -1,11 +1,12 @@
 <?php
 
+require_once 'view.php';
 /**
  * View Giáo Viên
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class V_Giao_Vien{
+class V_Giao_Vien extends View{
 
 	public function showHeadLeft($info,$dsl)
 	{

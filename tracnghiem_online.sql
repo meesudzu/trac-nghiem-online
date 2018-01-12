@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th1 11, 2018 lúc 06:19 PM
+-- Thời gian đã tạo: Th1 12, 2018 lúc 02:34 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -140,7 +140,8 @@ INSERT INTO `chat_lop` (`id`, `tai_khoan`, `ten`, `thoi_gian`, `noi_dung`, `id_l
 (9, '2017HS5', 'Trần Thành Đạt', '2018-01-12 00:07:27', 'Tớ méc cô :D', 1),
 (10, '2017HS5', 'Trần Thành Đạt', '2018-01-12 00:07:51', 'thức thời thì hối lộ anh em đi', 1),
 (11, '2017HS6', 'Nguyễn Quang Điện', '2018-01-12 00:08:23', 'tớ lưu lại hết rồi :D', 1),
-(12, '2017HS6', 'Nguyễn Quang Điện', '2018-01-12 00:08:29', 'khỏi ai chối nhé', 1);
+(12, '2017HS6', 'Nguyễn Quang Điện', '2018-01-12 00:08:29', 'khỏi ai chối nhé', 1),
+(13, '2017HS1', 'Trần Phúc An', '2018-01-12 13:39:40', 'Cố lên', 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +163,7 @@ CREATE TABLE `diem` (
 --
 
 INSERT INTO `diem` (`id_hs`, `unit_1`, `unit_2`, `unit_3`, `unit_4`, `id_lop`) VALUES
-(1, -1, -1, -1, -1, 1),
+(1, 3, 2, -1, -1, 1),
 (2, -1, -1, -1, -1, 1),
 (3, 4, -1, -1, -1, 1),
 (4, -1, -1, -1, -1, 1),
@@ -243,7 +244,8 @@ INSERT INTO `hoc_sinh` (`id_hs`, `tai_khoan`, `email`, `mat_khau`, `ten`, `chuc_
 (16, '2017HS16', 'example16@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị Hà', 3, 1),
 (17, '2017HS17', 'example17@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị G', 3, 1),
 (18, '2017HS18', 'example18@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị H', 3, 1),
-(19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1);
+(19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1),
+(20, '2017HS20', NULL, 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +336,13 @@ INSERT INTO `thong_bao` (`id`, `tai_khoan`, `ten`, `chu_de`, `noi_dung`, `thoi_g
 (1, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo!', 'Các em nộp hết bảo hiểm y tế trong tuần này nhé, \r\nai không nộp bị trừ điểm rèn luyện nhé.', '2018-01-12 00:10:22', 3),
 (2, 'Admin', 'Admin', 'Thông Báo!', 'Thông báo tất cả cán bộ chủ nhiệm lớp nhanh chóng hoàn thành tiền bảo hiểm y tế của lớp trong tuần này.', '2018-01-12 00:11:24', 2),
 (3, 'Admin', 'Admin', 'Thông Báo!', 'từ ngày 13/01/2018 nhà trường mở đăng ký học phần kỳ 2, các em theo dõi và đăng ký nhé.', '2018-01-12 00:12:39', 3),
-(4, 'admin', 'Admin', 'Thông Báo!', 'từ 20/01/2018. nhà trường mở đăng ký thi lại, các em chú ý xem lịch để đăng ký.', '2018-01-12 00:18:52', 3);
+(4, 'admin', 'Admin', 'Thông Báo!', 'từ 20/01/2018. nhà trường mở đăng ký thi lại, các em chú ý xem lịch để đăng ký.', '2018-01-12 00:18:52', 3),
+(5, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo!', 'Tết đựoc nghỉ 1 tháng nhé các em.', '2018-01-12 13:52:27', 3),
+(6, 'admin', 'Admin', 'Thông Báo!', 'Các đồng chí nhanh chóng hoàn thành danh sách học sinh nhận học bổng kỳ 2017', '2018-01-12 14:40:45', 2),
+(7, 'admin', 'Admin', 'Thông Báo!', 'Các đồng chí nhanh chóng hoàn thành danh sách học sinh nhận học bổng kỳ 2017', '2018-01-12 14:40:49', 2),
+(8, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Các em làm bài tập để tuần sau nộp nhé', '2018-01-12 18:20:21', 3),
+(9, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Thông báo cập nhật lịch học', '2018-01-12 18:25:23', 3),
+(10, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Cạp nhật nhỉ lễ nguyên đán', '2018-01-12 18:26:25', 3);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -426,49 +434,49 @@ ALTER TABLE `thong_bao`
 -- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `cau_hoi`
 --
 ALTER TABLE `cau_hoi`
-  MODIFY `id_cauhoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_cauhoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT cho bảng `chat_lop`
 --
 ALTER TABLE `chat_lop`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `diem`
 --
 ALTER TABLE `diem`
-  MODIFY `id_hs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_hs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `giao_vien`
 --
 ALTER TABLE `giao_vien`
-  MODIFY `id_gv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `hoc_sinh`
 --
 ALTER TABLE `hoc_sinh`
-  MODIFY `id_hs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_hs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `id_lop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_lop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `thong_bao`
 --
 ALTER TABLE `thong_bao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

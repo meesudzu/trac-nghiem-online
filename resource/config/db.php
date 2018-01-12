@@ -28,18 +28,42 @@ class Database{
 	// hàm thực hiện câu lệnh SQL và trả về 1 mảng đối tượng có các thuộc tính là key
 	public function loadRows()
 	{
-    	$query = $this->db->prepare($this->sql);
-    	$query->setFetchMode(PDO::FETCH_OBJ);
-    	$query->execute();
-    	return $query->fetchAll();	 
+		try 
+		{
+			$query = $this->db->prepare($this->sql);
+			$query->setFetchMode(PDO::FETCH_OBJ);
+			$query->execute();
+		} 
+		catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+		return $query->fetchAll();	
 	}
 	// hàm thực hiện câu lệnh SQL và trả về 1 đối tượng có các thuộc tính là key
 	public function loadRow()
 	{
-    	$query = $this->db->prepare($this->sql);
-    	$query->setFetchMode(PDO::FETCH_OBJ);
-    	$query->execute();
-    	return $query->fetch();	 
+		try 
+		{
+			$query = $this->db->prepare($this->sql);
+			$query->setFetchMode(PDO::FETCH_OBJ);
+			$query->execute();
+		} 
+		catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+		return $query->fetch();	 
+	}
+	public function execNonReturn()
+	{
+		try 
+		{
+			$query = $this->db->prepare($this->sql);
+			$query->setFetchMode(PDO::FETCH_OBJ);
+			$query->execute();
+		} 
+		catch (PDOException $e) {
+			echo $e->getMessage();
+		}
 	}
 }
 ?>
