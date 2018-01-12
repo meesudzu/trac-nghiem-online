@@ -1,3 +1,9 @@
+v2.1.1 (12/01/2018)
+
+	- Tối ưu hóa các hàm.
+	- Sửa lại status bar để hiển thị tốt hơn.
+	- Báo lỗi khi tài khoản thêm vào bị trùng
+	- Thêm JS để ẩn input placeholder khi focus
 v2.1.0 (12/01/2018)
 
 	- Thay đổi toàn bộ cấu trúc thư mục hệ thống theo chuẩn MVC nhất có thể
