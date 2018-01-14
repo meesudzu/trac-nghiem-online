@@ -133,8 +133,8 @@ class C_Login extends Controller
 	}
 	public function sendMail($pw, $nTo, $mTo){
 		$nFrom = 'IKun.Org';
-		$mFrom = 'dzu.ictu@gmail.com';
-		$mPass = 'dmdm1122';
+		$mFrom = 'gmail.com';
+		$mPass = 'passgmail';
 		$mail = new PHPMailer();
 		$content = 'Đây là mật khẩu của bạn.<br /><b>'.$pw.'</b><br />Hãy đổi ngay sau khi đăng nhập. <br />Đây là email gửi tự động, vui lòng không trả lời email này.';
 		$body = $content;
