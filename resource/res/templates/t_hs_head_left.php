@@ -2,17 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$info_config->getTitle()?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title><?=Info::TITLE?></title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="../res/css/style.css">
-	<script type="text/javascript">
-		$(document).ready(function () {
-			if (!$.browser.webkit) {
-				$('.table-fixed').html('<p>Trình duyệt không hỗ trợ Scrollbar. :(</p>');
-			}
-		});
-	</script>
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/script.js"></script>
 	<script src="../res/js/bootstrap.min.js"></script>
@@ -77,16 +70,20 @@
 				<h3 class="panel-title">Bảng Điểm</h3>
 			</div>
 			<div class="panel-body" style="height: 300px;">
-				<?php 
-				//vòng lặp load thông tin điểm của học sinh
-				for ($i = 1; $i < 5; $i++) { 
-					if($diem[$i-1]>=0){?>
+				<?php
+                //vòng lặp load thông tin điểm của học sinh
+                for ($i = 1; $i < 5; $i++) {
+                    if ($diem[$i-1]>=0) {
+                        ?>
 					<a class="btn btn-max btn-success" data-toggle="modal" href="?unit=<?=$i?>">Chương <?=$i?><br />Điểm: <?=$diem[$i-1]?></a><br /><br />
-					<?php }
-					else {?>
+					<?php
+                    } else {
+                        ?>
 					<a class="btn btn-max btn-warning" data-toggle="modal" href="?unit=<?=$i?>">Chương <?=$i?><br />Chưa làm</a></a><br /><br />
-					<?php }?>
-					<?php }?>
+					<?php
+                    } ?>
+					<?php
+                }?>
 				</div>
 			</div>
 		</div>

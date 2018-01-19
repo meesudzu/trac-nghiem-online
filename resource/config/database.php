@@ -11,56 +11,61 @@ class Database{
 	// hàm kết nối cơ sở dữ liệu
 	public function Database()
 	{
+		$host = 'localhost';
+		$dbname = 'tracnghiem_online';
+		$user = 'root';
+		$pw = '';
 		try{
-			$this->db = new PDO('mysql:host=localhost; dbname=tracnghiem_online','root','');
+			$db = 'mysql:host='.$host.'; dbname='.$dbname.'';
+			$this->db = new PDO($db,$user,$pw);
 			$this->db->query('set names "utf8"');
 		}
 		catch(PDOException $ex){
 			echo $ex->getMessage();
-			die();  
+			die();
 		}
 	}
-	// hàm gán câu lệnh SQL vào biến $sql
-	public function setQuery($sql)
+	public function set_query($sql)
 	{
 		$this->sql = $sql;
 	}
 	// hàm thực hiện câu lệnh SQL và trả về 1 mảng đối tượng có các thuộc tính là key
-	public function loadRows()
+	public function load_rows()
 	{
-		try 
+		try
 		{
 			$query = $this->db->prepare($this->sql);
 			$query->setFetchMode(PDO::FETCH_OBJ);
 			$query->execute();
-		} 
+		}
 		catch (PDOException $e) {
 			echo $e->getMessage();
 		}
-		return $query->fetchAll();	
+		return $query->fetchAll();
 	}
 	// hàm thực hiện câu lệnh SQL và trả về 1 đối tượng có các thuộc tính là key
-	public function loadRow()
+	public function load_row()
 	{
-		try 
+		try
 		{
 			$query = $this->db->prepare($this->sql);
 			$query->setFetchMode(PDO::FETCH_OBJ);
 			$query->execute();
-		} 
+		}
 		catch (PDOException $e) {
 			echo $e->getMessage();
 		}
-		return $query->fetch();	 
+		return $query->fetch();
 	}
-	public function execNonReturn()
+	//thực thi insert hoặc update và không có return
+	public function execute_none_return()
 	{
-		try 
+		try
 		{
 			$query = $this->db->prepare($this->sql);
 			$query->setFetchMode(PDO::FETCH_OBJ);
 			$query->execute();
-		} 
+		}
 		catch (PDOException $e) {
 			echo $e->getMessage();
 		}

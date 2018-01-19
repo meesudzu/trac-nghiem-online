@@ -8,12 +8,12 @@
 class Controller{
 
 	// hàm load View
-	function loadView($view){
-		require_once ('views/v_'.$view.'.php');
+	function load_view($view){
+		require_once ('views/view_'.$view.'.php');
 	}
 	// hàm load Model
-	function loadModel($model){
-		require_once ('models/m_'.$model.'.php');
+	function load_model($model){
+		require_once ('models/model_'.$model.'.php');
 	}
 }
 

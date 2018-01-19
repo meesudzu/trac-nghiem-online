@@ -8,12 +8,6 @@ include_once ('config/db.php');
  **/
 class M_Hoc_Sinh extends Database
 {
-	public function login($tai_khoan,$mat_khau)
-	{
-		$sql = "SELECT * FROM hoc_sinh WHERE tai_khoan='$tai_khoan' and mat_khau = '$mat_khau'";
-		$this->setQuery($sql);
-		return $this->loadRow();
-	}
 	// hàm lấy tên lớp
 	public function getTLop($id_lop)
 	{

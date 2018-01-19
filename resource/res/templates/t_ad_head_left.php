@@ -1,87 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$info_config->getAdminTitle()?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		<?=Info::ADMIN_TITLE?>
+	</title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="../res/css/style.css">
-	<script type="text/javascript">
-		$(document).ready(function () {
-			if (!$.browser.webkit) {
-				$('.table-fixed').html('<p>Trình duyệt không hỗ trợ Scrollbar. :(</p>');
-			}
-		});
-	</script>
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/script.js"></script>
-	<script src="../res/js/bootstrap.min.js"></script>
 </head>
-<body style="overflow-x: hidden;">
-	<div class="col-lg-12">
-		<nav class="navbar navbar-default logo" role="navigation">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header font">
-					<a class="navbar-brand" href="?" style="color: blue !important"><?=$info_config->getAdminTitle()?></a>
-				</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav navbar-right font">
-						<li><a href="?" style="color: blue !important">Trang Chủ</a></li>
-						<li><a href="#" style="color: blue !important">Hướng Dẫn Sử Dụng</a></li>
-						<li><a href="#" style="color: blue !important">Báo Lỗi - Góp ý</a></li>
-						<li><a href="#" style="color: blue !important">Liên Hệ</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
+<body class="body-login">
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper nav-green">
+				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons">menu</i></a></div>
+				<a href="index.php" class="brand-logo right"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
 	</div>
-	<!-- Kết thúc Header -->
-	<div class="col-lg-2">
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">Thông tin tài khoản</h3>
+	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
+		<div class="card reset-margin">
+			<div class="card-image">
+				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155">
+				<span class="card-title" style="padding: 20px"><?=$info['name']?>
+					<a id="" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
+				</span>
 			</div>
-			<div class="panel-body">
-				<span>Tài khoản: <?=$info['tai_khoan']?></span><br />
-				<span>Tên: <?=$info['ten']?></span><br />
-				<span>Chức vụ: <?=$info['ten_cv']?></span><br />
-				<a class="" data-toggle="modal" style="color: blue !important;" href='#logout'>Đăng xuất</a>
-				<div class="modal fade" id="logout">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" >Đăng xuất</h4>
-							</div>
-							<div class="modal-body">
-								Bạn có muốn thoát phiên làm việc!
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								<a href="index.php?logout=true" class="btn btn-primary" name="logout">Đăng Xuất</a>
-							</div>
-						</div>
-					</div>
+		</div>
+		<ul class="collapsible reset-margin" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
+					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Menu</div>
+				<div class="collapsible-body list">
+					<a class="menu-list">Quản Lý Admin</a>
+					<a class="menu-list">Quản Lý Gíao Viên</a>
+					<a class="menu-list">Quản Lý Học Sinh</a>
+					<a class="menu-list">Quản Lý Lớp</a>
+					<a class="menu-list">Quản Lý Câu Hỏi</a>
+					<a class="menu-list">Quản Lý Bài Kiểm Tra</a>
 				</div>
-			</div>
-		</div>
-		<!-- Kết thúc thông tin cá nhân admin -->
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">Menu</h3>
-			</div>
-			<div class="panel-body">
-				<a class="btn btn-max btn-success"  href="?">Quản lý thông tin Admin</a><br /><br />
-				<a class="btn btn-max btn-success" href="?admin=QLGiaoVien">Quản lý Giáo Viên</a><br /><br />
-				<a class="btn btn-max btn-success" href="?admin=QLLop">Quản lý Lớp</a><br /><br />
-				<a class="btn btn-max btn-success" href="?admin=QLHocSinh">Quản lý Học Sinh</a><br /><br />
-				<a class="btn btn-max btn-success" href="?admin=QLCauHoi">Quản lý Câu Hỏi</a><br /><br />
-				<a class="btn btn-max btn-success" href="?admin=SendNotify">Gửi Thông Báo</a><br /><br />
-			</div>
-		</div>
-		<!-- Kết thúc menu -->
+			</li>
+			<a class="collapsible-header font-color"><i class="material-icons">insert_comment</i>Gửi Thông Báo</a>
+		</ul>
 	</div>
-	<!-- Kết thanh trái -->
+	<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h4>Đăng Xuất</h4>
+			<p>Xác nhận đăng xuất</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Không</a>
+			<a href="index.php?action=logout" class="modal-action modal-close waves-effect waves-green btn-flat">Có</a>
+		</div>
+	</div>

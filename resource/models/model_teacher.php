@@ -8,12 +8,6 @@ include_once ('config/db.php');
  **/
 class M_Giao_Vien extends Database
 {
-	public function login($tai_khoan,$mat_khau)
-	{
-		$sql = "SELECT * FROM giao_vien WHERE tai_khoan='$tai_khoan' and mat_khau = '$mat_khau'";
-		$this->setQuery($sql);
-		return $this->loadRow();
-	}
 	// hàm lấy tên chức vụ
 	public function getQuyen($chuc_vu)
 	{

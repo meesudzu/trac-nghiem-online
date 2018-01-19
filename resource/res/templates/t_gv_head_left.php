@@ -2,17 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?=$info_config->getTitle()?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title><?=Info::TITLE?></title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="../res/css/style.css">
-	<script type="text/javascript">
-		$(document).ready(function () {
-			if (!$.browser.webkit) {
-				$('.table-fixed').html('<p>Trình duyệt không hỗ trợ Scrollbar. :(</p>');
-			}
-		});
-	</script>
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/script.js"></script>
 	<script src="../res/js/bootstrap.min.js"></script>
@@ -77,13 +70,13 @@
 			</div>
 			<div class="panel-body">
 				<?php
-				//vòng lặp load danh sách lớp với các thuộc tính 
-				for ($i = 0; $i < count($dsl); $i++) {
-					?>
+                //vòng lặp load danh sách lớp với các thuộc tính
+                for ($i = 0; $i < count($dsl); $i++) {
+                    ?>
 					<a class="btn btn-max btn-success" data-toggle="modal" href="?id_lop=<?=$dsl[$i]->id_lop?>"><?=$dsl[$i]->ten_lop?></a><br /><br />
 					<?php
-				}
-				?>
+                }
+                ?>
 			</div>
 		</div>
 	</div><!-- Kết thúc danh sách lớp -->
