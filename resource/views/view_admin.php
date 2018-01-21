@@ -1,44 +1,44 @@
 <?php
-
-require_once 'view.php';
 /**
  * View Admin
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+require_once 'view.php';
+
 class View_Admin extends View
 {
     public function show_head_left($info)
     {
         require_once 'config/info.php';
-        include 'res/templates/t_ad_head_left.php';
+        include 'res/templates/t_admin_head_left.php';
     }
     public function show_foot()
     {
         require_once 'config/info.php';
         include 'res/templates/t_foot.php';
     }
-    public function show_admin_manager($list_admins)
+    public function show_admin_panel()
     {
-        include 'res/templates/t_ad_ql_admin.php';
+        include 'res/templates/t_admin_panel.html';
     }
-    public function show_teacher_manager($dsgv)
+    public function show_teacher_panel()
     {
-        include 'res/templates/t_ad_ql_giao_vien.php';
+        include 'res/templates/t_teacher_panel.html';
     }
-    public function show_class_manager($dsl, $dskhoi, $dsgv, $khoi, $gv)
+    public function show_class_panel()
     {
-        include 'res/templates/t_ad_ql_lop.php';
+        include 'res/templates/t_class_panel.html';
     }
-    public function show_student_manager($dshs, $dsl, $tenlop)
+    public function show_student_panel()
     {
-        include 'res/templates/t_ad_ql_hoc_sinh.php';
+        include 'res/templates/t_student_panel.html';
     }
-    public function show_question_manager($dsch, $dskhoi, $khoi)
+    public function show_question_panel()
     {
-        include 'res/templates/t_ad_ql_cau_hoi.php';
+        include 'res/templates/t_question_panel.html';
     }
-    public function notify_student($tbgv, $tbhs)
+    public function notify_student()
     {
         include 'res/templates/t_ad_send_notify.php';
     }

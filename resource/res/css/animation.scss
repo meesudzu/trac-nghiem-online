@@ -12,8 +12,7 @@
 
 .fadeIn {
     animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-fill-mode: both;
+    animation-duration: .4s;
 }
 @keyframes fadeRight {
     0% {
@@ -30,5 +29,4 @@
 .fadeRight {
     animation-name: fadeRight;
     animation-duration: 1s;
-    animation-fill-mode: both;
 }

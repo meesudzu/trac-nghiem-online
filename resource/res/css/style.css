@@ -42,19 +42,19 @@
 
 .title-content { margin-bottom: 2px; background: white; color: #676a6c; -webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
 
-.block-content { overflow-x: hidden; max-height: calc(100vh - 130px); }
+.block-content { overflow-x: hidden; max-height: calc(100vh - 115px); }
 
-.content { -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); height: auto; min-height: 500px; margin: 0 0px 5px 5px; padding: 20px; background: white; }
+.content { -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); height: auto; min-height: 500px; margin: 0 0px 5px 5px; padding: 0 20px; background: white; }
 
-.footer { position: fixed; bottom: 0; right: 0; width: 100vw; min-width: 320px; -webkit-transition: all .4s; transition: all .4s; border-top: 1px solid #e7eaec; background: white; padding: 6px 20px; -webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
+.footer { z-index: 999; position: fixed; bottom: 0; right: 0; width: 100vw; min-width: 320px; -webkit-transition: all .4s; transition: all .4s; border-top: 1px solid #e7eaec; background: white; padding: 6px 20px; -webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
 
 .footer-mini { width: calc(100vw - 220px); }
 
 .avatar { width: 70px; height: 70px; }
 
-.modal-edit { top: 5%; max-height: 95%; width: 95%; margin: auto; }
+.modal-edit { width: 70%; height: 70%; }
 
-.modal-overlay { top: 0 !important; }
+.valid-img { -webkit-transition: all .4s; transition: all .4s; width: 40px; height: 40px; right: 0; top: 0; position: absolute; }
 
 .scrollbar::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); background-color: #F5F5F5; }
 

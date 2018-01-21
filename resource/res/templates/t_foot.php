@@ -8,7 +8,5 @@
 		</div>
 	</div>
 </div>
-<script src="../res/js/materialize.min.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,76 @@
+<div class="box-content right box-content-mini" id="box-content">
+	<div class="title-content">
+		<span class="title">Quản Lý Thông Tin Học Sinh</span>
+	</div>
+	<div class="block-content overflow scrollbar">
+		<div class="content fadeRight">
+			<table class="centered striped responsive-table">
+				<thead>
+					<tr>
+						<th class="">ID</th>
+						<th class="">Avatar</th>
+						<th class="">Tên</th>
+						<th class="">Tài Khoản</th>
+						<th class="">Lớp</th>
+						<th class="">Email</th>
+						<th class="">Giới Tính</th>
+						<th class="">Ngày Sinh</th>
+						<th class="">Online Cuối</th>
+						<th class=""><i class="material-icons">settings</i></th>
+					</tr>
+				</thead>
+				<tbody class="scrollbar" id="list_students">
+				</tbody>
+			</table>
+		</div>
+		<div class="content fadeRight">
+			<div class="row col l12">
+				<form action="" method="POST" role="form" id="add_student_form">
+					<div class="col l6 s12">
+						<div class="input-field">
+							<label for="name">Tên</label>
+							<input type="text" id="name" name="name" onchange="" required>
+						</div>
+						<div class="input-field">
+							<label for="username">Tài khoản</label>
+							<input type="text" name="username" id="username" required oninput="valid_username_or_email(this.value,this.name)">
+							<img src="../res/img/true.png" class="valid-img hidden" id="valid-username-true">
+							<img src="../res/img/false.png" class="valid-img" id="valid-username-false">
+						</div>
+						<div class="input-field">
+							<label for="password">Mật khẩu</label>
+							<input type="password" data-minlength="6" name="password" id="password" required>
+						</div>
+					</div>
+					<div class="col l6 s12">
+						<div class="input-field">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" oninput="valid_username_or_email(this.value,this.name)" required>
+							<img src="../res/img/true.png" class="valid-img hidden" id="valid-email-true">
+							<img src="../res/img/false.png" class="valid-img" id="valid-email-false">
+						</div>
+						<div class="input-field">
+							<input type="date" name="birthday" id="birthday" required value="1997-01-01">
+						</div>
+						<div class="input-field">
+							<select name="gender" id="gender">
+								<option value="1" selected>Không Xác Định</option>
+								<option value="2">Nam</option>
+								<option value="3">Nữ</option>
+							</select>
+							<label>Giới Tính</label>
+						</div>
+						<div class="input-field">
+							<select name="class_id" id="student_add_class_id">
+							</select>
+							<label>Lớp</label>
+						</div>
+					</div>
+					<div class="col l12">
+						<button type="submit" class="btn" id="add_student" name="add-student">Thêm</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

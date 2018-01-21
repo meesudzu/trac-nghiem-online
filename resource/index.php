@@ -6,6 +6,8 @@
  **/
 session_start();
 // session_destroy();
+// error_reporting(0);
+// ini_set('display_errors', 0);
 if (isset($_SESSION['login'])) {
     // if ($_SESSION['permission']==3) {
     //     require_once 'controllers/controller_student.php';
@@ -47,19 +49,27 @@ if (isset($_SESSION['login'])) {
     if ($_SESSION['permission']==1) {
         require_once 'controllers/controller_admin.php';
         $admin = new Controller_Admin();
-        $admin->show_head_left();
-        $action = 'show_admin_manager';
-        if (isset($_GET['action'])) {
-            $action='show_'. $_GET['action'];
+        $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_admin_panel';
+        if( strpos( $action, "show" ) !== false) {
+            $admin->show_head_left();
+            if (is_callable([$admin, $action])) {                
+                $admin->$action();
+            } else {
+                $admin->show_404();
+            }
+            $admin->show_foot();
+        } else { 
+            if (is_callable([$admin, $action])) {
+                $admin->$action();
+            } else {
+                $admin->show_head_left();
+                $admin->show_404();
+                $admin->show_foot();
+            }
         }
-        if (is_callable([$admin, $action])) {
-            $admin->$action();
-        } else {
-            $admin->show_404();
-        }
-        $admin->show_foot();
     }
 } else {
+
     if (!isset($_GET['action'])) {
         $action = 'show_login';
     } else {
