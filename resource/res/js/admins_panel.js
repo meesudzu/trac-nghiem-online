@@ -1,23 +1,3 @@
-$(document).ready(function() {
-    $('.modal').modal();
-    $('.collapsible').collapsible();
-    $('select').select();
-    $('#trigger-sidebar').on('click', function() {
-        $('#sidebar-left').toggleClass('sidebar-show');
-        $('#logout').toggleClass('sidebar-show');
-        $('#box-content').toggleClass('box-content-mini');
-        $('#footer').toggleClass('footer-mini');
-    });
-    $('#menu').on('click', function() {
-        $('#menu-arrow-up').toggleClass('hide');
-        $('#menu-arrow-down').toggleClass('hide');
-    });
-    $('#btn-logout').on('click', function() {
-        logout();
-    });
-
-});
-
 $(function() {
     get_list_admins();
     $('#add_admin_form').on('submit', function() {
@@ -179,22 +159,4 @@ function admin_insert_data(data) {
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
-}
-
-function valid_username_or_email(value, elem) {
-    var url = "index.php?action=valid_username_or_email";
-    var data = {
-        usr_or_email: value
-    }
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        if (json_data.status) {
-            $('#valid-' + elem + '-true').removeClass('hidden');
-            $('#valid-' + elem + '-false').addClass('hidden');
-        } else {
-            $('#valid-' + elem + '-false').removeClass('hidden');
-            $('#valid-' + elem + '-true').addClass('hidden');
-        }
-    };
-    $.get(url, data, success);
 }

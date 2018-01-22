@@ -36,7 +36,6 @@ function show_list_students(data) {
         tr.append('<td class="">' + student_edit_button(data[i]) + '<br />' + student_del_button(data[i]) + '</td>');
         list.append(tr);
     };
-    select_class();
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
@@ -170,20 +169,4 @@ function student_insert_data(data) {
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
-}
-
-function select_class(data) {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=get_list_classes";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        var sl = $('select[name=class_id]');
-        sl.empty();
-        $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
-        });
-        $('select').select();
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
 }

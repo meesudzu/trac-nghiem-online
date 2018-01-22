@@ -186,19 +186,3 @@ function question_insert_data(data) {
         event.preventDefault();
     });
 }
-
-function select_unit() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=get_list_units";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        var sl = $('select[name=unit]');
-        sl.empty();
-        $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.unit + '">' + value.detail + '</option>');
-        });
-        $('select').select();
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}

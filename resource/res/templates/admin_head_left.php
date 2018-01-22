@@ -8,15 +8,8 @@
 	</title>
 	<link rel="stylesheet" href="../res/css/style.css">
 	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/script.js"></script>
 	<script src="../res/js/materialize.min.js"></script>
-	<script src="../res/js/admins_panel.js"></script>
-	<script src="../res/js/teachers_panel.js"></script>
-	<script src="../res/js/students_panel.js"></script>
-	<script src="../res/js/classes_panel.js"></script>
-	<script src="../res/js/questions_panel.js"></script>
-	<script src="../res/js/notifications_panel.js"></script>
-	<script src="../res/js/units_panel.js"></script>
+	<script src="../res/js/function.js"></script>
 </head>
 
 <body class="body-login">
@@ -32,8 +25,8 @@
 	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
 		<div class="card reset-margin">
 			<div class="card-image">
-				<img src="../res/img/avatar/avatar-default.jpg" height="155" id="profile-avatar">
-				<span class="card-title" style="padding: 20px; "><i  id="profile-name">Anonymous</i>
+				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="profile-avatar">
+				<span class="card-title" style="padding: 20px; "><i  id="profile-name"><?=$info['name']?></i>
 					<a id="" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>
 			</div>
@@ -43,16 +36,16 @@
 				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
 					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Menu</div>
 					<div class="collapsible-body list">
-						<a href="index.php?action=show_admins_panel" class="menu-list">Quản Lý Admin</a>
-						<a href="index.php?action=show_teachers_panel" class="menu-list">Quản Lý Gíao Viên</a>
-						<a href="index.php?action=show_students_panel" class="menu-list">Quản Lý Học Sinh</a>
-						<a href="index.php?action=show_classes_panel" class="menu-list">Quản Lý Lớp</a>
-						<a href="index.php?action=show_questions_panel" class="menu-list">Quản Lý Câu Hỏi</a>
-						<a href="index.php?action=show_units_panel" class="menu-list">Quản Lý Bài Kiểm Tra</a>
+						<a href="/show_admins_panel" class="menu-list">Quản Lý Admin</a>
+						<a href="/show_teachers_panel" class="menu-list">Quản Lý Gíao Viên</a>
+						<a href="/show_students_panel" class="menu-list">Quản Lý Học Sinh</a>
+						<a href="/show_classes_panel" class="menu-list">Quản Lý Lớp</a>
+						<a href="/show_questions_panel" class="menu-list">Quản Lý Câu Hỏi</a>
+						<a href="/show_units_panel" class="menu-list">Quản Lý Bài Kiểm Tra</a>
 					</div>
 				</li>
-				<a href="index.php?action=show_notifications_panel" class="collapsible-header font-color"><i class="material-icons">send</i>Gửi Thông Báo</a>
-				<a href="index.php?action=show_about" class="collapsible-header font-color"><i class="material-icons">insert_comment</i>Liên Hệ</a>
+				<a href="/show_notifications_panel" class="collapsible-header font-color"><i class="material-icons">send</i>Gửi Thông Báo</a>
+				<a href="/show_about" class="collapsible-header font-color"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 			</ul>
 		</div>
 		<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>

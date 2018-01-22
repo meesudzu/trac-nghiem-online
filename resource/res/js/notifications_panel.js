@@ -1,6 +1,8 @@
 $(function() {
     get_teacher_notifications();
     get_student_notifications();
+    select_teacher();
+    select_class();
     $('#send_notification').on('submit', function() {
         send_notification();
         $('#send_notification')[0].reset();

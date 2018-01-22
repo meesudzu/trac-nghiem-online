@@ -18,6 +18,7 @@ class Controller_Admin extends Controller
         $this->update_last_login($this->info['admin_id']);
         $this->info['username'] = $user_info->username;
         $this->info['name'] = $user_info->name;
+        $this->info['avatar'] = $user_info->avatar;
     }
     public function logout()
     {

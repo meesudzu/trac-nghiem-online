@@ -36,7 +36,7 @@ function submit_password() {
         show_status(json_data);
         if (json_data.status) {
             setTimeout(function() {
-                location.reload();
+                location.reload('index.php');
             }, 1500);
         }
         $('#loading').css('display', 'none');

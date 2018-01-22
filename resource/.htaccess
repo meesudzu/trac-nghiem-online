@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?action=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?action=$1
