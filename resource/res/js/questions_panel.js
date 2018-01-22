@@ -7,6 +7,7 @@ $(function() {
 });
 
 function get_list_questions() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_questions";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -15,11 +16,13 @@ function get_list_questions() {
         select_grade();
         $('.modal').modal();
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function show_list_questions(data) {
+    $('#preload').removeClass('hidden');
     var list = $('#list_questions');
     for (var i = 0; i < data.length; i++) {
         var tr = $('<tr class="fadeIn" id="question-' + data[i].ID + '"></tr>');
@@ -42,71 +45,72 @@ function show_list_questions(data) {
 
 function question_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.ID + '">Sửa</a>' +
-    '<div id="edit-' + data.ID + '" class="modal modal-edit">' +
-    '<div class="row col l12">' +
-    '<form action="" method="POST" role="form" onsubmit="submit_edit_question(this.id)" id="form-edit-question-' + data.ID + '">' +
-    '<div class="modal-content"><h5>Sửa: ' + data.question_detail + '</h5>' +
-    '<div class="modal-body">' +
-    '<div class="col l12 s12" style="padding-top: 20px">'+
-    '<div class="input-field">'+
-    '<input type="hidden" id="ID" name="ID" value="'+data.ID+'">'+
-    '<textarea id="question_detail" name="question_detail" class="materialize-textarea" required>'+data.question_detail+'</textarea>'+
-    '<label for="question_detail" class="active">Câu Hỏi</label>'+
-    '</div>'+
-    '</div>'+
-    '<div class="row col l12">'+
-    '<div class="col l6 s12">'+
-    '<div class="input-field">'+
-    '<label for="answer_a" class="active">A</label>'+
-    '<input type="text" id="answer_a" name="answer_a" value="'+data.answer_a+'" required>'+
-    '</div>'+
-    '<div class="input-field">'+
-    '<label for="answer_b" class="active">B</label>'+
-    '<input type="text" id="answer_b" name="answer_b" value="'+data.answer_b+'" required>'+
-    '</div>'+
-    '<div class="input-field">'+
-    '<label for="answer_c" class="active">C</label>'+
-    '<input type="text" id="answer_c" name="answer_c" value="'+data.answer_c+'" required>'+
-    '</div>'+
-    '<div class="input-field">'+
-    '<label for="answer_d" class="active">D</label>'+
-    '<input type="text" id="answer_d" name="answer_d" value="'+data.answer_d+'" required>'+
-    '</div>'+
-    '</div>'+
-    '<div class="col l6 s12">'+
-    '<div class="input-field">'+
-    '<label for="correct_answer" class="active">Đúng</label>'+
-    '<input type="text" id="correct_answer" name="correct_answer" value="'+data.correct_answer+'" required>'+
-    '</div>'+
-    '<div class="input-field">'+
-    '<select name="grade_id" id="grade_id">'+
-    '</select>'+
-    '<label>Khối</label>'+
-    '</div>'+
-    '<div class="input-field">'+
-    '<select name="unit" id="unit">'+
-    '</select>'+
-    '<label>Chương</label>'+
-    '</div>'+
-    '</div>'+
-    '</div></div></div>' +
-    '<div class="row col l12 s12 modal-footer">' +
-    '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-    '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
-    '</div></form></div></div>';
+        '<div id="edit-' + data.ID + '" class="modal modal-edit">' +
+        '<div class="row col l12">' +
+        '<form action="" method="POST" role="form" onsubmit="submit_edit_question(this.id)" id="form-edit-question-' + data.ID + '">' +
+        '<div class="modal-content"><h5>Sửa: ' + data.question_detail + '</h5>' +
+        '<div class="modal-body">' +
+        '<div class="col l12 s12" style="padding-top: 20px">' +
+        '<div class="input-field">' +
+        '<input type="hidden" id="ID" name="ID" value="' + data.ID + '">' +
+        '<textarea id="question_detail" name="question_detail" class="materialize-textarea" required>' + data.question_detail + '</textarea>' +
+        '<label for="question_detail" class="active">Câu Hỏi</label>' +
+        '</div>' +
+        '</div>' +
+        '<div class="row col l12">' +
+        '<div class="col l6 s12">' +
+        '<div class="input-field">' +
+        '<label for="answer_a" class="active">A</label>' +
+        '<input type="text" id="answer_a" name="answer_a" value="' + data.answer_a + '" required>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<label for="answer_b" class="active">B</label>' +
+        '<input type="text" id="answer_b" name="answer_b" value="' + data.answer_b + '" required>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<label for="answer_c" class="active">C</label>' +
+        '<input type="text" id="answer_c" name="answer_c" value="' + data.answer_c + '" required>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<label for="answer_d" class="active">D</label>' +
+        '<input type="text" id="answer_d" name="answer_d" value="' + data.answer_d + '" required>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col l6 s12">' +
+        '<div class="input-field">' +
+        '<label for="correct_answer" class="active">Đúng</label>' +
+        '<input type="text" id="correct_answer" name="correct_answer" value="' + data.correct_answer + '" required>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="grade_id" id="grade_id">' +
+        '</select>' +
+        '<label>Khối</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="unit" id="unit">' +
+        '</select>' +
+        '<label>Chương</label>' +
+        '</div>' +
+        '</div>' +
+        '</div></div></div>' +
+        '<div class="row col l12 s12 modal-footer">' +
+        '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '</div></form></div></div>';
 }
 
 function question_del_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.ID + '">Xóa</a>' +
-    '<div id="del-' + data.ID + '" class="modal"><div class="modal-content">' +
-    '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.question_detail + '</p></div>' +
-    '<form action="" method="POST" role="form" onsubmit="submit_del_question(this.id)" id="form-del-question-' + data.ID + '">' +
-    '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
-    '<input type="hidden" value="' + data.ID + '" name="ID">' +
-    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
+        '<div id="del-' + data.ID + '" class="modal"><div class="modal-content">' +
+        '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.question_detail + '</p></div>' +
+        '<form action="" method="POST" role="form" onsubmit="submit_del_question(this.id)" id="form-del-question-' + data.ID + '">' +
+        '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
+        '<input type="hidden" value="' + data.ID + '" name="ID">' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
 function submit_add_question(data) {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=check_add_question";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -118,11 +122,13 @@ function submit_add_question(data) {
             $('.modal').modal();
             $('select').select();
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
 function submit_del_question(data) {
+    $('#preload').removeClass('hidden');
     data = $('#' + data).serializeArray();
     var url = "index.php?action=check_del_question";
     var success = function(result) {
@@ -133,11 +139,13 @@ function submit_del_question(data) {
                 this.remove();
             });
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
 function submit_edit_question(data) {
+    $('#preload').removeClass('hidden');
     form = $('#' + data);
     data = $('#' + data).serializeArray();
     var url = "index.php?action=check_edit_question";
@@ -155,6 +163,7 @@ function submit_edit_question(data) {
             $('.modal').modal();
             $('select').select();
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
@@ -178,16 +187,18 @@ function question_insert_data(data) {
     });
 }
 
-function select_unit () {
+function select_unit() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_units";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=unit]');
         sl.empty();
         $.each(json_data, function(key, value) {
-            sl.append('<option value="'+value.unit+'">'+value.detail+'</option>');
+            sl.append('<option value="' + value.unit + '">' + value.detail + '</option>');
         });
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }

@@ -2,10 +2,8 @@
 $tsl = count($dsl);
 $id_lop -= 1;
 // kiểm tra lớp có tồn tại không
-if($id_lop<$tsl&&$id_lop>=0)
-{
-	$ten_lop = $dsl[$id_lop]->ten_lop;//lấy tên lớp từ mảng chứa danh sách lớp ***
-	?>
+if ($id_lop<$tsl&&$id_lop>=0) {
+    $ten_lop = $dsl[$id_lop]->ten_lop;//lấy tên lớp từ mảng chứa danh sách lớp ***?>
 	<div class="col-lg-10">
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -26,10 +24,9 @@ if($id_lop<$tsl&&$id_lop>=0)
 					<tbody class="scrollbar">
 						<?php
 
-							//load danh sách học sinh từng học sinh của lớp 
-						for ($j = 0; $j < count($getCTL); $j++) 
-						{ 
-							?>
+                            //load danh sách học sinh từng học sinh của lớp
+                        for ($j = 0; $j < count($getCTL); $j++) {
+                            ?>
 							<tr>
 								<td class="col-lg-1"><?=$getCTL[$j]->id_hs?></td>
 								<td class="col-xs-3"><?=$dsTenHS[$j]->ten?></td>
@@ -42,17 +39,15 @@ if($id_lop<$tsl&&$id_lop>=0)
 
 							</div>
 							<?php
-						}
-						?>
+                        } ?>
 					</tbody>
 				</table>
-			</div>	
+			</div>
 		</div>
 	</div><!-- Kết thúc xem chi tiết lớp-->
 	<?php
-}
-else 
-	{?>
+} else {
+                            ?>
 		<div class="col-lg-10">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
@@ -61,10 +56,10 @@ else
 				<div class="panel-body overflow-gv">
 					Lớp không tồn tại hoặc đã bị xóa, vui lòng kiểm tra lại hoặc liên hệ Quản trị viên.<br /><br />
 					<a href="?"><button type="button" class="btn btn-info">Quay Lại</button></a>
-				</div>	
+				</div>
 			</div>
 		</div><!-- Kết thúc xem chi tiết lớp-->
 
 		<?php
-	}
-	?>
+                        }
+    ?>

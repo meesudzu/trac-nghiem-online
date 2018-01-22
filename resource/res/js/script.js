@@ -5,7 +5,7 @@ $(document).ready(function() {
     });
 });
 
-function get_profile () {
+function get_profile() {
     var url = "index.php?action=get_profile";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -14,8 +14,8 @@ function get_profile () {
     $.get(url, success);
 }
 
-function set_profile (data) {
-    $('#profile-avatar').attr('src', '../res/img/avatar/'+data.avatar+'');
+function set_profile(data) {
+    $('#profile-avatar').attr('src', '../res/img/avatar/' + data.avatar + '');
     $('#profile-name').text(data.name);
 }
 

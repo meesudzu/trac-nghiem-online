@@ -7,6 +7,7 @@ $(function() {
 });
 
 function get_list_classes() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_classes";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -15,6 +16,7 @@ function get_list_classes() {
         $('select').select();
         select_teacher();
         select_grade();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
@@ -37,46 +39,47 @@ function show_list_classes(data) {
 
 function class_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.class_id + '">Sửa</a>' +
-    '<div id="edit-' + data.class_id + '" class="modal modal-edit">' +
-    '<div class="row col l12">' +
-    '<form action="" method="POST" role="form" onsubmit="submit_edit_class(this.id)" id="form-edit-class-' + data.class_id + '">' +
-    '<div class="modal-content"><h5>Sửa: ' + data.class_name + '</h5>' +
-    '<div class="modal-body">' +
-    '<div class="col l12 s12">' +
-    '<div class="input-field">' +
-    '<input type="hidden" value="' + data.class_id + '" name="class_id">' +
-    '<input type="text" value="' + data.class_name + '" name="class_name" readonly>' +
-    '<label for="name" class="active">Tên Lớp</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<select name="grade_id">' +
-    '</select>' +
-    '<label>Khối</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<select name="teacher_id">' +
-    '</select>' +
-    '<label>Gíao Viên</label>' +
-    '</div>'+
-    '</div>' +
-    '</div></div>' +
-    '<div class="row col l12 s12 modal-footer">' +
-    '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-    '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
-    '</div></form></div></div>';
+        '<div id="edit-' + data.class_id + '" class="modal modal-edit">' +
+        '<div class="row col l12">' +
+        '<form action="" method="POST" role="form" onsubmit="submit_edit_class(this.id)" id="form-edit-class-' + data.class_id + '">' +
+        '<div class="modal-content"><h5>Sửa: ' + data.class_name + '</h5>' +
+        '<div class="modal-body">' +
+        '<div class="col l12 s12">' +
+        '<div class="input-field">' +
+        '<input type="hidden" value="' + data.class_id + '" name="class_id">' +
+        '<input type="text" value="' + data.class_name + '" name="class_name" readonly>' +
+        '<label for="name" class="active">Tên Lớp</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="grade_id">' +
+        '</select>' +
+        '<label>Khối</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="teacher_id">' +
+        '</select>' +
+        '<label>Gíao Viên</label>' +
+        '</div>' +
+        '</div>' +
+        '</div></div>' +
+        '<div class="row col l12 s12 modal-footer">' +
+        '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '</div></form></div></div>';
 }
 
 function class_del_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.class_id + '">Xóa</a>' +
-    '<div id="del-' + data.class_id + '" class="modal"><div class="modal-content">' +
-    '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.class_name + '</p></div>' +
-    '<form action="" method="POST" role="form" onsubmit="submit_del_class(this.id)" id="form-del-class-' + data.class_id + '">' +
-    '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
-    '<input type="hidden" value="' + data.class_id + '" name="class_id">' +
-    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
+        '<div id="del-' + data.class_id + '" class="modal"><div class="modal-content">' +
+        '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.class_name + '</p></div>' +
+        '<form action="" method="POST" role="form" onsubmit="submit_del_class(this.id)" id="form-del-class-' + data.class_id + '">' +
+        '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
+        '<input type="hidden" value="' + data.class_id + '" name="class_id">' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
 function submit_add_class(data) {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=check_add_class";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -88,11 +91,13 @@ function submit_add_class(data) {
             select_teacher();
             select_grade();
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
 function submit_del_class(data) {
+    $('#preload').removeClass('hidden');
     data = $('#' + data).serializeArray();
     var url = "index.php?action=check_del_class";
     var success = function(result) {
@@ -103,11 +108,13 @@ function submit_del_class(data) {
                 this.remove();
             });
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
 function submit_edit_class(data) {
+    $('#preload').removeClass('hidden');
     form = $('#' + data);
     data = $('#' + data).serializeArray();
     var url = "index.php?action=check_edit_class";
@@ -123,6 +130,7 @@ function submit_edit_class(data) {
             $('.modal').modal();
             $('select').select();
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
@@ -160,30 +168,34 @@ function valid_class_name(value) {
     $.get(url, data, success);
 }
 
-function select_teacher () {
+function select_teacher() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_teachers";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=teacher_id]');
         sl.empty();
         $.each(json_data, function(key, value) {
-            sl.append('<option value="'+value.teacher_id+'">'+value.name+'</option>');
+            sl.append('<option value="' + value.teacher_id + '">' + value.name + '</option>');
         });
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
-function select_grade () {
+function select_grade() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_grades";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=grade_id]');
         sl.empty();
         $.each(json_data, function(key, value) {
-            sl.append('<option value="'+value.grade_id+'">'+value.detail+'</option>');
+            sl.append('<option value="' + value.grade_id + '">' + value.detail + '</option>');
         });
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }

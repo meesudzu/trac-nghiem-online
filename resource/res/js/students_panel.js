@@ -8,12 +8,14 @@ $(function() {
 });
 
 function get_list_students() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_students";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_list_students(json_data);
         $('.modal').modal();
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
@@ -42,61 +44,62 @@ function show_list_students(data) {
 
 function student_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.student_id + '">Sửa</a>' +
-    '<div id="edit-' + data.student_id + '" class="modal modal-edit">' +
-    '<div class="row col l12">' +
-    '<form action="" method="POST" role="form" onsubmit="submit_edit_student(this.id)" id="form-edit-student-' + data.student_id + '">' +
-    '<div class="modal-content"><h5>Sửa: ' + data.name + '</h5>' +
-    '<div class="modal-body">' +
-    '<div class="col l6 s12">' +
-    '<div class="input-field">' +
-    '<input type="hidden" value="' + data.student_id + '" name="student_id">' +
-    '<input type="hidden" value="' + data.username + '" name="username">' +
-    '<input type="text" value="' + data.name + '" name="name" required>' +
-    '<label for="name" class="active">Tên</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<input type="password" name="password" required>' +
-    '<label for="password">Mật Khẩu</label>' +
-    '</div>' +
-    '</div>' +
-    '<div class="col l6 s12">' +
-    '<div class="input-field">' +
-    '<select name="gender_id">' +
-    '<option value="1" selected>Không Xác Định</option>' +
-    '<option value="2">Nam</option>' +
-    '<option value="3">Nữ</option>' +
-    '</select>' +
-    '<label>Giới Tính</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<select name="class_id" onchange="test(this.value)">' +
-    '</select>' +
-    '<label>Lớp</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<input type="date" value="' + data.birthday + '" name="birthday" required>' +
-    '<label for="birthday" class="active">Ngày Sinh</label>' +
-    '</div>' +
-    '</div>' +
-    '</div></div>' +
-    '</div><div class="col l12 s12">' +
-    '<div class="modal-footer">' +
-    '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-    '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
-    '</div></div></form></div></div>';
+        '<div id="edit-' + data.student_id + '" class="modal modal-edit">' +
+        '<div class="row col l12">' +
+        '<form action="" method="POST" role="form" onsubmit="submit_edit_student(this.id)" id="form-edit-student-' + data.student_id + '">' +
+        '<div class="modal-content"><h5>Sửa: ' + data.name + '</h5>' +
+        '<div class="modal-body">' +
+        '<div class="col l6 s12">' +
+        '<div class="input-field">' +
+        '<input type="hidden" value="' + data.student_id + '" name="student_id">' +
+        '<input type="hidden" value="' + data.username + '" name="username">' +
+        '<input type="text" value="' + data.name + '" name="name" required>' +
+        '<label for="name" class="active">Tên</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<input type="password" name="password" required>' +
+        '<label for="password">Mật Khẩu</label>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col l6 s12">' +
+        '<div class="input-field">' +
+        '<select name="gender_id">' +
+        '<option value="1" selected>Không Xác Định</option>' +
+        '<option value="2">Nam</option>' +
+        '<option value="3">Nữ</option>' +
+        '</select>' +
+        '<label>Giới Tính</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="class_id" onchange="test(this.value)">' +
+        '</select>' +
+        '<label>Lớp</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<input type="date" value="' + data.birthday + '" name="birthday" required>' +
+        '<label for="birthday" class="active">Ngày Sinh</label>' +
+        '</div>' +
+        '</div>' +
+        '</div></div>' +
+        '</div><div class="col l12 s12">' +
+        '<div class="modal-footer">' +
+        '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '</div></div></form></div></div>';
 }
 
 function student_del_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.student_id + '">Xóa</a>' +
-    '<div id="del-' + data.student_id + '" class="modal"><div class="modal-content">' +
-    '<h5>Cảnh Báo</h5><p>Xác nhận xóa tài khoản ' + data.username + '</p></div>' +
-    '<form action="" method="POST" role="form" onsubmit="submit_del_student(this.id)" id="form-del-student-' + data.student_id + '">' +
-    '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
-    '<input type="hidden" value="' + data.student_id + '" name="student_id">' +
-    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
+        '<div id="del-' + data.student_id + '" class="modal"><div class="modal-content">' +
+        '<h5>Cảnh Báo</h5><p>Xác nhận xóa tài khoản ' + data.username + '</p></div>' +
+        '<form action="" method="POST" role="form" onsubmit="submit_del_student(this.id)" id="form-del-student-' + data.student_id + '">' +
+        '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
+        '<input type="hidden" value="' + data.student_id + '" name="student_id">' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
 function submit_add_student(data) {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=check_add_student";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -105,12 +108,14 @@ function submit_add_student(data) {
             student_insert_data(json_data);
             $('.modal').modal();
             $('select').select();
+            $('#preload').addClass('hidden');
         }
     };
     $.post(url, data, success);
 }
 
 function submit_del_student(data) {
+    $('#preload').removeClass('hidden');
     data = $('#' + data).serializeArray();
     var url = "index.php?action=check_del_student";
     var success = function(result) {
@@ -121,11 +126,13 @@ function submit_del_student(data) {
                 this.remove();
             });
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
 function submit_edit_student(data) {
+    $('#preload').removeClass('hidden');
     form = $('#' + data);
     data = $('#' + data).serializeArray();
     console.log(data);
@@ -139,13 +146,10 @@ function submit_edit_student(data) {
             form[0].reset();
             $('.modal').modal();
             $('select').select();
+            $('#preload').addClass('hidden');
         }
     };
     $.post(url, data, success);
-}
-
-function test (data) {
-    console.log(data);
 }
 
 function student_insert_data(data) {
@@ -168,16 +172,18 @@ function student_insert_data(data) {
     });
 }
 
-function select_class (data) {
+function select_class(data) {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_classes";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=class_id]');
         sl.empty();
         $.each(json_data, function(key, value) {
-            sl.append('<option value="'+value.class_id+'">'+value.class_name+'</option>');
+            sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
         });
         $('select').select();
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }

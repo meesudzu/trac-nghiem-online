@@ -50,15 +50,15 @@ if (isset($_SESSION['login'])) {
         require_once 'controllers/controller_admin.php';
         $admin = new Controller_Admin();
         $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_admins_panel';
-        if( strpos( $action, "show" ) !== false) {
+        if (strpos($action, "show") !== false) {
             $admin->show_head_left();
-            if (is_callable([$admin, $action])) {                
+            if (is_callable([$admin, $action])) {
                 $admin->$action();
             } else {
                 $admin->show_404();
             }
             $admin->show_foot();
-        } else { 
+        } else {
             if (is_callable([$admin, $action])) {
                 $admin->$action();
             } else {
@@ -69,7 +69,6 @@ if (isset($_SESSION['login'])) {
         }
     }
 } else {
-
     if (!isset($_GET['action'])) {
         $action = 'show_login';
     } else {
