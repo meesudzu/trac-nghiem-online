@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?=Info::TITLE?>
 	</title>
-	<link rel="stylesheet" href="../res/css/style.css">
+	<link rel="stylesheet" href="../res/css/style.min.css">
+	<link rel="stylesheet" href="../res/css/font-awesome.css">
+	<link rel="stylesheet" href="../res/css/materialize.min.css">
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/materialize.min.js"></script>
 	<script src="../res/js/function.js"></script>

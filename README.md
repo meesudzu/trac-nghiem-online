@@ -8,7 +8,7 @@ Coming soon...
 
    - Thêm nhiều dạng bài tập hơn
    - Thêm bảng xếp hạng điểm theo từng lớp
-   - Tích hợp thêm nhập, xuất dữ liệu bằng XML
+   - ~~Tích hợp thêm nhập, xuất dữ liệu bằng XML~~
    - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
    - ~~Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần~~
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
