@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>
-		<?=Info::TITLE?>
+	<title><?=Info::TITLE?>
 	</title>
 	<link rel="stylesheet" href="../res/css/style.css">
 	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/script.js"></script>
 	<script src="../res/js/login.js"></script>
 	<script src="../res/js/materialize.min.js"></script>
 </head>
@@ -20,7 +18,7 @@
 		<div class="login fadeIn">
 			<h4 class="title-login">Đăng Nhập</h4>
 			<div class="login-form">
-				<div class="row">
+				<div class="row" style="position: relative;">
 					<img src="/res/img/loading.gif" alt="" id="loading" class="img-loading hidden">
 					<form>
 						<div class="input-field" id="field_username">

@@ -162,7 +162,35 @@ $box-shadow-sidebar: 2px 0px 1px #e8e8e8;
 	top: 0;
 	position: absolute;
 }
-
+.notification_content{
+	height: 450px;
+	.message{
+		display: block;
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+		border-bottom: 0.5px solid #e0e0e0;
+		span{
+			margin: 2px;
+		}
+		.name{
+			color: $nav-color;
+			font-size: 18px;
+		}
+		.time_sent {
+			display: block;
+			font-size: 13px;
+		}
+		.notification_title {
+			display: block;
+			color: blue;
+			font-size: 16px;
+		}
+		.receive_name{
+			display: block;
+			color: black;
+		}
+	}
+}
 // tbody {
 // 	display:block;
 // 	height:440px;

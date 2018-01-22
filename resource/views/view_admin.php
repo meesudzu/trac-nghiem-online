@@ -11,39 +11,34 @@ class View_Admin extends View
     public function show_head_left($info)
     {
         require_once 'config/info.php';
-        include 'res/templates/t_admin_head_left.php';
+        include 'res/templates/admin_head_left.php';
     }
-    public function show_foot()
+    public function show_admins_panel()
     {
-        require_once 'config/info.php';
-        include 'res/templates/t_foot.php';
+        include 'res/templates/admin_admins_panel.html';
     }
-    public function show_admin_panel()
+    public function show_teachers_panel()
     {
-        include 'res/templates/t_admin_panel.html';
+        include 'res/templates/admin_teachers_panel.html';
     }
-    public function show_teacher_panel()
+    public function show_classes_panel()
     {
-        include 'res/templates/t_teacher_panel.html';
+        include 'res/templates/admin_classes_panel.html';
     }
-    public function show_class_panel()
+    public function show_students_panel()
     {
-        include 'res/templates/t_class_panel.html';
+        include 'res/templates/admin_students_panel.html';
     }
-    public function show_student_panel()
+    public function show_questions_panel()
     {
-        include 'res/templates/t_student_panel.html';
+        include 'res/templates/admin_questions_panel.html';
     }
-    public function show_question_panel()
+    public function show_notifications_panel()
     {
-        include 'res/templates/t_question_panel.html';
+        include 'res/templates/admin_notifications_panel.html';
     }
-    public function notify_student()
+    public function show_units_panel()
     {
-        include 'res/templates/t_ad_send_notify.php';
-    }
-    public function show_404()
-    {
-        include 'res/templates/t_404.php';
+        include 'res/templates/admin_units_panel.html';
     }
 }

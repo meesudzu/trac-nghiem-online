@@ -22,17 +22,17 @@ function get_list_questions() {
 function show_list_questions(data) {
     var list = $('#list_questions');
     for (var i = 0; i < data.length; i++) {
-        var tr = $('<tr question="fadeIn" id="question-' + data[i].ID + '"></tr>');
-        tr.append('<td question="">' + data[i].ID + '</td>');
-        tr.append('<td question="">' + data[i].question_detail + '</td>');
-        tr.append('<td question="">' + data[i].grade_detail + '</td>');
-        tr.append('<td question="">' + data[i].question_unit + '</td>');
-        tr.append('<td question="">' + data[i].answer_a + '</td>');
-        tr.append('<td question="">' + data[i].answer_b + '</td>');
-        tr.append('<td question="">' + data[i].answer_c + '</td>');
-        tr.append('<td question="">' + data[i].answer_d + '</td>');
-        tr.append('<td question="">' + data[i].correct_answer + '</td>');
-        tr.append('<td question="">' + question_edit_button(data[i]) + '<br />' + question_del_button(data[i]) + '</td>');
+        var tr = $('<tr class="fadeIn" id="question-' + data[i].ID + '"></tr>');
+        tr.append('<td class="">' + data[i].ID + '</td>');
+        tr.append('<td class="">' + data[i].question_detail + '</td>');
+        tr.append('<td class="">' + data[i].grade_detail + '</td>');
+        tr.append('<td class="">' + data[i].question_unit + '</td>');
+        tr.append('<td class="">' + data[i].answer_a + '</td>');
+        tr.append('<td class="">' + data[i].answer_b + '</td>');
+        tr.append('<td class="">' + data[i].answer_c + '</td>');
+        tr.append('<td class="">' + data[i].answer_d + '</td>');
+        tr.append('<td class="">' + data[i].correct_answer + '</td>');
+        tr.append('<td class="">' + question_edit_button(data[i]) + '<br />' + question_del_button(data[i]) + '</td>');
         list.append(tr);
     };
     $("form").on('submit', function(event) {
@@ -45,38 +45,38 @@ function question_edit_button(data) {
     '<div id="edit-' + data.ID + '" class="modal modal-edit">' +
     '<div class="row col l12">' +
     '<form action="" method="POST" role="form" onsubmit="submit_edit_question(this.id)" id="form-edit-question-' + data.ID + '">' +
-    '<div class="modal-content"><h5>Sửa Câu Hỏi: ' + data.question_detail + '</h5>' +
+    '<div class="modal-content"><h5>Sửa: ' + data.question_detail + '</h5>' +
     '<div class="modal-body">' +
     '<div class="col l12 s12" style="padding-top: 20px">'+
     '<div class="input-field">'+
     '<input type="hidden" id="ID" name="ID" value="'+data.ID+'">'+
-    '<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>'+
-    '<label for="question_detail">Câu Hỏi</label>'+
+    '<textarea id="question_detail" name="question_detail" class="materialize-textarea" required>'+data.question_detail+'</textarea>'+
+    '<label for="question_detail" class="active">Câu Hỏi</label>'+
     '</div>'+
     '</div>'+
     '<div class="row col l12">'+
     '<div class="col l6 s12">'+
     '<div class="input-field">'+
-    '<label for="answer_a">A</label>'+
-    '<input type="text" id="answer_a" name="answer_a" required>'+
+    '<label for="answer_a" class="active">A</label>'+
+    '<input type="text" id="answer_a" name="answer_a" value="'+data.answer_a+'" required>'+
     '</div>'+
     '<div class="input-field">'+
-    '<label for="answer_b">B</label>'+
-    '<input type="text" id="answer_b" name="answer_b" required>'+
+    '<label for="answer_b" class="active">B</label>'+
+    '<input type="text" id="answer_b" name="answer_b" value="'+data.answer_b+'" required>'+
     '</div>'+
     '<div class="input-field">'+
-    '<label for="answer_c">C</label>'+
-    '<input type="text" id="answer_c" name="answer_c" required>'+
+    '<label for="answer_c" class="active">C</label>'+
+    '<input type="text" id="answer_c" name="answer_c" value="'+data.answer_c+'" required>'+
     '</div>'+
     '<div class="input-field">'+
-    '<label for="answer_d">D</label>'+
-    '<input type="text" id="answer_d" name="answer_d" required>'+
+    '<label for="answer_d" class="active">D</label>'+
+    '<input type="text" id="answer_d" name="answer_d" value="'+data.answer_d+'" required>'+
     '</div>'+
     '</div>'+
     '<div class="col l6 s12">'+
     '<div class="input-field">'+
-    '<label for="correct_answer">Đúng</label>'+
-    '<input type="text" id="correct_answer" name="correct_answer" required>'+
+    '<label for="correct_answer" class="active">Đúng</label>'+
+    '<input type="text" id="correct_answer" name="correct_answer" value="'+data.correct_answer+'" required>'+
     '</div>'+
     '<div class="input-field">'+
     '<select name="grade_id" id="grade_id">'+
@@ -90,7 +90,7 @@ function question_edit_button(data) {
     '</div>'+
     '</div>'+
     '</div></div></div>' +
-    '<div class="modal-footer">' +
+    '<div class="row col l12 s12 modal-footer">' +
     '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
     '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
     '</div></form></div></div>';

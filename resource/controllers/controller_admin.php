@@ -18,12 +18,6 @@ class Controller_Admin extends Controller
 		$this->update_last_login($this->info['admin_id']);
 		$this->info['username'] = $user_info->username;
 		$this->info['name'] = $user_info->name;
-		$this->info['avatar'] = $user_info->avatar;
-		$this->info['email'] = $user_info->email;
-		$this->info['last_login'] = $user_info->last_login;
-		$this->info['birthday'] = $user_info->birthday;
-		$this->info['permission'] = $user_info->permission_detail;
-		$this->info['gender'] = $user_info->gender_detail;
 	}
 	public function logout()
 	{
@@ -36,6 +30,11 @@ class Controller_Admin extends Controller
 			session_destroy();
 		}
 		echo json_encode($result);
+	}
+	public function get_profile()
+	{
+		$info = new Model_Admin();
+		echo json_encode($info->get_admin_info($this->info['username']));
 	}
 	public function get_admin_info($username)
 	{
@@ -61,6 +60,11 @@ class Controller_Admin extends Controller
 	{
 		$info = new Model_Admin();
 		return $info->get_question_info($ID);
+	}	
+	public function get_unit($ID)
+	{
+		$info = new Model_Admin();
+		return $info->get_unit($ID);
 	}		
 	public function update_last_login()
 	{
@@ -81,6 +85,11 @@ class Controller_Admin extends Controller
 	{
 		$list_units = new Model_Admin();
 		echo json_encode($list_units->get_list_units());
+	}
+	public function get_list_statuses()
+	{
+		$list_statuses = new Model_Admin();
+		echo json_encode($list_statuses->get_list_statuses());
 	}
 	public function valid_username_or_email()
 	{
@@ -128,6 +137,21 @@ class Controller_Admin extends Controller
 	{
 		$add = new Model_Admin();
 		return $add->add_admin($name, $username, $password, $email, $birthday, $gender);
+	}
+	public function add_unit($detail,$status_id,$close_time)
+	{
+		$add = new Model_Admin();
+		return $add->add_unit($detail,$status_id,$close_time);
+	}
+	public function del_unit($unit)
+	{
+		$del = new Model_Admin();
+		$del->del_unit($unit);
+	}
+	public function edit_unit($unit,$detail,$status_id,$close_time)
+	{
+		$del = new Model_Admin();
+		$del->edit_unit($unit,$detail,$status_id,$close_time);
 	}
 	public function get_list_teachers()
 	{
@@ -209,26 +233,31 @@ class Controller_Admin extends Controller
 		$add_question = new Model_Admin();
 		return $add_question->add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
 	}
-	// public function notify_teacher($notification_title, $notification_content)
-	// {
-	//     $send = new Model_Admin();
-	//     return $send->notify_teacher($this->info['username'], $this->info['name'], $notification_title, $notification_content);
-	// }
-	// public function get_teacher_notifications()
-	// {
-	//     $tbgv = new Model_Admin();
-	//     return $tbgv->get_teacher_notifications();
-	// }
-	// public function notify_student($notification_title, $notification_content)
-	// {
-	//     $send = new Model_Admin();
-	//     return $send->notify_student($this->info['username'], $this->info['name'], $notification_title, $notification_content);
-	// }
-	// public function get_student_notifications()
-	// {
-	//     $tbgv = new Model_Admin();
-	//     return $tbgv->get_student_notifications();
-	// }
+	public function get_teacher_notifications()
+	{
+		$notifications = new Model_Admin();
+		echo json_encode($notifications->get_teacher_notifications());
+	}
+	public function get_student_notifications()
+	{
+		$notifications = new Model_Admin();
+		echo json_encode($notifications->get_student_notifications());
+	}
+	public function insert_notification($notification_title, $notification_content)
+	{
+		$notification = new Model_Admin();
+		return $notification->insert_notification($this->info['username'], $this->info['name'], $notification_title, $notification_content);
+	}
+	public function notify_teacher($ID,$teacher_id)
+	{
+		$send = new Model_Admin();
+		$send->notify_teacher($ID,$teacher_id);
+	}
+	public function notify_class($ID,$class_id)
+	{
+		$send = new Model_Admin();
+		$send->notify_class($ID,$class_id);
+	}
 	public function show_head_left()
 	{
 		$this->load_view("admin");
@@ -241,11 +270,11 @@ class Controller_Admin extends Controller
 		$view = new View_Admin();
 		$view->show_foot();
 	}
-	public function show_admin_panel()
+	public function show_admins_panel()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
-		$view->show_admin_panel();
+		$view->show_admins_panel();
 	}
 	public function check_add_admin()
 	{
@@ -312,11 +341,11 @@ class Controller_Admin extends Controller
 		}
 		echo json_encode($result);
 	}
-	public function show_teacher_panel()
+	public function show_teachers_panel()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
-		$view->show_teacher_panel();
+		$view->show_teachers_panel();
 	}
 	public function check_add_teacher()
 	{
@@ -378,11 +407,11 @@ class Controller_Admin extends Controller
 		}
 		echo json_encode($result);
 	}
-	public function show_class_panel()
+	public function show_classes_panel()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
-		$view->show_class_panel();
+		$view->show_classes_panel();
 	}
 	public function check_add_class()
 	{
@@ -434,11 +463,11 @@ class Controller_Admin extends Controller
 		}
 		echo json_encode($result);
 	}
-	public function show_student_panel()
+	public function show_students_panel()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
-		$view->show_student_panel();
+		$view->show_students_panel();
 	}
 	public function check_add_student()
 	{
@@ -497,11 +526,11 @@ class Controller_Admin extends Controller
 		$result['student_id'] = $student_id;
 		echo json_encode($result);
 	}
-	public function show_question_panel()
+	public function show_questions_panel()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
-		$view->show_question_panel();
+		$view->show_questions_panel();
 	}
 	public function check_add_question()
 	{
@@ -519,10 +548,55 @@ class Controller_Admin extends Controller
 			$result['status'] = 0;
 		} else {
 			$ID = $this->add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
-			$result = json_decode(json_encode($this->get_question_info($ID->AUTO_INCREMENT)), True);
+			$result = json_decode(json_encode($this->get_question_info($ID)), True);
 			$result['status_value'] = "Thêm thành công!";
 			$result['status'] = 1;
 		}
+		echo json_encode($result);
+	}
+	public function check_add_unit()
+	{
+		$result = array();
+		$detail = isset($_POST['detail']) ? Htmlspecialchars(addslashes($_POST['detail'])) : '';
+		$status_id = isset($_POST['status_id']) ? Htmlspecialchars(addslashes($_POST['status_id'])) : '';
+		$close_time = isset($_POST['close_time']) ? Htmlspecialchars(addslashes($_POST['close_time'])) : '';
+		if (empty($detail)||empty($status_id)) {
+			$result['status_value'] = "Không được bỏ trống các trường nhập";
+			$result['status'] = 0;
+		} else {
+			$ID = $this->add_unit($detail,$status_id,$close_time);
+			$result = json_decode(json_encode($this->get_unit($ID)), True);
+			$result['status_value'] = "Thêm thành công!";
+			$result['status'] = 1;
+		}
+		echo json_encode($result);
+	}
+	public function check_edit_unit()
+	{
+		$result = array();
+		$unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
+		$detail = isset($_POST['detail']) ? Htmlspecialchars(addslashes($_POST['detail'])) : '';
+		$status_id = isset($_POST['status_id']) ? Htmlspecialchars(addslashes($_POST['status_id'])) : '';
+		$close_time = isset($_POST['close_time']) ? Htmlspecialchars(addslashes($_POST['close_time'])) : '';
+		if (empty($detail)||empty($status_id)) {
+			$result['status_value'] = "Không được bỏ trống các trường nhập";
+			$result['status'] = 0;
+		} else {
+			$ID = $this->edit_unit($unit,$detail,$status_id,$close_time);
+			$result = json_decode(json_encode($this->get_unit($unit)), True);
+			$result['status_value'] = "Sửa thành công!";
+			$result['status'] = 1;
+		}
+		echo json_encode($result);
+	}
+	public function check_del_unit()
+	{
+		$result = array();
+		$unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
+		$this->del_unit($unit);
+		$result['status_value'] = "Xóa thành công!";
+		$result['status'] = 1;
+		$result['unit'] = $unit;
 		echo json_encode($result);
 	}
 	public function check_del_question()
@@ -559,56 +633,56 @@ class Controller_Admin extends Controller
 		}
 		echo json_encode($result);
 	}
-	// public function notification_panel()
-	// {
-	//     $tbgv = $this->get_teacher_notifications();
-	//     $tbhs = $this->get_student_notifications();
-	//     $this->load_view("admin");
-	//     $view = new View_Admin();
-	//     $view->notification_panel($tbgv, $tbhs);
-	//     if (isset($_POST['send_gv'])) {
-	//         $this->check_notify_teacher();
-	//     }
-	//     if (isset($_POST['send_hs'])) {
-	//         $this->check_notify_student();
-	//     }
-	// }
-	// public function check_notify_teacher()
-	// {
-	//     $this->load_view("admin");
-	//     $view = new View_Admin();
-	//     $chu_de = Htmlspecialchars(trim(addslashes($_POST['chu_de_gv'])));
-	//     $notification_content = Htmlspecialchars(trim(addslashes($_POST['notification_content_gv'])));
-	//     if ($chu_de != '' && $notification_content != '') {
-	//         $this->notify_teacher($chu_de, $notification_content);
-	//         $status = "Gửi thành công!";
-	//         $view->status_success($status);
-	//         echo '<meta http-equiv="refresh" connamet="2" />';
-	//     } else {
-	//         $status = "Không được bỏ trống các trường nhập!";
-	//         $view->status_failed($status);
-	//     }
-	// }
-	// public function check_notify_student()
-	// {
-	//     $this->load_view("admin");
-	//     $view = new View_Admin();
-	//     $chu_de = Htmlspecialchars(trim(addslashes($_POST['chu_de_hs'])));
-	//     $notification_content = Htmlspecialchars(trim(addslashes($_POST['notification_content_hs'])));
-	//     if ($chu_de != '' && $notification_content != '') {
-	//         $this->notify_student($chu_de, $notification_content);
-	//         $status = "Gửi thành công!";
-	//         $view->status_success($status);
-	//         echo '<meta http-equiv="refresh" connamet="2" />';
-	//     } else {
-	//         $status = "Không được bỏ trống các trường nhập!";
-	//         $view->status_failed($status);
-	//     }
-	// }
+	public function show_notifications_panel()
+	{
+		$this->load_view("admin");
+		$view = new View_Admin();
+		$view->show_notifications_panel();
+	}
+	public function send_notification()
+	{
+		$result = array();
+		$notification_title = isset($_POST['notification_title']) ? htmlspecialchars($_POST['notification_title']) : '';
+		$notification_content = isset($_POST['notification_content']) ? htmlspecialchars($_POST['notification_content']) : '';
+		$teacher_id = isset($_POST['teacher_id']) ? json_decode(stripslashes($_POST['teacher_id'])) : array();
+		$class_id = isset($_POST['class_id']) ? json_decode(stripslashes($_POST['class_id'])) : array();
+		if (empty($notification_title)||empty($notification_content)) {
+			$result['status_value'] = "Nội dung hoặc tiêu đề trống!";
+			$result['status'] = 0;
+		} else {
+			if (empty($teacher_id)&&empty($class_id)) {
+				$result['status_value'] = "Chưa chọn người nhận!";
+				$result['status'] = 0;
+			} else {
+				$ID = $this->insert_notification($notification_title,$notification_content);
+				foreach($teacher_id as $teacher_id_){
+					$this->notify_teacher($ID,$teacher_id_);
+				}
+				foreach($class_id as $class_id_){
+					$this->notify_class($ID,$class_id_);
+				}
+				$result['status_value'] = "Gửi thành công!";
+				$result['status'] = 1;
+			}
+		}
+		echo json_encode($result);
+	}
 	public function show_404()
 	{
 		$this->load_view("admin");
 		$view = new View_Admin();
 		$view->show_404();
+	}
+	public function show_about()
+	{
+		$this->load_view("admin");
+		$view = new View_Admin();
+		$view->show_about();
+	}
+	public function show_units_panel()
+	{
+		$this->load_view("admin");
+		$view = new View_Admin();
+		$view->show_units_panel();
 	}
 }

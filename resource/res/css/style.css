@@ -56,6 +56,14 @@
 
 .valid-img { -webkit-transition: all .4s; transition: all .4s; width: 40px; height: 40px; right: 0; top: 0; position: absolute; }
 
+.notification_content { height: 450px; }
+.notification_content .message { display: block; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 0.5px solid #e0e0e0; }
+.notification_content .message span { margin: 2px; }
+.notification_content .message .name { color: #02796e; font-size: 18px; }
+.notification_content .message .time_sent { display: block; font-size: 13px; }
+.notification_content .message .notification_title { display: block; color: blue; font-size: 16px; }
+.notification_content .message .receive_name { display: block; color: black; }
+
 .scrollbar::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); background-color: #F5F5F5; }
 
 .scrollbar::-webkit-scrollbar { width: 5px; }

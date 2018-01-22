@@ -49,7 +49,7 @@ if (isset($_SESSION['login'])) {
     if ($_SESSION['permission']==1) {
         require_once 'controllers/controller_admin.php';
         $admin = new Controller_Admin();
-        $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_admin_panel';
+        $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_admins_panel';
         if( strpos( $action, "show" ) !== false) {
             $admin->show_head_left();
             if (is_callable([$admin, $action])) {                

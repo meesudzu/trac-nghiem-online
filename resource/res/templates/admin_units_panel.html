@@ -1,0 +1,47 @@
+<div class="box-content right box-content-mini" id="box-content">
+	<div class="title-content">
+		<span class="title">Quản Lý Bài Kiểm Tra</span>
+	</div>
+	<div class="block-content overflow scrollbar">
+		<div class="content fadeRight">
+			<table class="striped centered responsive-table">
+				<thead>
+					<tr>
+						<th class="">ID</th>
+						<th class="">Tên</th>
+						<th class="">Trạng Thái</th>
+						<th class="">Thời  Gian Đóng</th>
+						<th class=""><i class="material-icons">settings</i></th>
+					</tr>
+				</thead>
+				<tbody class="scrollbar" id="list_units">
+				</tbody>
+			</table>
+		</div>
+		<div class="content fadeRight">
+			<div class="row col l12">
+				<form action="" method="POST" role="form" id="add_unit_form">
+					<div class="col l6 s12">
+						<div class="input-field">
+							<label for="detail">Tên Chương</label>
+							<input type="text" name="detail" id="detail" required>
+						</div>
+						<div class="input-field">
+							<select name="status_id" id="status_id" onchange="check_status('add',this.value)">
+							</select>
+							<label>Trạng Thái</label>
+						</div> 
+						<div class="input-field hidden" id="close_time_add">
+							<label for="close_time" class="active">Thời Gian Đóng</label>
+							<input type="datetime-local" name="close_time">
+							<span class="helptext">VD: 2018-11-16 15:25:33</span>
+						</div>
+					</div>
+					<div class="col l12">
+						<button type="submit" class="btn" id="add_class" name="add-class">Thêm</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

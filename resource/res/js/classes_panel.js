@@ -40,7 +40,7 @@ function class_edit_button(data) {
     '<div id="edit-' + data.class_id + '" class="modal modal-edit">' +
     '<div class="row col l12">' +
     '<form action="" method="POST" role="form" onsubmit="submit_edit_class(this.id)" id="form-edit-class-' + data.class_id + '">' +
-    '<div class="modal-content"><h5>Sửa Thông Tin: ' + data.class_name + '</h5>' +
+    '<div class="modal-content"><h5>Sửa: ' + data.class_name + '</h5>' +
     '<div class="modal-body">' +
     '<div class="col l12 s12">' +
     '<div class="input-field">' +
@@ -49,18 +49,18 @@ function class_edit_button(data) {
     '<label for="name" class="active">Tên Lớp</label>' +
     '</div>' +
     '<div class="input-field">' +
-    '<select name="grade_id" onchange="test(this.value)">' +
+    '<select name="grade_id">' +
     '</select>' +
     '<label>Khối</label>' +
     '</div>' +
     '<div class="input-field">' +
-    '<select name="teacher_id" onchange="test(this.value)">' +
+    '<select name="teacher_id">' +
     '</select>' +
     '<label>Gíao Viên</label>' +
     '</div>'+
     '</div>' +
     '</div></div>' +
-    '<div class="modal-footer">' +
+    '<div class="row col l12 s12 modal-footer">' +
     '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
     '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
     '</div></form></div></div>';
@@ -82,7 +82,6 @@ function submit_add_class(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            console.log(json_data);
             class_insert_data(json_data);
             $('.modal').modal();
             $('select').select();
@@ -100,10 +99,8 @@ function submit_del_class(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            console.log(json_data.class_id);
             $('#class-' + json_data.class_id).hide('400', function() {
                 this.remove();
-                console.log('remove');
             });
         }
     };

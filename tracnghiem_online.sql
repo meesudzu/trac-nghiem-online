@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th1 19, 2018 lúc 05:25 PM
+-- Thời gian đã tạo: Th1 22, 2018 lúc 10:56 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `admins` (
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(32) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `permission` int(1) NOT NULL,
+  `permission` int(1) DEFAULT '1',
   `last_login` datetime NOT NULL,
   `gender_id` int(1) NOT NULL DEFAULT '1',
   `avatar` varchar(255) DEFAULT 'avatar-default.jpg',
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00');
+(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-01-22 16:55:47', 1, 'avatar-default.jpg', '2018-01-20');
 
 -- --------------------------------------------------------
 
@@ -113,14 +113,14 @@ INSERT INTO `classes` (`class_id`, `grade_id`, `class_name`, `teacher_id`) VALUE
 
 CREATE TABLE `genders` (
   `gender_id` int(1) NOT NULL,
-  `detail` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `gender_detail` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `genders`
 --
 
-INSERT INTO `genders` (`gender_id`, `detail`) VALUES
+INSERT INTO `genders` (`gender_id`, `gender_detail`) VALUES
 (1, 'Không Xác Định'),
 (2, 'Nam'),
 (3, 'Nữ');
@@ -176,7 +176,8 @@ INSERT INTO `notifications` (`notification_id`, `username`, `name`, `notificatio
 (7, 'admin', 'Admin', 'Thông Báo!', 'Các đồng chí nhanh chóng hoàn thành danh sách học sinh nhận học bổng kỳ 2017', '2018-01-12 14:40:49'),
 (8, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Các em làm bài tập để tuần sau nộp nhé', '2018-01-12 18:20:21'),
 (9, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Thông báo cập nhật lịch học', '2018-01-12 18:25:23'),
-(10, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Cạp nhật nhỉ lễ nguyên đán', '2018-01-12 18:26:25');
+(10, 'giaovien', 'Nguyễn Thị Hương', 'Thông Báo', 'Cạp nhật nhỉ lễ nguyên đán', '2018-01-12 18:26:25'),
+(18, 'admin', 'Admin', 'Thông Báo Nghỉ Tết', 'Các đồng chí quán triệt cam kết cấm đốt pháo với lớp mình', '2018-01-22 09:07:10');
 
 -- --------------------------------------------------------
 
@@ -186,14 +187,14 @@ INSERT INTO `notifications` (`notification_id`, `username`, `name`, `notificatio
 
 CREATE TABLE `permissions` (
   `permission` int(11) NOT NULL,
-  `detail` varchar(20) NOT NULL
+  `permission_detail` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `permissions`
 --
 
-INSERT INTO `permissions` (`permission`, `detail`) VALUES
+INSERT INTO `permissions` (`permission`, `permission_detail`) VALUES
 (1, 'Admin'),
 (2, 'Giáo Viên'),
 (3, 'Học Sinh');
@@ -239,8 +240,8 @@ INSERT INTO `questions` (`grade_id`, `unit`, `question_detail`, `answer_a`, `ans
 (3, 2, '3 x 5 = ?', '14', '16', '15', '12', '15', 16),
 (3, 2, '4 x 10 = ?', '40', '4', '10', '1', '40', 17),
 (3, 2, '2 x 10 = ?', '14', '16', '18', '20', '20', 18),
-(3, 2, '6 x 7 = ?', '40', '41', '42', '43', '42', 19),
-(3, 2, '4 x 4 = ?', '14', '16', '18', '12', '16', 20),
+(3, 2, '10 + 20 = ?', '10', '20', '30', '03', '30', 19),
+(3, 2, '10 x 10 = ?', '10', '20', '100', '11', '100', 20),
 (3, 2, '2 x 5 = ?', '14', '16', '10', '12', '10', 21),
 (3, 3, '4 x 7 =?', '27', '28', '29', '30', '28', 22),
 (3, 3, '10 * 0 = ?', '10', '0', '1', '11', '0', 23),
@@ -262,32 +263,6 @@ INSERT INTO `questions` (`grade_id`, `unit`, `question_detail`, `answer_a`, `ans
 (3, 4, '81 : 9 = ?', '7', '8', '9', '81', '9', 39),
 (3, 4, '40 : 8 = ?', '5', '2', '3', '4', '5', 40),
 (3, 4, '18 : 9 = ?', '1', '2', '3', '4', '2', 41);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `receive_notifications`
---
-
-CREATE TABLE `receive_notifications` (
-  `ID` int(11) NOT NULL,
-  `notification_id` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `receive_notifications`
---
-
-INSERT INTO `receive_notifications` (`ID`, `notification_id`, `class_id`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 1),
-(4, 4, 1),
-(5, 5, 1),
-(6, 6, 1),
-(7, 7, 1),
-(8, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -331,7 +306,8 @@ CREATE TABLE `statuses` (
 
 INSERT INTO `statuses` (`status_id`, `detail`) VALUES
 (1, 'Mở'),
-(2, 'Đóng');
+(2, 'Đóng'),
+(3, 'Chờ Đóng');
 
 -- --------------------------------------------------------
 
@@ -345,7 +321,7 @@ CREATE TABLE `students` (
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(32) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `permission` int(1) NOT NULL,
+  `permission` int(1) DEFAULT '3',
   `class_id` int(11) NOT NULL,
   `last_login` datetime NOT NULL,
   `gender_id` int(1) NOT NULL DEFAULT '1',
@@ -377,7 +353,30 @@ INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `
 (17, '2017HS17', 'example17@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị G', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (18, '2017HS18', 'example18@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị H', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(20, '2017HS20', NULL, 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00');
+(20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '2018-01-02');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `student_notifications`
+--
+
+CREATE TABLE `student_notifications` (
+  `ID` int(11) NOT NULL,
+  `notification_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `student_notifications`
+--
+
+INSERT INTO `student_notifications` (`ID`, `notification_id`, `class_id`) VALUES
+(1, 1, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(8, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -390,8 +389,8 @@ CREATE TABLE `teachers` (
   `username` varchar(16) NOT NULL,
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(32) NOT NULL,
-  `name` varchar(16) NOT NULL,
-  `permission` int(1) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `permission` int(1) DEFAULT '2',
   `last_login` datetime NOT NULL,
   `gender_id` int(1) NOT NULL DEFAULT '1',
   `avatar` varchar(255) DEFAULT 'avatar-default.jpg',
@@ -403,7 +402,28 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00');
+(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '1990-01-18');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `teacher_notifications`
+--
+
+CREATE TABLE `teacher_notifications` (
+  `ID` int(11) NOT NULL,
+  `notification_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `teacher_notifications`
+--
+
+INSERT INTO `teacher_notifications` (`ID`, `notification_id`, `teacher_id`) VALUES
+(2, 2, 1),
+(5, 6, 1),
+(6, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -423,7 +443,7 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`unit`, `detail`, `status_id`, `close_time`) VALUES
-(1, 'Chương 1', 1, NULL),
+(1, 'Chương 1', 1, '0000-00-00 00:00:00'),
 (2, 'Chương 2', 1, NULL),
 (3, 'Chương 3', 1, NULL),
 (4, 'Chương 4', 1, NULL);
@@ -491,14 +511,6 @@ ALTER TABLE `questions`
   ADD KEY `unit` (`unit`);
 
 --
--- Chỉ mục cho bảng `receive_notifications`
---
-ALTER TABLE `receive_notifications`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `notification_id` (`notification_id`),
-  ADD KEY `class_id` (`class_id`);
-
---
 -- Chỉ mục cho bảng `scores`
 --
 ALTER TABLE `scores`
@@ -525,6 +537,14 @@ ALTER TABLE `students`
   ADD KEY `students_gender_id` (`gender_id`);
 
 --
+-- Chỉ mục cho bảng `student_notifications`
+--
+ALTER TABLE `student_notifications`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `notification_id` (`notification_id`),
+  ADD KEY `class_id` (`class_id`);
+
+--
 -- Chỉ mục cho bảng `teachers`
 --
 ALTER TABLE `teachers`
@@ -533,6 +553,14 @@ ALTER TABLE `teachers`
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `n2` (`permission`),
   ADD KEY `teachers_gender_id` (`gender_id`);
+
+--
+-- Chỉ mục cho bảng `teacher_notifications`
+--
+ALTER TABLE `teacher_notifications`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `notification_id` (`notification_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
 
 --
 -- Chỉ mục cho bảng `units`
@@ -579,7 +607,7 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -594,12 +622,6 @@ ALTER TABLE `questions`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT cho bảng `receive_notifications`
---
-ALTER TABLE `receive_notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT cho bảng `scores`
 --
 ALTER TABLE `scores`
@@ -609,7 +631,7 @@ ALTER TABLE `scores`
 -- AUTO_INCREMENT cho bảng `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `students`
@@ -618,10 +640,22 @@ ALTER TABLE `students`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT cho bảng `student_notifications`
+--
+ALTER TABLE `student_notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT cho bảng `teachers`
 --
 ALTER TABLE `teachers`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `teacher_notifications`
+--
+ALTER TABLE `teacher_notifications`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `units`
@@ -660,13 +694,6 @@ ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `units` (`unit`);
 
 --
--- Các ràng buộc cho bảng `receive_notifications`
---
-ALTER TABLE `receive_notifications`
-  ADD CONSTRAINT `receive_notifications_ibfk_1` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`notification_id`),
-  ADD CONSTRAINT `receive_notifications_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`);
-
---
 -- Các ràng buộc cho bảng `scores`
 --
 ALTER TABLE `scores`
@@ -683,11 +710,25 @@ ALTER TABLE `students`
   ADD CONSTRAINT `students_gender_id` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`gender_id`);
 
 --
+-- Các ràng buộc cho bảng `student_notifications`
+--
+ALTER TABLE `student_notifications`
+  ADD CONSTRAINT `student_notifications_ibfk_1` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`notification_id`),
+  ADD CONSTRAINT `student_notifications_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`);
+
+--
 -- Các ràng buộc cho bảng `teachers`
 --
 ALTER TABLE `teachers`
   ADD CONSTRAINT `n2` FOREIGN KEY (`permission`) REFERENCES `permissions` (`permission`),
   ADD CONSTRAINT `teachers_gender_id` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`gender_id`);
+
+--
+-- Các ràng buộc cho bảng `teacher_notifications`
+--
+ALTER TABLE `teacher_notifications`
+  ADD CONSTRAINT `teacher_notifications_ibfk_1` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`notification_id`),
+  ADD CONSTRAINT `teacher_notifications_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`);
 
 --
 -- Các ràng buộc cho bảng `units`

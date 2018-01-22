@@ -279,53 +279,113 @@ class Model_Admin extends Database
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
+	public function get_unit($unit)
+	{
+		$sql = "
+		SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
+		INNER JOIN statuses ON statuses.status_id = units.status_id WHERE unit = '$unit'";
+		$this->set_query($sql);
+		return $this->load_rows();
+	}
+	public function get_list_statuses()
+	{
+		$sql = "
+		SELECT * FROM `statuses`";
+		$this->set_query($sql);
+		return $this->load_rows();
+	}
 	public function edit_question($ID, $question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
 	{
-	    $sql="UPDATE questions set question_detail='$question_detail', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer' where ID = '$ID'";
-	    $this->set_query($sql);
-	    $this->execute_none_return();
+		$sql="UPDATE questions set question_detail='$question_detail', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer' where ID = '$ID'";
+		$this->set_query($sql);
+		$this->execute_none_return();
 	}
 	public function del_question($ID)
 	{
-	    $sql="DELETE FROM questions where ID='$ID'";
-	    $this->set_query($sql);
-	    $this->execute_none_return();
+		$sql="DELETE FROM questions where ID='$ID'";
+		$this->set_query($sql);
+		$this->execute_none_return();
 	}
 	public function add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
 	{
 	    //get ID current question
 		$sql = "SELECT `AUTO_INCREMENT`
 		FROM  INFORMATION_SCHEMA.TABLES
-		WHERE TABLE_NAME   = 'questions';";
+		WHERE TABLE_NAME   = 'questions'";
 		$this->set_query($sql);
 		$ID = $this->load_row();
 		$sql="INSERT INTO questions (grade_id,unit,question_detail,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
 		$this->set_query($sql);
 		$this->execute_none_return();
-		return $ID;
+		return $ID->AUTO_INCREMENT;
 	}
-	// public function notify_teacher($username, $name, $notification_title, $notification_content)
-	// {
-	//     $sql="INSERT INTO notifications (username,name,notification_title,notification_content,thoi_gian,permission) VALUES ('$username','$name','$notification_title','$notification_content',NOW(),2)";
-	//     $this->set_query($sql);
-	//     $this->execute_none_return();
-	// }
-	// public function get_teacher_notifications()
-	// {
-	//     $sql = "SELECT * FROM notifications where permission = 2";
-	//     $this->set_query($sql);
-	//     return $this->load_rows();
-	// }
-	// public function notify_student($username, $name, $notification_title, $notification_content)
-	// {
-	//     $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent,permission) VALUES ('$username','$name','$notification_title','$notification_content',NOW(),3)";
-	//     $this->set_query($sql);
-	//     $this->execute_none_return();
-	// }
-	// public function get_student_notifications()
-	// {
-	//     $sql = "SELECT * FROM notifications where permission = 3";
-	//     $this->set_query($sql);
-	//     return $this->load_rows();
-	// }
+	public function add_unit($detail,$status_id,$close_time)
+	{
+		 //get ID current question
+		$sql = "SELECT `AUTO_INCREMENT`
+		FROM  INFORMATION_SCHEMA.TABLES
+		WHERE TABLE_NAME   = 'units'";
+		$this->set_query($sql);
+		$ID = $this->load_row();
+		$sql="INSERT INTO units (detail, status_id, close_time) VALUES ('$detail', '$status_id', '$close_time')";
+		$this->set_query($sql);
+		$this->execute_none_return();
+		return $ID->AUTO_INCREMENT;
+	}
+	public function edit_unit($unit,$detail,$status_id,$close_time)
+	{
+		$sql="UPDATE units set detail='$detail', status_id='$status_id', close_time ='$close_time' where unit = '$unit'";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function del_unit($unit)
+	{
+		$sql="DELETE FROM units where unit='$unit'";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function insert_notification($username, $name, $notification_title, $notification_content)
+	{
+		//get ID current notification
+		$sql = "SELECT `AUTO_INCREMENT`
+		FROM  INFORMATION_SCHEMA.TABLES
+		WHERE TABLE_NAME   = 'notifications'";
+		$this->set_query($sql);
+		$ID = $this->load_row();
+		$sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
+		$this->set_query($sql);
+		$this->execute_none_return();
+		return $ID->AUTO_INCREMENT;
+
+	}
+	public function notify_teacher($ID,$teacher_id)
+	{
+		$sql="INSERT INTO teacher_notifications (notification_id,teacher_id) VALUES ('$ID','$teacher_id')";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function notify_class($ID,$class_id)
+	{
+		$sql="INSERT INTO student_notifications (notification_id,class_id) VALUES ('$ID','$class_id')";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function get_teacher_notifications()
+	{
+		$sql = "
+		SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
+		INNER JOIN notifications ON notifications.notification_id = teacher_notifications.notification_id
+		INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id";
+		$this->set_query($sql);
+		return $this->load_rows();
+	}
+	public function get_student_notifications()
+	{
+		$sql = "
+		SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
+		INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
+		INNER JOIN classes ON classes.class_id = student_notifications.class_id";
+		$this->set_query($sql);
+		return $this->load_rows();
+	}
 }

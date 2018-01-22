@@ -1,8 +1,23 @@
+get_profile();
 $(document).ready(function() {
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
 });
+
+function get_profile () {
+    var url = "index.php?action=get_profile";
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        set_profile(json_data);
+    };
+    $.get(url, success);
+}
+
+function set_profile (data) {
+    $('#profile-avatar').attr('src', '../res/img/avatar/'+data.avatar+'');
+    $('#profile-name').text(data.name);
+}
 
 function show_status(json_data) {
     if (json_data.status) {
@@ -31,12 +46,11 @@ function logout() {
         confirm: true
     };
     var success = function(result) {
-        console.log(result);
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
             setTimeout(function() {
-                location.replace("index.php");
+                location.reload();
             }, 1500);
         }
     };

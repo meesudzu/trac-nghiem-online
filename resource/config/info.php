@@ -8,10 +8,10 @@
 class Info
 {
     const TITLE = 'Hệ Thống Trắc Nghiệm Online';
-    const ADMIN_TITLE = "Admin Cpanel";
     const COPYRIGHT = "Copyright © 2016 By Dzu";
     const VERSION = "Pre Build 3.0.0";
-    const CONTRIBUTES = "Nông Văn Du<br />Trịnh Văn Dương<br />Trần Văn Huy<br />Vương Văn Huy<br />Hoàng Phương Nam";
+    const OWNER = "Nông Văn Du (Dzu)";
+    const CONTRIBUTOR = "Trịnh Văn Dương - Trần Văn Huy - Vương Văn Huy - Hoàng Phương Nam";
     const EMAIL = "dzu6996@gmail.com";
-    const RELEASE = "Release x/x/2018";
+    const RELEASE = "xx/xx/2018";
 }
