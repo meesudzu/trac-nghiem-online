@@ -18,6 +18,10 @@ class View
         require_once 'config/info.php';
         include 'res/templates/foot.php';
     }
+    public function show_profiles()
+    {
+        include 'res/templates/profiles.html';
+    }
     public function show_404()
     {
         include 'res/templates/404.html';

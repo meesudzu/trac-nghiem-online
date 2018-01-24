@@ -12,46 +12,46 @@ class Model_Admin extends Database
     public function get_admin_info($username)
     {
         $sql = "
-		SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
-		INNER JOIN permissions ON admins.permission = permissions.permission
-		INNER JOIN genders ON admins.gender_id = genders.gender_id
-		WHERE username = '$username'";
+        SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
+        INNER JOIN permissions ON admins.permission = permissions.permission
+        INNER JOIN genders ON admins.gender_id = genders.gender_id
+        WHERE username = '$username'";
         $this->set_query($sql);
         return $this->load_row();
     }
     public function get_teacher_info($username)
     {
         $sql = "
-		SELECT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
-		INNER JOIN permissions ON teachers.permission = permissions.permission
-		INNER JOIN genders ON teachers.gender_id = genders.gender_id WHERE username = '$username'";
+        SELECT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
+        INNER JOIN permissions ON teachers.permission = permissions.permission
+        INNER JOIN genders ON teachers.gender_id = genders.gender_id WHERE username = '$username'";
         $this->set_query($sql);
         return $this->load_row();
     }
     public function get_student_info($username)
     {
         $sql = "
-		SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
-		INNER JOIN classes ON students.class_id = classes.class_id
-		INNER JOIN genders ON students.gender_id = genders.gender_id WHERE username = '$username'";
+        SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
+        INNER JOIN classes ON students.class_id = classes.class_id
+        INNER JOIN genders ON students.gender_id = genders.gender_id WHERE username = '$username'";
         $this->set_query($sql);
         return $this->load_row();
     }
     public function get_class_info($class_name)
     {
         $sql = "
-		SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
-		INNER JOIN grades ON classes.grade_id = grades.grade_id
-		INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id
-		WHERE class_name = '$class_name'";
+        SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
+        INNER JOIN grades ON classes.grade_id = grades.grade_id
+        INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id
+        WHERE class_name = '$class_name'";
         $this->set_query($sql);
         return $this->load_row();
     }
     public function get_list_admins()
     {
         $sql = "SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
-		INNER JOIN permissions ON admins.permission = permissions.permission
-		INNER JOIN genders ON admins.gender_id = genders.gender_id";
+        INNER JOIN permissions ON admins.permission = permissions.permission
+        INNER JOIN genders ON admins.gender_id = genders.gender_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -70,10 +70,10 @@ class Model_Admin extends Database
     public function valid_username_or_email($data)
     {
         $sql = "SELECT name FROM students WHERE username = '$data' OR email = '$data'
-		UNION
-		SELECT name FROM teachers WHERE username = '$data' OR email = '$data'
-		UNION
-		SELECT name FROM admins WHERE username = '$data' OR email = '$data'";
+        UNION
+        SELECT name FROM teachers WHERE username = '$data' OR email = '$data'
+        UNION
+        SELECT name FROM admins WHERE username = '$data' OR email = '$data'";
         $this->set_query($sql);
         if ($this->load_row() != '') {
             return false;
@@ -84,6 +84,18 @@ class Model_Admin extends Database
     public function valid_class_name($class_name)
     {
         $sql = "SELECT class_id FROM classes WHERE class_name = '$class_name'";
+        $this->set_query($sql);
+        if ($this->load_row() != '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public function valid_email_on_profiles($curren_email,$new_email)
+    {
+        $sql = "SELECT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+        UNION SELECT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+        UNION SELECT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
         $this->set_query($sql);
         if ($this->load_row() != '') {
             return false;
@@ -134,8 +146,8 @@ class Model_Admin extends Database
     public function get_list_teachers()
     {
         $sql = "SELECT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
-		INNER JOIN permissions ON teachers.permission = permissions.permission
-		INNER JOIN genders ON teachers.gender_id = genders.gender_id";
+        INNER JOIN permissions ON teachers.permission = permissions.permission
+        INNER JOIN genders ON teachers.gender_id = genders.gender_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -176,9 +188,9 @@ class Model_Admin extends Database
     public function get_list_students()
     {
         $sql = "
-		SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
-		INNER JOIN classes ON students.class_id = classes.class_id
-		INNER JOIN genders ON students.gender_id = genders.gender_id";
+        SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
+        INNER JOIN classes ON students.class_id = classes.class_id
+        INNER JOIN genders ON students.gender_id = genders.gender_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -219,9 +231,9 @@ class Model_Admin extends Database
     public function get_list_classes()
     {
         $sql = "
-		SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
-		INNER JOIN grades ON classes.grade_id = grades.grade_id
-		INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id";
+        SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
+        INNER JOIN grades ON classes.grade_id = grades.grade_id
+        INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -256,41 +268,41 @@ class Model_Admin extends Database
     public function get_list_questions()
     {
         $sql = "
-		SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
-		INNER JOIN grades ON grades.grade_id = questions.grade_id
-		INNER JOIN units ON units.unit = questions.unit";
+        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
+        INNER JOIN grades ON grades.grade_id = questions.grade_id
+        INNER JOIN units ON units.unit = questions.unit";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_question_info($ID)
     {
         $sql = "
-		SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
-		INNER JOIN grades ON grades.grade_id = questions.grade_id
-		INNER JOIN units ON units.unit = questions.unit WHERE ID = '$ID'";
+        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
+        INNER JOIN grades ON grades.grade_id = questions.grade_id
+        INNER JOIN units ON units.unit = questions.unit WHERE ID = '$ID'";
         $this->set_query($sql);
         return $this->load_row();
     }
     public function get_list_units()
     {
         $sql = "
-		SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
-		INNER JOIN statuses ON statuses.status_id = units.status_id";
+        SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
+        INNER JOIN statuses ON statuses.status_id = units.status_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_unit($unit)
     {
         $sql = "
-		SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
-		INNER JOIN statuses ON statuses.status_id = units.status_id WHERE unit = '$unit'";
+        SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
+        INNER JOIN statuses ON statuses.status_id = units.status_id WHERE unit = '$unit'";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_list_statuses()
     {
         $sql = "
-		SELECT * FROM `statuses`";
+        SELECT * FROM `statuses`";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -310,8 +322,8 @@ class Model_Admin extends Database
     {
         //get ID current question
         $sql = "SELECT `AUTO_INCREMENT`
-		FROM  INFORMATION_SCHEMA.TABLES
-		WHERE TABLE_NAME   = 'questions'";
+        FROM  INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_NAME   = 'questions'";
         $this->set_query($sql);
         $ID = $this->load_row();
         $sql="INSERT INTO questions (grade_id,unit,question_detail,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
@@ -323,8 +335,8 @@ class Model_Admin extends Database
     {
         //get ID current question
         $sql = "SELECT `AUTO_INCREMENT`
-		FROM  INFORMATION_SCHEMA.TABLES
-		WHERE TABLE_NAME   = 'units'";
+        FROM  INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_NAME   = 'units'";
         $this->set_query($sql);
         $ID = $this->load_row();
         $sql="INSERT INTO units (detail, status_id, close_time) VALUES ('$detail', '$status_id', '$close_time')";
@@ -348,8 +360,8 @@ class Model_Admin extends Database
     {
         //get ID current notification
         $sql = "SELECT `AUTO_INCREMENT`
-		FROM  INFORMATION_SCHEMA.TABLES
-		WHERE TABLE_NAME   = 'notifications'";
+        FROM  INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_NAME   = 'notifications'";
         $this->set_query($sql);
         $ID = $this->load_row();
         $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
@@ -372,19 +384,37 @@ class Model_Admin extends Database
     public function get_teacher_notifications()
     {
         $sql = "
-		SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
-		INNER JOIN notifications ON notifications.notification_id = teacher_notifications.notification_id
-		INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id";
+        SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
+        INNER JOIN notifications ON notifications.notification_id = teacher_notifications.notification_id
+        INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_student_notifications()
     {
         $sql = "
-		SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
-		INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
-		INNER JOIN classes ON classes.class_id = student_notifications.class_id";
+        SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
+        INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
+        INNER JOIN classes ON classes.class_id = student_notifications.class_id";
         $this->set_query($sql);
         return $this->load_rows();
+    }
+    public function update_profiles($username, $name, $email, $password, $gender, $birthday)
+    {
+        // $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
+        // $this->set_query($sql);
+        // if ($this->load_row()=='') {
+        //     return false;
+        // }
+        $sql="UPDATE admins set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
+        $this->set_query($sql);
+        $this->execute_none_return();
+        return true;
+    }
+    public function update_avatar($avatar,$username)
+    {
+        $sql="UPDATE admins set avatar='$avatar' where username='$username'";
+        $this->set_query($sql);
+        $this->execute_none_return();
     }
 }

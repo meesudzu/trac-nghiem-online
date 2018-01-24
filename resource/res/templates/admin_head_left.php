@@ -27,9 +27,9 @@
 	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
 		<div class="card reset-margin">
 			<div class="card-image">
-				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="profile-avatar">
-				<span class="card-title" style="padding: 20px; "><i  id="profile-name"><?=$info['name']?></i>
-					<a id="" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
+				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
+				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
+					<a href="/show_profiles" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>
 			</div>
 		</div>

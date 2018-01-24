@@ -21,20 +21,6 @@ $(document).ready(function() {
 
 });
 
-function get_profile() {
-    var url = "index.php?action=get_profile";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        set_profile(json_data);
-    };
-    $.get(url, success);
-}
-
-function update_profile(data) {
-    $('#profile-avatar').attr('src', '../res/img/avatar/' + data.avatar + '');
-    $('#profile-name').text(data.name);
-}
-
 function show_status(json_data) {
     if (json_data.status) {
         $('#status').addClass('success');
@@ -188,4 +174,25 @@ function valid_class_name(value) {
         }
     };
     $.get(url, data, success);
+}
+
+function valid_email_on_profiles (data) {
+    var new_email = $('#profiles-new-email').val();
+    var current_email = $('#profiles-current-email').val();
+    var url = "index.php?action=valid_email_on_profiles";
+    var data = {
+        new_email: new_email,
+        current_email: current_email
+    }
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        if (json_data.status) {
+            $('#valid-email-true').removeClass('hidden');
+            $('#valid-email-false').addClass('hidden');
+        } else {
+            $('#valid-email-false').removeClass('hidden');
+            $('#valid-email-true').addClass('hidden');
+        }
+    };
+    $.post(url,data,success);
 }

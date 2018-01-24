@@ -6,7 +6,7 @@ Building v3.0.0 (xx/xx/xxxx)
     - Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
     - Giáo viên có thể thêm học sinh, xoá học sinh, sửa học sinh trong lớp quản lý
 	- Giáo viên, admin có thể chọn khối, lớp để gửi thông báo (thay vì gửi cho tất cả như hiện tại) ✓
-	- Sửa lại code theo đúng PHP Convention (PSR)
+	- Sửa lại code theo đúng PHP Convention (PSR) ✓
 	- Gộp các trang đăng nhập, quên mật khẩu lại làm 1 ✓
 	- Kiểm tra dữ liệu tài khoản, email, tên lớp nhập vào ở Thêm, sửa Admin, học sinh, giáo viên, lớp ngay lập tức sau khi nhập xong ✓
 	- Sử dụng AJAX cho các form nhập tạo hiệu ứng real-time ✓
