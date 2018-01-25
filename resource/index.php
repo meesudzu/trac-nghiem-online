@@ -9,64 +9,16 @@ session_start();
 // error_reporting(0);
 // ini_set('display_errors', 0);
 if (isset($_SESSION['login'])) {
-    // if ($_SESSION['permission']==3) {
-    //     require_once 'controllers/controller_student.php';
-    //     $index = new Controller_Student();
-    //     $index->show_head_left();
-    //     if (isset($_GET['logout'])) {
-    //         $index->logout();
-    //     }
-    //     if (isset($_GET['unit'])) {
-    //         $index->doEx($_GET['unit']);
-    //     }
-    //     if (isset($_GET['nop_bai'])) {
-    //         $index->sendEx();
-    //     }
-    //     if (isset($_GET['luu_tru'])) {
-    //         $index->showAllChat();
-    //     }
-    //     if (!isset($_GET['luu_tru'])&&!isset($_GET['unit'])&&!isset($_GET['nop_bai'])) {
-    //         $index->showChat();
-    //     }
-    //     $index->showNotify();
-    //     $index->showFoot();
-    // }
-    // if ($_SESSION['permission']==2) {
-    //     require_once 'controllers/controller_teacher.php';
-    //     $index = new Controller_Teacher();
-    //     $index->show_head_left();
-    //     if (isset($_GET['logout'])) {
-    //         $index->logout();
-    //     }
-    //     if (isset($_GET['id_lop'])) {
-    //         $index->showDetails((int)$_GET['id_lop']);
-    //     } else {
-    //         $index->sendNotify();
-    //         $index->reNotify();
-    //     }
-    //     $index->showFoot();
-    // }
-    if ($_SESSION['permission']==1) {
-        require_once 'controllers/controller_admin.php';
-        $admin = new Controller_Admin();
-        $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_admins_panel';
-        if (strpos($action, "show") !== false) {
-            $admin->show_head_left();
-            if (is_callable([$admin, $action])) {
-                $admin->$action();
-            } else {
-                $admin->show_404();
-            }
-            $admin->show_foot();
-        } else {
-            if (is_callable([$admin, $action])) {
-                $admin->$action();
-            } else {
-                $admin->show_head_left();
-                $admin->show_404();
-                $admin->show_foot();
-            }
-        }
+    $controller = 'controller_'. $_SESSION['permission'];
+    require_once 'controllers/'. $controller .'.php';
+    $index = new $controller();
+    $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
+    if (is_callable([$index, $action])) {
+        $index->$action();
+    } else {
+        $index->show_head_left();
+        $index->show_404();
+        $index->show_foot();
     }
 } else {
     if (!isset($_GET['action'])) {

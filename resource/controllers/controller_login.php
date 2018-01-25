@@ -43,7 +43,15 @@ class Controller_Login extends Controller
             if ($password == $user->password) {
                 $result['status_value'] = "Đăng nhập thành công, chuẩn bị chuyển hưóng...";
                 $result['status'] = 1;
-                $_SESSION['permission'] = $user->permission;
+                if ($user->permission==1) {
+                    $_SESSION['permission'] = "admin";
+                }
+                if ($user->permission==2) {
+                    $_SESSION['permission'] = "teacher";
+                }
+                if ($user->permission==3) {
+                    $_SESSION['permission'] = "student";
+                }
                 $_SESSION['login'] = true;
             } else {
                 $result['status_value'] = "Sai mật khẩu!";

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    show_admins_panel();
     $('.modal').modal();
     $('.collapsible').collapsible();
     $('select').select();
@@ -20,6 +21,106 @@ $(document).ready(function() {
     });
 
 });
+
+function show_profiles() {
+    var url = "index.php?action=show_profiles";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $('select').select();
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_admins_panel() {
+    var url = "index.php?action=show_admins_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_teachers_panel() {
+    var url = "index.php?action=show_teachers_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_students_panel() {
+    var url = "index.php?action=show_students_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_classes_panel() {
+    var url = "index.php?action=show_classes_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_questions_panel() {
+    var url = "index.php?action=show_questions_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_units_panel() {
+    var url = "index.php?action=show_units_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_notifications_panel() {
+    var url = "index.php?action=show_notifications_panel";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
+
+function show_about() {
+    var url = "index.php?action=show_about";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
 
 function show_status(json_data) {
     if (json_data.status) {
@@ -43,7 +144,7 @@ function show_status(json_data) {
 }
 
 function logout() {
-    var url = "/logout";
+    var url = "index.php?action=logout";
     var data = {
         confirm: true
     };
@@ -63,7 +164,7 @@ function valid_username_or_email(value, elem) {
     var url = "index.php?action=valid_username_or_email";
     var data = {
         usr_or_email: value
-    }
+    };
     var success = function(result) {
         var json_data = $.parseJSON(result);
         if (json_data.status) {
@@ -162,7 +263,7 @@ function valid_class_name(value) {
     var url = "index.php?action=valid_class_name";
     var data = {
         class_name: value
-    }
+    };
     var success = function(result) {
         var json_data = $.parseJSON(result);
         if (json_data.status) {
@@ -176,14 +277,14 @@ function valid_class_name(value) {
     $.get(url, data, success);
 }
 
-function valid_email_on_profiles (data) {
+function valid_email_on_profiles(data) {
     var new_email = $('#profiles-new-email').val();
     var current_email = $('#profiles-current-email').val();
     var url = "index.php?action=valid_email_on_profiles";
-    var data = {
+    var data1 = {
         new_email: new_email,
         current_email: current_email
-    }
+    };
     var success = function(result) {
         var json_data = $.parseJSON(result);
         if (json_data.status) {
@@ -194,5 +295,5 @@ function valid_email_on_profiles (data) {
             $('#valid-email-true').addClass('hidden');
         }
     };
-    $.post(url,data,success);
+    $.post(url, data1, success);
 }

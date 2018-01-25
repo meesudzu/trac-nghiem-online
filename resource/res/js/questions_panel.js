@@ -37,7 +37,7 @@ function show_list_questions(data) {
         tr.append('<td class="">' + data[i].correct_answer + '</td>');
         tr.append('<td class="">' + question_edit_button(data[i]) + '<br />' + question_del_button(data[i]) + '</td>');
         list.append(tr);
-    };
+    }
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
@@ -47,7 +47,7 @@ function question_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.ID + '">Sửa</a>' +
         '<div id="edit-' + data.ID + '" class="modal modal-edit">' +
         '<div class="row col l12">' +
-        '<form action="" method="POST" role="form" onsubmit="submit_edit_question(this.id)" id="form-edit-question-' + data.ID + '">' +
+        '<form action="" method="POST" role="form" id="form-edit-question-' + data.ID + '">' +
         '<div class="modal-content"><h5>Sửa: ' + data.question_detail + '</h5>' +
         '<div class="modal-body">' +
         '<div class="col l12 s12" style="padding-top: 20px">' +
@@ -95,7 +95,7 @@ function question_edit_button(data) {
         '</div></div></div>' +
         '<div class="row col l12 s12 modal-footer">' +
         '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_question(' + data.ID + ')">Đồng Ý</button>' +
         '</div></form></div></div>';
 }
 
@@ -146,8 +146,8 @@ function submit_del_question(data) {
 
 function submit_edit_question(data) {
     $('#preload').removeClass('hidden');
-    form = $('#' + data);
-    data = $('#' + data).serializeArray();
+    form = $('#form-edit-question-' + data);
+    data = $('#form-edit-question-' + data).serializeArray();
     var url = "index.php?action=check_edit_question";
     var success = function(result) {
         console.log(result);

@@ -1,92 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><?=Info::TITLE?></title>
-	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="../res/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><?=Info::TITLE?>
+	</title>
+	<link rel="stylesheet" href="../res/css/style.min.css">
+	<link rel="stylesheet" href="../res/css/font-awesome.css">
+	<link rel="stylesheet" href="../res/css/materialize.min.css">
 	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/script.js"></script>
-	<script src="../res/js/bootstrap.min.js"></script>
+	<script src="../res/js/materialize.min.js"></script>
+	<script src="../res/js/student_functions.js"></script>
 </head>
-<body style="overflow-x: hidden;">
-	<div class="col-lg-12">
-		<nav class="navbar navbar-default logo" role="navigation">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<a class="navbar-brand font" href="?" style="color: blue !important;"><?=$info_config->getTitle()?></a>
-				</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav navbar-right font">
-						<li><a href="?" style="color: blue !important">Trang Chủ</a></li>
-						<li><a href="#" style="color: blue !important">Hướng Dẫn Sử Dụng</a></li>
-						<li><a href="#" style="color: blue !important">Ôn Lại Kiến Thức</a></li>
-						<li><a href="#" style="color: blue !important">Báo Lỗi - Góp ý</a></li>
-						<li><a href="#" style="color: blue !important">Liên Hệ</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
+<body class="body-login">
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper nav-green">
+				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons">menu</i></a></div>
+				<a class="brand-logo right cursor" onclick="show_index()"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
+		<div id="status" class="status"></div>
 	</div>
-	<!-- Kết thúc header -->
-	<div class="col-lg-2">
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">Thông tin tài khoản</h3>
-			</div>
-			<div class="panel-body">
-				<span>Tài khoản: <?=$info['tai_khoan']?></span><br />
-				<span>Tên: <?=$info['ten']?></span><br />
-				<span><?=$info['ten_cv']?>
-					<span><?=$info['ten_lop']?></span>
-				</span><br />
-				<a class="" data-toggle="modal" style="color: blue !important;"  href='#logout'>Đăng xuất</a>
-				<div class="modal fade" id="logout">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" >Đăng xuất</h4>
-							</div>
-							<div class="modal-body">
-								Bạn có muốn thoát phiên làm việc!
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								<a href="index.php?logout=true" class="btn btn-primary" name="logout">Đăng Xuất</a>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
+		<div class="card reset-margin">
+			<div class="card-image">
+				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
+				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
+					<a class="cursor blue-text text-darken-2" onclick="show_profiles()"><i class="material-icons">create</i></a>
+				</span>
 			</div>
 		</div>
-		<!-- Kết thúc thông tin cá nhân học sinh -->
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">Bảng Điểm</h3>
-			</div>
-			<div class="panel-body" style="height: 300px;">
-				<?php
-                //vòng lặp load thông tin điểm của học sinh
-                for ($i = 1; $i < 5; $i++) {
-                    if ($diem[$i-1]>=0) {
-                        ?>
-					<a class="btn btn-max btn-success" data-toggle="modal" href="?unit=<?=$i?>">Chương <?=$i?><br />Điểm: <?=$diem[$i-1]?></a><br /><br />
-					<?php
-                    } else {
-                        ?>
-					<a class="btn btn-max btn-warning" data-toggle="modal" href="?unit=<?=$i?>">Chương <?=$i?><br />Chưa làm</a></a><br /><br />
-					<?php
-                    } ?>
-					<?php
-                }?>
-				</div>
-			</div>
-		</div>
-		<!-- Kết thúc bảng điểm -->
+		<ul class="collapsible reset-margin" data-collapsible="accordion">
+			<a class="collapsible-header font-color cursor"><i class="material-icons">library_books</i>Làm Bài Tập</a>
+			<a class="collapsible-header font-color cursor"><i class="material-icons">send</i>Trò Chuyện</a>
+			<a class="collapsible-header font-color cursor" onclick="show_about()"><i class="material-icons">insert_comment</i>Liên Hệ</a>
+		</ul>
 	</div>
-	<!-- Kết thúc Sidebar trái -->
+	<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h4>Đăng Xuất</h4>
+			<p>Xác nhận đăng xuất</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Không</a>
+			<a class="modal-action modal-close waves-effect waves-green btn-flat" id="btn-logout">Có</a>
+		</div>
+	</div>
+	<div class="box-content right box-content-mini" id="box-content">

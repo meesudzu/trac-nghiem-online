@@ -91,7 +91,7 @@ class Model_Admin extends Database
             return true;
         }
     }
-    public function valid_email_on_profiles($curren_email,$new_email)
+    public function valid_email_on_profiles($curren_email, $new_email)
     {
         $sql = "SELECT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')
         UNION SELECT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
@@ -401,17 +401,12 @@ class Model_Admin extends Database
     }
     public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
-        // $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
-        // $this->set_query($sql);
-        // if ($this->load_row()=='') {
-        //     return false;
-        // }
         $sql="UPDATE admins set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
         $this->set_query($sql);
         $this->execute_none_return();
         return true;
     }
-    public function update_avatar($avatar,$username)
+    public function update_avatar($avatar, $username)
     {
         $sql="UPDATE admins set avatar='$avatar' where username='$username'";
         $this->set_query($sql);

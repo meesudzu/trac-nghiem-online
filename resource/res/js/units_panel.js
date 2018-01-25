@@ -52,44 +52,44 @@ function unit_insert_data(value) {
 
 function unit_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.unit + '">Sửa</a>' +
-    '<div id="edit-' + data.unit + '" class="modal modal-edit">' +
-    '<div class="row col l12">' +
-    '<form action="" method="POST" role="form" id="form-edit-unit-' + data.unit + '">' +
-    '<div class="modal-content"><h5>Sửa: ' + data.detail + '</h5>' +
-    '<div class="modal-body">' +
-    '<div class="input-field">' +
-    '<input type="hidden" value="' + data.unit + '" name="unit">' +
-    '<input type="text" value="' + data.detail + '" name="detail">' +
-    '<label for="name" class="active">Tên Chương</label>' +
-    '</div>' +
-    '<div class="input-field">' +
-    '<select name="status_id" onchange="check_status(' + data.unit + ',this.value)">' +
-    '</select>' +
-    '<label>Trạng Thái</label>' +
-    '</div>' +
-    '<div class="input-field hidden" id="close_time_' + data.unit + '">' +
-    '<label for="close_time" class="active">Thời Gian Đóng</label>' +
-    '<input id="close_time" type="datetime-local" name="close_time">' +
-    '<span class="helptext">VD: 2018-11-16 15:25:33</span>' +
-    '</div>' +
-    '</div></div>' +
-    '</div>' +
-    '<div class="modal-footer">' +
-    '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close" onclick="submit_edit_unit(' + data.unit + ')">Đồng Ý</button>' +
-    '</div>' +
-    '</form></div>'+
-    '</div>';
+        '<div id="edit-' + data.unit + '" class="modal modal-edit">' +
+        '<div class="row col l12">' +
+        '<form action="" method="POST" role="form" id="form-edit-unit-' + data.unit + '">' +
+        '<div class="modal-content"><h5>Sửa: ' + data.detail + '</h5>' +
+        '<div class="modal-body">' +
+        '<div class="input-field">' +
+        '<input type="hidden" value="' + data.unit + '" name="unit">' +
+        '<input type="text" value="' + data.detail + '" name="detail">' +
+        '<label for="name" class="active">Tên Chương</label>' +
+        '</div>' +
+        '<div class="input-field">' +
+        '<select name="status_id" onchange="check_status(' + data.unit + ',this.value)">' +
+        '</select>' +
+        '<label>Trạng Thái</label>' +
+        '</div>' +
+        '<div class="input-field hidden" id="close_time_' + data.unit + '">' +
+        '<label for="close_time" class="active">Thời Gian Đóng</label>' +
+        '<input id="close_time" type="datetime-local" name="close_time">' +
+        '<span class="helptext">VD: 2018-11-16 15:25:33</span>' +
+        '</div>' +
+        '</div></div>' +
+        '</div>' +
+        '<div class="modal-footer">' +
+        '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close" onclick="submit_edit_unit(' + data.unit + ')">Đồng Ý</button>' +
+        '</div>' +
+        '</form></div>' +
+        '</div>';
 }
 
 function unit_del_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.unit + '">Xóa</a>' +
-    '<div id="del-' + data.unit + '" class="modal"><div class="modal-content">' +
-    '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.detail + '</p></div>' +
-    '<form action="" method="POST" role="form" onsubmit="submit_del_unit(this.id)" id="form-del-unit-' + data.unit + '">' +
-    '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
-    '<input type="hidden" value="' + data.unit + '" name="unit">' +
-    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
+        '<div id="del-' + data.unit + '" class="modal"><div class="modal-content">' +
+        '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.detail + '</p></div>' +
+        '<form action="" method="POST" role="form" onsubmit="submit_del_unit(this.id)" id="form-del-unit-' + data.unit + '">' +
+        '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
+        '<input type="hidden" value="' + data.unit + '" name="unit">' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
 function check_status(id, value) {
@@ -128,6 +128,8 @@ function submit_edit_unit(data) {
             $('#unit-' + json_data[0].unit + '').remove();
             unit_insert_data(json_data);
             $('.modal').modal();
+            $('select').select();
+            select_status();
         }
         $('#preload').addClass('hidden');
     };

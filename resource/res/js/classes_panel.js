@@ -31,7 +31,7 @@ function show_list_classes(data) {
         tr.append('<td class="">' + data[i].teacher_name + '</td>');
         tr.append('<td class="">' + class_edit_button(data[i]) + '<br />' + class_del_button(data[i]) + '</td>');
         list.append(tr);
-    };
+    }
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
@@ -41,7 +41,7 @@ function class_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.class_id + '">Sửa</a>' +
         '<div id="edit-' + data.class_id + '" class="modal modal-edit">' +
         '<div class="row col l12">' +
-        '<form action="" method="POST" role="form" onsubmit="submit_edit_class(this.id)" id="form-edit-class-' + data.class_id + '">' +
+        '<form action="" method="POST" role="form" id="form-edit-class-' + data.class_id + '">' +
         '<div class="modal-content"><h5>Sửa: ' + data.class_name + '</h5>' +
         '<div class="modal-body">' +
         '<div class="col l12 s12">' +
@@ -64,7 +64,7 @@ function class_edit_button(data) {
         '</div></div>' +
         '<div class="row col l12 s12 modal-footer">' +
         '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_class(' + data.class_id + ')">Đồng Ý</button>' +
         '</div></form></div></div>';
 }
 
@@ -115,8 +115,8 @@ function submit_del_class(data) {
 
 function submit_edit_class(data) {
     $('#preload').removeClass('hidden');
-    form = $('#' + data);
-    data = $('#' + data).serializeArray();
+    form = $('#form-edit-class-' + data);
+    data = $('#form-edit-class-' + data).serializeArray();
     var url = "index.php?action=check_edit_class";
     var success = function(result) {
         var json_data = $.parseJSON(result);

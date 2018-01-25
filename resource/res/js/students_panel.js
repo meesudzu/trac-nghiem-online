@@ -35,7 +35,7 @@ function show_list_students(data) {
         tr.append('<td class="">' + data[i].last_login + '</td>');
         tr.append('<td class="">' + student_edit_button(data[i]) + '<br />' + student_del_button(data[i]) + '</td>');
         list.append(tr);
-    };
+    }
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
@@ -45,7 +45,7 @@ function student_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.student_id + '">Sửa</a>' +
         '<div id="edit-' + data.student_id + '" class="modal modal-edit">' +
         '<div class="row col l12">' +
-        '<form action="" method="POST" role="form" onsubmit="submit_edit_student(this.id)" id="form-edit-student-' + data.student_id + '">' +
+        '<form action="" method="POST" role="form" id="form-edit-student-' + data.student_id + '">' +
         '<div class="modal-content"><h5>Sửa: ' + data.name + '</h5>' +
         '<div class="modal-body">' +
         '<div class="col l6 s12">' +
@@ -83,7 +83,7 @@ function student_edit_button(data) {
         '</div><div class="col l12 s12">' +
         '<div class="modal-footer">' +
         '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-        '<button type="submit" class="waves-effect waves-green btn-flat">Đồng Ý</button>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_student(' + data.student_id + ')">Đồng Ý</button>' +
         '</div></div></form></div></div>';
 }
 
@@ -132,9 +132,8 @@ function submit_del_student(data) {
 
 function submit_edit_student(data) {
     $('#preload').removeClass('hidden');
-    form = $('#' + data);
-    data = $('#' + data).serializeArray();
-    console.log(data);
+    form = $('#form-edit-student-' + data);
+    data = $('#form-edit-student-' + data).serializeArray();
     var url = "index.php?action=check_edit_student";
     var success = function(result) {
         var json_data = $.parseJSON(result);

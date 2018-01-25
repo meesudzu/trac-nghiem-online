@@ -1,143 +1,115 @@
 <?php
-
-require_once 'controller.php';
-include_once('models/m_giao_vien.php');
 /**
-    * Controller Giáo Viên
+    * Controller Teacher
     * Author: Dzu
     * Mail: dzu6996@gmail.com
     **/
-    class C_Giao_Vien extends Controller
+    require_once 'controller.php';
+    include_once('models/model_teacher.php');
+
+    class Controller_Teacher extends Controller
     {
-        public $info =  array(
-            'id_gv' => '',
-            'tai_khoan' => '',
-            'ten' => '',
-            'chuc_vu' => '',
-            'ten_cv' => '');
-        //mảng sẽ chưa danh sách lớp giáo viên đó quản lý
-        private $dsl = array();
-        //hàm tạo với các thuộc tính nhận từ session
+        public $info =  array();
         public function __construct()
         {
-            $this->info['id_gv'] = $_SESSION['id_gv'];
-            $this->info['tai_khoan'] = $_SESSION['tai_khoan'];
-            $this->info['ten'] = $_SESSION['ten'];
-            $this->info['chuc_vu'] = $_SESSION['chuc_vu'];
-            $this->info['ten_cv'] = $this->getQuyen($this->info['chuc_vu'])->mo_ta;
-            $this->dsl = $this->getDSL();
+            $user_info = $this->profiles();
+            $this->info['ID'] = $user_info->ID;
+            $this->update_last_login($this->info['ID']);
+            $this->info['username'] = $user_info->username;
+            $this->info['name'] = $user_info->name;
+            $this->info['avatar'] = $user_info->avatar;
         }
-        public function logout()
+        public function profiles()
         {
-            $this->loadView('giao_vien');
-            $view = new V_Giao_Vien();
-            $status = "Đăng xuất thành công!";
-            $view->statusSuccess($status);
-            session_destroy();
-            header("Refresh:2; url=index.php");
+            $profiles = new Model_Teacher();
+            return $profiles->get_profiles($_SESSION['username']);
         }
-        // hàm lấy tên chức vụ
-        public function getQuyen()
+        public function update_last_login()
         {
-            $cv = new M_Giao_Vien();
-            return $cv->getQuyen($this->info['chuc_vu']);
+            $info = new Model_Teacher();
+            $info->update_last_login($this->info['ID']);
         }
-        // hàm lấy danh sách lớp
-        public function getDSL()
+        public function get_profiles()
         {
-            $getDSL = new M_Giao_Vien();
-            return $getDSL->getDSL($this->info['id_gv']);
+            $profiles = new Model_Teacher();
+            echo json_encode($profiles->get_profiles($this->info['username']));
         }
-        // hàm lấy chi tiết lớp theo ID lớp
-        public function getCTL($id_lop)
+        public function valid_email_on_profiles()
         {
-            $getCTL = new M_Giao_Vien();
-            return $getCTL->getCTL($id_lop);
-        }
-        // hàm lấy tên học sinh
-        public function getTHS($id_hs)
-        {
-            $getTHS = new M_Giao_Vien();
-            return $getTHS->getTHS($id_hs);
-        }
-        // hàm lấy thông báo đã gửi cho giáo viên (chuc_vu = 2)
-        public function getTBGV()
-        {
-            $tbgv = new M_Giao_Vien();
-            return $tbgv->getTBGV();
-        }
-        // hàm gửi thông báo cho học sinh
-        public function sendHS($chu_de, $noi_dung)
-        {
-            $send = new M_Giao_Vien();
-            return $send->sendHS($this->info['tai_khoan'], $this->info['ten'], $chu_de, $noi_dung);
-        }
-        // hàm lấy thông báo đã gửi cho học sinh (chuc_vu = 3)
-        public function getTBHS()
-        {
-            $tbgv = new M_Giao_Vien();
-            return $tbgv->getTBHS();
-        }
-        public function showHeadLeft()
-        {
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $view->showHeadLeft($this->info, $this->dsl);
-        }
-        public function showFoot()
-        {
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $view->showFoot();
-        }
-        //hàm gửi thônng báo cho học sinh
-        public function sendNotify()
-        {
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $view->sendNotify($this->getTBHS());
-            //kiểm tra nội dung và chủ đè không bỏ trống, thực hiện thêm vào CSDL
-            if (isset($_POST['send_hs'])) {
-                $this->checkNotify();
-            }
-        }
-        public function checkNotify()
-        {
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $chu_de =  Htmlspecialchars(trim(addslashes($_POST['chu_de_hs'])));
-            $noi_dung =  Htmlspecialchars(trim(addslashes($_POST['noi_dung_hs'])));
-            if ($chu_de != '' && $noi_dung != '') {
-                $this->sendHS($chu_de, $noi_dung);
-                $status = "Gửi thành công!";
-                $view->statusSuccess($status);
-                echo '<meta http-equiv="refresh" content="2" />';
+            $result = array();
+            $valid = new Model_Teacher();
+            $new_email = isset($_POST['new_email']) ? htmlspecialchars($_POST['new_email']) : '';
+            $curren_email = isset($_POST['curren_email']) ? htmlspecialchars($_POST['curren_email']) : '';
+            if (empty($new_email)) {
+                $result['status'] = 0;
             } else {
-                $status = "Nội dung không được bỏ trống!";
-                $view->statusFailed($status);
+                if ($valid->valid_email_on_profiles($curren_email, $new_email)) {
+                    $result['status'] = 1;
+                } else {
+                    $result['status'] = 0;
+                }
+            }
+            echo json_encode($result);
+        }
+        public function update_avatar($avatar, $username)
+        {
+            $info = new Model_Teacher();
+            return $info->update_avatar($avatar, $username);
+        }
+        public function submit_update_avatar()
+        {
+            $username = isset($_POST['username']) ? $_POST['username'] : '';
+            if (isset($_FILES['file'])) {
+                $duoi = explode('.', $_FILES['file']['name']);
+                $duoi = $duoi[(count($duoi)-1)];
+                if ($duoi === 'jpg' || $duoi === 'png') {
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], 'res/img/avatar/'.$username.'_' . $_FILES['file']['name'])) {
+                        $avatar = $username .'_' . $_FILES['file']['name'];
+                        $update = $this->update_avatar($avatar, $username);
+                    }
+                }
             }
         }
-        //hàm nhận thông báo cho giáo viên
-        public function reNotify()
+        public function update_profiles($username, $name, $email, $password, $gender, $birthday)
         {
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $view->reNotify($this->getTBGV());
+            $info = new Model_Teacher();
+            return $info->update_profiles($username, $name, $email, $password, $gender, $birthday);
         }
-        //hàm hiển thị chi tiết lớp
-        public function showDetails($id_lop)
+        public function submit_update_profiles()
         {
-            $dsTenHS  = array();
-            //mảng lưu chi tiết điểm của lớp theo id_lop
-            $getCTL = $this->getCTL($id_lop);
-            //biến lưu danh sách lớp gíao viên đó quản lý
-            $dsl = $this->dsl;
-            for ($j = 0; $j < count($getCTL); $j++) {
-                //mảng lưu tên học sin theo id_hs
-                $dsTenHS[$j] = $this->getTHS($getCTL[$j]->id_hs);
+            $result = array();
+            $name = isset($_POST['name']) ? Htmlspecialchars(addslashes($_POST['name'])) : '';
+            $email = isset($_POST['email']) ? Htmlspecialchars(addslashes($_POST['email'])) : '';
+            $username = isset($_POST['username']) ? Htmlspecialchars(addslashes($_POST['username'])) : '';
+            $gender = isset($_POST['gender']) ? Htmlspecialchars(addslashes($_POST['gender'])) : '';
+            $birthday = isset($_POST['birthday']) ? Htmlspecialchars(addslashes($_POST['birthday'])) : '';
+            $password = isset($_POST['password']) ? md5($_POST['password']) : '';
+            if (empty($name)||empty($gender)||empty($birthday)||empty($password)||empty($email)) {
+                $result['status_value'] = "Không được bỏ trống các trường nhập!";
+                $result['status'] = 0;
+            } else {
+                $update = $this->update_profiles($username, $name, $email, $password, $gender, $birthday);
+                if (!$update) {
+                    $result['status_value'] = "Tài khoản không tồn tại!";
+                    $result['status'] = 0;
+                } else {
+                    $result = json_decode(json_encode($this->profiles($username)), true);
+                    $result['status_value'] = "Sửa thành công!";
+                    $result['status'] = 1;
+                }
             }
-            $this->loadView("giao_vien");
-            $view = new V_Giao_Vien();
-            $view->showDetails($id_lop, $dsl, $dsTenHS, $getCTL);
+            echo json_encode($result);
+        }
+        public function show_head_left()
+        {
+            $this->load_view("teacher");
+            $view = new View_Teacher();
+            $view->show_head_left($this->info);
+        }
+        public function show_index()
+        {
+            $this->load_view("teacher");
+            $view = new View_Teacher();
+            $view->show_index();
         }
     }

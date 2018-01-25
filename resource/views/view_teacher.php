@@ -2,27 +2,19 @@
 
 require_once 'view.php';
 /**
- * View Giáo Viên
+ * View Teacher
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class V_Giao_Vien extends View
+class View_Teacher extends View
 {
-    public function showHeadLeft($info, $dsl)
+    public function show_head_left($info)
     {
         require_once 'config/info.php';
-        include 'res/templates/gv_head_left.php';
+        include 'res/templates/teacher_head_left.php';
     }
-    public function sendNotify($tbhs)
+        public function show_index()
     {
-        include 'res/templates/gv_send_notify.php';
-    }
-    public function reNotify($tbgv)
-    {
-        include 'res/templates/gv_re_notify.php';
-    }
-    public function showDetails($id_lop, $dsl, $dsTenHS, $getCTL)
-    {
-        include 'res/templates/gv_details.php';
+        include 'res/templates/teacher_index.html';
     }
 }

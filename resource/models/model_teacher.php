@@ -1,60 +1,50 @@
 <?php
-
-include_once('config/db.php');
 /**
- * Model Giáo Viên
+ * Model Teacher
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class M_Giao_Vien extends Database
+include_once('config/database.php');
+
+class Model_Teacher extends Database
 {
-    // hàm lấy tên chức vụ
-    public function getQuyen($chuc_vu)
+    public function get_profiles($username)
     {
-        $sql = "SELECT mo_ta FROM quyen WHERE chuc_vu='$chuc_vu'";
-        $this->setQuery($sql);
-        return $this->loadRow();
+        $sql = "SELECT teachers.teacher_id as ID,teachers.username,teachers.name,teachers.email,teachers.avatar,teachers.birthday,teachers.last_login,genders.gender_detail FROM `teachers`
+		INNER JOIN genders ON genders.gender_id = teachers.gender_id
+		WHERE username = '$username'";
+        $this->set_query($sql);
+        return $this->load_row();
     }
-    // hàm lấy danh sách lớp
-    public function getDSL($id_gv)
+    public function update_last_login($ID)
     {
-        $sql = "SELECT ten_lop,id_lop from lop where id_gv = '$id_gv'";
-        $this->setQuery($sql);
-        return $this->loadRows();
+        $sql="UPDATE teachers set last_login=NOW() where teacher_id='$ID'";
+        $this->set_query($sql);
+        $this->execute_none_return();
     }
-    // hàm lấy chi tiết lớp theo ID lớp
-    public function getCTL($id_lop)
+    public function valid_email_on_profiles($curren_email, $new_email)
     {
-        $sql = "SELECT id_hs,unit_1,unit_2,unit_3,unit_4 from diem where id_lop = '$id_lop'";
-        $this->setQuery($sql);
-        return $this->loadRows();
+        $sql = "SELECT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+		UNION SELECT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+		UNION SELECT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
+        $this->set_query($sql);
+        if ($this->load_row() != '') {
+            return false;
+        } else {
+            return true;
+        }
     }
-    // hàm lấy tên học sinh
-    public function getTHS($id_hs)
+    public function update_avatar($avatar, $username)
     {
-        $sql = "SELECT ten from hoc_sinh where id_hs = '$id_hs'";
-        $this->setQuery($sql);
-        return $this->loadRow();
+        $sql="UPDATE teachers set avatar='$avatar' where username='$username'";
+        $this->set_query($sql);
+        $this->execute_none_return();
     }
-    // hàm lấy thông báo đã gửi cho giáo viên (chuc_vu = 2)
-    public function getTBGV()
+    public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
-        $sql = "SELECT * FROM thong_bao where chuc_vu = 2";
-        $this->setQuery($sql);
-        return $this->loadRows();
-    }
-    // hàm gửi thông báo cho học sinh
-    public function sendHS($tai_khoan, $ten, $chu_de, $noi_dung)
-    {
-        $sql="INSERT INTO thong_bao (tai_khoan,ten,chu_de,noi_dung,thoi_gian,chuc_vu) VALUES ('$tai_khoan','$ten','$chu_de','$noi_dung',NOW(),3)";
-        $this->setQuery($sql);
-        return $this->loadRow();
-    }
-    // hàm lấy thông báo đã gửi cho học sinh (chuc_vu = 3)
-    public function getTBHS()
-    {
-        $sql = "SELECT * FROM thong_bao where chuc_vu = 3";
-        $this->setQuery($sql);
-        return $this->loadRows();
+        $sql="UPDATE teachers set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
+        $this->set_query($sql);
+        $this->execute_none_return();
+        return true;
     }
 }

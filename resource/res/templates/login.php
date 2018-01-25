@@ -18,18 +18,18 @@
 <body class="bg-login">
 	<div id="status" class="status"></div>
 	<div class="fade">
-		<div class="login fadeIn">
+		<div class="login fadeInLogin">
 			<h4 class="title-login">Đăng Nhập</h4>
 			<div class="login-form">
 				<div class="row" style="position: relative;">
 					<img src="/res/img/loading.gif" alt="" id="loading" class="img-loading hidden">
 					<form>
 						<div class="input-field" id="field_username">
-							<input type="text" name="username" id="username" class="validate" required="" autofocus>
+							<input type="text" name="username" id="username" required autofocus>
 							<label for="username" id="lbl_usr">Tài Khoản Hoặc Email</label>
 						</div>
 						<div class="input-field" id="field_password">
-							<input type="password" name="password" id="password" class="validate hidden" required>
+							<input type="password" name="password" id="password" class="hidden" required>
 							<label for="password" id="lbl_pw" class="hidden">Mật Khẩu</label>
 						</div>
 						<div class="login-btn">

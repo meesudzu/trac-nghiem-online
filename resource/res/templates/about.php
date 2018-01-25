@@ -1,7 +1,3 @@
-<script type="text/javascript">
-	// about();
-</script>
-<div class="box-content right box-content-mini" id="box-content">
 	<div class="title-content">
 		<span class="title">Liên Hệ</span>
 	</div>

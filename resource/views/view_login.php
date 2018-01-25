@@ -14,4 +14,12 @@ class View_Login extends View
         require_once 'config/info.php';
         include 'res/templates/login.php';
     }
+    public function show_about()
+    {
+
+    }
+    public function show_profiles()
+    {
+
+    }
 }

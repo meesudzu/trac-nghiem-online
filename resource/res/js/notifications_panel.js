@@ -33,7 +33,7 @@ function show_teacher_notifications(data) {
         message.append('<span class="receive_name">Nhận: ' + data[i].receive_name + '<span class="receive_username"> ( ' + data[i].receive_username + ' )</span></span>');
         message.append('<span class="time_sent">[ ' + data[i].time_sent + ' ]</span>');
         list.append(message);
-    };
+    }
 }
 
 
@@ -61,7 +61,7 @@ function show_student_notifications(data) {
         message.append('<span class="time_sent">[ ' + data[i].time_sent + ' ]</span>');
         message.append('<span class="receive_name">Nhận: ' + data[i].class_name + '</span>');
         list.append(message);
-    };
+    }
 }
 
 function send_notification() {
