@@ -16,10 +16,8 @@ class View_Login extends View
     }
     public function show_about()
     {
-
     }
     public function show_profiles()
     {
-
     }
 }

@@ -67,12 +67,13 @@ function update_avatar() {
             success: function(result) {
                 $('.help').css('color', 'green').text("Thành công");
                 $('#file').val('');
-                $('#avatar_uploading').addClass('hidden');
                 get_profiles();
+                $('#avatar_uploading').addClass('hidden');
             }
         });
     } else {
         $('.help').css('color', 'red').text('Chỉ được upload file JPG, PNG nhỏ hơn 2mb');
         $('#file').val('');
+        $('#avatar_uploading').addClass('hidden');
     }
 }

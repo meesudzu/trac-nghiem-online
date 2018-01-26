@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th1 22, 2018 lúc 10:56 AM
+-- Thời gian đã tạo: Th1 26, 2018 lúc 01:55 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-01-22 16:55:47', 1, 'avatar-default.jpg', '2018-01-20');
+(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-01-26 17:02:01', 1, 'admin_201756a1fdba-26f1-4d69-9c16-447ced66f994.jpg', '2018-01-20');
 
 -- --------------------------------------------------------
 
@@ -214,55 +214,56 @@ CREATE TABLE `questions` (
   `answer_c` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `answer_d` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `correct_answer` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ID` int(11) NOT NULL
+  `ID` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `questions`
 --
 
-INSERT INTO `questions` (`grade_id`, `unit`, `question_detail`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_answer`, `ID`) VALUES
-(3, 1, '30 - 12 = ?', '10', '15', '18', '82', '18', 1),
-(3, 1, '5 + 7 = ?', '12', '13', '14', '11', '12', 2),
-(3, 1, '5 + 9 = ?', '13', '15', '17', '14', '14', 3),
-(3, 1, '2 x 1 = ?', '1', '2', '3', '4', '2', 4),
-(3, 1, '11 + 2 = ?', '15', '16', '13', '18', '13', 5),
-(3, 1, '18 + 5 = ?', '20', '21', '22', '23', '23', 6),
-(3, 1, '14 + 8 = ?', '20', '21', '22', '23', '22', 7),
-(3, 1, '13 - 3 = ?', '7', '8', '9', '10', '10', 8),
-(3, 1, '14 - 7 = ?', '7', '6', '5', '8', '7', 9),
-(3, 1, '10 - 8 = ?', '2', '3', '4', '5', '2', 10),
-(3, 1, '3 + 6 = ?', '7', '6', '9', '8', '9', 11),
-(3, 2, '5+10 ?', '15', '10', '5', '4', '15', 12),
-(3, 2, '2 x 7 = ?', '14', '16', '18', '12', '14', 13),
-(3, 2, '2 x 9 = ?', '14', '16', '18', '12', '18', 14),
-(3, 2, '3 x 7 = ?', '14', '16', '18', '21', '21', 15),
-(3, 2, '3 x 5 = ?', '14', '16', '15', '12', '15', 16),
-(3, 2, '4 x 10 = ?', '40', '4', '10', '1', '40', 17),
-(3, 2, '2 x 10 = ?', '14', '16', '18', '20', '20', 18),
-(3, 2, '10 + 20 = ?', '10', '20', '30', '03', '30', 19),
-(3, 2, '10 x 10 = ?', '10', '20', '100', '11', '100', 20),
-(3, 2, '2 x 5 = ?', '14', '16', '10', '12', '10', 21),
-(3, 3, '4 x 7 =?', '27', '28', '29', '30', '28', 22),
-(3, 3, '10 * 0 = ?', '10', '0', '1', '11', '0', 23),
-(3, 3, '4 x 5 =?', '27', '28', '29', '20', '20', 24),
-(3, 3, '5 x 8 =?', '37', '38', '39', '40', '40', 25),
-(3, 3, '5 x 5 =?', '27', '28', '25', '30', '25', 26),
-(3, 3, '7 x 9 = ?', '61', '63', '65', '67', '63', 27),
-(3, 3, '7 x 7 = ?', '41', '43', '45', '49', '49', 28),
-(3, 3, '7 x 8 = ?', '61', '63', '56', '67', '56', 29),
-(3, 3, '9 x 9 = ?', '81', '63', '65', '67', '81', 30),
-(3, 3, '6 x 9 = ?', '61', '63', '65', '54', '54', 31),
-(3, 4, '21 : 3 = ?', '5', '6', '7', '8', '7', 32),
-(3, 4, '24 : 8 = ?', '1', '2', '3', '4', '3', 33),
-(3, 4, '27 : 3 = ?', '6', '7', '8', '9', '9', 34),
-(3, 4, '32 : 8 = ?', '1', '2', '3', '4', '4', 35),
-(3, 4, '25 : 5 = ?', '5', '2', '3', '4', '5', 36),
-(3, 4, '42 : 7 = ?', '6', '5', '3', '4', '6', 37),
-(3, 4, '56 : 8 = ?', '8', '7', '3', '4', '7', 38),
-(3, 4, '81 : 9 = ?', '7', '8', '9', '81', '9', 39),
-(3, 4, '40 : 8 = ?', '5', '2', '3', '4', '5', 40),
-(3, 4, '18 : 9 = ?', '1', '2', '3', '4', '2', 41);
+INSERT INTO `questions` (`grade_id`, `unit`, `question_detail`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_answer`, `ID`, `subject_id`) VALUES
+(3, 1, '30 - 12 = ?', '10', '15', '18', '82', '18', 1, 1),
+(3, 1, '5 + 7 = ?', '12', '13', '14', '11', '12', 2, 1),
+(3, 1, '5 + 9 = ?', '13', '15', '17', '14', '14', 3, 1),
+(3, 1, '2 x 1 = ?', '1', '2', '3', '4', '2', 4, 1),
+(3, 1, '11 + 2 = ?', '15', '16', '13', '18', '13', 5, 1),
+(3, 1, '18 + 5 = ?', '20', '21', '22', '23', '23', 6, 1),
+(3, 1, '14 + 8 = ?', '20', '21', '22', '23', '22', 7, 1),
+(3, 1, '13 - 3 = ?', '7', '8', '9', '10', '10', 8, 1),
+(3, 1, '14 - 7 = ?', '7', '6', '5', '8', '7', 9, 1),
+(3, 1, '10 - 8 = ?', '2', '3', '4', '5', '2', 10, 1),
+(3, 1, '3 + 6 = ?', '7', '6', '9', '8', '9', 11, 1),
+(3, 2, '5+10 ?', '15', '10', '5', '4', '15', 12, 1),
+(3, 2, '2 x 7 = ?', '14', '16', '18', '12', '14', 13, 1),
+(3, 2, '2 x 9 = ?', '14', '16', '18', '12', '18', 14, 1),
+(3, 2, '3 x 7 = ?', '14', '16', '18', '21', '21', 15, 1),
+(3, 2, '3 x 5 = ?', '14', '16', '15', '12', '15', 16, 1),
+(3, 2, '4 x 10 = ?', '40', '4', '10', '1', '40', 17, 1),
+(3, 2, '2 x 10 = ?', '14', '16', '18', '20', '20', 18, 1),
+(3, 2, '10 + 20 = ?', '10', '20', '30', '03', '30', 19, 1),
+(3, 2, '10 x 10 = ?', '10', '20', '100', '11', '100', 20, 1),
+(3, 2, '2 x 5 = ?', '14', '16', '10', '12', '10', 21, 1),
+(3, 3, '4 x 7 =?', '27', '28', '29', '30', '28', 22, 1),
+(3, 3, '10 * 0 = ?', '10', '0', '1', '11', '0', 23, 1),
+(3, 3, '4 x 5 =?', '27', '28', '29', '20', '20', 24, 1),
+(3, 3, '5 x 8 =?', '37', '38', '39', '40', '40', 25, 1),
+(3, 3, '5 x 5 =?', '27', '28', '25', '30', '25', 26, 1),
+(3, 3, '7 x 9 = ?', '61', '63', '65', '67', '63', 27, 1),
+(3, 3, '7 x 7 = ?', '41', '43', '45', '49', '49', 28, 1),
+(3, 3, '7 x 8 = ?', '61', '63', '56', '67', '56', 29, 1),
+(3, 3, '9 x 9 = ?', '81', '63', '65', '67', '81', 30, 1),
+(3, 3, '6 x 9 = ?', '61', '63', '65', '54', '54', 31, 1),
+(3, 4, '21 : 3 = ?', '5', '6', '7', '8', '7', 32, 1),
+(3, 4, '24 : 8 = ?', '1', '2', '3', '4', '3', 33, 1),
+(3, 4, '27 : 3 = ?', '6', '7', '8', '9', '9', 34, 1),
+(3, 4, '32 : 8 = ?', '1', '2', '3', '4', '4', 35, 1),
+(3, 4, '25 : 5 = ?', '5', '2', '3', '4', '5', 36, 1),
+(3, 4, '42 : 7 = ?', '6', '5', '3', '4', '6', 37, 1),
+(3, 4, '56 : 8 = ?', '8', '7', '3', '4', '7', 38, 1),
+(3, 4, '81 : 9 = ?', '7', '8', '9', '81', '9', 39, 1),
+(3, 4, '40 : 8 = ?', '5', '2', '3', '4', '5', 40, 1),
+(1, 4, '18 : 9 = ?', '1', '2', '3', '4', '2', 41, 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +335,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `permission`, `class_id`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
+(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-01-25 21:52:37', 1, '2017HS1_Download Wallpaper 1920x1080 Anime, Face, Hair, Mask Full HD 1080p HD Background.jpg', '2018-01-25'),
 (2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (4, '2017HS4', 'example4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Khánh Duy', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
@@ -353,7 +354,10 @@ INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `
 (17, '2017HS17', 'example17@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị G', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (18, '2017HS18', 'example18@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị H', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '2018-01-02');
+(20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '2018-01-02'),
+(21, '2017HS21', 'example21@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Văn Thịnh', 3, 2, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26'),
+(22, '2017HS22', 'example22@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thi', 3, 3, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26'),
+(23, '2017HS23', 'example23@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thu', 3, 4, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26');
 
 -- --------------------------------------------------------
 
@@ -381,6 +385,25 @@ INSERT INTO `student_notifications` (`ID`, `notification_id`, `class_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `subject_id` int(11) NOT NULL,
+  `subject_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `subjects`
+--
+
+INSERT INTO `subjects` (`subject_id`, `subject_detail`) VALUES
+(1, 'Toán'),
+(2, 'Tiếng Anh');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `teachers`
 --
 
@@ -402,7 +425,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '1990-01-18');
+(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '2018-01-26 19:53:53', 1, 'giaovien_13692472_1251877004862630_5032812334842572056_n.jpg', '1990-01-18');
 
 -- --------------------------------------------------------
 
@@ -444,9 +467,9 @@ CREATE TABLE `units` (
 
 INSERT INTO `units` (`unit`, `detail`, `status_id`, `close_time`) VALUES
 (1, 'Chương 1', 1, '0000-00-00 00:00:00'),
-(2, 'Chương 2', 1, NULL),
-(3, 'Chương 3', 1, NULL),
-(4, 'Chương 4', 1, NULL);
+(2, 'Chương 2', 1, '0000-00-00 00:00:00'),
+(3, 'Chương 3', 1, '0000-00-00 00:00:00'),
+(4, 'Chương 4', 1, '0000-00-00 00:00:00');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -508,7 +531,8 @@ ALTER TABLE `permissions`
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `k9` (`grade_id`),
-  ADD KEY `unit` (`unit`);
+  ADD KEY `unit` (`unit`),
+  ADD KEY `subjects_key` (`subject_id`);
 
 --
 -- Chỉ mục cho bảng `scores`
@@ -543,6 +567,12 @@ ALTER TABLE `student_notifications`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `notification_id` (`notification_id`),
   ADD KEY `class_id` (`class_id`);
+
+--
+-- Chỉ mục cho bảng `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`subject_id`);
 
 --
 -- Chỉ mục cho bảng `teachers`
@@ -607,7 +637,7 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -637,13 +667,19 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT cho bảng `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `student_notifications`
 --
 ALTER TABLE `student_notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT cho bảng `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `teachers`
@@ -691,7 +727,8 @@ ALTER TABLE `classes`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `k9` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`grade_id`),
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `units` (`unit`);
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`unit`) REFERENCES `units` (`unit`),
+  ADD CONSTRAINT `subjects_key` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`);
 
 --
 -- Các ràng buộc cho bảng `scores`

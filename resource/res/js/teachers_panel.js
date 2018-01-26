@@ -96,7 +96,6 @@ function submit_add_teacher(data) {
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
-        console.log(json_data);
         if (json_data.status) {
             teacher_insert_data(json_data);
             $('.modal').modal();

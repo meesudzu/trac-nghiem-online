@@ -150,10 +150,8 @@ function submit_edit_question(data) {
     data = $('#form-edit-question-' + data).serializeArray();
     var url = "index.php?action=check_edit_question";
     var success = function(result) {
-        console.log(result);
         var json_data = $.parseJSON(result);
         show_status(json_data);
-        console.log(json_data);
         if (json_data.status) {
             $('#question-' + json_data.ID).remove();
             question_insert_data(json_data);

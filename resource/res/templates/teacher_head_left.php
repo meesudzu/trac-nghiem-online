@@ -34,17 +34,13 @@
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
-			<li>
+			<li class="active">
 				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
 					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Danh Sách Lớp</div>
-					<div class="collapsible-body list">
-						<a class="menu-list cursor">Lớp 3A</a>
-						<a class="menu-list cursor">Lớp 3B</a>
-						<a class="menu-list cursor">Lớp 3C</a>
-						<a class="menu-list cursor">Lớp 3D</a>
+					<div class="collapsible-body list" id="list_classes_sidebar">
 					</div>
 				</li>
-				<a class="collapsible-header font-color cursor"><i class="material-icons">send</i>Gửi Thông Báo</a>
+				<a class="collapsible-header font-color cursor" onclick="show_notifications()"><i class="material-icons">send</i>Gửi/Xem Thông Báo</a>
 				<a class="collapsible-header font-color cursor" onclick="show_about()"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 			</ul>
 		</div>

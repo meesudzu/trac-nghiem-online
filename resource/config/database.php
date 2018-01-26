@@ -1,5 +1,4 @@
 <?php
-
 /**
  * DATABASE
  * Author: Dzu
@@ -10,7 +9,7 @@ class Database
     private $db = '';
     private $sql = '';
     // hàm kết nối cơ sở dữ liệu
-    public function Database()
+    public function __construct()
     {
         $host = 'localhost';
         $dbname = 'tracnghiem_online';

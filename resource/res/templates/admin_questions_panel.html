@@ -1,79 +1,79 @@
-	<div class="title-content">
-		<span class="title">Quản Lý Thông Tin Câu Hỏi</span>
+<div class="title-content">
+	<span class="title">Quản Lý Thông Tin Câu Hỏi</span>
+</div>
+<div class="block-content overflow scrollbar">
+	<div class="content fadeRight">
+		<div class="preload hidden" id="preload">
+			<img src="../res/img/loading.gif" alt="">
+		</div>
+		<table class="striped centered responsive-table">
+			<thead>
+				<tr>
+					<th class="">ID</th>
+					<th class="">Câu Hỏi</th>
+					<th class="">Khối</th>
+					<th class="">Chương</th>
+					<th class="">A</th>
+					<th class="">B</th>
+					<th class="">C</th>
+					<th class="">D</th>
+					<th class="">Đúng</th>
+					<th class=""><i class="material-icons">settings</i></th>
+				</tr>
+			</thead>
+			<tbody class="scrollbar" id="list_questions">
+			</tbody>
+		</table>
 	</div>
-	<div class="block-content overflow scrollbar">
-		<div class="content fadeRight">
-			<div class="preload hidden" id="preload">
-				<img src="../res/img/loading.gif" alt="">
+	<div class="content fadeRight">
+		<form action="" method="POST" role="form" id="add_question_form">
+			<div class="col l12 s12" style="padding-top: 20px">
+				<div class="input-field">
+					<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
+					<label for="question_detail">Câu Hỏi</label>
+				</div>
 			</div>
-			<table class="striped centered responsive-table">
-				<thead>
-					<tr>
-						<th class="">ID</th>
-						<th class="">Câu Hỏi</th>
-						<th class="">Khối</th>
-						<th class="">Chương</th>
-						<th class="">A</th>
-						<th class="">B</th>
-						<th class="">C</th>
-						<th class="">D</th>
-						<th class="">Đúng</th>
-						<th class=""><i class="material-icons">settings</i></th>
-					</tr>
-				</thead>
-				<tbody class="scrollbar" id="list_questions">
-				</tbody>
-			</table>
-		</div>
-		<div class="content fadeRight">
-			<form action="" method="POST" role="form" id="add_question_form">
-				<div class="col l12 s12" style="padding-top: 20px">
+			<div class="row col l12">
+				<div class="col l6 s12">
 					<div class="input-field">
-						<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
-						<label for="question_detail">Câu Hỏi</label>
+						<label for="answer_a">A</label>
+						<input type="text" id="answer_a" name="answer_a" required>
+					</div>
+					<div class="input-field">
+						<label for="answer_b">B</label>
+						<input type="text" id="answer_b" name="answer_b" required>
+					</div>
+					<div class="input-field">
+						<label for="answer_c">C</label>
+						<input type="text" id="answer_c" name="answer_c" required>
+					</div>
+					<div class="input-field">
+						<label for="answer_d">D</label>
+						<input type="text" id="answer_d" name="answer_d" required>
 					</div>
 				</div>
-				<div class="row col l12">
-					<div class="col l6 s12">
-						<div class="input-field">
-							<label for="answer_a">A</label>
-							<input type="text" id="answer_a" name="answer_a" required>
-						</div>
-						<div class="input-field">
-							<label for="answer_b">B</label>
-							<input type="text" id="answer_b" name="answer_b" required>
-						</div>
-						<div class="input-field">
-							<label for="answer_c">C</label>
-							<input type="text" id="answer_c" name="answer_c" required>
-						</div>
-						<div class="input-field">
-							<label for="answer_d">D</label>
-							<input type="text" id="answer_d" name="answer_d" required>
-						</div>
+				<div class="col l6 s12">
+					<div class="input-field">
+						<label for="correct_answer">Đúng</label>
+						<input type="text" id="correct_answer" name="correct_answer" required>
 					</div>
-					<div class="col l6 s12">
-						<div class="input-field">
-							<label for="correct_answer">Đúng</label>
-							<input type="text" id="correct_answer" name="correct_answer" required>
-						</div>
-						<div class="input-field">
-							<select name="grade_id" id="grade_id">
+					<div class="input-field">
+						<select name="grade_id" id="grade_id">
 							</select>
-							<label>Khối</label>
-						</div>
-						<div class="input-field">
-							<select name="unit" id="unit">
-							</select>
-							<label>Chương</label>
-						</div>
+						<label>Khối</label>
 					</div>
-					<div class="col l12 s12">
-						<button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
+					<div class="input-field">
+						<select name="unit" id="unit">
+							</select>
+						<label>Chương</label>
 					</div>
 				</div>
-			</form>
-		</div>
+				<div class="col l12 s12">
+					<button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
+				</div>
+			</div>
+		</form>
 	</div>
+</div>
 </div>
 <script src="../res/js/questions_panel.js"></script>

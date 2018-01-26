@@ -26,7 +26,7 @@
 					<form>
 						<div class="input-field" id="field_username">
 							<input type="text" name="username" id="username" required autofocus>
-							<label for="username" id="lbl_usr">Tài Khoản Hoặc Email</label>
+							<label for="username" id="lbl_usr">Tài Khoản, Mã Học Sinh Hoặc Email</label>
 						</div>
 						<div class="input-field" id="field_password">
 							<input type="password" name="password" id="password" class="hidden" required>
