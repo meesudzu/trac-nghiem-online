@@ -1,0 +1,52 @@
+/* fallback */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/material-icon.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'roboto-thin';
+    src: url('../fonts/roboto/Roboto-Thin.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto-bold';
+    src: url('../fonts/roboto/Roboto-Bold.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto-regular';
+    src: url('../fonts/roboto/Roboto-Regular.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto-light';
+    src: url('../fonts/roboto/Roboto-Light.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}

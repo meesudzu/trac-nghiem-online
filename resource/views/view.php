@@ -5,14 +5,25 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-class View {
-	public function statusSuccess($status)
-	{
-		include 'res/templates/t_stt_success.php';
-	}
-	public function statusFailed($status)
-	{
-		include 'res/templates/t_stt_failed.php';
-	}
+class View
+{
+    const SHOW = "View";
+    public function show_about()
+    {
+        require_once 'config/info.php';
+        include 'res/templates/about.php';
+    }
+    public function show_foot()
+    {
+        require_once 'config/info.php';
+        include 'res/templates/foot.php';
+    }
+    public function show_profiles()
+    {
+        include 'res/templates/profiles.html';
+    }
+    public function show_404()
+    {
+        include 'res/templates/404.html';
+    }
 }
-?>

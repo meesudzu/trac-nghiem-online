@@ -1,0 +1,52 @@
+<div class="title-content">
+	<span class="title">Quản Lý Thông Báo</span>
+</div>
+<div class="block-content overflow scrollbar">
+	<div class="preload hidden" id="preload">
+		<img src="../res/img/loading.gif" alt="">
+	</div>
+	<div class="content fadeRight">
+		<div class="row col l12">
+			<div class="col l6 s12">
+				<h6>Thông Báo Đến Học Sinh</h6>
+				<hr>
+				<div id="student_content" class="notification_content overflow scrollbar">
+				</div>
+			</div>
+			<div class="col l6 s12">
+				<h6>Thông Báo Nhận Từ Admin</h6>
+				<hr>
+				<div id="admin_content" class="notification_content overflow scrollbar">
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<form action="" method="POST" role="form" id="send_notification">
+				<div class="col l12 s12">
+					<hr><br />
+					<div class="input-field">
+						<input type="text" id="notification_title" name="notification_title" required>
+						<label for="topic">Chủ đề</label>
+					</div>
+					<label for="content">Nội dung</label>
+					<textarea id="notification_content" class="materialize-textarea" name="notification_content" required></textarea>
+					<div class="input-field">
+						<select multiple id="class_id" name="class_id">
+							</select>
+						<label>Lớp</label>
+					</div>
+				</div>
+		</div>
+		<div class="col l12 s12">
+			<div class="input-field" style="padding-bottom: 40px;">
+				<button name="send_teacher" type="submit" class="btn" style="width: 49%;" onclick="send_notification()">Gửi</button>
+				<button name="send_teacher" type="reset" class="btn" style="width: 49%;">Reset</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+<script src="../res/js/teacher_notifications.js"></script>

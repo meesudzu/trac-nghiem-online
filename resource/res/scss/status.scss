@@ -1,0 +1,21 @@
+.status {
+    text-align: center;
+    font-size: 17px;
+    color: white;
+    display: block;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+}
+
+.success {
+    background: #28a745;
+}
+
+.failed {
+    background: #dc3545;
+}

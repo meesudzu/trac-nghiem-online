@@ -2,17 +2,17 @@
 [![Build Status](https://travis-ci.org/meesudzu/trac-nghiem-online.svg?branch=master)](https://travis-ci.org/meesudzu/trac-nghiem-online)
 
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
+## Tính Năng
+Coming soon... 
 ## Sắp Có
 
    - Thêm nhiều dạng bài tập hơn
-   - Tích hợp thêm nhập, xuất dữ liệu bằng XML
+   - Thêm bảng xếp hạng điểm theo từng lớp
+   - ~~Tích hợp thêm nhập, xuất dữ liệu bằng XML~~
    - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
-   - Giáo viên có thể thêm học sinh, xoá học sinh, sửa học sinh trong lớp quản lý
-   - Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần
-   - Học sinh, Giáo viên có thể quản lý tài khoản cá nhân (không cần thiết phải qua admin)
-   - Học sinh có thể có nhiều hơn 4 chương (hiện thời gian làm xong từng chương)
+   - ~~Thêm 1 vài hoạt động để học sinh kiếm thêm điểm chuyên cần~~
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
-
+   
 [Hướng dẫn sử dụng](GUIDE.md)
 ## Lưu ý
 Trên GitHub chỉ lưu từ v2.0.1 trở đi.<br />
@@ -23,7 +23,7 @@ v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì l�
 ## Ảnh Demo (Chụp Từ v2.0.1)
 ( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )<br />
 Học Sinh
-	
+
 	Đăng nhập
 ![Đăng nhập](demo-images/login-hs.png)
 
