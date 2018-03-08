@@ -92,7 +92,7 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 .logout {
 	transition: all 0.4s !important;
 	text-align: center;
-	z-index: 997 !important;
+	z-index: 1000 !important;
 	position: fixed !important;
 	left: 0;
 	bottom: 0;
@@ -245,6 +245,50 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 	color: green;
 }
 
+.unit_detail {
+	
+	text-align: center;
+	box-sizing: border-box !important;
+	padding: 10px !important;
+	.unit_name {
+		display:block;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.unit_status {
+		font-size: 15px;
+		font-weight: bold;
+		padding-bottom: 5px;
+	}
+}
+
+.exam_quest {
+	font-size: 18px;
+}
+.exam_detail {
+	font-size: 20px;
+	color: darkgreen;
+	margin-left: 20px;
+}
+.exam_ans {
+	padding: 15px;
+	display: flex;
+	justify-content: space-around;
+
+	span {
+		color: #02796e;
+		font-size: 20px !important;
+		font-weight: bolder;
+	}
+}
+.exam_small {
+	font-size: 15px;
+}
+.send_exam {
+	padding-bottom: 20px;
+	display:flex;
+	justify-content: space-around;
+}
 // tbody {
 // 	display:block;
 // 	height:440px;

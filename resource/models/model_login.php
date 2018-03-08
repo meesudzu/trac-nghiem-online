@@ -11,11 +11,11 @@ class Model_Login extends Database
 {
     public function get_username($username)
     {
-        $sql = "SELECT username FROM students WHERE username = '$username' OR email = '$username'
+        $sql = "SELECT username, name FROM students WHERE username = '$username' OR email = '$username'
         UNION
-        SELECT username FROM teachers WHERE username = '$username' OR email = '$username'
+        SELECT username, name FROM teachers WHERE username = '$username' OR email = '$username'
         UNION
-        SELECT username FROM admins WHERE username = '$username' OR email = '$username'";
+        SELECT username, name FROM admins WHERE username = '$username' OR email = '$username'";
         $this->set_query($sql);
         return $this->load_row();
     }

@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?=Info::TITLE?>
 	</title>
+	<link rel="stylesheet" href="../res/css/normalize.css">
 	<link rel="stylesheet" href="../res/css/style.min.css">
 	<link rel="stylesheet" href="../res/css/font-awesome.css">
 	<link rel="stylesheet" href="../res/css/materialize.min.css">
@@ -34,8 +35,9 @@
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
-			<a class="collapsible-header font-color cursor"><i class="material-icons">library_books</i>Làm Bài Tập</a>
-			<a class="collapsible-header font-color cursor"><i class="material-icons">send</i>Trò Chuyện</a>
+			<a class="collapsible-header font-color cursor" onclick="show_index()"><i class="material-icons">library_books</i>Làm Bài Tập</a>
+			<a class="collapsible-header font-color cursor" onclick="show_chat()"><i class="material-icons">send</i>Trò Chuyện</a>
+			<a class="collapsible-header font-color cursor" onclick="show_notifications()"><i class="material-icons">send</i>Xem Thông Báo</a>
 			<a class="collapsible-header font-color cursor" onclick="show_about()"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 		</ul>
 	</div>

@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?=Info::TITLE?>
 	</title>
+	<link rel="stylesheet" href="../res/css/normalize.css">
 	<link rel="stylesheet" href="../res/css/style.min.css">
 	<link rel="stylesheet" href="../res/css/font-awesome.css">
 	<link rel="stylesheet" href="../res/css/materialize.min.css">

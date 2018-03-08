@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th1 26, 2018 lúc 01:55 PM
+-- Thời gian đã tạo: Th3 08, 2018 lúc 04:35 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-01-26 17:02:01', 1, 'admin_201756a1fdba-26f1-4d69-9c16-447ced66f994.jpg', '2018-01-20');
+(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-03-07 20:15:59', 1, 'admin_201756a1fdba-26f1-4d69-9c16-447ced66f994.jpg', '2018-01-20');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,8 @@ INSERT INTO `chats` (`ID`, `username`, `name`, `time_sent`, `chat_content`, `cla
 (10, '2017HS5', 'Trần Thành Đạt', '2018-01-12 00:07:51', 'thức thời thì hối lộ anh em đi', 1),
 (11, '2017HS6', 'Nguyễn Quang Điện', '2018-01-12 00:08:23', 'tớ lưu lại hết rồi :D', 1),
 (12, '2017HS6', 'Nguyễn Quang Điện', '2018-01-12 00:08:29', 'khỏi ai chối nhé', 1),
-(13, '2017HS1', 'Trần Phúc An', '2018-01-12 13:39:40', 'Cố lên', 1);
+(13, '2017HS1', 'Trần Phúc An', '2018-01-12 13:39:40', 'Cố lên', 1),
+(14, '2017HS1', 'Trần Phúc An', '2018-03-08 19:41:27', 'Thứ 6 ngày 13', 1);
 
 -- --------------------------------------------------------
 
@@ -286,9 +287,7 @@ CREATE TABLE `scores` (
 
 INSERT INTO `scores` (`ID`, `student_id`, `unit`, `score`, `class_id`, `completion_time`) VALUES
 (1, 1, 1, 6, 1, '2018-01-18 03:00:10'),
-(2, 1, 2, 5, 1, '2018-01-18 04:24:16'),
-(3, 1, 3, 3, 1, '2018-01-18 00:17:00'),
-(4, 1, 4, 10, 1, '2018-01-18 08:00:12');
+(3, 1, 3, 3, 1, '2018-01-18 00:17:00');
 
 -- --------------------------------------------------------
 
@@ -335,7 +334,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `permission`, `class_id`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-01-25 21:52:37', 1, '2017HS1_Download Wallpaper 1920x1080 Anime, Face, Hair, Mask Full HD 1080p HD Background.jpg', '2018-01-25'),
+(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-03-08 22:35:00', 1, '2017HS1_Download Wallpaper 1920x1080 Anime, Face, Hair, Mask Full HD 1080p HD Background.jpg', '2018-01-25'),
 (2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
 (4, '2017HS4', 'example4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Khánh Duy', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
@@ -425,7 +424,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '2018-01-26 19:53:53', 1, 'giaovien_13692472_1251877004862630_5032812334842572056_n.jpg', '1990-01-18');
+(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '2018-03-08 13:20:14', 1, 'giaovien_13692472_1251877004862630_5032812334842572056_n.jpg', '1990-01-18');
 
 -- --------------------------------------------------------
 
@@ -466,7 +465,7 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`unit`, `detail`, `status_id`, `close_time`) VALUES
-(1, 'Chương 1', 1, '0000-00-00 00:00:00'),
+(1, 'Chương 1', 2, '2018-03-13 02:06:07'),
 (2, 'Chương 2', 1, '0000-00-00 00:00:00'),
 (3, 'Chương 3', 1, '0000-00-00 00:00:00'),
 (4, 'Chương 4', 1, '0000-00-00 00:00:00');
@@ -613,7 +612,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT cho bảng `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `classes`
@@ -637,7 +636,7 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -655,7 +654,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT cho bảng `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `statuses`
@@ -673,7 +672,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT cho bảng `student_notifications`
 --
 ALTER TABLE `student_notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `subjects`

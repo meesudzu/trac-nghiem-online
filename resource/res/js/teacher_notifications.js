@@ -6,10 +6,12 @@ $(function() {
 });
 
 function get_notifications_to_student() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_notifications_to_student";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         insert_student_notification(json_data);
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
@@ -30,10 +32,12 @@ function insert_student_notification(data) {
 }
 
 function get_notifications_by_admin() {
+    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_notifications_by_admin";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         insert_admin_notification(json_data);
+        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }

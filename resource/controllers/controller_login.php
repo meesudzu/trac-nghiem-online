@@ -22,6 +22,7 @@ class Controller_Login extends Controller
             $user = $this->get_username($username);
             if (!empty($user)) {
                 $result['status_value'] = "Nhập mật khẩu để tiếp tục...";
+                $result['name'] = $user->name;
                 $result['status'] = 1;
                 $_SESSION['username'] = $user->username;
             } else {

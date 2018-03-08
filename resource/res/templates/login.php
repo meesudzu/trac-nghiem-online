@@ -26,11 +26,17 @@
 					<form>
 						<div class="input-field" id="field_username">
 							<input type="text" name="username" id="username" required autofocus>
-							<label for="username" id="lbl_usr">Tài Khoản, Mã Học Sinh Hoặc Email</label>
+							<label for="username" id="lbl_usr">Tài Khoản</label>
+							<div class="left-align" style="color: #3c763d;">
+								<span>Tài khoản có thể là tên đăng nhập, mã học sinh hoặc email.</span>
+							</div>
 						</div>
 						<div class="input-field" id="field_password">
 							<input type="password" name="password" id="password" class="hidden" required>
 							<label for="password" id="lbl_pw" class="hidden">Mật Khẩu</label>
+							<div class="left-align" style="color: #3c763d;">
+								<span id="hi"></span>
+							</div>
 						</div>
 						<div class="login-btn">
 							<button type="submit" class="btn waves-effect waves-light green darken-4" onclick="submit_login()" id="btn-login">Đăng Nhập</button>

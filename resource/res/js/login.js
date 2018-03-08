@@ -17,6 +17,7 @@ function submit_login() {
             $('#field_username').remove();
             $('#lbl_pw').removeClass('hidden');
             $('#password').removeClass('hidden');
+            $('#hi').text("Xin Chào: "+ json_data.name +", nhập mật khẩu để tiếp tục.");
             $('#btn-login').html("Tiếp Tục").css('width', '100%').attr('onclick', 'submit_password()');
             $('#btn-fotgot').css('display', 'none');
         }
