@@ -1,4 +1,4 @@
-Building v3.0.0 (xx/xx/xxxx)
+v3.0.0 (08/03/2018)
 
 	- Nâng cấp lên giao diện Material để tăng trải nghiệm người dùng trên các thiết bị di động ✓
 	- Thay đổi cấu trúc cơ sở dữ liệu để tiện cho việc bảo trì, nâng cấp ✓

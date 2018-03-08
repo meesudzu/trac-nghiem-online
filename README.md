@@ -14,46 +14,21 @@ Coming soon...
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
    
 [Hướng dẫn sử dụng](GUIDE.md)
+## Ảnh Demo (Chụp Từ v3.0.0)
+![Đăng nhập](demo-images/login.png)
+![DEMO](demo-images/1.png)
+![DEMO](demo-images/2.png)
+![DEMO](demo-images/3.png)
+![DEMO](demo-images/4.png)
+![DEMO](demo-images/5.png)
+![DEMO](demo-images/6.png)
+![DEMO](demo-images/7.png)
+![DEMO](demo-images/8.png)
+![DEMO](demo-images/9.png)
+![DEMO](demo-images/10.png)
 ## Lưu ý
 Trên GitHub chỉ lưu từ v2.0.1 trở đi.<br />
 Xem thêm tại [CHANGELOG](CHANGELOG.md)<br />
 v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)<br />
 [Download v2.0 (19/09/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSdEpObFltbmZzZGc)<br />
 [Download v1.0 (16/05/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSa0FtWXFMM2xhcjg)
-## Ảnh Demo (Chụp Từ v2.0.1)
-( nút tròn tím có số 0 kia không phải của web đâu nhé :) lúc chụp mình quên tắt extension của chrome đó )<br />
-Học Sinh
-
-	Đăng nhập
-![Đăng nhập](demo-images/login-hs.png)
-
-	Trang chủ
-![Trang chủ](demo-images/hoc-sinh-index.png)
-
-	Làm bài tập
-![Làm bài tập](demo-images/hoc-sinh-lam-bai.png)
-
-	Nộp bài
-![Nộp bài](demo-images/hoc-sinh-nop-bai.png)
-
-Giáo Viên
-
-	Đăng nhập
-![Đăng nhập](demo-images/login-gv.png)
-
-	Trang chủ
-![Trang chủ](demo-images/giao-vien-index.png)
-
-	Xem chi tiết lớp
-![Xem chi tiết lớp](demo-images/giao-vien-xem-diem.png)
-
-Admin
-
-	Đăng nhập
-![Đăng nhập](demo-images/login-admin.png)
-
-	Trang quản lý học sinh
-![Trang quản lý học sinh](demo-images/admin-ql.png)
-
-	Trang gửi thông báo
-![Trang gửi thông báo](demo-images/admin-tb.png)
