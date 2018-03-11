@@ -30,5 +30,5 @@ Coming soon...
 Trên GitHub chỉ lưu từ v2.0.1 trở đi.<br />
 Xem thêm tại [CHANGELOG](CHANGELOG.md)<br />
 v2.0 và v1.0 mọi người có thể tải file nén về tham khảo ( vì lúc mình bắt đầu làm v1 v2 thì chưa có ý định public lên GitHub)<br />
-[Download v2.0 (19/09/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSdEpObFltbmZzZGc)<br />
-[Download v1.0 (16/05/2017)!](https://drive.google.com/open?id=0B2XjHVJwd5PSa0FtWXFMM2xhcjg)
+[Download v2.0 (19/09/2017)!](https://drive.google.com/file/d/0B2XjHVJwd5PSbWhXZWdOcDgyYXM/view?usp=sharing)<br />
+[Download v1.0 (16/05/2017)!](https://drive.google.com/file/d/0B2XjHVJwd5PSejNmN0FfR0N1Tms/view?usp=sharing)
