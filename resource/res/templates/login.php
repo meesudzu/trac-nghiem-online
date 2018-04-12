@@ -35,7 +35,7 @@
 							<input type="password" name="password" id="password" class="hidden" required>
 							<label for="password" id="lbl_pw" class="hidden">Mật Khẩu</label>
 							<div class="left-align" style="color: #3c763d;">
-								<span id="hi"></span>
+								<span id="hi" style="color: blue"></span>
 							</div>
 						</div>
 						<div class="login-btn">
