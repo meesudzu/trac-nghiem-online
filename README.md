@@ -10,7 +10,8 @@ Coming soon...
    - Thêm bảng xếp hạng điểm theo từng lớp
    - Thêm nhập dữ liệu bằng file thay vì nhập từng dòng
    - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
-   - thêm checkbox để xóa nhiều dòng
+   - Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng
+   - Thêm trang tổng quan
    - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
    
 [Hướng dẫn sử dụng](GUIDE.md)
