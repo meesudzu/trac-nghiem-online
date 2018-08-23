@@ -3,7 +3,7 @@
 
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
 ## Tính Năng
-Coming soon... 
+Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
    - Thêm nhiều dạng bài tập hơn
