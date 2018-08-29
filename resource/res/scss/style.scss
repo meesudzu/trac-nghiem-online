@@ -315,3 +315,8 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 .scrollbar::-webkit-scrollbar-thumb {
 	background-color: $nav-color;
 }
+
+.rot { 
+	transform: rotate(90deg); 
+	transition: 0.5s
+}

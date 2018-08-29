@@ -1,5 +1,5 @@
 .img-loading { height: 60px; top: -5px; position: absolute; right: -10px; transition: all 0.4s; }
- 
+
 .bg-login { display: table; position: absolute; height: 100%; width: 100%; }
 .bg-login .fade { background-color: #3b9e95; display: table-cell; vertical-align: middle; }
 .bg-login .fade .login { text-align: center; margin-left: auto; margin-right: auto; width: 100%; max-width: 350px; background-color: #fff; border-radius: 2px; }
@@ -8,6 +8,8 @@
 .bg-login .fade .login label { color: #3c763d; }
 .bg-login .fade .login .login-form { padding: 0 20px 20px; }
 .bg-login .fade .login .login-form .row .login-btn .btn { padding: 0 !important; width: 49%; display: inline-block; }
+
+#reload { display: none; cursor: pointer; float: left; margin-top: 10px; }
 
 .status { text-align: center; font-size: 17px; color: white; display: block; height: 0; line-height: 0; overflow: hidden; width: 100%; z-index: 999; position: fixed; top: 0; }
 
@@ -119,6 +121,6 @@
 
 .scrollbar::-webkit-scrollbar-thumb { background-color: #02796e; }
 
-.rot { transform: rotate(90deg); transition: 0.5s}
+.rot { transform: rotate(90deg); transition: 0.5s; }
 
-#reload { display: none; cursor: pointer; float: left; margin-top: 10px; }
+/*# sourceMappingURL=style.min.css.map */

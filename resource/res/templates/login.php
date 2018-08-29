@@ -33,12 +33,12 @@
 								<span>Tài khoản có thể là tên đăng nhập, mã học sinh hoặc email.</span>
 							</div>
 						</div>
+						<div class="left-align" style="color: #3c763d;">
+								<span id="hi" style="color: blue"></span>
+							</div>
 						<div class="input-field" id="field_password">
 							<input type="password" name="password" id="password" class="hidden" required>
 							<label for="password" id="lbl_pw" class="hidden">Mật Khẩu</label>
-							<div class="left-align" style="color: #3c763d;">
-								<span id="hi" style="color: blue"></span>
-							</div>
 						</div>
 						<div class="login-btn">
 							<button type="submit" class="btn waves-effect waves-light green darken-4" onclick="submit_login()" id="btn-login">Đăng Nhập</button>
