@@ -1,7 +1,8 @@
-v3.1.0 ()
+v3.1.0 (xx/xx/xxxx)
 
-	- Thêm hiệu ứng cho nút menu để dễ nhận biết
-	- Thêm bộ đếm ngược thời gian ở phần làm bài tập, bài kiểm tra
+	- Thêm hiệu ứng cho nút menu để dễ nhận biết ✓
+	- Thêm nút back sau khi nhập username ở phần đăng nhập ✓
+	- Thêm bộ đếm ngược thời gian ở phần làm bài tập, bài kiểm tra ✓
 v3.0.0 (08/03/2018)
 
 	- Nâng cấp lên giao diện Material để tăng trải nghiệm người dùng trên các thiết bị di động ✓

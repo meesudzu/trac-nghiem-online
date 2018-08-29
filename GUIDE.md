@@ -8,7 +8,7 @@
 	mật khẩu: 123456
 - Tài khoản test gíao viên
 	
-	tài khoản: giaovien1
+	tài khoản: giaovien
 	mật khẩu: 123456
 
 - Tài khoản test admin

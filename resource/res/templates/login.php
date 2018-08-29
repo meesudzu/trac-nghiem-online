@@ -19,7 +19,9 @@
 	<div id="status" class="status"></div>
 	<div class="fade">
 		<div class="login fadeInLogin">
-			<h4 class="title-login">Đăng Nhập</h4>
+			<h4 class="title-login">
+			<i id="reload" class="material-icons" onclick="reload()" title="Quay lại">arrow_back</i>
+			Đăng Nhập</h4>
 			<div class="login-form">
 				<div class="row" style="position: relative;">
 					<img src="/res/img/loading.gif" alt="" id="loading" class="img-loading hidden">

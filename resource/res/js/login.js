@@ -14,18 +14,26 @@ function submit_login() {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            $('#field_username').remove();
+            $('#field_username').css('display', 'none');
             $('#lbl_pw').removeClass('hidden');
             $('#password').removeClass('hidden');
-            $('#hi').text("Xin Chào: "+ json_data.name +", nhập mật khẩu để tiếp tục.");
+            $('#hi').css('display', 'inline').text("Xin Chào: "+ json_data.name +", nhập mật khẩu để tiếp tục.");
             $('#btn-login').html("Tiếp Tục").css('width', '100%').attr('onclick', 'submit_password()');
             $('#btn-fotgot').css('display', 'none');
+            $('#reload').css('display', 'inline');
         }
         $('#loading').css('display', 'none');
     };
     $.post(url, data, success);
 }
-
+function reload() {
+    $('#reload').css('display', 'none');
+    $('#field_username').css('display', 'inline');
+    $('#hi').css('display', 'none');
+    $('#lbl_pw').addClass('hidden');
+    $('#password').addClass('hidden');
+    $('#btn-login').html("Tiếp Tục").css('width', '100%').attr('onclick', 'submit_login()');
+}
 function submit_password() {
     $('#loading').css('display', 'inline');
     var url = "index.php?action=submit_password";

@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('select').select();
     $('#trigger-sidebar').on('click', function() {
         $('#sidebar-left').toggleClass('sidebar-show');
+        $('#menu-icon').toggleClass('rot');
         $('#logout').toggleClass('sidebar-show');
         $('#box-content').toggleClass('box-content-mini');
         $('#footer').toggleClass('footer-mini');

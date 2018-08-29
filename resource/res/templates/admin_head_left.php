@@ -19,7 +19,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper nav-green">
-				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons">menu</i></a></div>
+				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons" id="menu-icon" title="Ẩn/Hiện bảng điều hướng">menu</i></a></div>
 				<a class="brand-logo right cursor" onclick="show_admins_panel()"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
