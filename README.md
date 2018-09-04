@@ -6,13 +6,19 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
-   - Thêm nhiều dạng bài tập hơn
-   - Thêm bảng xếp hạng điểm theo từng lớp
-   - Thêm nhập dữ liệu bằng file thay vì nhập từng dòng
-   - Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
-   - Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng
-   - Thêm trang tổng quan
-   - Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
+Dự tính sẽ có trong phiên bản 3.1.0
+
+	- Thêm nhập dữ liệu bằng file thay vì nhập từng dòng
+	- Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
+	- Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng
+	- Thêm trang tổng quan
+	- Hạn chế chức năng sử dụng khi đang làm bài tập/bài kiểm tra. Ví dụ: Chat lớp...
+
+Coming soon...
+
+	- Thêm bảng xếp hạng điểm theo từng lớp
+	- Thêm nhiều dạng bài tập hơn
+	- Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
    
 [Hướng dẫn sử dụng](GUIDE.md)
 ## Ảnh Demo (Chụp Từ v3.0.0)
