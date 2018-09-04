@@ -34,7 +34,7 @@
 							</div>
 						</div>
 						<div class="left-align" style="color: #3c763d;">
-								<span id="hi" style="color: blue"></span>
+								<div id="hi" style="display: none;">Xin Chào: <b><span id="hi-text" style="color: blue; font-weight: bold"></span></b>, nhập mật khẩu để tiếp tục.</div>
 							</div>
 						<div class="input-field" id="field_password">
 							<input type="password" name="password" id="password" class="hidden" required>
