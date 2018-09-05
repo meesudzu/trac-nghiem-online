@@ -11,7 +11,6 @@ Dự tính sẽ có trong phiên bản 3.1.0
 	- Thêm nhập dữ liệu bằng file thay vì nhập từng dòng
 	- Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
 	- Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng
-	- Thêm trang tổng quan
 	- Hạn chế chức năng sử dụng khi đang làm bài tập/bài kiểm tra. Ví dụ: Chat lớp...
 
 Coming soon...

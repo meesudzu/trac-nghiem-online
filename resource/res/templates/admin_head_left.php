@@ -35,6 +35,7 @@
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
+			<a class="collapsible-header font-color" onclick="show_dashboard()"><i class="material-icons">home</i>Trang Tổng Quan</a>
 			<li>
 				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
 					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Menu</div>

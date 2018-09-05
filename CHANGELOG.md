@@ -1,5 +1,6 @@
 v3.1.0 (xx/xx/xxxx)
 
+	- Thêm trang tổng quan ✓
 	- Thêm hiệu ứng cho nút menu để dễ nhận biết ✓
 	- Thêm nút back sau khi nhập username ở phần đăng nhập ✓
 	- Thêm bộ đếm ngược thời gian ở phần làm bài tập, bài kiểm tra ✓

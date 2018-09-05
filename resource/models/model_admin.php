@@ -412,4 +412,46 @@ class Model_Admin extends Database
         $this->set_query($sql);
         $this->execute_none_return();
     }
+    public function get_total_student()
+    {
+        $sql = "SELECT COUNT(student_id) as total FROM students";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_admin()
+    {
+        $sql = "SELECT COUNT(admin_id) as total FROM admins";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_teacher()
+    {
+        $sql = "SELECT COUNT(teacher_id) as total FROM teachers";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_class()
+    {
+        $sql = "SELECT COUNT(class_id) as total FROM classes";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_subject()
+    {
+        $sql = "SELECT COUNT(subject_id) as total FROM subjects";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_question()
+    {
+        $sql = "SELECT COUNT(ID) as total FROM questions";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function get_total_grade()
+    {
+        $sql = "SELECT COUNT(grade_id) as total FROM grades";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
 }

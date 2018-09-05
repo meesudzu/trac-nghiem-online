@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    show_admins_panel();
+    show_dashboard();
     $('.modal').modal();
     $('.collapsible').collapsible();
     $('select').select();
@@ -22,6 +22,18 @@ $(document).ready(function() {
     });
 
 });
+
+function show_dashboard() {
+    var url = "index.php?action=show_dashboard";
+    var success = function(result) {
+        $('#box-content').html(result);
+        $('select').select();
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+        });
+    };
+    $.get(url, success);
+}
 
 function show_profiles() {
     var url = "index.php?action=show_profiles";

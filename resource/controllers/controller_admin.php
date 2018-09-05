@@ -264,6 +264,34 @@ class Controller_Admin extends Controller
         $notification = new Model_Admin();
         return $notification->insert_notification($this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
+    public function get_dashboard_info()
+    {
+        $get_total = new Model_Admin();
+        $total[] = new stdclass();
+        $total[0]->count = $get_total->get_total_admin();
+        $total[0]->name = "Quản Trị Viên";
+        $total[0]->icon = "fa-user";
+        $total[1]->count = $get_total->get_total_teacher();
+        $total[1]->name = "Giáo Viên";
+        $total[1]->icon = "fa-user";
+        $total[2]->count = $get_total->get_total_student();
+        $total[2]->name = "Học Sinh";
+        $total[2]->icon = "fa-user";
+        $total[3]->count = $get_total->get_total_grade();
+        $total[3]->name = "Khối";
+        $total[3]->icon = "fa-archive";
+        $total[4]->count = $get_total->get_total_class();
+        $total[4]->name = "Lớp";
+        $total[4]->icon = "fa-archive";
+        $total[5]->count = $get_total->get_total_subject();
+        $total[5]->name = "Môn Học";
+        $total[5]->icon = "fa-book";
+        $total[6]->count = $get_total->get_total_question();
+        $total[6]->name = "Câu Hỏi";
+        $total[6]->icon = "fa-question";
+
+        echo json_encode($total);
+    }
     public function notify_teacher($ID, $teacher_id)
     {
         $send = new Model_Admin();
@@ -291,6 +319,12 @@ class Controller_Admin extends Controller
         $this->load_view("admin");
         $view = new View_Admin();
         $view->show_admins_panel();
+    }
+    public function show_dashboard()
+    {
+        $this->load_view("admin");
+        $view = new View_Admin();
+        $view->show_dashboard();
     }
     public function check_add_admin()
     {

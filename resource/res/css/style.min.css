@@ -123,4 +123,11 @@
 
 .rot { transform: rotate(90deg); transition: 0.5s; }
 
+#dashboard { width: 96%; margin: 10px 5px; padding: 5px; position: absolute; }
+#dashboard .dashboard-inner-item { display: inline-block; width: 24%; margin: 20px 50px; border: 1.5px solid #02796e; border-radius: 10px; }
+#dashboard .dashboard-inner-item .left-item { text-align: center; float: left; display: inline-block; width: 30%; font-size: 30px; padding: 10px 0; color: white; background: #02796e; border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+#dashboard .dashboard-inner-item .right-item { text-align: center; float: right; display: inline-block; width: 70%; line-height: 32px; padding: 10px 0; color: #02796e; }
+#dashboard .dashboard-inner-item .right-item .right-item-top { width: 100%; display: block; font-size: 30px; font-weight: bold; line-height: 50px; }
+#dashboard .dashboard-inner-item .right-item .right-item-bottom { width: 100%; display: block; font-size: 15px; line-height: 0px; }
+
 /*# sourceMappingURL=style.min.css.map */

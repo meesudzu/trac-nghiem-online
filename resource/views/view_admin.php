@@ -17,6 +17,10 @@ class View_Admin extends View
     {
         include 'res/templates/admin_admins_panel.html';
     }
+    public function show_dashboard()
+    {
+        include 'res/templates/admin_dashboard.html';
+    }
     public function show_teachers_panel()
     {
         include 'res/templates/admin_teachers_panel.html';
