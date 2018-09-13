@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../res/css/style.min.css">
 	<link rel="stylesheet" href="../res/css/font-awesome.css">
 	<link rel="stylesheet" href="../res/css/materialize.min.css">
+	<link rel="stylesheet" href="../res/libs/DataTables/css/jquery.dataTables.css">
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/materialize.min.js"></script>
 	<script src="../res/js/admin_functions.js"></script>

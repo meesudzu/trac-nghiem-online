@@ -33,6 +33,23 @@ function show_list_units(data) {
         tr.append('<td>' + unit_edit_button(value) + '<br />' + unit_del_button(value) + '</td>');
         list.append(tr);
     });
+    $('#table_units').DataTable(  {
+        "language": {
+            "lengthMenu": "Hiển thị _MENU_",
+            "zeroRecords": "Không tìm thấy",
+            "info": "Hiển thị trang _PAGE_/_PAGES_",
+            "infoEmpty": "Không có dữ liệu",
+            "emptyTable": "Không có dữ liệu",
+            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
+            "sSearch": "Tìm kiếm",
+            "paginate": {
+                "first":      "Đầu",
+                "last":       "Cuối",
+                "next":       "Sau",
+                "previous":   "Trước"
+            },
+        }
+    }  );
     $('select').select();
 }
 

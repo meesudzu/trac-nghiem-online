@@ -1,5 +1,6 @@
 v3.1.0 (xx/xx/xxxx)
 
+	- Sử dụng thư viện DataTables để hỗ trợ trong việc hiển thị dữ liệu ✓
 	- Thêm trang tổng quan ✓
 	- Thêm hiệu ứng cho nút menu để dễ nhận biết ✓
 	- Thêm nút back sau khi nhập username ở phần đăng nhập ✓

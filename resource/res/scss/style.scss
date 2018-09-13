@@ -139,6 +139,7 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 .block-content {
 	overflow-x: hidden;
 	max-height: calc(100vh - 115px);
+	padding-bottom: 20px;
 }
 
 .content {

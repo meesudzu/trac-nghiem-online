@@ -1,8 +1,6 @@
 $(document).ready(function() {
     show_index();
-    $('.modal').modal();
     $('.collapsible').collapsible();
-    $('select').select();
     $('#trigger-sidebar').on('click', function() {
         $('#sidebar-left').toggleClass('sidebar-show');
         $('#menu-icon').toggleClass('rot');
@@ -94,6 +92,25 @@ function insert_class_detail(data) {
         tr.append('<td>' + value.last_login + '</td>');
         list.append(tr);
     });
+    $('#table_classes_detail').DataTable( {
+        "language": {
+            "lengthMenu": "Hiển thị _MENU_",
+            "zeroRecords": "Không tìm thấy",
+            "info": "Hiển thị trang _PAGE_/_PAGES_",
+            "infoEmpty": "Không có dữ liệu",
+            "emptyTable": "Không có dữ liệu",
+            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
+            "sSearch": "Tìm kiếm",
+            "paginate": {
+                "first":      "Đầu",
+                "last":       "Cuối",
+                "next":       "Sau",
+                "previous":   "Trước"
+            },
+        }
+    } );
+    $('.modal').modal();
+    $('select').select();
 }
 
 function show_status(json_data) {

@@ -38,6 +38,23 @@ function show_list_questions(data) {
         tr.append('<td class="">' + question_edit_button(data[i]) + '<br />' + question_del_button(data[i]) + '</td>');
         list.append(tr);
     }
+    $('#table_questions').DataTable(  {
+        "language": {
+            "lengthMenu": "Hiển thị _MENU_",
+            "zeroRecords": "Không tìm thấy",
+            "info": "Hiển thị trang _PAGE_/_PAGES_",
+            "infoEmpty": "Không có dữ liệu",
+            "emptyTable": "Không có dữ liệu",
+            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
+            "sSearch": "Tìm kiếm",
+            "paginate": {
+                "first":      "Đầu",
+                "last":       "Cuối",
+                "next":       "Sau",
+                "previous":   "Trước"
+            },
+        }
+    }  );
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
