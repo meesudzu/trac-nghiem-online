@@ -27,7 +27,7 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 .pad-left-20 {
@@ -227,18 +227,26 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 
 .preload {
 	z-index: 999;
-	opacity: 0.5;
-	background: black;
+	background: #ffffff00;
 	height: 100%;
 	width: 100%;
-	position: absolute;
-	padding-left: 50%;
-	padding-top: 10%;
+	position: fixed;
 
 	img {
-		width: 100px;
+		background: black;
+		width: 300px;
 		height: 100px;
+		opacity: 0.7;
+		padding: 10px 100px;
+		border-radius: 10px;
+		margin-left: 30%;
+		margin-top: 5%;
 	}
+}
+
+.action {
+	display: inline-block;
+	margin: 5px;
 }
 
 .help {
@@ -345,7 +353,7 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 			color: white;
 			background: #02796e;
 			border-top-left-radius: 8px;
-    		border-bottom-left-radius: 8px;
+			border-bottom-left-radius: 8px;
 		}
 		.right-item {
 			text-align: center;
@@ -360,8 +368,8 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 				width: 100%;
 				display: block;
 				font-size: 30px;
-    			font-weight: bold;
-    			line-height: 50px;
+				font-weight: bold;
+				line-height: 50px;
 			}
 
 			.right-item-bottom {

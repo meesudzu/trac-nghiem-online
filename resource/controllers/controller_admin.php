@@ -162,7 +162,7 @@ class Controller_Admin extends Controller
     public function del_unit($unit)
     {
         $del = new Model_Admin();
-        $del->del_unit($unit);
+        return $del->del_unit($unit);
     }
     public function edit_unit($unit, $detail, $status_id, $close_time)
     {
@@ -202,7 +202,7 @@ class Controller_Admin extends Controller
     public function del_student($student_id)
     {
         $del = new Model_Admin();
-        $del->del_student($student_id);
+        return $del->del_student($student_id);
     }
     public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
@@ -222,7 +222,7 @@ class Controller_Admin extends Controller
     public function del_class($class_id)
     {
         $del = new Model_Admin();
-        $del->del_class($class_id);
+        return $del->del_class($class_id);
     }
     public function add_class($grade_id, $class_name, $teacher_id)
     {
@@ -361,8 +361,9 @@ class Controller_Admin extends Controller
             $result['status'] = 1;
             $result['admin_id'] = $admin_id;
         } else {
-            $result['status_value'] = "Tài khoản không tồn tại!";
+            $result['status_value'] = "Không thể xóa!";
             $result['status'] = 0;
+            $result['admin_id'] = $admin_id;
         }
         echo json_encode($result);
     }
@@ -426,10 +427,16 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $teacher_id = Htmlspecialchars($_POST['teacher_id']);
-        $this->del_teacher($teacher_id);
-        $result['status_value'] = "Xóa thành công!";
-        $result['status'] = 1;
-        $result['teacher_id'] = $teacher_id;
+        $del = $this->del_teacher($teacher_id);
+        if ($del) {
+            $result['status_value'] = "Xóa thành công!";
+            $result['status'] = 1;
+            $result['teacher_id'] = $teacher_id;
+        } else {
+            $result['status_value'] = "Không thể xóa!";
+            $result['status'] = 0;
+            $result['teacher_id'] = $teacher_id;
+        }
         echo json_encode($result);
     }
     public function check_edit_teacher()
@@ -489,10 +496,17 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $class_id = Htmlspecialchars($_POST['class_id']);
-        $this->del_class($class_id);
-        $result['status_value'] = "Xóa thành công!";
-        $result['status'] = 1;
-        $result['class_id'] = $class_id;
+        $del = $this->del_class($class_id);
+        if ($del) {
+            $result['status_value'] = "Xóa thành công!";
+            $result['status'] = 1;
+            $result['class_id'] = $class_id;
+        } else {
+            $result['status_value'] = "Không thể xóa!";
+            $result['status'] = 0;
+            $result['class_id'] = $class_id;
+
+        }
         echo json_encode($result);
     }
     public function check_edit_class()
@@ -570,10 +584,17 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $student_id = isset($_POST['student_id']) ? Htmlspecialchars($_POST['student_id']) : '';
-        $this->del_student($student_id);
-        $result['status_value'] = "Xóa thành công!";
-        $result['status'] = 1;
-        $result['student_id'] = $student_id;
+        $del = $this->del_student($student_id);
+        if($del) {
+            $result['status_value'] = "Xóa thành công!";
+            $result['status'] = 1;
+            $result['student_id'] = $student_id;
+        } else {
+            $result['status_value'] = "Không thể xóa!";
+            $result['status'] = 0;
+            $result['student_id'] = $student_id;
+
+        }
         echo json_encode($result);
     }
     public function show_questions_panel()
@@ -643,10 +664,16 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
-        $this->del_unit($unit);
-        $result['status_value'] = "Xóa thành công!";
-        $result['status'] = 1;
-        $result['unit'] = $unit;
+        $del = $this->del_unit($unit);
+        if ($del) {
+            $result['status_value'] = "Xóa thành công!";
+            $result['status'] = 1;
+            $result['unit'] = $unit;
+        } else {
+            $result['status_value'] = "Không thể xóa!";
+            $result['status'] = 0;
+            $result['unit'] = $unit;
+        }
         echo json_encode($result);
     }
     public function check_del_question()
@@ -761,5 +788,128 @@ class Controller_Admin extends Controller
         $this->load_view("admin");
         $view = new View_Admin();
         $view->show_units_panel();
+    }
+    public function delete_check_students()
+    {
+        $result = array();
+        $list_del = "";
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $del = $this->del_student($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
+        }
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+        }
+        echo json_encode($result);
+    }
+    public function delete_check_admins()
+    {
+        $result = array();
+        $list_del = "";
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $del = $this->del_admin($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
+        }
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+        }
+        echo json_encode($result);
+    }
+    public function delete_check_teachers()
+    {
+        $result = array();
+        $list_del = "";
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $del = $this->del_teacher($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
+        }
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+        }
+        echo json_encode($result);
+    }
+    public function delete_check_classes()
+    {
+        $result = array();
+        $list_del = "";
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $del = $this->del_class($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
+        }
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+        }
+        echo json_encode($result);
+    }
+    public function delete_check_questions()
+    {
+        $result = array();
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $this->del_question($list_check[$i]);
+        }
+        $result['status'] = 1;
+        $result['status_value'] = "Xóa thành công";
+        echo json_encode($result);
+    }
+    public function delete_check_units()
+    {
+        $result = array();
+        $list_del = "";
+        $data = $_POST['list_check'];
+        $list_check = explode(',', $data);
+        for ($i = 0; $i < count($list_check) - 1; $i++)
+        {
+            $del = $this->del_unit($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
+        }
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+        }
+        echo json_encode($result);
     }
 }

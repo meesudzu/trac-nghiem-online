@@ -117,14 +117,14 @@ class Model_Admin extends Database
     }
     public function del_admin($admin_id)
     {
-        $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
-        $this->set_query($sql);
-        if ($this->load_row()=='') {
-            return false;
-        }
         $sql="DELETE FROM admins where admin_id='$admin_id'";
         $this->set_query($sql);
         $this->execute_none_return();
+        $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
+        $this->set_query($sql);
+        if ($this->load_row()!='') {
+            return false;
+        }
         return true;
     }
     public function add_admin($name, $username, $password, $email, $birthday, $gender)
@@ -168,6 +168,12 @@ class Model_Admin extends Database
         $sql="DELETE FROM teachers where teacher_id='$teacher_id'";
         $this->set_query($sql);
         $this->execute_none_return();
+        $sql = "SELECT username FROM teachers WHERE teacher_id = '$teacher_id'";
+        $this->set_query($sql);
+        if ($this->load_row()!='') {
+            return false;
+        }
+        return true;
     }
     public function add_teacher($name, $username, $password, $email, $birthday, $gender)
     {
@@ -211,6 +217,12 @@ class Model_Admin extends Database
         $sql="DELETE FROM students where student_id='$student_id'";
         $this->set_query($sql);
         $this->execute_none_return();
+        $sql = "SELECT username FROM students WHERE student_id = '$student_id'";
+        $this->set_query($sql);
+        if ($this->load_row()!='') {
+            return false;
+        }
+        return true;
     }
     public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
@@ -248,6 +260,12 @@ class Model_Admin extends Database
         $sql="DELETE FROM classes where class_id='$class_id'";
         $this->set_query($sql);
         $this->execute_none_return();
+        $sql = "SELECT class_name FROM classes WHERE class_id = '$class_id'";
+        $this->set_query($sql);
+        if ($this->load_row()!='') {
+            return false;
+        }
+        return true;
     }
     public function add_class($grade_id, $class_name, $teacher_id)
     {
@@ -355,6 +373,12 @@ class Model_Admin extends Database
         $sql="DELETE FROM units where unit='$unit'";
         $this->set_query($sql);
         $this->execute_none_return();
+        $sql = "SELECT detail FROM units WHERE unit = '$unit'";
+        $this->set_query($sql);
+        if ($this->load_row()!='') {
+            return false;
+        }
+        return true;
     }
     public function insert_notification($username, $name, $notification_title, $notification_content)
     {

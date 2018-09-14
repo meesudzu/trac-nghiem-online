@@ -1,5 +1,6 @@
 v3.1.0 (xx/xx/xxxx)
 
+	- Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng (xóa,...) ✓
 	- Sử dụng thư viện DataTables để hỗ trợ trong việc hiển thị dữ liệu ✓
 	- Thêm trang tổng quan ✓
 	- Thêm hiệu ứng cho nút menu để dễ nhận biết ✓

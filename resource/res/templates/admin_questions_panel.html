@@ -1,5 +1,10 @@
 <div class="title-content">
 	<span class="title">Quản Lý Thông Tin Câu Hỏi</span>
+	<div class="action hidden" id="select_action">
+		<a class="waves-effect waves-light btn" onclick="delete_check()">Xóa
+			<i class="material-icons right">delete</i>
+		</a>	
+	</div>
 </div>
 <div class="block-content overflow scrollbar">
 	<div class="content fadeRight">
@@ -9,6 +14,9 @@
 		<table class="striped centered responsive-table" id="table_questions">
 			<thead>
 				<tr>
+					<th class="">
+						<p><label><input type="checkbox" id="select_all" /><span></span></label></p>
+					</th>
 					<th class="">ID</th>
 					<th class="">Câu Hỏi</th>
 					<th class="">Khối</th>

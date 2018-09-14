@@ -193,7 +193,7 @@ function valid_username_or_email(value, elem) {
 
 
 function select_teacher() {
-    $('#preload').removeClass('hidden');
+    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_teachers";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -203,13 +203,12 @@ function select_teacher() {
             sl.append('<option value="' + value.teacher_id + '">' + value.name + '</option>');
         });
         $('select').select();
-        $('#preload').addClass('hidden');
+        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function select_grade() {
-    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_grades";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -219,13 +218,11 @@ function select_grade() {
             sl.append('<option value="' + value.grade_id + '">' + value.detail + '</option>');
         });
         $('select').select();
-        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function select_unit() {
-    $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_units";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -235,13 +232,12 @@ function select_unit() {
             sl.append('<option value="' + value.unit + '">' + value.detail + '</option>');
         });
         $('select').select();
-        $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function select_class(data) {
-    $('#preload').removeClass('hidden');
+    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_classes";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -251,13 +247,13 @@ function select_class(data) {
             sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
         });
         $('select').select();
-        $('#preload').addClass('hidden');
+        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function select_status() {
-    $('#preload').removeClass('hidden');
+    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_statuses";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -267,7 +263,7 @@ function select_status() {
             sl.append('<option value="' + value.status_id + '">' + value.detail + '</option>');
         });
         $('select').select();
-        $('#preload').addClass('hidden');
+        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
