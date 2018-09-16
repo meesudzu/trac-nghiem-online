@@ -154,10 +154,10 @@ class Controller_Admin extends Controller
         $add = new Model_Admin();
         return $add->add_admin($name, $username, $password, $email, $birthday, $gender);
     }
-    public function add_unit($detail, $status_id, $close_time)
+    public function add_unit($detail, $time_to_do, $status_id, $close_time)
     {
         $add = new Model_Admin();
-        return $add->add_unit($detail, $status_id, $close_time);
+        return $add->add_unit($detail, $time_to_do, $status_id, $close_time);
     }
     public function del_unit($unit)
     {
@@ -629,13 +629,14 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $detail = isset($_POST['detail']) ? Htmlspecialchars(addslashes($_POST['detail'])) : '';
+        $time_to_do = isset($_POST['time_to_do']) ? Htmlspecialchars(addslashes($_POST['time_to_do'])) : '';
         $status_id = isset($_POST['status_id']) ? Htmlspecialchars(addslashes($_POST['status_id'])) : '';
         $close_time = isset($_POST['close_time']) ? Htmlspecialchars(addslashes($_POST['close_time'])) : '';
         if (empty($detail)||empty($status_id)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập";
             $result['status'] = 0;
         } else {
-            $ID = $this->add_unit($detail, $status_id, $close_time);
+            $ID = $this->add_unit($detail, $time_to_do, $status_id, $close_time);
             $result = json_decode(json_encode($this->get_unit($ID)), true);
             $result['status_value'] = "Thêm thành công!";
             $result['status'] = 1;

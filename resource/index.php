@@ -4,6 +4,7 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+date_default_timezone_set("Asia/Bangkok");
 session_start();
 // session_destroy();
 error_reporting(0);

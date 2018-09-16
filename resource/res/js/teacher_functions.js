@@ -1,5 +1,7 @@
 $(document).ready(function() {
     show_index();
+    $('.modal').modal();
+    $('select').select();
     $('.collapsible').collapsible();
     $('#trigger-sidebar').on('click', function() {
         $('#sidebar-left').toggleClass('sidebar-show');
@@ -87,8 +89,12 @@ function insert_class_detail(data) {
         tr.append('<td><img src="../res/img/avatar/' + value.avatar + '"" alt="avatar" class="avatar" /></td>');
         tr.append('<td>' + value.username + '</td>');
         tr.append('<td>' + value.name + '</td>');
+        if(value.birthday == '' || value.birthday == '0000-00-00')
+            value.birthday = 'Chưa Xác Định';
         tr.append('<td>' + value.birthday + '</td>');
         tr.append('<td>' + value.gender_detail + '</td>');
+        if(value.last_login == '' || value.last_login == '0000-00-00 00:00:00')
+            value.last_login = 'Chưa Đăng Nhập';
         tr.append('<td>' + value.last_login + '</td>');
         list.append(tr);
     });

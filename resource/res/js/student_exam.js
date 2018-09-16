@@ -4,6 +4,11 @@ function send_exam (data) {
 	var success = function(result) {
 		var json_data = $.parseJSON(result);
 		show_result(json_data);
+		//xóa bộ đếm thời gian làm bài
+		delete min;
+		delete sec;
+		delete cd;
+		clearInterval(cdID);
 		$('#preload').addClass('hidden');
 	};
 	$.post(url, data, success);

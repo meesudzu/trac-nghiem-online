@@ -88,7 +88,10 @@ function show_list_units(data) {
         tr.append('<td><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + value.unit + '" /><span></span></label></p></td>');
         tr.append('<td>' + value.unit + '</td>');
         tr.append('<td>' + value.detail + '</td>');
+        tr.append('<td>' + value.time_to_do + '</td>');
         tr.append('<td>' + value.status_detail + '</td>');
+        if(value.close_time == '' || value.close_time == '0000-00-00 00:00:00')
+            value.close_time = 'Chưa Xác Định';
         tr.append('<td>' + value.close_time + '</td>');
         tr.append('<td>' + unit_edit_button(value) + '<br />' + unit_del_button(value) + '</td>');
         list.append(tr);

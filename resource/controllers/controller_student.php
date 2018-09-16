@@ -20,6 +20,8 @@ class Controller_Student extends Controller
 		$this->info['avatar'] = $user_info->avatar;
 		$this->info['class_id'] = $user_info->class_id;
 		$this->info['grade_id'] = $user_info->grade_id;
+		$this->info['doing_exam'] = $user_info->doing_exam;
+		$this->info['doing_time'] = $user_info->doing_time;
 	}
 	public function profiles()
 	{
@@ -31,10 +33,24 @@ class Controller_Student extends Controller
 		$answer = new Model_Student();
 		return $answer->get_question($ID);
 	}
+	public function get_doing_exam()
+	{
+		return $this->info['doing_exam'];
+	}
 	public function update_last_login()
 	{
 		$info = new Model_Student();
 		$info->update_last_login($this->info['ID']);
+	}
+	public function update_doing_exam($exam,$time)
+	{
+		$info = new Model_Student();
+		$info->update_doing_exam($exam,$time,$this->info['ID']);
+	}
+	public function reset_doing_exam()
+	{
+		$info = new Model_Student();
+		$info->reset_doing_exam($this->info['ID']);
 	}
 	public function insert_score($unit,$score)
 	{
@@ -63,6 +79,19 @@ class Controller_Student extends Controller
 			$result['status'] = 0;
 		} else {
 			$result[] = $quest->get_rand_questions($this->info['grade_id'],$unit);
+			if($this->info['doing_time'] != '') {
+				//tính thời gian làm bài còn lại nếu bài đã bắt đầu từ trước
+				$time_remaining = $quest->get_unit_detail($unit)->time_to_do;
+				$seconds = time() - strtotime($this->info['doing_time']);
+				$result['min'] = $time_remaining - floor($seconds/60) - 1;
+				$result['sec'] = $seconds%60;
+			} else {
+				//cập nhật thời gian bắt đầu làm bài vào cơ sở dữ liệu
+				$result['min'] = $quest->get_unit_detail($unit)->time_to_do;
+				$result['sec'] = 0;
+				$now = date('Y-m-d H:i:s', time());
+				$this->update_doing_exam($unit,$now);
+			}
 			$result['status'] = 1;
 		}
 		echo json_encode($result);
@@ -155,6 +184,7 @@ class Controller_Student extends Controller
 			$result[] = $quest;
 		}
 		$result['score'] = $score;
+		$this->reset_doing_exam();//reset thông tin bài làm đang làm sau khi nộp
 		echo json_encode($result);
 	}
 	public function update_profiles($username, $name, $email, $password, $gender, $birthday)
@@ -197,13 +227,23 @@ class Controller_Student extends Controller
 	{
 		$this->load_view("student");
 		$view = new View_Student();
-		$view->show_index();
+		if($this->info['doing_exam'] == '')
+			$view->show_index();
+		else {
+			$view->show_exam();
+			echo '<script>show_exam('.$this->info["doing_exam"].');</script>';
+		}
 	}
 	public function show_chat()
 	{
 		$this->load_view("student");
 		$view = new View_Student();
-		$view->show_chat();
+		if($this->info['doing_exam'] == '')
+			$view->show_index();
+		else {
+			$view->show_exam();		
+			echo '<script>show_exam('.$this->info["doing_exam"].');</script>';
+		}
 	}
 	public function show_chat_all()
 	{

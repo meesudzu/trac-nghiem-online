@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.6
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th3 08, 2018 lúc 04:35 PM
--- Phiên bản máy phục vụ: 10.1.29-MariaDB
--- Phiên bản PHP: 7.2.0
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th9 16, 2018 lúc 02:46 PM
+-- Phiên bản máy phục vụ: 10.1.31-MariaDB
+-- Phiên bản PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-03-07 20:15:59', 1, 'admin_201756a1fdba-26f1-4d69-9c16-447ced66f994.jpg', '2018-01-20');
+(1, 'admin', 'dzu6996@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 1, '2018-09-16 19:46:17', 2, 'admin_201756a1fdba-26f1-4d69-9c16-447ced66f994.jpg', '1997-09-06');
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,7 @@ CREATE TABLE `genders` (
 --
 
 INSERT INTO `genders` (`gender_id`, `gender_detail`) VALUES
-(1, 'Không Xác Định'),
+(1, 'Chưa Xác Định'),
 (2, 'Nam'),
 (3, 'Nữ');
 
@@ -326,37 +326,39 @@ CREATE TABLE `students` (
   `last_login` datetime NOT NULL,
   `gender_id` int(1) NOT NULL DEFAULT '1',
   `avatar` varchar(255) DEFAULT 'avatar-default.jpg',
-  `birthday` date NOT NULL
+  `birthday` date NOT NULL,
+  `doing_exam` int(11) DEFAULT NULL,
+  `doing_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `students`
 --
 
-INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `permission`, `class_id`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-03-08 22:35:00', 1, '2017HS1_Download Wallpaper 1920x1080 Anime, Face, Hair, Mask Full HD 1080p HD Background.jpg', '2018-01-25'),
-(2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(4, '2017HS4', 'example4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Khánh Duy', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(5, '2017HS5', 'example5@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thành Đạt', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(6, '2017HS6', 'example6@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Quang Điện', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(7, '2017HS7', 'example7@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Diệu Hằng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(8, '2017HS8', 'example8@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Khánh Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(9, '2017HS9', 'example9@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Khánh Linh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(10, '2017HS10', 'example10@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Ngô Trần Khôi', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(11, '2017HS11', 'example11@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(12, '2017HS12', 'example12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Phương Mai', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(13, '2017HS13', 'example13@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Đỗ Thị Mùi', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(14, '2017HS14', 'example14@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Bùi Kim Oanh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(15, '2017HS15', 'example15@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Kiều Oanh', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(16, '2017HS16', 'example16@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị Hà', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(17, '2017HS17', 'example17@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị G', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(18, '2017HS18', 'example18@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị H', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '0000-00-00'),
-(20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '0000-00-00 00:00:00', 1, 'avatar-default.jpg', '2018-01-02'),
-(21, '2017HS21', 'example21@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Văn Thịnh', 3, 2, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26'),
-(22, '2017HS22', 'example22@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thi', 3, 3, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26'),
-(23, '2017HS23', 'example23@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thu', 3, 4, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2018-01-26');
+INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `permission`, `class_id`, `last_login`, `gender_id`, `avatar`, `birthday`, `doing_exam`, `doing_time`) VALUES
+(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-09-16 19:30:39', 1, '2017HS1_Download Wallpaper 1920x1080 Anime, Face, Hair, Mask Full HD 1080p HD Background.jpg', '2008-01-25', NULL, NULL),
+(2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '2018-09-16 09:16:12', 1, 'avatar-default.jpg', '2008-09-07', NULL, NULL),
+(3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '2018-09-27 08:31:24', 1, 'avatar-default.jpg', '2008-12-01', NULL, NULL),
+(4, '2017HS4', 'example4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Khánh Duy', 3, 1, '2018-09-20 04:19:27', 1, 'avatar-default.jpg', '2008-05-10', NULL, NULL),
+(5, '2017HS5', 'example5@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thành Đạt', 3, 1, '2018-09-19 04:09:18', 1, 'avatar-default.jpg', '2008-05-03', NULL, NULL),
+(6, '2017HS6', 'example6@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Quang Điện', 3, 1, '2018-09-24 06:13:23', 1, 'avatar-default.jpg', '2008-10-10', NULL, NULL),
+(7, '2017HS7', 'example7@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Thị Diệu Hằng', 3, 1, '2018-09-26 05:17:17', 1, 'avatar-default.jpg', '2008-02-03', NULL, NULL),
+(8, '2017HS8', 'example8@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Khánh Hoàng', 3, 1, '2018-09-18 06:17:12', 1, 'avatar-default.jpg', '2008-01-01', NULL, NULL),
+(9, '2017HS9', 'example9@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Khánh Linh', 3, 1, '2018-09-18 05:10:10', 1, 'avatar-default.jpg', '2008-01-03', NULL, NULL),
+(10, '2017HS10', 'example10@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Ngô Trần Khôi', 3, 1, '2018-09-28 06:17:28', 1, 'avatar-default.jpg', '2008-04-06', NULL, NULL),
+(11, '2017HS11', 'example11@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '2018-09-20 03:13:13', 1, 'avatar-default.jpg', '2008-01-03', NULL, NULL),
+(12, '2017HS12', 'example12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Phương Mai', 3, 1, '2018-09-20 09:13:13', 1, 'avatar-default.jpg', '2008-01-06', NULL, NULL),
+(13, '2017HS13', 'example13@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Đỗ Thị Mùi', 3, 1, '2018-09-20 03:07:11', 1, 'avatar-default.jpg', '2008-09-13', NULL, NULL),
+(14, '2017HS14', 'example14@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Bùi Kim Oanh', 3, 1, '2018-09-20 10:23:16', 1, 'avatar-default.jpg', '2008-10-30', NULL, NULL),
+(15, '2017HS15', 'example15@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Kiều Oanh', 3, 1, '2018-09-15 00:00:00', 1, 'avatar-default.jpg', '2008-11-20', NULL, NULL),
+(16, '2017HS16', 'example16@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị Hà', 3, 1, '2018-09-22 08:17:14', 1, 'avatar-default.jpg', '2008-03-26', NULL, NULL),
+(17, '2017HS17', 'example17@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị G', 3, 1, '2018-09-14 06:15:15', 1, 'avatar-default.jpg', '2008-01-12', NULL, NULL),
+(18, '2017HS18', 'example18@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Thị H', 3, 1, '2018-09-21 10:20:11', 1, 'avatar-default.jpg', '2008-01-03', NULL, NULL),
+(19, '2017HS19', 'example19@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lê Thị Khánh Ly', 3, 1, '2018-09-20 06:14:11', 1, 'avatar-default.jpg', '2008-06-06', NULL, NULL),
+(20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '2018-09-28 13:12:12', 1, 'avatar-default.jpg', '2008-01-02', NULL, NULL),
+(21, '2017HS21', 'example21@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Văn Thịnh', 3, 2, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL),
+(22, '2017HS22', 'example22@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thi', 3, 3, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL),
+(23, '2017HS23', 'example23@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thu', 3, 4, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -424,7 +426,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '2018-03-08 13:20:14', 1, 'giaovien_13692472_1251877004862630_5032812334842572056_n.jpg', '1990-01-18');
+(1, 'giaovien', 'teacher1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Hương', 2, '2018-09-16 19:35:09', 1, 'giaovien_13692472_1251877004862630_5032812334842572056_n.jpg', '1990-01-18');
 
 -- --------------------------------------------------------
 
@@ -457,6 +459,7 @@ CREATE TABLE `units` (
   `unit` int(2) NOT NULL,
   `detail` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status_id` int(1) NOT NULL DEFAULT '1',
+  `time_to_do` int(11) NOT NULL DEFAULT '0',
   `close_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -464,11 +467,11 @@ CREATE TABLE `units` (
 -- Đang đổ dữ liệu cho bảng `units`
 --
 
-INSERT INTO `units` (`unit`, `detail`, `status_id`, `close_time`) VALUES
-(1, 'Chương 1', 2, '2018-03-13 02:06:07'),
-(2, 'Chương 2', 1, '0000-00-00 00:00:00'),
-(3, 'Chương 3', 1, '0000-00-00 00:00:00'),
-(4, 'Chương 4', 1, '0000-00-00 00:00:00');
+INSERT INTO `units` (`unit`, `detail`, `status_id`, `time_to_do`, `close_time`) VALUES
+(1, 'Chương 1', 2, 60, '2018-03-13 02:06:07'),
+(2, 'Chương 2', 1, 60, '0000-00-00 00:00:00'),
+(3, 'Chương 3', 1, 60, '0000-00-00 00:00:00'),
+(4, 'Chương 4', 1, 60, '0000-00-00 00:00:00');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -654,7 +657,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT cho bảng `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `statuses`

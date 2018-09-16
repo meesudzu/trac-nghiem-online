@@ -70,6 +70,7 @@
 .title { height: 100%; display: inline-block; font-size: 15px; font-weight: bold; padding: 0; margin: 5px 20px; }
 
 .title-content { margin-bottom: 2px; background: white; color: #676a6c; box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
+.title-content .timer { display: inline-block; font-size: 19px; float: right; margin-right: 50%; padding-top: 2px; font-weight: bold; color: blue; }
 
 .block-content { overflow-x: hidden; max-height: calc(100vh - 115px); padding-bottom: 20px; }
 

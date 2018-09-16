@@ -304,7 +304,7 @@ class Model_Admin extends Database
     public function get_list_units()
     {
         $sql = "
-        SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
+        SELECT units.unit,units.time_to_do,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
         INNER JOIN statuses ON statuses.status_id = units.status_id";
         $this->set_query($sql);
         return $this->load_rows();
@@ -349,7 +349,7 @@ class Model_Admin extends Database
         $this->execute_none_return();
         return $ID->AUTO_INCREMENT;
     }
-    public function add_unit($detail, $status_id, $close_time)
+    public function add_unit($detail, $time_to_do, $status_id, $close_time)
     {
         //get ID current question
         $sql = "SELECT `AUTO_INCREMENT`
@@ -357,7 +357,7 @@ class Model_Admin extends Database
         WHERE TABLE_NAME   = 'units'";
         $this->set_query($sql);
         $ID = $this->load_row();
-        $sql="INSERT INTO units (detail, status_id, close_time) VALUES ('$detail', '$status_id', '$close_time')";
+        $sql="INSERT INTO units (detail, time_to_do, status_id, close_time) VALUES ('$detail','$time_to_do', '$status_id', '$close_time')";
         $this->set_query($sql);
         $this->execute_none_return();
         return $ID->AUTO_INCREMENT;

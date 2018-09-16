@@ -10,7 +10,7 @@ class Model_Student extends Database
 {
 	public function get_profiles($username)
 	{
-		$sql = "SELECT students.student_id as ID,students.username,students.name,students.email,students.avatar,students.class_id,students.birthday,students.last_login,genders.gender_detail,classes.grade_id FROM `students`
+		$sql = "SELECT students.student_id as ID,students.username,students.name,students.email,students.avatar,students.class_id,students.birthday,students.last_login,genders.gender_detail,classes.grade_id,students.doing_exam,students.doing_time FROM `students`
 		INNER JOIN genders ON genders.gender_id = students.gender_id
 		INNER JOIN classes ON classes.class_id = students.class_id
 		WHERE username = '$username'";
@@ -19,14 +19,20 @@ class Model_Student extends Database
 	}
 	public function get_units()
 	{
-		$sql = "SELECT unit, units.detail as unit_detail, statuses.status_id, statuses.detail as status_detail, close_time FROM `units`
+		$sql = "SELECT unit,time_to_do, units.detail as unit_detail, statuses.status_id, statuses.detail as status_detail, close_time FROM `units`
 		INNER JOIN statuses ON statuses.status_id = units.status_id";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
+	public function get_unit_detail($unit)
+	{
+		$sql = "SELECT * FROM `units` WHERE unit = $unit";
+		$this->set_query($sql);
+		return $this->load_row();
+	}
 	public function get_rand_questions($grade_id, $unit)
 	{
-		$sql = "SELECT * FROM `questions` WHERE grade_id = $grade_id and unit = $unit ORDER BY RAND() LIMIT 10";
+		$sql = "SELECT * FROM `questions` WHERE grade_id = $grade_id and unit = $unit ORDER BY RAND()";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
@@ -75,6 +81,18 @@ class Model_Student extends Database
 	public function update_last_login($ID)
 	{
 		$sql="UPDATE students set last_login=NOW() where student_id='$ID'";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function update_doing_exam($exam,$time,$ID)
+	{
+		$sql="UPDATE students set doing_exam= '$exam', doing_time = '$time' where student_id='$ID'";
+		$this->set_query($sql);
+		$this->execute_none_return();
+	}
+	public function reset_doing_exam($ID)
+	{
+		$sql="UPDATE students set doing_exam= NULL, doing_time = NULL where student_id='$ID'";
 		$this->set_query($sql);
 		$this->execute_none_return();
 	}

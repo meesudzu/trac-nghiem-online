@@ -61,7 +61,19 @@ function show_notifications() {
     $.get(url, success);
 }
 
+function get_doing_exam() {
+    var url = "index.php?action=get_doing_exam";
+    var success = function(result) {
+        return result;
+    };
+    $.get(url, success);
+}
+
 function show_exam(unit_id) {
+    $(window).on("unload", function(e) {
+        confirm("Đang làm bài, bạn có chắc muốn rời khỏi!");
+        console.log("Đang làm bài, bạn có chắc muốn rời khỏi!");
+    });
     $('#preload').removeClass('hidden');
     var url = "index.php?action=show_exam";
     var success = function(result) {
@@ -73,15 +85,56 @@ function show_exam(unit_id) {
     $.get(url, success);
 }
 
+function countdown(m,s) {
+    if (typeof min === 'undefined' || min === null) {
+        min = m;
+    }
+    var min_text = '';
+    if (typeof sec === 'undefined' || sec === null) {
+        sec = s;
+    }
+    var sec_text = '';
+    if (typeof cd === 'undefined' || cd === null) {
+        cd = true;
+    }
+    if(cd) {
+        cdID = setInterval(function() {
+            if(sec==0) {
+                min--;
+                sec=60;
+            }
+            sec--;
+            if(min<10) {
+                $('#timer').css('color', 'red');
+                min_text = '0' + min;
+            } else {
+                min_text = min;
+            }
+            if(sec<10)
+                sec_text = '0' + sec;
+            else
+                sec_text = sec;
+            $('#timer').text(min_text + ':' + sec_text);
+            if(min<0) {
+                send_exam($('#send').serialize());
+                alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
+            }
+        }, 1000);
+        cd = false;
+    }
+}
+
 function get_rand_questions(unit_id) {
-    var url = "index.php?action=get_rand_questions";
+    var url = "index.php?action=get_rand_questions"; 
     var data = {
         unit : unit_id
     };
     var success = function(result) {
         var json_data = $.parseJSON(result);
-        if(json_data.status)
+        if(json_data.status) {
+            countdown(json_data.min,json_data.sec);
             insert_questions(json_data[0], unit_id);
+        }
         else
             insert_score(json_data[0]);
     };
@@ -146,6 +199,9 @@ function insert_units(data) {
         var tr = $('<div class="col l3 s6 unit_detail" id="unit-' + value.unit + '"></div>');
         tr.append('<span class="unit_name">' + value.unit_detail + '</span>');
         tr.append('<i>Tình Trạng: </i><span class="unit_status"> ' + value.status_detail + '</span><br />');
+        tr.append('<i>Thời Gian Làm Bài: </i><span class="unit_status"> ' + value.time_to_do + '</span> Phút<br />');
+        if(value.close_time == '' || value.close_time == '0000-00-00 00:00:00')
+            value.close_time = 'Chưa Xác Định';
         tr.append('<i>Đóng Lúc: </i><span class="unit_status"> ' + value.close_time + '</span><br /><br />');
         if(value.status_id!=2)
             tr.append('<button class="btn" onclick="show_exam('+ value.unit +')">Làm Bài</button>');

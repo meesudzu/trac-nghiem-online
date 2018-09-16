@@ -1,5 +1,7 @@
 v3.1.0 (xx/xx/xxxx)
 
+	- Thêm bộ đếm ngược thời gian ở phần làm bài tập, bài kiểm tra ✓
+	- Hạn chế chức năng sử dụng khi đang làm bài tập/bài kiểm tra. Ví dụ: Chat lớp... ✓
 	- Thêm checkbox để thực hiện lệnh cùng lúc cho nhiều dòng (xóa,...) ✓
 	- Sử dụng thư viện DataTables để hỗ trợ trong việc hiển thị dữ liệu ✓
 	- Thêm trang tổng quan ✓

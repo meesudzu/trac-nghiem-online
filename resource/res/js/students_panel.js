@@ -90,7 +90,11 @@ function show_list_students(data) {
         tr.append('<td class="">' + data[i].class_name + '</td>');
         tr.append('<td class="">' + data[i].email + '</td>');
         tr.append('<td class="">' + data[i].gender_detail + '</td>');
+        if(data[i].birthday == '' || data[i].birthday == '0000-00-00')
+            data[i].birthday = 'Chưa Xác Định';
         tr.append('<td class="">' + data[i].birthday + '</td>');
+        if(data[i].last_login == '' || data[i].last_login == '0000-00-00 00:00:00')
+            data[i].last_login = 'Chưa Đăng Nhập';
         tr.append('<td class="">' + data[i].last_login + '</td>');
         tr.append('<td class="">' + student_edit_button(data[i]) + '<br />' + student_del_button(data[i]) + '</td>');
         list.append(tr);

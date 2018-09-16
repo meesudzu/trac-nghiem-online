@@ -19,8 +19,9 @@
 					</th>
 					<th class="">ID</th>
 					<th class="">Tên</th>
+					<th class="">Thời Gian Làm Bài (Phút)</th>
 					<th class="">Trạng Thái</th>
-					<th class="">Thời Gian Đóng</th>
+					<th class="">Thời Gian Hết Hạn</th>
 					<th class=""><i class="material-icons">settings</i></th>
 				</tr>
 			</thead>
@@ -35,6 +36,10 @@
 					<div class="input-field">
 						<label for="detail">Tên Chương</label>
 						<input type="text" name="detail" id="detail" required>
+					</div>
+					<div class="input-field">
+						<label for="time_to_do">Thời Gian Làm Bài (Phút)</label>
+						<input type="text" name="time_to_do" id="time_to_do" required>
 					</div>
 					<div class="input-field">
 						<select name="status_id" id="status_id" onchange="check_status('add',this.value)">

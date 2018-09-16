@@ -134,6 +134,16 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 	background: white;
 	color: $font-color;
 	box-shadow: $box-shadow-title-content;
+
+	.timer {
+		display: inline-block;
+		font-size: 19px;
+		float: right;
+		margin-right: 50%;
+		padding-top: 2px;
+		font-weight: bold;
+		color: blue;
+	}
 }
 
 .block-content {
