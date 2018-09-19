@@ -8,7 +8,6 @@ Xem tại [CHANGELOG](CHANGELOG.md)<br />
 
 Dự tính sẽ có trong phiên bản 3.1.0
 
-	- Thêm nhập dữ liệu bằng file thay vì nhập từng dòng
 	- Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
 
 Coming soon...

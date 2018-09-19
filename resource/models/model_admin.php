@@ -140,8 +140,8 @@ class Model_Admin extends Database
         $this->execute_return_status();
         $sql="INSERT INTO admins (name, username, password, email, birthday, gender_id) VALUES ('$name', '$username', '$password', '$email', '$birthday', '$gender')";
         $this->set_query($sql);
-        $this->execute_return_status();
-        return true;
+        return $this->execute_return_status();
+        // return true;
     }
     public function get_list_teachers()
     {
@@ -188,8 +188,8 @@ class Model_Admin extends Database
         $this->execute_return_status();
         $sql="INSERT INTO teachers (username,password,name,email,birthday,gender_id) VALUES ('$username','$password','$name','$email','$birthday','$gender')";
         $this->set_query($sql);
-        $this->execute_return_status();
-        return true;
+        return $this->execute_return_status();
+        // return true;
     }
     public function get_list_students()
     {
@@ -237,8 +237,8 @@ class Model_Admin extends Database
         $this->execute_return_status();
         $sql="INSERT INTO students (username,password,name,class_id,email,birthday,gender_id) VALUES ('$username','$password','$name','$class_id','$email','$birthday','$gender')";
         $this->set_query($sql);
-        $this->execute_return_status();
-        return true;
+        return $this->execute_return_status();
+        // return true;
     }
     public function get_list_classes()
     {
@@ -339,15 +339,15 @@ class Model_Admin extends Database
     public function add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
     {
         //get ID current question
-        $sql = "SELECT `AUTO_INCREMENT`
-        FROM  INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_NAME   = 'questions'";
-        $this->set_query($sql);
-        $ID = $this->load_row();
+        // $sql = "SELECT `AUTO_INCREMENT`
+        // FROM  INFORMATION_SCHEMA.TABLES
+        // WHERE TABLE_NAME   = 'questions'";
+        // $this->set_query($sql);
+        // $ID = $this->load_row();
         $sql="INSERT INTO questions (grade_id,unit,question_detail,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
         $this->set_query($sql);
-        $this->execute_return_status();
-        return $ID->AUTO_INCREMENT;
+        return $this->execute_return_status();
+        // return $ID->AUTO_INCREMENT;
     }
     public function add_unit($detail, $time_to_do, $status_id, $close_time)
     {

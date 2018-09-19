@@ -6,6 +6,9 @@
  **/
 require_once('models/model_admin.php');
 require_once 'controller.php';
+//load thư viện PhpSpreadSheet
+require 'res/libs/SpreadSheet/vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Controller_Admin extends Controller
 {
@@ -351,6 +354,50 @@ class Controller_Admin extends Controller
         }
         echo json_encode($result);
     }
+
+    public function check_add_admin_via_file()
+    {
+        sleep(10);
+        $inputFileType = 'Xlsx';      
+        $result = array();
+        $reader = IOFactory::createReader($inputFileType);
+        move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $spreadsheet = $reader->load($_FILES['file']['name']);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+        unlink($_FILES['file']['name']);
+        $count = 0;
+        $err_list = '';
+        for($i = 4; $i < count($sheetData); $i++) {
+            if($sheetData[$i]['A'] == '')
+                continue;
+            $stt = $sheetData[$i]['A'];
+            $name = $sheetData[$i]['B'];
+            $username = $sheetData[$i]['C'];
+            $email = $sheetData[$i]['D'];
+            $password = md5($sheetData[$i]['E']);
+            $birthday = $sheetData[$i]['F'];
+            if($sheetData[$i]['G'] == 'Nam')
+                $gender = 2;
+            else if($sheetData[$i]['G'] == 'Nữ')
+                $gender = 3;
+            else
+                $gender = 1;
+            // $add = $this->add_admin($name, $username, $password, $email, $birthday, $gender);
+            // if($add)
+            //     $count++;
+            // else
+            //     $err_list += $stt.' ';
+        }
+        if ($err_list == '') {
+            $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
+            $result['status'] = 1;
+        } else {
+            $result['status_value'] = "Lỗi! Không thể thêm tài khoản có STT: ".$err_list.', vui lòng xem lại.';
+            $result['status'] = 0;
+        }
+        echo json_encode($result);
+    }
+
     public function check_del_admin()
     {
         $result = array();
@@ -423,6 +470,49 @@ class Controller_Admin extends Controller
         }
         echo json_encode($result);
     }
+
+    public function check_add_teacher_via_file()
+    {
+        $inputFileType = 'Xlsx';      
+        $result = array();
+        $reader = IOFactory::createReader($inputFileType);
+        move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $spreadsheet = $reader->load($_FILES['file']['name']);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+        unlink($_FILES['file']['name']);
+        $count = 0;
+        $err_list = '';
+        for($i = 4; $i < count($sheetData); $i++) {
+            if($sheetData[$i]['A'] == '')
+                continue;
+            $stt = $sheetData[$i]['A'];
+            $name = $sheetData[$i]['B'];
+            $username = $sheetData[$i]['C'];
+            $email = $sheetData[$i]['D'];
+            $password = md5($sheetData[$i]['E']);
+            $birthday = $sheetData[$i]['F'];
+            if($sheetData[$i]['G'] == 'Nam')
+                $gender = 2;
+            else if($sheetData[$i]['G'] == 'Nữ')
+                $gender = 3;
+            else
+                $gender = 1;
+            $add = $this->add_teacher($name, $username, $password, $email, $birthday, $gender);
+            if($add)
+                $count++;
+            else
+                $err_list += $stt.' ';
+        }
+        if ($err_list == '') {
+            $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
+            $result['status'] = 1;
+        } else {
+            $result['status_value'] = "Lỗi! Không thể thêm tài khoản có STT: ".$err_list.', vui lòng xem lại.';
+            $result['status'] = 0;
+        }
+        echo json_encode($result);
+    }
+
     public function check_del_teacher()
     {
         $result = array();
@@ -559,6 +649,50 @@ class Controller_Admin extends Controller
         }
         echo json_encode($result);
     }
+
+    public function check_add_student_via_file()
+    {
+        $inputFileType = 'Xlsx';      
+        $result = array();
+        $class_id = isset($_POST['class_id']) ? Htmlspecialchars(addslashes($_POST['class_id'])) : '';
+        $reader = IOFactory::createReader($inputFileType);
+        move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $spreadsheet = $reader->load($_FILES['file']['name']);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+        unlink($_FILES['file']['name']);
+        $count = 0;
+        $err_list = '';
+        for($i = 4; $i < count($sheetData); $i++) {
+            if($sheetData[$i]['A'] == '')
+                continue;
+            $stt = $sheetData[$i]['A'];
+            $name = $sheetData[$i]['B'];
+            $username = $sheetData[$i]['C'];
+            $email = $sheetData[$i]['D'];
+            $password = md5($sheetData[$i]['E']);
+            $birthday = $sheetData[$i]['F'];
+            if($sheetData[$i]['G'] == 'Nam')
+                $gender = 2;
+            else if($sheetData[$i]['G'] == 'Nữ')
+                $gender = 3;
+            else
+                $gender = 1;
+            $add = $this->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
+            if($add)
+                $count++;
+            else
+                $err_list += $stt.' ';
+        }
+        if ($err_list == '') {
+            $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
+            $result['status'] = 1;
+        } else {
+            $result['status_value'] = "Lỗi! Không thể thêm tài khoản có STT: ".$err_list.', vui lòng xem lại.';
+            $result['status'] = 0;
+        }
+        echo json_encode($result);
+    }
+
     public function check_edit_student()
     {
         $result = array();
@@ -606,25 +740,77 @@ class Controller_Admin extends Controller
     public function check_add_question()
     {
         $result = array();
+        $shuffle = array();
         $question_detail = isset($_POST['question_detail']) ? Htmlspecialchars(addslashes($_POST['question_detail'])) : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
-        $answer_a = isset($_POST['answer_a']) ? Htmlspecialchars(addslashes($_POST['answer_a'])) : '';
-        $answer_b = isset($_POST['answer_b']) ? Htmlspecialchars(addslashes($_POST['answer_b'])) : '';
-        $answer_c = isset($_POST['answer_c']) ? Htmlspecialchars(addslashes($_POST['answer_c'])) : '';
-        $answer_d = isset($_POST['answer_d']) ? Htmlspecialchars(addslashes($_POST['answer_d'])) : '';
+        $shuffle[0] = isset($_POST['answer_a']) ? Htmlspecialchars(addslashes($_POST['answer_a'])) : '';
+        $shuffle[1] = isset($_POST['answer_b']) ? Htmlspecialchars(addslashes($_POST['answer_b'])) : '';
+        $shuffle[2] = isset($_POST['answer_c']) ? Htmlspecialchars(addslashes($_POST['answer_c'])) : '';
+        $shuffle[3] = isset($_POST['answer_d']) ? Htmlspecialchars(addslashes($_POST['answer_d'])) : '';
+        shuffle($shuffle);//hàm shuffle để trộn đáp án
+        $answer_a = $shuffle[0];
+        $answer_b = $shuffle[1];
+        $answer_c = $shuffle[2];
+        $answer_d = $shuffle[3];
         $correct_answer = isset($_POST['correct_answer']) ? Htmlspecialchars(addslashes($_POST['correct_answer'])) : '';
         if (empty($question_detail)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập";
             $result['status'] = 0;
         } else {
-            $ID = $this->add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
-            $result = json_decode(json_encode($this->get_question_info($ID)), true);
+            $res = $this->add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+            // $result = json_decode(json_encode($this->get_question_info($ID)), true);
             $result['status_value'] = "Thêm thành công!";
             $result['status'] = 1;
         }
         echo json_encode($result);
     }
+
+    public function check_add_question_via_file()
+    {
+        $inputFileType = 'Xlsx';      
+        $result = array();
+        $shuffle = array();
+        $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
+        $unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
+        $reader = IOFactory::createReader($inputFileType);
+        move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $spreadsheet = $reader->load($_FILES['file']['name']);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+        unlink($_FILES['file']['name']);
+        $count = 0;
+        $err_list = '';
+        for($i = 4; $i < count($sheetData); $i++) {
+            if($sheetData[$i]['A'] == '')
+                continue;
+            $stt = $sheetData[$i]['A'];
+            $question_detail = $sheetData[$i]['B'];
+            $shuffle[0] = $sheetData[$i]['C'];
+            $shuffle[1] = $sheetData[$i]['D'];
+            $shuffle[2] = $sheetData[$i]['E'];
+            $shuffle[3] = $sheetData[$i]['F'];
+            shuffle($shuffle);//hàm shuffle để trộn đáp án
+            $answer_a = $shuffle[0];
+            $answer_b = $shuffle[1];
+            $answer_c = $shuffle[2];
+            $answer_d = $shuffle[3];
+            $correct_answer = $sheetData[$i]['G'];
+            $add = $this->add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+            if($add)
+                $count++;
+            else
+                $err_list += $stt.' ';
+        }
+        if ($err_list == '') {
+            $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
+            $result['status'] = 1;
+        } else {
+            $result['status_value'] = "Lỗi! Không thể thêm tài khoản có STT: ".$err_list.', vui lòng xem lại.';
+            $result['status'] = 0;
+        }
+        echo json_encode($result);
+    }
+
     public function check_add_unit()
     {
         $result = array();

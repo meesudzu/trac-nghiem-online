@@ -34,53 +34,96 @@
 		</table>
 	</div>
 	<div class="content fadeRight">
-		<form action="" method="POST" role="form" id="add_question_form">
-			<div class="col l12 s12" style="padding-top: 20px">
-				<div class="input-field">
-					<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
-					<label for="question_detail">Câu Hỏi</label>
-				</div>
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s6"><a href="#add_normal" style="color: #02796e; font-weight: bold;">Thêm Câu Hỏi</a></li>
+					<li class="tab col s6"><a href="#_add_via_file" class="active" style="color: #02796e; font-weight: bold;">Thêm Bằng File</a></li>
+				</ul>
 			</div>
-			<div class="row col l12">
-				<div class="col l6 s12">
-					<div class="input-field">
-						<label for="answer_a">A</label>
-						<input type="text" id="answer_a" name="answer_a" required>
+			<div id="add_normal" class="col s12">
+				<form action="" method="POST" role="form" id="add_question_form">
+					<div class="col l12 s12" style="padding-top: 20px">
+						<div class="input-field">
+							<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
+							<label for="question_detail">Câu Hỏi</label>
+						</div>
 					</div>
-					<div class="input-field">
-						<label for="answer_b">B</label>
-						<input type="text" id="answer_b" name="answer_b" required>
+					<div class="row col l12">
+						<div class="col l6 s12">
+							<div class="input-field">
+								<label for="answer_a">A</label>
+								<input type="text" id="answer_a" name="answer_a" required>
+							</div>
+							<div class="input-field">
+								<label for="answer_b">B</label>
+								<input type="text" id="answer_b" name="answer_b" required>
+							</div>
+							<div class="input-field">
+								<label for="answer_c">C</label>
+								<input type="text" id="answer_c" name="answer_c" required>
+							</div>
+							<div class="input-field">
+								<label for="answer_d">D</label>
+								<input type="text" id="answer_d" name="answer_d" required>
+							</div>
+						</div>
+						<div class="col l6 s12">
+							<div class="input-field">
+								<label for="correct_answer">Đúng</label>
+								<input type="text" id="correct_answer" name="correct_answer" required>
+							</div>
+							<div class="input-field">
+								<select name="grade_id" id="grade_id">
+								</select>
+								<label>Khối</label>
+							</div>
+							<div class="input-field">
+								<select name="unit" id="unit">
+								</select>
+								<label>Chương</label>
+							</div>
+						</div>
+						<div class="col l12 s12">
+							<button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
+						</div>
 					</div>
-					<div class="input-field">
-						<label for="answer_c">C</label>
-						<input type="text" id="answer_c" name="answer_c" required>
-					</div>
-					<div class="input-field">
-						<label for="answer_d">D</label>
-						<input type="text" id="answer_d" name="answer_d" required>
-					</div>
-				</div>
-				<div class="col l6 s12">
-					<div class="input-field">
-						<label for="correct_answer">Đúng</label>
-						<input type="text" id="correct_answer" name="correct_answer" required>
-					</div>
-					<div class="input-field">
-						<select name="grade_id" id="grade_id">
-							</select>
-						<label>Khối</label>
-					</div>
-					<div class="input-field">
-						<select name="unit" id="unit">
-							</select>
-						<label>Chương</label>
-					</div>
-				</div>
-				<div class="col l12 s12">
-					<button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
-				</div>
+				</form>
 			</div>
-		</form>
+			<div id="_add_via_file" class="col s12">
+				<span class="title">Tải File Mẫu: <a href="res/files/mau-them-danh-sach-cau-hoi.xlsx">TẠI ĐÂY</a></span><br />
+				<span class="title">Lưu Ý: <br />1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.</span>
+				<br />
+				<span class="title">Lưu Ý: <br />2, Chỉ hỗ trợ câu hỏi nội dung ký tự, không hỗ trợ câu hỏi bao gồm nội dung âm thanh, hình ảnh.</span>
+				<br />
+				<span id="error" class="title" style="color: red"></span>
+				<form id="add_via_file" enctype="multipart/form-data">
+					<div class="file-field input-field col s6">
+						<div class="input-field">
+							<select name="grade_id" id="_grade_id">
+								</select>
+								<label>Khối</label>
+							</div>
+							<div class="input-field">
+								<select name="unit" id="_unit">
+								</select>
+								<label>Chương</label>
+							</div>
+						<div class="input-field btn">
+							<span>File</span>
+							<input type="file" name="file_data" id="file_data" required="">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text">
+						</div>
+						<br />
+						<div class="input-field" style="padding-left: 0">
+							<button class="btn" type="submit" name="submit">Thêm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 </div>

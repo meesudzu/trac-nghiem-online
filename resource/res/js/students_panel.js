@@ -1,9 +1,16 @@
 $(function() {
     get_list_students();
     select_class();
+    $('.tabs').tabs();
     $('#add_student_form').on('submit', function() {
         submit_add_student($('#add_student_form').serializeArray());
         $('#add_student_form')[0].reset();
+    });
+    $('#add_via_file').on('submit', function() {
+        $('#preload').removeClass('hidden');
+        submit_add_student_via_file();
+        $('#add_via_file')[0].reset();
+        $('#preload').addClass('hidden');
     });
     $('#select_all').on('change', function() {
         if(this.checked){
@@ -196,6 +203,41 @@ function submit_add_student(data) {
         }
     };
     $.post(url, data, success);
+}
+
+function submit_add_student_via_file() {
+    $('#preload').removeClass('hidden');
+    $('#error').text('');
+    var file_data = $('#file_data').prop('files')[0];
+    var class_id = $('#_student_add_class_id').val();
+    var type = file_data.type;
+    var size = file_data.size;
+    var match = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel"];
+    if (type == match[0] || type == match[1]) {
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        form_data.append('class_id', class_id);
+        $.ajax({
+            url: 'index.php?action=check_add_student_via_file',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(result) {
+                var json_data = $.parseJSON(result);
+                show_status(json_data);
+                $('#table_students').DataTable().destroy();
+                get_list_students();
+                $('.modal').modal();
+                $('select').select();
+            }
+        });
+    } else {
+        $('#error').text('Sai định dạng mẫu, yêu cầu file excel đuôi .xlsx theo mẫu. Nếu file lỗi vui lòng tải lại mẫu và điền lại.');
+    }
+    $('#preload').addClass('hidden');
 }
 
 function submit_del_student(data) {

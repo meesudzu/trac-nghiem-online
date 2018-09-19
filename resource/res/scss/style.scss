@@ -22,6 +22,10 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 	height: 100%;
 }
 
+.tabs .indicator {
+	background-color: $nav-color !important;
+}
+
 .clear {
 	clear: both;
 }

@@ -81,10 +81,10 @@ function show_status(json_data) {
         'height': '65',
         'line-height': '65px',
         'opacity': '1'
-    }, 250);
+    }, 500);
     $('#status').delay(1000).animate({
         'opacity': '0',
         'height': '0',
         'line-height': '0px'
-    }, 250);
+    }, 500);
 }

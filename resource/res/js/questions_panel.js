@@ -1,8 +1,15 @@
 $(function() {
     get_list_questions();
+    $('.tabs').tabs();
     $('#add_question_form').on('submit', function() {
         submit_add_question($('#add_question_form').serializeArray());
         $('#add_question_form')[0].reset();
+    });
+    $('#add_via_file').on('submit', function() {
+        $('#preload').removeClass('hidden');
+        submit_add_question_via_file();
+        $('#add_via_file')[0].reset();
+        $('#preload').removeClass('hidden');
     });
     $('#select_all').on('change', function() {
         if(this.checked){
@@ -206,6 +213,43 @@ function submit_add_question(data) {
         $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
+}
+
+function submit_add_question_via_file() {
+    $('#preload').removeClass('hidden');
+    $('#error').text('');
+    var file_data = $('#file_data').prop('files')[0];
+    var unit = $('#_unit').val();
+    var grade_id = $('#_grade_id').val();
+    var type = file_data.type;
+    var size = file_data.size;
+    var match = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel"];
+    if (type == match[0] || type == match[1]) {
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        form_data.append('unit', unit);
+        form_data.append('grade_id', grade_id);
+        $.ajax({
+            url: 'index.php?action=check_add_question_via_file',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(result) {
+                var json_data = $.parseJSON(result);
+                show_status(json_data);
+                $('#table_questions').DataTable().destroy();
+                get_list_questions();
+                $('.modal').modal();
+                $('select').select();
+            }
+        });
+    } else {
+        $('#error').text('Sai định dạng mẫu, yêu cầu file excel đuôi .xlsx theo mẫu. Nếu file lỗi vui lòng tải lại mẫu và điền lại.');
+    }
+    $('#preload').addClass('hidden');
 }
 
 function submit_del_question(data) {
