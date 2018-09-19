@@ -486,7 +486,7 @@ class Controller_Admin extends Controller
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
-                $result['status_value'] = "Lỗi! Tài khoản đã tồn tại!";
+                $result['status_value'] = "Lỗi! lớp đã tồn tại!";
                 $return['status'] = 0;
             }
         }

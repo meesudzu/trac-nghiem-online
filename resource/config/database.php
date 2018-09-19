@@ -52,15 +52,16 @@ class Database
         }
         return $query->fetch();
     }
-    //thực thi insert hoặc update và không có return
-    public function execute_none_return()
+    //thực thi insert hoặc update và return true false
+    public function execute_return_status()
     {
         try {
             $query = $this->db->prepare($this->sql);
             $query->setFetchMode(PDO::FETCH_OBJ);
-            $query->execute();
+            $status = $query->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        return $status;
     }
 }

@@ -52,7 +52,7 @@ class Model_Student extends Database
 	{
 		$sql = "INSERT INTO scores (student_id,unit,score,class_id,completion_time) VALUES ('$student_id','$unit','$score','$class_id',NOW())";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function get_notifications($class_id)
 	{
@@ -76,25 +76,25 @@ class Model_Student extends Database
 	{
 		$sql = "INSERT INTO chats (username,name,class_id,chat_content,time_sent) VALUES ('$username','$name','$class_id','$content',NOW())";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function update_last_login($ID)
 	{
 		$sql="UPDATE students set last_login=NOW() where student_id='$ID'";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function update_doing_exam($exam,$time,$ID)
 	{
 		$sql="UPDATE students set doing_exam= '$exam', doing_time = '$time' where student_id='$ID'";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function reset_doing_exam($ID)
 	{
 		$sql="UPDATE students set doing_exam= NULL, doing_time = NULL where student_id='$ID'";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function valid_email_on_profiles($curren_email, $new_email)
 	{
@@ -112,13 +112,13 @@ class Model_Student extends Database
 	{
 		$sql="UPDATE students set avatar='$avatar' where username='$username'";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 	}
 	public function update_profiles($username, $name, $email, $password, $gender, $birthday)
 	{
 		$sql="UPDATE students set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
 		$this->set_query($sql);
-		$this->execute_none_return();
+		$this->execute_return_status();
 		return true;
 	}
 }

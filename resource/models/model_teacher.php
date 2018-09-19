@@ -20,7 +20,7 @@ class Model_Teacher extends Database
     {
         $sql="UPDATE teachers set last_login=NOW() where teacher_id='$ID'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function valid_email_on_profiles($curren_email, $new_email)
     {
@@ -38,13 +38,13 @@ class Model_Teacher extends Database
     {
         $sql="UPDATE teachers set avatar='$avatar' where username='$username'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
         $sql="UPDATE teachers set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function get_list_classes_by_teacher($teacher_id)
@@ -86,13 +86,13 @@ class Model_Teacher extends Database
         $ID = $this->load_row();
         $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return $ID->AUTO_INCREMENT;
     }
     public function notify_class($ID, $class_id)
     {
         $sql="INSERT INTO student_notifications (notification_id,class_id) VALUES ('$ID','$class_id')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
 }

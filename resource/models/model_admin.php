@@ -65,7 +65,7 @@ class Model_Admin extends Database
     {
         $sql="UPDATE admins set last_login=NOW() where admin_id='$admin_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function valid_username_or_email($data)
     {
@@ -112,14 +112,14 @@ class Model_Admin extends Database
         }
         $sql="UPDATE admins set password='$password', name ='$name', gender_id ='$gender_id', birthday ='$birthday' where admin_id='$admin_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function del_admin($admin_id)
     {
         $sql="DELETE FROM admins where admin_id='$admin_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
@@ -137,10 +137,10 @@ class Model_Admin extends Database
         //reset AUTO_INCREMENT
         $sql = "ALTER TABLE `admins` AUTO_INCREMENT=1";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="INSERT INTO admins (name, username, password, email, birthday, gender_id) VALUES ('$name', '$username', '$password', '$email', '$birthday', '$gender')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function get_list_teachers()
@@ -160,14 +160,14 @@ class Model_Admin extends Database
         }
         $sql="UPDATE teachers set password='$password', name ='$name', gender_id ='$gender_id', birthday ='$birthday' where teacher_id='$teacher_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function del_teacher($teacher_id)
     {
         $sql="DELETE FROM teachers where teacher_id='$teacher_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql = "SELECT username FROM teachers WHERE teacher_id = '$teacher_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
@@ -185,10 +185,10 @@ class Model_Admin extends Database
         //reset AUTO_INCREMENT
         $sql = "ALTER TABLE `teachers` AUTO_INCREMENT=1";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="INSERT INTO teachers (username,password,name,email,birthday,gender_id) VALUES ('$username','$password','$name','$email','$birthday','$gender')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function get_list_students()
@@ -204,19 +204,19 @@ class Model_Admin extends Database
     {
         $sql="UPDATE students set birthday='$birthday', password='$password', name ='$name', class_id ='$class_id', gender_id = '$gender' where student_id='$student_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="UPDATE scores set class_id ='$class_id' where student_id='$student_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function del_student($student_id)
     {
         $sql="DELETE FROM scores where student_id='$student_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="DELETE FROM students where student_id='$student_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql = "SELECT username FROM students WHERE student_id = '$student_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
@@ -234,10 +234,10 @@ class Model_Admin extends Database
         //reset AUTO_INCREMENT
         $sql = "ALTER TABLE `students` AUTO_INCREMENT=1";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="INSERT INTO students (username,password,name,class_id,email,birthday,gender_id) VALUES ('$username','$password','$name','$class_id','$email','$birthday','$gender')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function get_list_classes()
@@ -253,13 +253,13 @@ class Model_Admin extends Database
     {
         $sql="UPDATE classes set grade_id='$grade_id', class_name='$class_name', teacher_id ='$teacher_id'  where class_id ='$class_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function del_class($class_id)
     {
         $sql="DELETE FROM classes where class_id='$class_id'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql = "SELECT class_name FROM classes WHERE class_id = '$class_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
@@ -277,11 +277,11 @@ class Model_Admin extends Database
         //reset AUTO_INCREMENT
         $sql = "ALTER TABLE `classes` AUTO_INCREMENT=1";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql="INSERT INTO classes (grade_id,class_name,teacher_id) VALUES ('$grade_id','$class_name','$teacher_id')";
         $this->set_query($sql);
-        $this->execute_none_return();
-        return true;
+        return $this->execute_return_status();
+        // return true;
     }
     public function get_list_questions()
     {
@@ -328,13 +328,13 @@ class Model_Admin extends Database
     {
         $sql="UPDATE questions set question_detail='$question_detail', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer' where ID = '$ID'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function del_question($ID)
     {
         $sql="DELETE FROM questions where ID='$ID'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
     {
@@ -346,7 +346,7 @@ class Model_Admin extends Database
         $ID = $this->load_row();
         $sql="INSERT INTO questions (grade_id,unit,question_detail,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return $ID->AUTO_INCREMENT;
     }
     public function add_unit($detail, $time_to_do, $status_id, $close_time)
@@ -359,20 +359,20 @@ class Model_Admin extends Database
         $ID = $this->load_row();
         $sql="INSERT INTO units (detail, time_to_do, status_id, close_time) VALUES ('$detail','$time_to_do', '$status_id', '$close_time')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return $ID->AUTO_INCREMENT;
     }
     public function edit_unit($unit, $detail, $status_id, $close_time)
     {
         $sql="UPDATE units set detail='$detail', status_id='$status_id', close_time ='$close_time' where unit = '$unit'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function del_unit($unit)
     {
         $sql="DELETE FROM units where unit='$unit'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         $sql = "SELECT detail FROM units WHERE unit = '$unit'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
@@ -390,20 +390,20 @@ class Model_Admin extends Database
         $ID = $this->load_row();
         $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return $ID->AUTO_INCREMENT;
     }
     public function notify_teacher($ID, $teacher_id)
     {
         $sql="INSERT INTO teacher_notifications (notification_id,teacher_id) VALUES ('$ID','$teacher_id')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function notify_class($ID, $class_id)
     {
         $sql="INSERT INTO student_notifications (notification_id,class_id) VALUES ('$ID','$class_id')";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function get_teacher_notifications()
     {
@@ -427,14 +427,14 @@ class Model_Admin extends Database
     {
         $sql="UPDATE admins set email='$email',password='$password', name ='$name', gender_id ='$gender', birthday ='$birthday' where username='$username'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
         return true;
     }
     public function update_avatar($avatar, $username)
     {
         $sql="UPDATE admins set avatar='$avatar' where username='$username'";
         $this->set_query($sql);
-        $this->execute_none_return();
+        $this->execute_return_status();
     }
     public function get_total_student()
     {
