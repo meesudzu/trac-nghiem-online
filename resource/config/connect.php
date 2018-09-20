@@ -5,9 +5,9 @@
 * Mail: dzu6996@gmail.com
 **/
 return (object) array(
-    'host' => 'localhost',
-    'user' => 'root',
+    'host' => '',
+    'user' => '',
     'password' => '',
-    'dbname' => 'tracnghiem_online',
-    'INSTALL_MODE' => FALSE);
+    'dbname' => '',
+    'INSTALL_MODE' => TRUE);
  ?>
