@@ -165,6 +165,9 @@ class Model_Admin extends Database
     }
     public function del_teacher($teacher_id)
     {
+        $sql="DELETE FROM teacher_notifications where teacher_id='$teacher_id'";
+        $this->set_query($sql);
+        $this->execute_return_status();
         $sql="DELETE FROM teachers where teacher_id='$teacher_id'";
         $this->set_query($sql);
         $this->execute_return_status();
@@ -257,6 +260,12 @@ class Model_Admin extends Database
     }
     public function del_class($class_id)
     {
+        $sql="DELETE FROM chats where class_id='$class_id'";
+        $this->set_query($sql);
+        $this->execute_return_status();
+        $sql="DELETE FROM student_notifications where class_id='$class_id'";
+        $this->set_query($sql);
+        $this->execute_return_status();
         $sql="DELETE FROM classes where class_id='$class_id'";
         $this->set_query($sql);
         $this->execute_return_status();

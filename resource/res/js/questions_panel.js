@@ -1,4 +1,5 @@
 $(function() {
+    $('#table_questions').DataTable().destroy();
     get_list_questions();
     $('.tabs').tabs();
     $('#add_question_form').on('submit', function() {

@@ -149,6 +149,12 @@ class Controller_Teacher extends Controller
         $list = new Model_Teacher();
         echo json_encode($list->get_notifications_by_admin($this->info['ID']));
     }
+    public function get_score()
+    {
+        $student_id = isset($_POST['student_id']) ? $_POST['student_id'] : '1';
+        $score = new Model_Teacher();
+        echo json_encode($score->get_score($student_id));
+    }
     public function get_class_detail()
     {
         $ID = isset($_POST['ID']) ? $_POST['ID'] : '1';

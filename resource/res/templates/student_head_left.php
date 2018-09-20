@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><?=Info::TITLE?>
+	<title><?=Config::TITLE?>
 	</title>
 	<link rel="stylesheet" href="../res/css/normalize.css">
 	<link rel="stylesheet" href="../res/css/style.min.css">

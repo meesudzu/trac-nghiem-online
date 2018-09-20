@@ -4,12 +4,18 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-date_default_timezone_set("Asia/Bangkok");
+require_once 'config/config.php';
+date_default_timezone_set(Config::TIMEZONE);
 session_start();
 
 error_reporting(0);
 ini_set('display_errors', 0);
-if (isset($_SESSION['login'])) {
+
+$is_IM = include 'config/connect.php';
+
+if ($is_IM->INSTALL_MODE) {
+    header("Refresh:0; url=install.php");
+} else if (isset($_SESSION['login'])) {
     $controller = 'controller_'. $_SESSION['permission'];
     require_once 'controllers/'. $controller .'.php';
     $index = new $controller();

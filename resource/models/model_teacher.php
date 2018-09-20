@@ -95,4 +95,12 @@ class Model_Teacher extends Database
         $this->set_query($sql);
         $this->execute_return_status();
     }
+    public function get_score($student_id)
+    {
+        $sql = "SELECT scores.*,units.detail as unit_detail FROM `scores`
+        INNER JOIN units ON units.unit = scores.unit
+        WHERE `student_id` = $student_id";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
 }

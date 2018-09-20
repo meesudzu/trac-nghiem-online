@@ -6,19 +6,14 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
-Dự tính sẽ có trong phiên bản 3.1.0
-
-	- Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu
-
-Coming soon...
-
 	- Thêm bảng xếp hạng điểm theo từng lớp
 	- Thêm nhiều dạng bài tập hơn
 	- Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
    
 [Hướng dẫn sử dụng](GUIDE.md)
-## Ảnh Demo (Chụp Từ v3.0.0)
-![Đăng nhập](demo-images/login.png)
+## Ảnh Demo (Chụp Từ v3.1.0)
+![Đăng nhập 1](demo-images/login-1.png)
+![Đăng nhập 2](demo-images/login-2.png)
 ![DEMO](demo-images/1.png)
 ![DEMO](demo-images/2.png)
 ![DEMO](demo-images/3.png)

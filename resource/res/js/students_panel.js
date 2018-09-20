@@ -1,4 +1,5 @@
 $(function() {
+    $('#table_students').DataTable().destroy();
     get_list_students();
     select_class();
     $('.tabs').tabs();

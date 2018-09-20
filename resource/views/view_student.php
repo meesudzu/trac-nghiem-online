@@ -10,7 +10,7 @@ class View_Student extends View
 {
 	public function show_head_left($info)
 	{
-		require_once 'config/info.php';
+		require_once 'config/config.php';
 		include 'res/templates/student_head_left.php';
 	}
 	public function show_index()

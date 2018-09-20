@@ -11,7 +11,7 @@
 
 #reload { display: none; cursor: pointer; float: left; margin-top: 10px; }
 
-.status { text-align: center; font-size: 17px; color: white; display: block; height: 0; line-height: 0; overflow: hidden; width: 100%; z-index: 999; position: fixed; top: 0; }
+.status { text-align: center; font-size: 17px; color: white; display: block; height: 0; line-height: 0; overflow: hidden; width: 100%; z-index: 1100; position: fixed; top: 0; }
 
 .success { background: #28a745; }
 
@@ -96,7 +96,7 @@
 .notification_content .message .notification_title { display: block; color: blue; font-size: 16px; }
 .notification_content .message .receive_name { display: block; color: black; }
 
-.preload { z-index: 999; background: #ffffff00; height: 100%; width: 100%; position: fixed; }
+.preload { z-index: 1200; background: #ffffff00; height: 100%; width: 100%; position: fixed; }
 .preload img { background: black; width: 300px; height: 100px; opacity: 0.7; padding: 10px 100px; border-radius: 10px; margin-left: 30%; margin-top: 5%; }
 
 .action { display: inline-block; margin: 5px; }

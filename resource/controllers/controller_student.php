@@ -239,7 +239,7 @@ class Controller_Student extends Controller
 		$this->load_view("student");
 		$view = new View_Student();
 		if($this->info['doing_exam'] == '')
-			$view->show_index();
+			$view->show_chat();
 		else {
 			$view->show_exam();		
 			echo '<script>show_exam('.$this->info["doing_exam"].');</script>';

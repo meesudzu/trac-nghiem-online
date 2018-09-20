@@ -1,4 +1,5 @@
 $(function() {
+    $('#table_teachers').DataTable().destroy();
     get_list_teachers();
     $('.tabs').tabs();
     $('#add_teacher_form').on('submit', function() {

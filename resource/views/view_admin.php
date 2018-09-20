@@ -10,7 +10,7 @@ class View_Admin extends View
 {
     public function show_head_left($info)
     {
-        require_once 'config/info.php';
+        require_once 'config/config.php';
         include 'res/templates/admin_head_left.php';
     }
     public function show_admins_panel()

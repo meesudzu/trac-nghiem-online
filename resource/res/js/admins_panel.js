@@ -1,4 +1,5 @@
 $(function() {
+    $('#table_admins').DataTable().destroy();
     get_list_admins();
     $('.tabs').tabs();
     $('#add_admin_form').on('submit', function() {

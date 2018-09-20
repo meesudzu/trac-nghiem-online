@@ -10,12 +10,12 @@ class View
     const SHOW = "View";
     public function show_about()
     {
-        require_once 'config/info.php';
+        require_once 'config/config.php';
         include 'res/templates/about.php';
     }
     public function show_foot()
     {
-        require_once 'config/info.php';
+        require_once 'config/config.php';
         include 'res/templates/foot.php';
     }
     public function show_profiles()

@@ -84,7 +84,7 @@ function insert_class_detail(data) {
     var list = $('#class_detail');
     $('#class_name_detail').text(data[0].class_name);
     $.each(data, function(key, value) {
-        var tr = $('<tr question="fadeIn" id="student-id-' + value.student_id + '"></tr>');
+        var tr = $('<tr id="student-id-' + value.student_id + '"></tr>');
         tr.append('<td>' + value.student_id + '</td>');
         tr.append('<td><img src="../res/img/avatar/' + value.avatar + '"" alt="avatar" class="avatar" /></td>');
         tr.append('<td>' + value.username + '</td>');
@@ -96,6 +96,7 @@ function insert_class_detail(data) {
         if(value.last_login == '' || value.last_login == '0000-00-00 00:00:00')
             value.last_login = 'Chưa Đăng Nhập';
         tr.append('<td>' + value.last_login + '</td>');
+        tr.append('<td>' + view_score_btn(value) + '</td>');
         list.append(tr);
     });
     $('#table_classes_detail').DataTable( {
@@ -113,7 +114,10 @@ function insert_class_detail(data) {
                 "next":       "Sau",
                 "previous":   "Trước"
             },
-        }
+        },
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 7 ] }, //hide sort icon on header of column 7
+        ]
     } );
     $('.modal').modal();
     $('select').select();
@@ -207,4 +211,35 @@ function show_list_classes(data) {
 
 function view_btn(data) {
     return '<button class="btn" onclick="show_class_detail(' + data + ')">Xem</button>';
+}
+
+function view_score_btn(data) {
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#view_score-' + data.student_id + '" onclick="get_score(' + data.student_id + ')">Chi Tiết</a>' +
+    '<div id="view_score-' + data.student_id + '" class="modal"><div class="modal-content">' +
+    '<h5>Chi tiết điểm học sinh </h5><span style="font-weight: bold; font-size: 1.2em">' + data.name + '</span></div>' +
+    '<div class="modal-body" id="_score-' + data.student_id + '">' +
+    '</div><div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a></div>' +
+    '</div></div>';
+}
+
+function get_score(id) {
+    $('#preload').removeClass('hidden');
+    var url = "index.php?action=get_score";
+    var data = {
+        student_id : id
+    }
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        var tbody = $('#_score-'+id);
+        tbody.empty();
+        if(json_data == '')
+            var p = $('<p style="font-size: 1.3em; font-weight: bold;">Chưa có bài làm nào</p>');
+            tbody.append(p);
+        $.each(json_data, function(key, value) {
+            var p = $('<p style="font-size: 1.3em; font-weight: bold;">' + value.unit_detail + ' - ' + value.score + ' điểm. Hoàn thành lúc ' + value.completion_time + '</p>');
+            tbody.append(p);
+        });
+        $('#preload').addClass('hidden');
+    };
+    $.post(url, data, success);
 }

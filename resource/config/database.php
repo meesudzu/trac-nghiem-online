@@ -11,13 +11,10 @@ class Database
     // hàm kết nối cơ sở dữ liệu
     public function __construct()
     {
-        $host = 'localhost';
-        $dbname = 'tracnghiem_online';
-        $user = 'root';
-        $pw = '';
+        $connect = include ('connect.php');
         try {
-            $db = 'mysql:host='.$host.'; dbname='.$dbname.'';
-            $this->db = new PDO($db, $user, $pw);
+            $db = 'mysql:host='.$connect->host.'; dbname='.$connect->dbname.'';
+            $this->db = new PDO($db, $connect->user, $connect->password);
             $this->db->query('set names "utf8"');
         } catch (PDOException $ex) {
             echo $ex->getMessage();
