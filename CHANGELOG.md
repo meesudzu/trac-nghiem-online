@@ -1,6 +1,6 @@
 v3.1.0 (20/09/2018)
 
-	- Thêm chức năng xem điểm từng học sinh cho giáo viên
+	- Thêm chức năng xem điểm từng học sinh cho giáo viên ✓
 	- Thêm file install.php để dễ dàng trong việc cài đặt & cấu hình sản phẩm lần đầu ✓
 	- Thêm nhập dữ liệu bằng file thay vì nhập từng dòng (gồm thêm admin, giáo viên, học sinh, bộ câu hỏi) ✓
 	- Thêm bộ đếm ngược thời gian ở phần làm bài tập, bài kiểm tra ✓
