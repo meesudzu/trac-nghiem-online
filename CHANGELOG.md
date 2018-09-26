@@ -1,3 +1,6 @@
+v3.1.1 (26/09/2018)
+
+	- Thêm giao diện cho trình cài đặt (install.php) ✓
 v3.1.0 (20/09/2018)
 
 	- Thêm chức năng xem điểm từng học sinh cho giáo viên ✓

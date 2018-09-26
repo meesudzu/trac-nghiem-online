@@ -1,5 +1,5 @@
 - Toàn bộ code trong thư mục resource
-- Lưu ý: nên cho toàn bộ code trong thư mục resource ra thư mục gốc và chạy theo đường dẫn localhost hoặc domain.com, không nên đặt trong thư mục con và chạy localhost/resource hoặc domain.com/resource để tránh lỗi không nhận css.
+- Lưu ý: nên cho toàn bộ code trong thư mục resource ra ngoài và chạy theo đường dẫn localhost hoặc domain.com, không nên đặt trong thư mục con và chạy localhost/resource hoặc domain.com/resource để tránh lỗi không nhận css.
 - Chạy domain/install.php để tiến hành cài đặt và cấu hình hệ thống
 - Sửa tài khoản gửi email quên mật khẩu tại /controllers/controller_login.php dòng 113 và 114
 - Tài khoản mặc định

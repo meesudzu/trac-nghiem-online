@@ -11,6 +11,7 @@ Xem tại [CHANGELOG](CHANGELOG.md)<br />
    
 [Hướng dẫn sử dụng](GUIDE.md)
 ## Ảnh Demo (Chụp Từ v3.1.0)
+![INSTALL](demo-images/install.png)
 ![Đăng nhập 1](demo-images/login-1.PNG)
 ![Đăng nhập 2](demo-images/login-2.PNG)
 ![DEMO](demo-images/1.png)
