@@ -357,7 +357,6 @@ class Controller_Admin extends Controller
 
     public function check_add_admin_via_file()
     {
-        sleep(10);
         $inputFileType = 'Xlsx';      
         $result = array();
         $reader = IOFactory::createReader($inputFileType);

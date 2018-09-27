@@ -1,3 +1,6 @@
+v3.1.2 (28/09/2018)
+
+	- Fix chức năng thêm admin qua file ✓
 v3.1.1 (26/09/2018)
 
 	- Thêm giao diện cho trình cài đặt (install.php) ✓
