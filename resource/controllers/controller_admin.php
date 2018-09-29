@@ -740,7 +740,7 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $shuffle = array();
-        $question_detail = isset($_POST['question_detail']) ? Htmlspecialchars(addslashes($_POST['question_detail'])) : '';
+        $question_detail = isset($_POST['question_detail']) ? $_POST['question_detail'] : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
         $shuffle[0] = isset($_POST['answer_a']) ? Htmlspecialchars(addslashes($_POST['answer_a'])) : '';
@@ -801,10 +801,10 @@ class Controller_Admin extends Controller
                 $err_list += $stt.' ';
         }
         if ($err_list == '') {
-            $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
+            $result['status_value'] = "Thêm thành công ".$count.' câu hỏi!';
             $result['status'] = 1;
         } else {
-            $result['status_value'] = "Lỗi! Không thể thêm tài khoản có STT: ".$err_list.', vui lòng xem lại.';
+            $result['status_value'] = "Lỗi! Không thể thêm câu hỏi có STT: ".$err_list.', vui lòng xem lại.';
             $result['status'] = 0;
         }
         echo json_encode($result);
@@ -876,7 +876,7 @@ class Controller_Admin extends Controller
     {
         $result = array();
         $ID = isset($_POST['ID']) ? Htmlspecialchars($_POST['ID']) : '';
-        $question_detail = isset($_POST['question_detail']) ? Htmlspecialchars($_POST['question_detail']) : '';
+        $question_detail = isset($_POST['question_detail']) ? $_POST['question_detail'] : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars($_POST['grade_id']) : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
         $answer_a = isset($_POST['answer_a']) ? Htmlspecialchars($_POST['answer_a']) : '';

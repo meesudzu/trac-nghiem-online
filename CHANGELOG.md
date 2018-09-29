@@ -1,3 +1,6 @@
+v3.1.3 (29/09/2018)
+
+	- Fix chức năng thêm câu hỏi qua file (cho phép hiển thị ảnh trong nội dung câu hỏi) ✓
 v3.1.2 (28/09/2018)
 
 	- Fix chức năng thêm admin qua file ✓

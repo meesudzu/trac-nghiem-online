@@ -43,6 +43,9 @@
 			</div>
 			<div id="add_normal" class="col s12">
 				<form action="" method="POST" role="form" id="add_question_form">
+					<span class="title">để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
+					<xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
+						
 					<div class="col l12 s12" style="padding-top: 20px">
 						<div class="input-field">
 							<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
@@ -94,21 +97,24 @@
 				<span class="title">Tải File Mẫu: <a href="res/files/mau-them-danh-sach-cau-hoi.xlsx">TẠI ĐÂY</a></span><br />
 				<span class="title">Lưu Ý: <br />1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.</span>
 				<br />
-				<span class="title">Lưu Ý: <br />2, Chỉ hỗ trợ câu hỏi nội dung ký tự, không hỗ trợ câu hỏi bao gồm nội dung âm thanh, hình ảnh.</span>
+				<span class="title">2, Chỉ hỗ trợ câu hỏi nội dung ký tự, không hỗ trợ câu hỏi bao gồm nội dung âm thanh, hình ảnh.</span>
+				<br />
+				<span class="title">3, Để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
+					<xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
 				<br />
 				<span id="error" class="title" style="color: red"></span>
 				<form id="add_via_file" enctype="multipart/form-data">
 					<div class="file-field input-field col s6">
 						<div class="input-field">
 							<select name="grade_id" id="_grade_id">
-								</select>
-								<label>Khối</label>
-							</div>
-							<div class="input-field">
-								<select name="unit" id="_unit">
-								</select>
-								<label>Chương</label>
-							</div>
+							</select>
+							<label>Khối</label>
+						</div>
+						<div class="input-field">
+							<select name="unit" id="_unit">
+							</select>
+							<label>Chương</label>
+						</div>
 						<div class="input-field btn">
 							<span>File</span>
 							<input type="file" name="file_data" id="file_data" required="">
