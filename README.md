@@ -6,6 +6,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
+	- Nâng cấp chức năng tạo đề/Làm bài
 	- Thêm nhiều dạng bài tập hơn
 	- Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
    
