@@ -9,7 +9,9 @@ function insert_dashboard_info() {
         var json_data = $.parseJSON(result);
         var dashboard = $('#dashboard');
         $.each(json_data, function(key, info) {
-             var detail = '<div class="dashboard-inner-item">'+
+             var detail = '<div class="col s6 m4 l3">'+
+        '<a href="index.php?action='+ info.actionlink +'">'+
+        '<div class="dashboard-inner-item">'+
              '<div class="left-item">'+
                     '<i class="fa '+ info.icon +' fa-2x"></i>'+
                 '</div>'+
@@ -22,7 +24,7 @@ function insert_dashboard_info() {
                     '</div>'+
                 '</div>'+
                 '<div class="clear"></div>'+
-            '</div>';
+            '</a></div></div>';
             dashboard.append(detail);
         });
 

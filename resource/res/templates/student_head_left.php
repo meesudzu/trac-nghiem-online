@@ -20,7 +20,7 @@
 		<nav>
 			<div class="nav-wrapper nav-green">
 				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons" id="menu-icon" title="Ẩn/Hiện bảng điều hướng">menu</i></a></div>
-				<a class="brand-logo right cursor" onclick="show_index()"><i class="material-icons">home</i></a>
+				<a href="index.php?action=show_dashboard" class="brand-logo right cursor"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
 		<div id="status" class="status"></div>
@@ -30,15 +30,15 @@
 			<div class="card-image">
 				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
 				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
-					<a class="cursor blue-text text-darken-2" onclick="show_profiles()"><i class="material-icons">create</i></a>
+					<a href="index.php?action=show_profiles" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
-			<a class="collapsible-header font-color cursor" onclick="show_index()"><i class="material-icons">library_books</i>Làm Bài Tập</a>
-			<a class="collapsible-header font-color cursor" onclick="show_chat()"><i class="material-icons">send</i>Trò Chuyện</a>
-			<a class="collapsible-header font-color cursor" onclick="show_notifications()"><i class="material-icons">send</i>Xem Thông Báo</a>
-			<a class="collapsible-header font-color cursor" onclick="show_about()"><i class="material-icons">insert_comment</i>Liên Hệ</a>
+			<a href="index.php?action=show_dashboard" class="collapsible-header font-color cursor"><i class="material-icons">library_books</i>Làm Bài Tập</a>
+			<a href="index.php?action=show_chat" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Trò Chuyện</a>
+			<a href="index.php?action=show_notifications" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Xem Thông Báo</a>
+			<a href="index.php?action=show_about" class="collapsible-header font-color cursor"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 		</ul>
 	</div>
 	<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>

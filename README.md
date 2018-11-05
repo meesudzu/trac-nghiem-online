@@ -6,25 +6,26 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
-	- Nâng cấp chức năng tạo đề/Làm bài
-	- Thêm nhiều dạng bài tập hơn
-	- Cập nhật thêm nhiều môn học có thể kiểm tra bằng hình thức trắc nghiệm
-   
+	- Thêm nhiều dạng bài tập trắc nghiệm hơn
+	- Hỡ trợ nhiều dạng thông tin có trong câu hỏi hơn như hình ảnh, âm thanh, video...
 [Hướng dẫn sử dụng](GUIDE.md)
-## Ảnh Demo (Chụp Từ v3.1.0)
+## Ảnh Demo (Chụp Từ v3.2.0)
 ![INSTALL](demo-images/install.png)
 ![Đăng nhập 1](demo-images/login-1.PNG)
 ![Đăng nhập 2](demo-images/login-2.PNG)
 ![DEMO](demo-images/1.png)
+![DEMO](demo-images/4.1.png)
+![DEMO](demo-images/4.2.png)
+![DEMO](demo-images/4.3.png)
 ![DEMO](demo-images/2.png)
 ![DEMO](demo-images/3.png)
-![DEMO](demo-images/4.png)
 ![DEMO](demo-images/5.png)
 ![DEMO](demo-images/6.png)
 ![DEMO](demo-images/7.png)
 ![DEMO](demo-images/8.png)
 ![DEMO](demo-images/9.png)
 ![DEMO](demo-images/10.png)
+![DEMO](demo-images/11.png)
 ## Lưu ý
 Trên GitHub chỉ lưu từ v2.0.1 trở đi.<br />
 Xem thêm tại [CHANGELOG](CHANGELOG.md)<br />

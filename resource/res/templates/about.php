@@ -1,7 +1,7 @@
 	<div class="title-content">
 		<span class="title">Liên Hệ</span>
 	</div>
-	<div class="content fadeRight">
+	<div class="content">
 		<div class="container" style="text-align: center;"><br />
 			<h5><i  id="about-title"></i></h5>
 			<p>Phiên bản: <i id="about-version"><?=Config::VERSION?></i></p>

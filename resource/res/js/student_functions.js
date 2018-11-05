@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    show_index();
-    $('.modal').modal();
+    get_list_tests();
     $('select').select();
+    $('.modal').modal();
     $('#trigger-sidebar').on('click', function() {
         $('#sidebar-left').toggleClass('sidebar-show');
         $('#menu-icon').toggleClass('rot');
@@ -17,198 +17,69 @@ $(document).ready(function() {
     });
 });
 
-function show_profiles() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_profiles";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('select').select();
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function show_about() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_about";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function show_chat() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_chat";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function show_notifications() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_notifications";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function get_doing_exam() {
-    var url = "index.php?action=get_doing_exam";
-    var success = function(result) {
-        return result;
-    };
-    $.get(url, success);
-}
-
-function show_exam(unit_id) {
-    $(window).on("unload", function(e) {
-        confirm("Đang làm bài, bạn có chắc muốn rời khỏi!");
-        console.log("Đang làm bài, bạn có chắc muốn rời khỏi!");
-    });
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_exam";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('#unit_id').text(unit_id);
-        get_rand_questions(unit_id);
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function countdown(m,s) {
-    if (typeof min === 'undefined' || min === null) {
-        min = m;
-    }
-    var min_text = '';
-    if (typeof sec === 'undefined' || sec === null) {
-        sec = s;
-    }
-    var sec_text = '';
-    if (typeof cd === 'undefined' || cd === null) {
-        cd = true;
-    }
-    if(cd) {
-        cdID = setInterval(function() {
-            if(sec==0) {
-                min--;
-                sec=60;
-            }
-            sec--;
-            if(min<10) {
-                $('#timer').css('color', 'red');
-                min_text = '0' + min;
-            } else {
-                min_text = min;
-            }
-            if(sec<10)
-                sec_text = '0' + sec;
-            else
-                sec_text = sec;
-            $('#timer').text(min_text + ':' + sec_text);
-            if(min<0) {
-                send_exam($('#send').serialize());
-                alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
-            }
-        }, 1000);
-        cd = false;
-    }
-}
-
-function get_rand_questions(unit_id) {
-    var url = "index.php?action=get_rand_questions"; 
-    var data = {
-        unit : unit_id
-    };
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        if(json_data.status) {
-            countdown(json_data.min,json_data.sec);
-            insert_questions(json_data[0], unit_id);
+function get_url_parameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
         }
-        else
-            insert_score(json_data[0]);
-    };
-    $.post(url, data, success);
+    }
 }
 
-function insert_score (data) {
-    var list = $('#questions_list');
-    list.append('<span class="exam_quest">Bài tập này đã làm!</span><br />');
-    list.append('<span class="exam_quest">Điểm: </span><span class="exam_detail">'+ data.score +'</span><br />');
-    list.append('<span class="exam_quest">Hoàn thành lúc: </span><span class="exam_detail">'+ data.completion_time +'</span><br />');
-}
 
-function insert_questions (data, unit) {
-    var list = $('#questions_list');
-    var i = 1;
-    var ID = '<input value="'+ unit +'" name="unit" type="hidden" />';
-    list.append(ID);
-    $.each(data, function(key, value) {
-        var data = '<span class="exam_quest">Câu '+ i +' <span class="exam_small">#'+ value.ID +'</span>: </span>'+
-        '<span class="exam_detail">'+ value.question_detail +'</span>'+
-        '<input type="hidden" name="quest_'+ i +'_id" value="'+ value.ID +'" />'+
-        '<div class="exam_ans">'+
-        '<label><input value="'+ value.answer_a +'" class="with-gap" name="quest_'+ i +'_answer" type="radio" />'+
-        '<span>'+ value.answer_a +'</span></label>'+
-        '<label><input value="'+ value.answer_b +'" class="with-gap" name="quest_'+ i +'_answer" type="radio" />'+
-        '<span>'+ value.answer_b +'</span></label>'+
-        '<label><input value="'+ value.answer_c +'" class="with-gap" name="quest_'+ i +'_answer" type="radio" />'+
-        '<span>'+ value.answer_c +'</span></label>'+
-        '<label><input value="'+ value.answer_d +'" class="with-gap" name="quest_'+ i +'_answer" type="radio" />'+
-        '<span>'+ value.answer_d +'</span></label></div>';
-        i++;
-        list.append(data);
-    });
-    var btn = '<div class="send_exam"><button class="btn" type="reset">Làm Lại</button><button class="btn" type="submit">Nộp Bài</button></div>';
-    list.append(btn);
-}
-
-function show_index() {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=show_index";
-    var success = function(result) {
-        $('#box-content').html(result);
-        get_units();
-        $('#preload').addClass('hidden');
-    };
-    $.get(url, success);
-}
-
-function get_units() {
-    var url = "index.php?action=get_units";
+function get_list_tests() {
+    var url = "index.php?action=get_list_tests";
     var success = function(result) {
         var json_data = $.parseJSON(result);
-        insert_units(json_data);
+        insert_tests(json_data);
+        $('.modal').modal();
+        $("form.form_test").on('submit', function(event) {
+            event.preventDefault();
+            submit_test();
+            this.reset();
+        });
     };
     $.get(url, success);
 }
-
-function insert_units(data) {
-    var list = $('#units_list');
-    $.each(data, function(key, value) {
-        var tr = $('<div class="col l3 s6 unit_detail" id="unit-' + value.unit + '"></div>');
-        tr.append('<span class="unit_name">' + value.unit_detail + '</span>');
-        tr.append('<i>Tình Trạng: </i><span class="unit_status"> ' + value.status_detail + '</span><br />');
-        tr.append('<i>Thời Gian Làm Bài: </i><span class="unit_status"> ' + value.time_to_do + '</span> Phút<br />');
-        if(value.close_time == '' || value.close_time == '0000-00-00 00:00:00')
-            value.close_time = 'Chưa Xác Định';
-        tr.append('<i>Đóng Lúc: </i><span class="unit_status"> ' + value.close_time + '</span><br /><br />');
-        if(value.status_id!=2)
-            tr.append('<button class="btn" onclick="show_exam('+ value.unit +')">Làm Bài</button>');
-        else
-            tr.append('<button class="btn" disabled>Làm Bài</button>');
-        list.append(tr);
-    });
+function insert_tests(data) {
+    var list = $('#tests_list');
+    var url = "index.php?action=get_scores";
+    var success = function(result) {
+        var scores = $.parseJSON(result);
+        $.each(data, function(key, value) {
+            var tr = $('<div class="col l3 m4 s6 unit_detail" id="test-' + value.test_code + '"></div>');
+            tr.append('<i>Tên: </i><span class="unit_status">' + value.test_name + '</span><br />');
+            tr.append('<i>Môn: </i><span class="unit_status">' + value.subject_detail + '</span><br />');
+            tr.append('<i>Khối: </i><span class="unit_status">' + value.grade + '</span><br />');
+            tr.append('<i>Mã Đề: </i><span class="unit_status">' + value.test_code + '</span><br />');
+            tr.append('<i>Số Câu Hỏi: </i><span class="unit_status">' + value.total_questions + '</span><br />');
+            tr.append('<i>Thời Gian: </i><span class="unit_status"> ' + value.time_to_do + '</span> Phút<br />');
+            tr.append('<i>Trạng Thái: </i><span class="unit_status"> ' + value.status + '</span><br />');
+            tr.append('<i>Ghi Chú: </i><span class="unit_status">' + value.note + '</span><br />');
+            if(value.status_id!=2) {
+                var flag = false;
+                $.each(scores, function(index, val) {
+                    if(val.test_code == value.test_code) {
+                        flag = true;
+                        return false;
+                    }
+                });
+                if(flag)
+                    tr.append('<a href="index.php?action=show_result&test_code=' + value.test_code + '" class="btn">Chi Tiết Bài Làm</a>');
+                else
+                    tr.append(do_exam_button(value));
+            }
+            else
+                tr.append('<a href="index.php?action=show_result&test_code=' + value.test_code + '" class="btn">Chi Tiết Bài Làm</a>');
+            list.append(tr);
+        });
+    };
+    $.get(url, success);
 }
 
 function show_status(json_data) {
@@ -242,7 +113,7 @@ function logout() {
         show_status(json_data);
         if (json_data.status) {
             setTimeout(function() {
-                location.reload();
+                window.location.replace("index.php");
             }, 1500);
         }
     };
@@ -268,4 +139,46 @@ function valid_email_on_profiles(data) {
         }
     };
     $.post(url, data1, success);
+}
+
+function do_exam_button(data) {
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#do-test-' + data.test_code + '" id="do_test">Làm Bài</a>' +
+    '<div id="do-test-' + data.test_code + '" class="modal">' +
+    '<div class="row col l12">' +
+    '<form class="form_test" action="" method="POST" role="form" id="form_submit_test_' + data.test_code + '">' +
+    '<div class="modal-content"><h5>Nhập mật khẩu đề: ' + data.test_code + '</h5>' +
+    '<div class="modal-body">' +
+    '<div class="input-field">' +
+    '<input type="hidden" value="' + data.test_code + '" name="test_code" id="test_code">' +
+    '<input type="password" name="password" id="password" required>' +
+    '<label for="password">Mật Khẩu</label>' +
+    '</div>' +
+    '</div>' +
+    '</div><div class="col l12 s12">' +
+    '<div class="modal-footer">' +
+    '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
+    '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button>' +
+    '</div></div></form></div></div>';
+}
+
+function submit_test() {
+    $('#preload').removeClass('hidden');
+    var test_code = $('#test_code').val();
+    var password = $('#password').val();
+    var data = {
+        test_code:test_code,
+        password:password
+    }
+    var url = "index.php?action=check_password";
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        show_status(json_data);
+        if (json_data.status) {
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        }
+        $('#preload').addClass('hidden');
+    };
+    $.post(url, data, success);
 }

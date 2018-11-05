@@ -21,7 +21,7 @@
 		<nav>
 			<div class="nav-wrapper nav-green">
 				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons" id="menu-icon" title="Ẩn/Hiện bảng điều hướng">menu</i></a></div>
-				<a class="brand-logo right cursor" onclick="show_dashboard()"><i class="material-icons">home</i></a>
+				<a href="index.php?action=show_dashboard" class="brand-logo right cursor"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
 		<div id="status" class="status"></div>
@@ -31,26 +31,27 @@
 			<div class="card-image">
 				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
 				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
-					<a class="cursor blue-text text-darken-2" onclick="show_profiles()"><i class="material-icons">create</i></a>
+					<a href="index.php?action=show_profiles" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
-			<a class="collapsible-header font-color" onclick="show_dashboard()"><i class="material-icons">home</i>Trang Tổng Quan</a>
-			<li>
+			<a href="index.php?action=show_dashboard" class="collapsible-header font-color"><i class="material-icons">home</i>Trang Tổng Quan</a>
+			<li class="">
 				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
 					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Menu</div>
 					<div class="collapsible-body list">
-						<a class="menu-list cursor" onclick="show_admins_panel()">Quản Lý Admin</a>
-						<a class="menu-list cursor" onclick="show_teachers_panel()">Quản Lý Gíao Viên</a>
-						<a class="menu-list cursor" onclick="show_students_panel()">Quản Lý Học Sinh</a>
-						<a class="menu-list cursor" onclick="show_classes_panel()">Quản Lý Lớp</a>
-						<a class="menu-list cursor" onclick="show_questions_panel()">Quản Lý Câu Hỏi</a>
-						<a class="menu-list cursor" onclick="show_units_panel()">Quản Lý Bài Kiểm Tra</a>
+						<a href="index.php?action=show_admins_panel" class="menu-list cursor">Quản Lý Admin</a>
+						<a href="index.php?action=show_teachers_panel" class="menu-list cursor">Quản Lý Gíao Viên</a>
+						<a href="index.php?action=show_classes_panel" class="menu-list cursor">Quản Lý Lớp</a>
+						<a href="index.php?action=show_students_panel" class="menu-list cursor">Quản Lý Học Sinh</a>
+						<a href="index.php?action=show_subjects_panel" class="menu-list cursor">Quản Lý Môn</a>
+						<a href="index.php?action=show_questions_panel" class="menu-list cursor">Quản Lý Câu Hỏi</a>
+						<a href="index.php?action=show_tests_panel" class="menu-list cursor">Quản Lý Bài Kiểm Tra</a>
 					</div>
 				</li>
-				<a class="collapsible-header font-color" onclick="show_notifications_panel()"><i class="material-icons">send</i>Gửi Thông Báo</a>
-				<a class="collapsible-header font-color" onclick="show_about()"><i class="material-icons">insert_comment</i>Liên Hệ</a>
+				<a href="index.php?action=show_notifications_panel" class="collapsible-header font-color"><i class="material-icons">send</i>Gửi Thông Báo</a>
+				<a href="index.php?action=show_about" class="collapsible-header font-color"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 			</ul>
 		</div>
 		<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>

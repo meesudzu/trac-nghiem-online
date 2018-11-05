@@ -12,7 +12,7 @@ class Model_Admin extends Database
     public function get_admin_info($username)
     {
         $sql = "
-        SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
+        SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail,genders.gender_id FROM admins
         INNER JOIN permissions ON admins.permission = permissions.permission
         INNER JOIN genders ON admins.gender_id = genders.gender_id
         WHERE username = '$username'";
@@ -58,6 +58,12 @@ class Model_Admin extends Database
     public function get_list_grades()
     {
         $sql = "SELECT * FROM grades";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_list_subjects()
+    {
+        $sql = "SELECT * FROM subjects";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -252,11 +258,29 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
+    public function get_list_units($grade_id,$subject_id)
+    {
+        $sql = "SELECT DISTINCT unit, COUNT(unit) as total FROM questions WHERE subject_id = $subject_id and grade_id = $grade_id GROUP BY unit";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function list_quest_of_unit($grade_id,$subject_id,$unit,$limit)
+    {
+        $sql = "SELECT * FROM `questions` WHERE `grade_id` = $grade_id and `subject_id` = $subject_id and `unit` = $unit ORDER BY RAND() LIMIT $limit";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
     public function edit_class($class_id, $grade_id, $class_name, $teacher_id)
     {
         $sql="UPDATE classes set grade_id='$grade_id', class_name='$class_name', teacher_id ='$teacher_id'  where class_id ='$class_id'";
         $this->set_query($sql);
         $this->execute_return_status();
+    }
+    public function toggle_test_status($test_code, $status_id)
+    {
+        $sql="UPDATE tests set status_id='$status_id' where test_code ='$test_code'";
+        $this->set_query($sql);
+        return $this->execute_return_status();
     }
     public function del_class($class_id)
     {
@@ -292,39 +316,38 @@ class Model_Admin extends Database
         return $this->execute_return_status();
         // return true;
     }
+    public function add_quest_to_test($test_code, $question_id)
+    {
+        $sql="INSERT INTO quest_of_test (test_code,question_id) VALUES ('$test_code','$question_id')";
+        $this->set_query($sql);
+        return $this->execute_return_status();
+    }
     public function get_list_questions()
     {
         $sql = "
-        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
+        SELECT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id
-        INNER JOIN units ON units.unit = questions.unit";
+        INNER JOIN subjects ON subjects.subject_id = questions.subject_id";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_list_tests()
+    {
+        $sql = "
+        SELECT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,statuses.detail as status FROM `tests`
+        INNER JOIN grades ON grades.grade_id = tests.grade_id
+        INNER JOIN subjects ON subjects.subject_id = tests.subject_id
+        INNER JOIN statuses ON statuses.status_id = tests.status_id";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_question_info($ID)
     {
         $sql = "
-        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail,units.detail as question_unit, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
-        INNER JOIN grades ON grades.grade_id = questions.grade_id
-        INNER JOIN units ON units.unit = questions.unit WHERE ID = '$ID'";
+        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
+        INNER JOIN grades ON grades.grade_id = questions.grade_id";
         $this->set_query($sql);
         return $this->load_row();
-    }
-    public function get_list_units()
-    {
-        $sql = "
-        SELECT units.unit,units.time_to_do,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
-        INNER JOIN statuses ON statuses.status_id = units.status_id";
-        $this->set_query($sql);
-        return $this->load_rows();
-    }
-    public function get_unit($unit)
-    {
-        $sql = "
-        SELECT units.unit,units.detail,units.close_time,statuses.detail as status_detail FROM `units`
-        INNER JOIN statuses ON statuses.status_id = units.status_id WHERE unit = '$unit'";
-        $this->set_query($sql);
-        return $this->load_rows();
     }
     public function get_list_statuses()
     {
@@ -333,65 +356,32 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function edit_question($ID, $question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
     {
-        $sql="UPDATE questions set question_detail='$question_detail', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer' where ID = '$ID'";
-        $this->set_query($sql);
-        $this->execute_return_status();
-    }
-    public function del_question($ID)
-    {
-        $sql="DELETE FROM questions where ID='$ID'";
-        $this->set_query($sql);
-        $this->execute_return_status();
-    }
-    public function add_question($question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
-    {
-        //get ID current question
-        // $sql = "SELECT `AUTO_INCREMENT`
-        // FROM  INFORMATION_SCHEMA.TABLES
-        // WHERE TABLE_NAME   = 'questions'";
-        // $this->set_query($sql);
-        // $ID = $this->load_row();
-        $sql="INSERT INTO questions (grade_id,unit,question_detail,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
+        $sql="UPDATE questions set question_content='$question_content', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer',subject_id='$subject_id' where question_id = '$question_id'";
         $this->set_query($sql);
         return $this->execute_return_status();
-        // return $ID->AUTO_INCREMENT;
     }
-    public function add_unit($detail, $time_to_do, $status_id, $close_time)
+    public function del_question($question_id)
     {
-        //get ID current question
-        $sql = "SELECT `AUTO_INCREMENT`
-        FROM  INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_NAME   = 'units'";
+        $sql="DELETE FROM questions where question_id='$question_id'";
         $this->set_query($sql);
-        $ID = $this->load_row();
-        $sql="INSERT INTO units (detail, time_to_do, status_id, close_time) VALUES ('$detail','$time_to_do', '$status_id', '$close_time')";
-        $this->set_query($sql);
-        $this->execute_return_status();
-        return $ID->AUTO_INCREMENT;
+        return $this->execute_return_status();
     }
-    public function edit_unit($unit, $detail, $status_id, $close_time)
+    public function add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
     {
-        $sql="UPDATE units set detail='$detail', status_id='$status_id', close_time ='$close_time' where unit = '$unit'";
+        $sql="INSERT INTO questions (subject_id,grade_id,unit,question_content,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($subject_id,$grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
         $this->set_query($sql);
-        $this->execute_return_status();
+        return $this->execute_return_status();
     }
-    public function del_unit($unit)
+    public function add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note)
     {
-        $sql="DELETE FROM units where unit='$unit'";
+        $sql="INSERT INTO tests (test_code,test_name,password,grade_id,subject_id,total_questions,time_to_do,note,status_id) VALUES ($test_code,'$test_name', '$password', $grade_id, $subject_id, $total_questions, $time_to_do, '$note', 2)";
         $this->set_query($sql);
-        $this->execute_return_status();
-        $sql = "SELECT detail FROM units WHERE unit = '$unit'";
-        $this->set_query($sql);
-        if ($this->load_row()!='') {
-            return false;
-        }
-        return true;
+        return $this->execute_return_status();
     }
     public function insert_notification($username, $name, $notification_title, $notification_content)
     {
-        //get ID current notification
         $sql = "SELECT `AUTO_INCREMENT`
         FROM  INFORMATION_SCHEMA.TABLES
         WHERE TABLE_NAME   = 'notifications'";
@@ -477,7 +467,7 @@ class Model_Admin extends Database
     }
     public function get_total_question()
     {
-        $sql = "SELECT COUNT(ID) as total FROM questions";
+        $sql = "SELECT COUNT(question_id) as total FROM questions";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
@@ -486,5 +476,34 @@ class Model_Admin extends Database
         $sql = "SELECT COUNT(grade_id) as total FROM grades";
         $this->set_query($sql);
         return $this->load_row()->total;
+    }
+    public function get_total_test()
+    {
+        $sql = "SELECT COUNT(test_code) as total FROM tests";
+        $this->set_query($sql);
+        return $this->load_row()->total;
+    }
+    public function edit_subject($subject_id, $subject_detail)
+    {
+        $sql = "SELECT subject_detail FROM subjects WHERE subject_id = '$subject_id'";
+        $this->set_query($sql);
+        if ($this->load_row()=='') {
+            return false;
+        }
+        $sql="UPDATE subjects set subject_detail='$subject_detail' where subject_id='$subject_id'";
+        $this->set_query($sql);
+        return $this->execute_return_status();
+    }
+    public function del_subject($subject_id)
+    {
+        $sql="DELETE FROM subjects where subject_id='$subject_id'";
+        $this->set_query($sql);
+        return $this->execute_return_status();
+    }
+    public function add_subject($subject_detail)
+    {
+        $sql="INSERT INTO subjects (subject_detail) VALUES ('$subject_detail')";
+        $this->set_query($sql);
+        return $this->execute_return_status();
     }
 }

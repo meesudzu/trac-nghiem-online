@@ -4,13 +4,12 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-require_once 'controller.php';
-
-class Controller_Login extends Controller
+require_once 'views/view_login.php';
+require_once 'models/model_login.php';
+class Controller_Login
 {
     public function show_login()
     {
-        $this->load_view("login");
         $view = new View_Login();
         $view->show_login();
     }
@@ -63,20 +62,17 @@ class Controller_Login extends Controller
     }
     public function get_password($username)
     {
-        $this->load_model("login");
         $model = new Model_Login();
         return $model->get_password($username);
     }
     public function get_username($username)
     {
-        $this->load_model("login");
         $model = new Model_Login();
         return $model->get_username($username);
     }
     public function submit_forgot_password()
     {
         $result = array();
-        $this->load_model("login");
         $model = new  Model_Login();
         require_once 'res/libs/class.phpmailer.php';
         require_once 'res/libs/class.smtp.php';
@@ -103,7 +99,6 @@ class Controller_Login extends Controller
     }
     public function reset_password($username)
     {
-        $this->load_model('login');
         $model = new Model_Login();
         return $model->reset_password($username);
     }

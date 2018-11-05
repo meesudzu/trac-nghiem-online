@@ -10,7 +10,7 @@ class Model_Teacher extends Database
 {
     public function get_profiles($username)
     {
-        $sql = "SELECT teachers.teacher_id as ID,teachers.username,teachers.name,teachers.email,teachers.avatar,teachers.birthday,teachers.last_login,genders.gender_detail FROM `teachers`
+        $sql = "SELECT teachers.teacher_id as ID,teachers.username,teachers.name,teachers.email,teachers.avatar,teachers.birthday,teachers.last_login,genders.gender_id,genders.gender_detail FROM `teachers`
         INNER JOIN genders ON genders.gender_id = teachers.gender_id
         WHERE username = '$username'";
         $this->set_query($sql);
@@ -97,8 +97,7 @@ class Model_Teacher extends Database
     }
     public function get_score($student_id)
     {
-        $sql = "SELECT scores.*,units.detail as unit_detail FROM `scores`
-        INNER JOIN units ON units.unit = scores.unit
+        $sql = "SELECT * FROM `scores`
         WHERE `student_id` = $student_id";
         $this->set_query($sql);
         return $this->load_rows();

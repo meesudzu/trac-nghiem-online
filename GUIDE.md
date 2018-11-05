@@ -3,7 +3,6 @@
 - Chạy domain/install.php để tiến hành cài đặt và cấu hình hệ thống
 - Sửa tài khoản gửi email quên mật khẩu tại /controllers/controller_login.php dòng 113 và 114
 - Tài khoản mặc định
-
 	tài khoản: admin	
 	mật khẩu: 123456
 - Để thử nghiệm hệ thống với bộ cơ sở dữ liệu cho sẵn, vui lòng import file tại /res/files/test_data.sql

@@ -1,13 +1,13 @@
 <?php
 /**
 * Controller Student
-* Author: Dzu
+* Author: Dzu 
 * Mail: dzu6996@gmail.com
 **/
-require_once 'controller.php';
-include_once('models/model_student.php');
+require_once('models/model_student.php');
+require_once 'views/view_student.php';
 
-class Controller_Student extends Controller
+class Controller_Student
 {
 	public $info =  array();
 	public function __construct()
@@ -21,7 +21,7 @@ class Controller_Student extends Controller
 		$this->info['class_id'] = $user_info->class_id;
 		$this->info['grade_id'] = $user_info->grade_id;
 		$this->info['doing_exam'] = $user_info->doing_exam;
-		$this->info['doing_time'] = $user_info->doing_time;
+		$this->info['time_remaining'] = $user_info->time_remaining;
 	}
 	public function profiles()
 	{
@@ -47,54 +47,35 @@ class Controller_Student extends Controller
 		$info = new Model_Student();
 		$info->update_doing_exam($exam,$time,$this->info['ID']);
 	}
+	public function update_answer()
+	{
+		$question_id = $_POST['id'];
+		$student_answer = $_POST['answer'];
+		$update = new Model_Student();
+		$update->update_answer($this->info['ID'], $this->info['doing_exam'], $question_id,$student_answer);
+		echo $time = $_POST['min'].':'.$_POST['sec'];
+		$update->update_timing($this->info['ID'], $time);
+	}
+	public function update_timing()
+	{
+		$update = new Model_Student();
+		$time = $_POST['min'].':'.$_POST['sec'];
+		$update->update_timing($this->info['ID'], $time);
+	}
 	public function reset_doing_exam()
 	{
 		$info = new Model_Student();
 		$info->reset_doing_exam($this->info['ID']);
-	}
-	public function insert_score($unit,$score)
-	{
-		$info = new Model_Student();
-		$info->insert_score($this->info['ID'], $unit, $score, $this->info['class_id']);
 	}
 	public function get_profiles()
 	{
 		$profiles = new Model_Student();
 		echo json_encode($profiles->get_profiles($this->info['username']));
 	}
-	public function get_units()
+	public function get_scores()
 	{
-		$units = new Model_Student();
-		echo json_encode($units->get_units());
-	}
-	public function get_rand_questions()
-	{
-		$result = array();
-		$unit = isset($_POST['unit']) ? $_POST['unit'] : '';
-		$quest = new Model_Student();
-		$score = $quest->get_score($this->info['ID'],$this->info['class_id'],$unit);
-		if($score != null)
-		{
-			$result[] = $score;
-			$result['status'] = 0;
-		} else {
-			$result[] = $quest->get_rand_questions($this->info['grade_id'],$unit);
-			if($this->info['doing_time'] != '') {
-				//tính thời gian làm bài còn lại nếu bài đã bắt đầu từ trước
-				$time_remaining = $quest->get_unit_detail($unit)->time_to_do;
-				$seconds = time() - strtotime($this->info['doing_time']);
-				$result['min'] = $time_remaining - floor($seconds/60) - 1;
-				$result['sec'] = $seconds%60;
-			} else {
-				//cập nhật thời gian bắt đầu làm bài vào cơ sở dữ liệu
-				$result['min'] = $quest->get_unit_detail($unit)->time_to_do;
-				$result['sec'] = 0;
-				$now = date('Y-m-d H:i:s', time());
-				$this->update_doing_exam($unit,$now);
-			}
-			$result['status'] = 1;
-		}
-		echo json_encode($result);
+		$profiles = new Model_Student();
+		echo json_encode($profiles->get_scores($this->info['ID']));
 	}
 	public function get_notifications()
 	{
@@ -110,6 +91,11 @@ class Controller_Student extends Controller
 	{
 		$chat_all = new Model_Student();
 		echo json_encode($chat_all->get_chat_all($this->info['class_id']));
+	}
+	public function get_list_tests()
+	{
+		$list_tests = new Model_Student();
+		echo json_encode($list_tests->get_list_tests());
 	}
 	public function valid_email_on_profiles()
 	{
@@ -147,6 +133,35 @@ class Controller_Student extends Controller
 			}
 		}
 	}
+	public function check_password()
+	{
+		$result = array();
+		$model = new Model_Student();
+		$test_code = isset($_POST['test_code']) ? $_POST['test_code'] : '493205';
+		$password = isset($_POST['password']) ? md5($_POST['password']) : 'e10adc3949ba59abbe56e057f20f883e';
+		if($password != $model->get_test($test_code)->password) {
+			$result['status_value'] = "Sai mật khẩu";
+			$result['status'] = 0;
+		} else {
+			$list_quest = $model->get_quest_of_test($test_code);
+			foreach ($list_quest as $quest) {
+				$array = array();
+				$array[0] = $quest->answer_a;
+				$array[1] = $quest->answer_b;
+				$array[2] = $quest->answer_c;
+				$array[3] = $quest->answer_d;
+				shuffle($array);
+				$ID = rand(1,time())+rand(100000,999999);
+				$time = $model->get_test($test_code)->time_to_do.':00';
+				$model->add_student_quest($this->info['ID'], $ID, $test_code, $quest->question_id, $array[0], $array[1], $array[2], $array[3]);
+				$model->update_doing_exam($test_code,$time,$this->info['ID']);
+			}
+			$result['status_value'] = "Thành công. Chuẩn bị chuyển trang!";
+			$result['status'] = 1;
+		}
+		echo json_encode($result);
+		
+	}
 	public function send_chat()
 	{
 		$result = array();
@@ -160,31 +175,6 @@ class Controller_Student extends Controller
 			$result['status_value'] = "Thành công";
 			$result['status'] = 1;
 		}
-		echo json_encode($result);
-	}
-	public function send_exam()
-	{
-		$result = array();
-		$ID = array();
-		$answer = array();
-		$correct = array();
-		$score = 0;
-		$unit = isset($_POST['unit']) ? $_POST['unit'] : '';
-		for ($i=1; $i <= 10; $i++) { 
-			$ID[$i] =  $_POST['quest_'.$i.'_id'];
-			$answer[$i] = isset($_POST['quest_'.$i.'_answer']) ? $_POST['quest_'.$i.'_answer'] : '';
-			$correct[$i] = $this->get_question($ID[$i])->correct_answer;
-			if($answer[$i] != ''&&($correct[$i] == $answer[$i]))
-				$score++;
-		}
-		$this->insert_score($unit,$score);
-		for ($i=1; $i <= 10; $i++) { 
-			$quest = $this->get_question($ID[$i]);
-			$quest->answer = $answer[$i];
-			$result[] = $quest;
-		}
-		$result['score'] = $score;
-		$this->reset_doing_exam();//reset thông tin bài làm đang làm sau khi nộp
 		echo json_encode($result);
 	}
 	public function update_profiles($username, $name, $email, $password, $gender, $birthday)
@@ -217,56 +207,129 @@ class Controller_Student extends Controller
 		}
 		echo json_encode($result);
 	}
-	public function show_head_left()
+	public function accept_test()
 	{
-		$this->load_view("student");
-		$view = new View_Student();
-		$view->show_head_left($this->info);
+		$model = new Model_Student();
+		$test = $model->get_result_quest($this->info['doing_exam'],$this->info['ID']);
+		$test_code = $test[0]->test_code;
+		$total_questions = $test[0]->total_questions;
+		$correct = 0;
+		$c = 10/$total_questions;
+		foreach ($test as $t) {
+			if(trim($t->student_answer) == trim($t->correct_answer))
+				$correct++;
+		}
+		$score = $correct * $c;
+		$score_detail = $correct.'/'.$total_questions;
+		$model->insert_score($this->info['ID'],$test_code,$score,$score_detail);
+		$model->reset_doing_exam($this->info['ID']);
+		header("Location: index.php?action=show_result&test_code=".$test_code);
 	}
-	public function show_index()
+	public function logout()
 	{
-		$this->load_view("student");
+		$result = array();
+		$confirm = isset($_POST['confirm']) ? $_POST['confirm'] : true;
+		if ($confirm) {
+			$result['status_value'] = "Đăng xuất thành công!";
+			$result['status'] = 1;
+			session_destroy();
+		}
+		echo json_encode($result);
+	}
+	public function show_dashboard()
+	{
 		$view = new View_Student();
-		if($this->info['doing_exam'] == '')
-			$view->show_index();
+		if($this->info['doing_exam'] == '') {
+			$view->show_head_left($this->info);
+			$view->show_dashboard();
+			$view->show_foot();
+		}
 		else {
-			$view->show_exam();
-			echo '<script>show_exam('.$this->info["doing_exam"].');</script>';
+			$model = new Model_Student();
+			$test = $model->get_doing_quest($this->info['doing_exam'],$this->info['ID']);
+			$time_string[] = explode(":",$this->info['time_remaining']);
+			$min = $time_string[0][0];
+			$sec = $time_string[0][1];
+			$view->show_exam($test,$min,$sec);
 		}
 	}
 	public function show_chat()
 	{
-		$this->load_view("student");
 		$view = new View_Student();
-		if($this->info['doing_exam'] == '')
+		if($this->info['doing_exam'] == '') {
+			$view->show_head_left($this->info);
 			$view->show_chat();
+			$view->show_foot();
+		}
 		else {
-			$view->show_exam();		
-			echo '<script>show_exam('.$this->info["doing_exam"].');</script>';
+			$model = new Model_Student();
+			$test = $model->get_doing_quest($this->info['doing_exam'],$this->info['ID']);
+			$time_string[] = explode(":",$this->info['time_remaining']);
+			$min = $time_string[0][0];
+			$sec = $time_string[0][1];
+			$view->show_exam($test,$min,$sec);
 		}
 	}
 	public function show_chat_all()
 	{
-		$this->load_view("student");
 		$view = new View_Student();
+		$view->show_head_left($this->info);
 		$view->show_chat_all();
+		$view->show_foot();
 	}
 	public function show_notifications()
 	{
-		$this->load_view("student");
 		$view = new View_Student();
+		$view->show_head_left($this->info);
 		$view->show_notifications();
-	}
-	public function show_exam()
-	{
-		$this->load_view("student");
-		$view = new View_Student();
-		$view->show_exam();
+		$view->show_foot();
 	}
 	public function show_result()
 	{
-		$this->load_view("student");
 		$view = new View_Student();
-		$view->show_result();
+		if($this->info['doing_exam'] == '') {
+			$model = new Model_Student();
+			$test_code = htmlspecialchars($_GET['test_code']);
+			$score = $model->get_score($this->info['ID'],$test_code);
+			$result = $model->get_result_quest($test_code,$this->info['ID']);
+			if($score && $result)
+			{
+				$view->show_head_left($this->info);
+				$view->show_result($score,$result);
+				$view->show_foot();
+			} else {
+				$this->show_404();
+			}
+		}
+		else {
+			$model = new Model_Student();
+			$test = $model->get_doing_quest($this->info['doing_exam'],$this->info['ID']);
+			$time_string[] = explode(":",$this->info['time_remaining']);
+			$min = $time_string[0][0];
+			$sec = $time_string[0][1];
+			$view->show_exam($test,$min,$sec);
+		}
+	}
+
+	public function show_about()
+	{
+		$view = new View_Student();
+		$view->show_head_left($this->info);
+		$view->show_about();
+		$view->show_foot();
+	}
+	public function show_profiles()
+	{
+		$view = new View_Student();
+		$view->show_head_left($this->info);
+		$view->show_profiles($this->profiles());
+		$view->show_foot();
+	}
+	public function show_404()
+	{
+		$view = new View_Student();
+		$view->show_head_left($this->info);
+		$view->show_404();
+		$view->show_foot();
 	}
 }

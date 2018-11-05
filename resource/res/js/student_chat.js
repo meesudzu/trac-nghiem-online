@@ -44,11 +44,3 @@ function send_chat () {
     };
     $.post(url, data, success);
 }
-
-function show_chat_all() {
-    var url = "index.php?action=show_chat_all";
-    var success = function(result) {
-        $('#box-content').html(result);
-    };
-    $.get(url, success);
-}
