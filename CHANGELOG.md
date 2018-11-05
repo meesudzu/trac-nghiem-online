@@ -1,3 +1,14 @@
+v3.2.0 (06/11/2018)
+
+	- Nâng cấp chức năng tạo đề thi của quản trị viên ✓
+		- Có thể chọn môn, chọn khối, chọn số câu hỏi của từng chương trong đề thi ✓
+		- Hệ thống sẽ lấy ngẫu nhiên các câu hỏi theo điều kiện đã chọn để tạo đề thi ✓
+		- Mỗi học sinh khi chọn đề thi để làm bài sẽ có bộ câu hỏi được lấy từ bộ câu hỏi của đề thi sau khi đã được trộn thứ tự các câu hỏi và câu trả lời. ✓
+	- Nâng cấp chức năng làm bài của học sinh ✓
+		- Thay đổi giao diện trang làm bài/thi trực quan, nhiều chức năng hơn ✓
+		- Hệ thống sẽ lưu lại trạng thái làm bài và thời gian còn lại của học sinh. Khi gặp sự cố hoặc học sinh lỡ tay đóng trình duyệt đang mở, khi mở lại trang làm bài tập sẽ vẫn lưu lại trang thái các câu đã làm và thời gian còn lại. ✓
+		- Có thể xem lại thông tin bài làm và điểm bất cứ khi nào cần. ✓
+	- Hỗ trợ thêm các môn có thể kiểm tra/thi bằng hình thức trắc nghiệm
 v3.1.3 (29/09/2018)
 
 	- Fix chức năng thêm câu hỏi qua file (cho phép hiển thị ảnh trong nội dung câu hỏi) ✓

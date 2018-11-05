@@ -4,10 +4,10 @@
 * Author: Dzu
 * Mail: dzu6996@gmail.com
 **/ 
-require_once 'controller.php';
-include_once('models/model_teacher.php');
+require_once('models/model_teacher.php');
+require_once 'views/view_teacher.php';
 
-class Controller_Teacher extends Controller
+class Controller_Teacher
 {
     public $info =  array();
     public function __construct()
@@ -157,32 +157,61 @@ class Controller_Teacher extends Controller
     }
     public function get_class_detail()
     {
-        $ID = isset($_POST['ID']) ? $_POST['ID'] : '1';
+        $ID = isset($_GET['ID']) ? $_GET['ID'] : '1';
         $class = new Model_Teacher();
         echo json_encode($class->get_class_detail($ID));
     }
-    public function show_head_left()
+    public function logout()
     {
-        $this->load_view("teacher");
+        $result = array();
+        $confirm = isset($_POST['confirm']) ? $_POST['confirm'] : false;
+        if ($confirm) {
+            $result['status_value'] = "Đăng xuất thành công!";
+            $result['status'] = 1;
+            session_destroy();
+        }
+        echo json_encode($result);
+    }
+    public function show_dashboard()
+    {
         $view = new View_Teacher();
         $view->show_head_left($this->info);
-    }
-    public function show_index()
-    {
-        $this->load_view("teacher");
-        $view = new View_Teacher();
-        $view->show_index();
+        $view->show_dashboard();
+        $view->show_foot();
     }
     public function show_class_detail()
     {
-        $this->load_view("teacher");
         $view = new View_Teacher();
+        $view->show_head_left($this->info);
         $view->show_class_detail();
+        $view->show_foot();
     }
     public function show_notifications()
     {
-        $this->load_view("teacher");
         $view = new View_Teacher();
+        $view->show_head_left($this->info);
         $view->show_notifications();
+        $view->show_foot();
+    }
+    public function show_profiles()
+    {
+        $view = new View_Teacher();
+        $view->show_head_left($this->info);
+        $view->show_profiles($this->profiles());
+        $view->show_foot();
+    }
+    public function show_about()
+    {
+        $view = new View_Teacher();
+        $view->show_head_left($this->info);
+        $view->show_about();
+        $view->show_foot();
+    }
+    public function show_404()
+    {
+        $view = new View_Teacher();
+        $view->show_head_left($this->info);
+        $view->show_404();
+        $view->show_foot();
     }
 }

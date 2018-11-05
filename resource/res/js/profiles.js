@@ -1,5 +1,6 @@
 $(function() {
-    get_profiles();
+    $('select').select();
+    $('.modal').modal();
     $('#upload_profiles').on('submit', function() {
         submit_update_profiles($('#upload_profiles').serializeArray());
         $('#profiles-password').val('');
@@ -10,6 +11,7 @@ function get_profiles() {
     var url = "index.php?action=get_profiles";
     var success = function(result) {
         var json_data = $.parseJSON(result);
+        console.log(result)
         update_profiles(json_data);
         set_profiles_sidebar(json_data);
     };
@@ -29,7 +31,9 @@ function update_profiles(data) {
     $('#profiles-new-email').val(data.email);
     $('#profiles-current-email').val(data.email);
     $('#profiles-birthday').val(data.birthday);
+    $('#gender').val(data.gender_id);
     $('#profiles-last-login').text(data.last_login);
+    M.updateTextFields();
 }
 
 function submit_update_profiles(data) {

@@ -352,8 +352,8 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 
 	.dashboard-inner-item {
 		display: inline-block;
-		width: 24%;
-		margin: 20px 50px;
+		width: 100%;
+		margin: 10px 0px;
 		border: 1.5px solid #02796e;
 		border-radius: 10px;
 
@@ -394,4 +394,58 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 			}
 		}
 	}
+}
+.test-content {
+	position: relative;
+	margin-bottom: 5px !important;
+	height: auto;
+	min-height: 505px;
+	background: white;
+}
+.testing-left {
+	width: 120px;
+	overflow-y: auto;
+	display: inline-block;
+	position: fixed;
+	transition: 0.5s;
+	height: calc(100% - 65px);
+	background: white;
+	border: 2px solid #02796e;
+}
+.testing-left .menu-link {
+	display:block;
+	padding-left:15px;
+	padding-bottom:3px;
+	font-size:16px;
+	font-weight:bold;
+}
+.testing-left .menu-link .tick {
+	float:right;
+	color:green;
+	margin-right:15px;
+}
+
+.testing-right {
+	display: inline-block;
+	float: right;
+	overflow-y: auto;
+	width: calc(100% - 125px);
+	padding-top: 5px;
+}
+.item-quest {
+	padding-left: 10px;
+}
+.item-quest .quest-title {
+	color: black;
+	font-weight:bold;
+	font-size:17px;
+}
+.item-quest .quest-content {
+	font-weight:bold;
+	font-size:17px;
+}
+.item-quest .quest-answer>p>label>span {
+	font-weight:bold;
+	font-size:17px;
+	color:#676a6c;
 }

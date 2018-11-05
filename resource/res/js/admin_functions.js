@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    show_dashboard();
     $('.modal').modal();
     $('.collapsible').collapsible();
     $('select').select();
@@ -22,119 +21,6 @@ $(document).ready(function() {
     });
 
 });
-
-function show_dashboard() {
-    var url = "index.php?action=show_dashboard";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('select').select();
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_profiles() {
-    var url = "index.php?action=show_profiles";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('select').select();
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_admins_panel() {
-    var url = "index.php?action=show_admins_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_teachers_panel() {
-    var url = "index.php?action=show_teachers_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_students_panel() {
-    var url = "index.php?action=show_students_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_classes_panel() {
-    var url = "index.php?action=show_classes_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_questions_panel() {
-    var url = "index.php?action=show_questions_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_units_panel() {
-    var url = "index.php?action=show_units_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_notifications_panel() {
-    var url = "index.php?action=show_notifications_panel";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_about() {
-    var url = "index.php?action=show_about";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
 function show_status(json_data) {
     if (json_data.status) {
         $('#status').addClass('success');
@@ -166,7 +52,7 @@ function logout() {
         show_status(json_data);
         if (json_data.status) {
             setTimeout(function() {
-                location.reload();
+                window.location.replace("index.php");
             }, 1500);
         }
     };
@@ -193,7 +79,6 @@ function valid_username_or_email(value, elem) {
 
 
 function select_teacher() {
-    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_teachers";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -203,7 +88,6 @@ function select_teacher() {
             sl.append('<option value="' + value.teacher_id + '">' + value.name + '</option>');
         });
         $('select').select();
-        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
@@ -222,14 +106,14 @@ function select_grade() {
     $.get(url, success);
 }
 
-function select_unit() {
-    var url = "index.php?action=get_list_units";
+function select_subject() {
+    var url = "index.php?action=get_list_subjects";
     var success = function(result) {
         var json_data = $.parseJSON(result);
-        var sl = $('select[name=unit]');
+        var sl = $('select[name=subject_id]');
         sl.empty();
         $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.unit + '">' + value.detail + '</option>');
+            sl.append('<option value="' + value.subject_id + '">' + value.subject_detail + '</option>');
         });
         $('select').select();
     };
@@ -237,7 +121,6 @@ function select_unit() {
 }
 
 function select_class(data) {
-    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_classes";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -247,13 +130,11 @@ function select_class(data) {
             sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
         });
         $('select').select();
-        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }
 
 function select_status() {
-    // $('#preload').removeClass('hidden');
     var url = "index.php?action=get_list_statuses";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -263,7 +144,6 @@ function select_status() {
             sl.append('<option value="' + value.status_id + '">' + value.detail + '</option>');
         });
         $('select').select();
-        // $('#preload').addClass('hidden');
     };
     $.get(url, success);
 }

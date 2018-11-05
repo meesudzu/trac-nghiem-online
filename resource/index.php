@@ -19,13 +19,11 @@ if ($is_IM->INSTALL_MODE) {
     $controller = 'controller_'. $_SESSION['permission'];
     require_once 'controllers/'. $controller .'.php';
     $index = new $controller();
-    $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
+    $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : 'show_dashboard';
     if (is_callable([$index, $action])) {
         $index->$action();
     } else {
-        $index->show_head_left();
         $index->show_404();
-        $index->show_foot();
     }
 } else {
     if (!isset($_GET['action'])) {

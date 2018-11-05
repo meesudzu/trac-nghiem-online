@@ -4,14 +4,18 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
-require_once 'view.php';
 
-class View_Admin extends View
+class View_Admin
 {
     public function show_head_left($info)
     {
         require_once 'config/config.php';
         include 'res/templates/admin_head_left.php';
+    }
+    public function show_foot()
+    {
+        require_once 'config/config.php';
+        include 'res/templates/foot.php';
     }
     public function show_admins_panel()
     {
@@ -37,6 +41,14 @@ class View_Admin extends View
     {
         include 'res/templates/admin_questions_panel.html';
     }
+    public function show_subjects_panel()
+    {
+        include 'res/templates/admin_subjects_panel.html';
+    }
+    public function show_tests_panel()
+    {
+        include 'res/templates/admin_tests_panel.html';
+    }
     public function show_notifications_panel()
     {
         include 'res/templates/admin_notifications_panel.html';
@@ -44,5 +56,18 @@ class View_Admin extends View
     public function show_units_panel()
     {
         include 'res/templates/admin_units_panel.html';
+    }
+    public function show_about()
+    {
+        require_once 'config/config.php';
+        include 'res/templates/about.php';
+    }
+    public function show_profiles($profile)
+    {
+        include 'res/templates/profiles.php';
+    }
+    public function show_404()
+    {
+        include 'res/templates/404.html';
     }
 }

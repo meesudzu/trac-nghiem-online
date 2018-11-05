@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    show_index();
-    $('.modal').modal();
     $('select').select();
+    $('.modal').modal();
+    get_list_classes();
     $('.collapsible').collapsible();
     $('#trigger-sidebar').on('click', function() {
         $('#sidebar-left').toggleClass('sidebar-show');
@@ -22,62 +22,30 @@ $(document).ready(function() {
     });
 });
 
-function show_profiles() {
-    var url = "index.php?action=show_profiles";
-    var success = function(result) {
-        $('#box-content').html(result);
-        $('select').select();
-        $("form").on('submit', function(event) {
-            event.preventDefault();
-        });
-    };
-    $.get(url, success);
-}
-
-function show_about() {
-    var url = "index.php?action=show_about";
-    var success = function(result) {
-        $('#box-content').html(result);
-    };
-    $.get(url, success);
-}
-
-function show_index() {
-    var url = "index.php?action=show_index";
-    var success = function(result) {
-        $('#box-content').html(result);
-        get_list_classes();
-    };
-    $.get(url, success);
-}
-
-function show_class_detail(ID) {
-    var url = "index.php?action=show_class_detail";
-    var success = function(result) {
-        $('#box-content').html(result);
-        get_class_detail(ID);
-    };
-    $.get(url, success);
-}
-
-function show_notifications() {
-    var url = "index.php?action=show_notifications";
-    var success = function(result) {
-        $('#box-content').html(result);
-    };
-    $.get(url, success);
+function get_url_parameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
 }
 
 function get_class_detail(ID) {
     var url = "index.php?action=get_class_detail";
-    var data = {
-        ID: ID
-    };
+    data = {
+        ID:ID
+    }
     var success = function(result) {
         var json_data = $.parseJSON(result);
         insert_class_detail(json_data);
     };
-    $.post(url, data, success);
+    $.get(url, data, success);
 }
 
 function insert_class_detail(data) {
@@ -154,7 +122,7 @@ function logout() {
         show_status(json_data);
         if (json_data.status) {
             setTimeout(function() {
-                location.reload();
+                window.location.replace("index.php");
             }, 1500);
         }
     };
@@ -204,13 +172,13 @@ function show_list_classes(data) {
         tr.append('<td>' + value.class_name + '</td>');
         tr.append('<td>' + value.grade + '</td>');
         tr.append('<td>' + view_btn(value.class_id) + '</td>');
-        sidebar.append('<a class="menu-list cursor" onclick="show_class_detail(' + value.class_id + ')">' + value.class_name + '</a>');
+        sidebar.append('<a href="index.php?action=show_class_detail&class_id=' + value.class_id + '" class="menu-list cursor">' + value.class_name + '</a>');
         list.append(tr);
     });
 }
 
 function view_btn(data) {
-    return '<button class="btn" onclick="show_class_detail(' + data + ')">Xem</button>';
+    return '<a href="index.php?action=show_class_detail&class_id=' + data + '" class="btn">Xem</a>';
 }
 
 function view_score_btn(data) {
@@ -236,7 +204,7 @@ function get_score(id) {
             var p = $('<p style="font-size: 1.3em; font-weight: bold;">Chưa có bài làm nào</p>');
             tbody.append(p);
         $.each(json_data, function(key, value) {
-            var p = $('<p style="font-size: 1.3em; font-weight: bold;">' + value.unit_detail + ' - ' + value.score + ' điểm. Hoàn thành lúc ' + value.completion_time + '</p>');
+            var p = $('<p style="font-size: 1.3em; font-weight: bold;">Đề thi: ' + value.test_code + ' - ' + value.score_number + ' điểm.<br />Hoàn thành lúc ' + value.completion_time + '</p>');
             tbody.append(p);
         });
         $('#preload').addClass('hidden');

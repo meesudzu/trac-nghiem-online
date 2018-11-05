@@ -268,21 +268,3 @@ function submit_edit_admin(data) {
     };
     $.post(url, data, success);
 }
-
-// function admin_insert_data(data) {
-//     var list = $('#list_admins');
-//     var tr = $('<tr class="fadeIn" id="admin-' + data.admin_id + '"></tr>');
-//     tr.append('<td class="">' + data.admin_id + '</td>');
-//     tr.append('<td class=""><img src="../res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
-//     tr.append('<td class="">' + data.name + '</td>');
-//     tr.append('<td class="">' + data.username + '</td>');
-//     tr.append('<td class="">' + data.email + '</td>');
-//     tr.append('<td class="">' + data.gender_detail + '</td>');
-//     tr.append('<td class="">' + data.birthday + '</td>');
-//     tr.append('<td class="">' + data.last_login + '</td>');
-//     tr.append('<td class="">' + admin_edit_button(data) + '<br />' + admin_del_button(data) + '</td>');
-//     list.append(tr);
-//     $("form").on('submit', function(event) {
-//         event.preventDefault();
-//     });
-// }

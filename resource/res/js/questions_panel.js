@@ -27,8 +27,8 @@ $(function() {
     });
     $('table').on('click', 'a.modal-trigger', function(){
         $('select').select();
-        select_unit();
         select_grade();
+        select_subject();
         var elem = document.querySelector(this.id);
         var instance = M.Modal.init(elem);
         var instance = M.Modal.getInstance(elem);
@@ -77,8 +77,8 @@ function get_list_questions() {
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_list_questions(json_data);
-        select_unit();
         select_grade();
+        select_subject();
         $('.modal').modal();
         $('select').select();
         $('#preload').addClass('hidden');
@@ -90,12 +90,11 @@ function show_list_questions(data) {
     var list = $('#list_questions');
     list.empty();
     for (var i = 0; i < data.length; i++) {
-        var tr = $('<tr class="fadeIn" id="question-' + data[i].ID + '"></tr>');
-        tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].ID + '" /><span></span></label></p></td>');
-        tr.append('<td class="">' + data[i].ID + '</td>');
-        tr.append('<td class="">' + data[i].question_detail + '</td>');
-        tr.append('<td class="">' + data[i].grade_detail + '</td>');
-        tr.append('<td class="">' + data[i].question_unit + '</td>');
+        var tr = $('<tr class="fadeIn" id="question-' + data[i].question_id + '"></tr>');
+        tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].question_id + '" /><span></span></label></p></td>');
+        tr.append('<td class="">' + data[i].question_id + '</td>');
+        tr.append('<td class="">' + data[i].question_content + '</td>');
+        tr.append('<td class="">Môn ' + data[i].subject_detail + '<br />Chương ' + data[i].unit + ' ' + data[i].grade_detail + '</td>');
         tr.append('<td class="">' + data[i].answer_a + '</td>');
         tr.append('<td class="">' + data[i].answer_b + '</td>');
         tr.append('<td class="">' + data[i].answer_c + '</td>');
@@ -121,7 +120,7 @@ function show_list_questions(data) {
             },
         },
         "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 0, 10 ] }, //hide sort icon on header of column 0, 10
+        { "bSortable": false, "aTargets": [ 0, 9 ] }, //hide sort icon on header of column 0, 10
         ],
         'aaSorting': [[1, 'asc']] // start to sort data in second column
     }  );
@@ -131,21 +130,18 @@ function show_list_questions(data) {
 }
 
 function question_edit_button(data) {
-    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.ID + '" id="#edit-' + data.ID + '">Sửa</a>' +
-    '<div id="edit-' + data.ID + '" class="modal modal-edit">' +
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.question_id + '" id="#edit-' + data.question_id + '">Sửa</a>' +
+    '<div id="edit-' + data.question_id + '" class="modal modal-edit">' +
     '<div class="row col l12">' +
-    '<form action="" method="POST" role="form" id="form-edit-question-' + data.ID + '">' +
-    '<div class="modal-content"><h5>Sửa: ' + data.question_detail + '</h5>' +
+    '<form action="" method="POST" role="form" id="form-edit-question-' + data.question_id + '">' +
+    '<div class="modal-content"><h5>Sửa: ' + data.question_content + '</h5>' +
     '<div class="modal-body">' +
     '<div class="col l12 s12" style="padding-top: 20px">' +
     '<div class="input-field">' +
-    '<input type="hidden" id="ID" name="ID" value="' + data.ID + '">' +
-    '<textarea id="question_detail" name="question_detail" class="materialize-textarea" required>' + data.question_detail + '</textarea>' +
-    '<label for="question_detail" class="active">Câu Hỏi</label>' +
+    '<input type="hidden" id="question_id" name="question_id" value="' + data.question_id + '">' +
+    '<textarea id="question_content" name="question_content" class="materialize-textarea" required>' + data.question_content + '</textarea>' +
+    '<label for="question_content" class="active">Câu Hỏi</label>' +
     '</div>' +
-    '</div>' +
-    '<div class="row col l12">' +
-    '<div class="col l6 s12">' +
     '<div class="input-field">' +
     '<label for="answer_a" class="active">A</label>' +
     '<input type="text" id="answer_a" name="answer_a" value="' + data.answer_a + '" required>' +
@@ -162,8 +158,6 @@ function question_edit_button(data) {
     '<label for="answer_d" class="active">D</label>' +
     '<input type="text" id="answer_d" name="answer_d" value="' + data.answer_d + '" required>' +
     '</div>' +
-    '</div>' +
-    '<div class="col l6 s12">' +
     '<div class="input-field">' +
     '<label for="correct_answer" class="active">Đúng</label>' +
     '<input type="text" id="correct_answer" name="correct_answer" value="' + data.correct_answer + '" required>' +
@@ -174,25 +168,30 @@ function question_edit_button(data) {
     '<label>Khối</label>' +
     '</div>' +
     '<div class="input-field">' +
-    '<select name="unit" id="unit">' +
+    '<select name="subject_id" id="subject_id">' +
     '</select>' +
-    '<label>Chương</label>' +
+    '<label>Môn</label>' +
+    '</div>' +
+    '<div class="input-field">' +
+    '<input name="unit" type="number" required value="' + data.unit + '">' +
+    '<label class="active">Chương</label>' +
     '</div>' +
     '</div>' +
-    '</div></div></div>' +
+    '</div>' +
+    '</div></div>' +
     '<div class="row col l12 s12 modal-footer">' +
     '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-    '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_question(' + data.ID + ')">Đồng Ý</button>' +
+    '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_question(' + data.question_id + ')">Đồng Ý</button>' +
     '</div></form></div></div>';
 }
 
 function question_del_button(data) {
-    return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.ID + '" id="#del-' + data.ID + '">Xóa</a>' +
-    '<div id="del-' + data.ID + '" class="modal"><div class="modal-content">' +
-    '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.question_detail + '</p></div>' +
-    '<form action="" method="POST" role="form" onsubmit="submit_del_question(this.id)" id="form-del-question-' + data.ID + '">' +
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#del-' + data.question_id + '" id="#del-' + data.question_id + '">Xóa</a>' +
+    '<div id="del-' + data.question_id + '" class="modal"><div class="modal-content">' +
+    '<h5>Cảnh Báo</h5><p>Xác nhận xóa ' + data.question_content + '</p></div>' +
+    '<form action="" method="POST" role="form" onsubmit="submit_del_question(this.id)" id="form-del-question-' + data.question_id + '">' +
     '<div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a>' +
-    '<input type="hidden" value="' + data.ID + '" name="ID">' +
+    '<input type="hidden" value="' + data.question_id + '" name="question_id">' +
     '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
@@ -203,13 +202,8 @@ function submit_add_question(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // question_insert_data(json_data);
             $('#table_questions').DataTable().destroy();
             get_list_questions();
-            // select_unit();
-            // select_grade();
-            // $('.modal').modal();
-            // $('select').select();
         }
         $('#preload').addClass('hidden');
     };
@@ -220,16 +214,14 @@ function submit_add_question_via_file() {
     $('#preload').removeClass('hidden');
     $('#error').text('');
     var file_data = $('#file_data').prop('files')[0];
-    var unit = $('#_unit').val();
-    var grade_id = $('#_grade_id').val();
+    var subject = $('#_subject').val();
     var type = file_data.type;
     var size = file_data.size;
     var match = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel"];
     if (type == match[0] || type == match[1]) {
         var form_data = new FormData();
         form_data.append('file', file_data);
-        form_data.append('unit', unit);
-        form_data.append('grade_id', grade_id);
+        form_data.append('subject_id', subject);
         $.ajax({
             url: 'index.php?action=check_add_question_via_file',
             dataType: 'text',
@@ -261,9 +253,6 @@ function submit_del_question(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#question-' + json_data.ID).hide('400', function() {
-            //     this.remove();
-            // });
             $('#table_questions').DataTable().destroy();
             get_list_questions();
         }
@@ -281,36 +270,11 @@ function submit_edit_question(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#question-' + json_data.ID).remove();
-            // question_insert_data(json_data);
             $('#table_questions').DataTable().destroy();
             get_list_questions();
             form[0].reset();
-            // select_unit();
-            // select_grade();
-            // $('.modal').modal();
-            // $('select').select();
         }
         $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
-
-// function question_insert_data(data) {
-//     var list = $('#list_questions');
-//     var tr = $('<tr question="fadeIn" id="question-' + data.ID + '"></tr>');
-//     tr.append('<td question="">' + data.ID + '</td>');
-//     tr.append('<td question="">' + data.question_detail + '</td>');
-//     tr.append('<td question="">' + data.grade_detail + '</td>');
-//     tr.append('<td question="">' + data.question_unit + '</td>');
-//     tr.append('<td question="">' + data.answer_a + '</td>');
-//     tr.append('<td question="">' + data.answer_b + '</td>');
-//     tr.append('<td question="">' + data.answer_c + '</td>');
-//     tr.append('<td question="">' + data.answer_d + '</td>');
-//     tr.append('<td question="">' + data.correct_answer + '</td>');
-//     tr.append('<td question="">' + question_edit_button(data) + '<br />' + question_del_button(data) + '</td>');
-//     list.append(tr);
-//     $("form").on('submit', function(event) {
-//         event.preventDefault();
-//     });
-// }
