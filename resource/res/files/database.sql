@@ -186,7 +186,6 @@ CREATE TABLE `questions` (
 --
 
 CREATE TABLE `quest_of_test` (
-  `ID` int(11) NOT NULL,
   `test_code` int(11) DEFAULT NULL,
   `question_id` int(11) DEFAULT NULL,
   `timest` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -414,7 +413,9 @@ ALTER TABLE `questions`
 -- Chỉ mục cho bảng `quest_of_test`
 --
 ALTER TABLE `quest_of_test`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`test_code`,`question_id`),
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `test_code` (`test_code`);
 
 --
 -- Chỉ mục cho bảng `scores`
@@ -627,6 +628,13 @@ ALTER TABLE `questions`
 ALTER TABLE `scores`
   ADD CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`),
   ADD CONSTRAINT `scores_ibfk_2` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`);
+
+--
+-- Các ràng buộc cho bảng `scores`
+--
+ALTER TABLE `quest_of_test`
+  ADD CONSTRAINT `quest_of_test_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`),
+  ADD CONSTRAINT `quest_of_test_ibfk_2` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`);
 
 --
 -- Các ràng buộc cho bảng `students`

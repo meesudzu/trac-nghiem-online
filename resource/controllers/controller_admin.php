@@ -328,7 +328,7 @@ class Controller_Admin
         $test->icon = "fa-edit";
         $test->actionlink = "show_tests_panel";
         $total = array($admin,$teacher,$student,$grade,$class,$subject,$question,$test);
-        echo json_encode($total);
+        return $total;
     }
     public function notify_teacher($ID, $teacher_id)
     {
@@ -1122,7 +1122,7 @@ class Controller_Admin
     {
         $view = new View_Admin();
         $view->show_head_left($this->info);
-        $view->show_dashboard();
+        $view->show_dashboard($this->get_dashboard_info());
         $view->show_foot();
     }
     public function show_teachers_panel()

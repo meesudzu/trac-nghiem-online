@@ -10,12 +10,14 @@
 	<link rel="stylesheet" href="../res/css/style.min.css">
 	<link rel="stylesheet" href="../res/css/font-awesome.css">
 	<link rel="stylesheet" href="../res/css/materialize.min.css">
+	<link rel="stylesheet" href="../res/libs/DataTables/css/jquery.dataTables.css">
 	<script src="../res/js/jquery.js"></script>
 	<script src="../res/js/materialize.min.js"></script>
-	<script src="../res/js/student_functions.js"></script>
+	<script src="../res/libs/DataTables/js/jquery.dataTables.js"></script>
+	<script src="../res/js/teacher_functions.js"></script>
 </head>
 
-<body class="body-login">
+<body class="body-login  overflow scrollbar">
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper nav-green">
@@ -35,21 +37,25 @@
 			</div>
 		</div>
 		<ul class="collapsible reset-margin" data-collapsible="accordion">
-			<a href="index.php?action=show_dashboard" class="collapsible-header font-color cursor"><i class="material-icons">library_books</i>Làm Bài Tập</a>
-			<a href="index.php?action=show_chat" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Trò Chuyện</a>
-			<a href="index.php?action=show_notifications" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Xem Thông Báo</a>
-			<a href="index.php?action=show_about" class="collapsible-header font-color cursor"><i class="material-icons">insert_comment</i>Liên Hệ</a>
-		</ul>
-	</div>
-	<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<h4>Đăng Xuất</h4>
-			<p>Xác nhận đăng xuất</p>
+			<li class="active">
+				<div class="collapsible-header" id="menu"><i class="material-icons hide" id="menu-arrow-down">arrow_drop_down</i>
+					<i class="material-icons" id="menu-arrow-up">arrow_drop_up</i>Danh Sách Lớp</div>
+					<div class="collapsible-body list" id="list_classes_sidebar">
+					</div>
+				</li>
+				<a href="index.php?action=show_notifications" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Gửi/Xem Thông Báo</a>
+				<a href="index.php?action=show_about" class="collapsible-header font-color cursor"><i class="material-icons">insert_comment</i>Liên Hệ</a>
+			</ul>
 		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Không</a>
-			<a class="modal-action modal-close waves-effect waves-green btn-flat" id="btn-logout">Có</a>
+		<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<h4>Đăng Xuất</h4>
+				<p>Xác nhận đăng xuất</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Không</a>
+				<a class="modal-action modal-close waves-effect waves-green btn-flat" id="btn-logout">Có</a>
+			</div>
 		</div>
-	</div>
-	<div class="box-content right box-content-mini" id="box-content">
+		<div class="box-content right box-content-mini" id="box-content">

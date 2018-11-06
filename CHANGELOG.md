@@ -1,3 +1,8 @@
+v3.2.1 (07/11/2018)
+
+	- Fix chức năng làm bài của học sinh
+	- Thay đổi một chút giao diện cho hợp lý hơn
+	- Thay đổi cấu trúc thư mục
 v3.2.0 (06/11/2018)
 
 	- Nâng cấp chức năng tạo đề thi của quản trị viên ✓

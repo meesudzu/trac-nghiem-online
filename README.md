@@ -9,7 +9,7 @@ Xem tại [CHANGELOG](CHANGELOG.md)<br />
 	- Thêm nhiều dạng bài tập trắc nghiệm hơn
 	- Hỡ trợ nhiều dạng thông tin có trong câu hỏi hơn như hình ảnh, âm thanh, video...
 [Hướng dẫn sử dụng](GUIDE.md)
-## Ảnh Demo (Chụp Từ v3.2.0)
+## Ảnh Demo (Chụp Từ v3.2.1)
 ![INSTALL](demo-images/install.png)
 ![Đăng nhập 1](demo-images/login-1.PNG)
 ![Đăng nhập 2](demo-images/login-2.PNG)

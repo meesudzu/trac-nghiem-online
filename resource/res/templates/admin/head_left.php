@@ -16,7 +16,7 @@
 	<script src="../res/js/admin_functions.js"></script>
 </head>
 
-<body class="body-login">
+<body class="body-login overflow scrollbar">
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper nav-green">

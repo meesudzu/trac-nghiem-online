@@ -72,11 +72,6 @@ class Controller_Student
 		$profiles = new Model_Student();
 		echo json_encode($profiles->get_profiles($this->info['username']));
 	}
-	public function get_scores()
-	{
-		$profiles = new Model_Student();
-		echo json_encode($profiles->get_scores($this->info['ID']));
-	}
 	public function get_notifications()
 	{
 		$noti = new Model_Student();
@@ -91,11 +86,6 @@ class Controller_Student
 	{
 		$chat_all = new Model_Student();
 		echo json_encode($chat_all->get_chat_all($this->info['class_id']));
-	}
-	public function get_list_tests()
-	{
-		$list_tests = new Model_Student();
-		echo json_encode($list_tests->get_list_tests());
 	}
 	public function valid_email_on_profiles()
 	{
@@ -241,7 +231,10 @@ class Controller_Student
 		$view = new View_Student();
 		if($this->info['doing_exam'] == '') {
 			$view->show_head_left($this->info);
-			$view->show_dashboard();
+			$model = new Model_Student();
+			$scores = $model->get_scores($this->info['ID']);
+			$tests = $model->get_list_tests();
+			$view->show_dashboard($tests, $scores);
 			$view->show_foot();
 		}
 		else {
@@ -270,11 +263,11 @@ class Controller_Student
 			$view->show_exam($test,$min,$sec);
 		}
 	}
-	public function show_chat_all()
+	public function show_all_chat()
 	{
 		$view = new View_Student();
 		$view->show_head_left($this->info);
-		$view->show_chat_all();
+		$view->show_all_chat();
 		$view->show_foot();
 	}
 	public function show_notifications()

@@ -33,7 +33,7 @@
 @font-face { font-family: 'roboto-light'; src: url("../fonts/roboto/Roboto-Light.woff2"); font-weight: normal; font-style: normal; }
 .material-icons { font-family: 'Material Icons'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }
 
-.body-login { overflow: hidden; font-family: 'roboto-light' !important; color: #676a6c; background: #f3f3f4; box-sizing: border-box; width: 100%; height: 100%; }
+.body-login { overflow: hidden; font-family: 'roboto-light' !important; color: #676a6c; background: white; box-sizing: border-box; width: 100%; height: 100%; }
 
 .tabs .indicator { background-color: #02796e !important; }
 
@@ -74,13 +74,9 @@
 .title-content { margin-bottom: 2px; background: white; color: #676a6c; box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
 .title-content .timer { display: inline-block; font-size: 19px; float: right; margin-right: 50%; padding-top: 2px; font-weight: bold; color: blue; }
 
-.block-content { overflow-x: hidden; max-height: calc(100vh - 115px); padding-bottom: 20px; }
+.block-content { overflow-x: hidden; padding-bottom: 20px; }
 
-.content { position: relative; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); height: auto; min-height: 500px; margin: 0 0 5px 0; padding: 0 20px; background: white; }
-
-.footer { z-index: 999; position: fixed; bottom: 0; right: 0; width: 100vw; min-width: 320px; transition: all 0.4s; border-top: 1px solid #e7eaec; background: white; padding: 6px 20px; box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.34), 0 0 6px 0 rgba(0, 0, 0, 0.14); }
-
-.footer-mini { width: calc(100vw - 220px); }
+.content { border-top: 2px solid #02796e; position: relative; height: auto; min-height: 500px; margin: 0 0 5px 0; padding: 0 20px; background: white; }
 
 .avatar { width: 70px; height: 70px; }
 
@@ -102,10 +98,6 @@
 .action { display: inline-block; margin: 5px; }
 
 .help { font-size: 16px; color: green; }
-
-.unit_detail { text-align: center; box-sizing: border-box !important; padding: 10px !important; }
-.unit_detail .unit_name { display: block; font-size: 20px; font-weight: bold; }
-.unit_detail .unit_status { font-size: 15px; font-weight: bold; padding-bottom: 5px; }
 
 .exam_quest { font-size: 18px; }
 
@@ -150,5 +142,9 @@
 .item-quest .quest-content { font-weight: bold; font-size: 17px; }
 
 .item-quest .quest-answer > p > label > span { font-weight: bold; font-size: 17px; color: #676a6c; }
+
+#tests_list { display: inline-block; width: 100%; border: 1.5px solid #02796e; border-radius: 10px; padding: 10px; }
+
+.full-width { width: 100% !important; }
 
 /*# sourceMappingURL=style.min.css.map */
