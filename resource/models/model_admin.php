@@ -506,4 +506,12 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->execute_return_status();
     }
+    public function get_quest_of_test($test_code)
+    {
+        $sql = "SELECT * FROM `quest_of_test`
+        INNER JOIN questions ON quest_of_test.question_id = questions.question_id
+        WHERE test_code = $test_code";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
 }

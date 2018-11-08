@@ -49,6 +49,10 @@ class View_Admin
     {
         include 'res/templates/admin/tests_panel.html';
     }
+    public function show_tests_detail($questions)
+    {
+        include 'res/templates/admin/tests_detail.php';
+    }
     public function show_notifications_panel()
     {
         include 'res/templates/admin/notifications_panel.html';

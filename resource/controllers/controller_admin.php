@@ -1160,6 +1160,15 @@ class Controller_Admin
         $view->show_tests_panel();
         $view->show_foot();
     }
+    public function test_detail()
+    {
+        $view = new View_Admin();
+        $model = new Model_Admin();
+        $test_code = htmlspecialchars($_GET['test_code']);
+        $view->show_head_left($this->info);
+        $view->show_tests_detail($model->get_quest_of_test($test_code));
+        $view->show_foot();
+    }
     public function show_subjects_panel()
     {
         $view = new View_Admin();
