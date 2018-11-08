@@ -1,3 +1,6 @@
+v3.2.2 (0x/11/2018)
+
+	- Thêm chức năng xem danh sách điểm của các bài thi/kiểm tra cho Admin
 v3.2.1 (07/11/2018)
 
 	- Fix chức năng làm bài của học sinh
