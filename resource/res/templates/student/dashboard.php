@@ -31,7 +31,7 @@
 								echo '<a href="index.php?action=show_result&test_code='.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
 							else {
 								?>
-								<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#do-test-<?=$tests[$i]->test_code?>" id="do_test">Làm Bài</a>
+								<a class="waves-effect waves-light btn modal-trigger full-width" style="margin-bottom: 7px;" href="#do-test-<?=$tests[$i]->test_code?>" id="do_test">Làm Bài</a>
 								<div id="do-test-<?=$tests[$i]->test_code?>" class="modal">
 									<div class="row col l12">
 										<form class="form_test" action="" method="POST" role="form" id="form_submit_test_<?=$tests[$i]->test_code?>">
@@ -63,9 +63,9 @@
 								}
 							}
 							if($flag_2)
-								echo '<a href="index.php?action=show_result&test_code='.$tests[$i]->test_code.'" class="btn">Chi Tiết Bài Làm</a>';
+								echo '<a href="index.php?action=show_result&test_code='.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
 							else
-								echo '<button class="btn" disabled>Chi Tiết Bài Làm</button>';
+								echo '<button class="btn full-width" disabled>Chi Tiết Bài Làm</button>';
 						}
 						?>
 					</div>
