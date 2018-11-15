@@ -54,7 +54,7 @@ function insert_class_detail(data) {
     $.each(data, function(key, value) {
         var tr = $('<tr id="student-id-' + value.student_id + '"></tr>');
         tr.append('<td>' + value.student_id + '</td>');
-        tr.append('<td><img src="../res/img/avatar/' + value.avatar + '"" alt="avatar" class="avatar" /></td>');
+        tr.append('<td><img src="res/img/avatar/' + value.avatar + '"" alt="avatar" class="avatar" /></td>');
         tr.append('<td>' + value.username + '</td>');
         tr.append('<td>' + value.name + '</td>');
         if(value.birthday == '' || value.birthday == '0000-00-00')

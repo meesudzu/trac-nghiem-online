@@ -7,12 +7,12 @@
 	<title>
 		<?=Config::TITLE?>
 	</title>
-	<link rel="stylesheet" href="../res/css/style.min.css">
-	<link rel="stylesheet" href="../res/css/font-awesome.css">
-	<link rel="stylesheet" href="../res/css/materialize.min.css">
-	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/login.js"></script>
-	<script src="../res/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="res/css/style.min.css">
+	<link rel="stylesheet" href="res/css/font-awesome.css">
+	<link rel="stylesheet" href="res/css/materialize.min.css">
+	<script src="res/js/jquery.js"></script>
+	<script src="res/js/login.js"></script>
+	<script src="res/js/materialize.min.js"></script>
 </head>
 
 <body class="bg-login">

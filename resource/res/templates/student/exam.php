@@ -5,13 +5,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Làm Bài Thi</title>
-	<link rel="stylesheet" href="../res/css/normalize.css">
-	<link rel="stylesheet" href="../res/css/style.min.css">
-	<link rel="stylesheet" href="../res/css/font-awesome.css">
-	<link rel="stylesheet" href="../res/css/materialize.min.css">
-	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/materialize.min.js"></script>
-	<script src="../res/js/student_functions.js"></script>
+	<link rel="stylesheet" href="res/css/normalize.css">
+	<link rel="stylesheet" href="res/css/style.min.css">
+	<link rel="stylesheet" href="res/css/font-awesome.css">
+	<link rel="stylesheet" href="res/css/materialize.min.css">
+	<script src="res/js/jquery.js"></script>
+	<script src="res/js/materialize.min.js"></script>
+	<script src="res/js/student_functions.js"></script>
 </head>
 
 <body class="body-login overflow scrollbar">

@@ -186,12 +186,12 @@ return (object) array('host' => '".$this->connect_info['host']."','user' => '".$
 <head>
 	<meta charset="UTF-8">
 	<title>Cài Đặt Hệ Thống Trắc Nghiệm Online</title>
-	<link rel="stylesheet" href="../res/css/normalize.css">
-	<link rel="stylesheet" href="../res/css/style.min.css">
-	<link rel="stylesheet" href="../res/css/font-awesome.css">
-	<link rel="stylesheet" href="../res/css/materialize.min.css">
-	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="res/css/normalize.css">
+	<link rel="stylesheet" href="res/css/style.min.css">
+	<link rel="stylesheet" href="res/css/font-awesome.css">
+	<link rel="stylesheet" href="res/css/materialize.min.css">
+	<script src="res/js/jquery.js"></script>
+	<script src="res/js/materialize.min.js"></script>
 	<style>
 	span {
 		font-weight: bold;

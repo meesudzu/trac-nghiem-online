@@ -1,11 +1,14 @@
-v3.2.2 (0x/11/2018)
+v3.3.0 (0x/11/2018)
 
-	- Thêm chức năng xem danh sách điểm của các bài thi/kiểm tra cho Admin
+	- Thêm chức năng xem danh sách điểm của tất cả các bài thi/kiểm tra cho Admin
+	- Thêm chức năng xem danh sách điểm của các bài thi mà có lớp giáo viên đó đang quản lý tham gia 
+	- Thêm chức năng xem chi tiết đề thi cho Admin ✓
+	- Fix file path ✓
 v3.2.1 (07/11/2018)
 
-	- Fix chức năng làm bài của học sinh
-	- Thay đổi một chút giao diện cho hợp lý hơn
-	- Thay đổi cấu trúc thư mục
+	- Fix chức năng làm bài của học sinh ✓
+	- Thay đổi một chút giao diện cho hợp lý hơn ✓
+	- Thay đổi cấu trúc thư mục ✓
 v3.2.0 (06/11/2018)
 
 	- Nâng cấp chức năng tạo đề thi của quản trị viên ✓

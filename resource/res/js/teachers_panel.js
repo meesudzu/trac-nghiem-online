@@ -89,7 +89,7 @@ function show_list_teachers(data) {
         var tr = $('<tr class="fadeIn" id="teacher-' + data[i].teacher_id + '"></tr>');
         tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].teacher_id + '" /><span></span></label></p></td>');
         tr.append('<td class="">' + data[i].teacher_id + '</td>');
-        tr.append('<td class=""><img src="../res/img/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
+        tr.append('<td class=""><img src="res/img/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
         tr.append('<td class="">' + data[i].name + '</td>');
         tr.append('<td class="">' + data[i].username + '</td>');
         tr.append('<td class="">' + data[i].email + '</td>');
@@ -273,7 +273,7 @@ function submit_edit_teacher(data) {
 //     var list = $('#list_teachers');
 //     var tr = $('<tr class="fadeIn" id="teacher-' + data.teacher_id + '"></tr>');
 //     tr.append('<td class="">' + data.teacher_id + '</td>');
-//     tr.append('<td class=""><img src="../res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
+//     tr.append('<td class=""><img src="res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
 //     tr.append('<td class="">' + data.name + '</td>');
 //     tr.append('<td class="">' + data.username + '</td>');
 //     tr.append('<td class="">' + data.email + '</td>');

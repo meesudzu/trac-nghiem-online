@@ -92,7 +92,7 @@ function show_list_students(data) {
         var tr = $('<tr class="fadeIn" id="student-' + data[i].student_id + '"></tr>');
         tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].student_id + '" /><span></span></label></p></td>');
         tr.append('<td class="">' + data[i].student_id + '</td>');
-        tr.append('<td class=""><img src="../res/img/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
+        tr.append('<td class=""><img src="res/img/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
         tr.append('<td class="">' + data[i].name + '</td>');
         tr.append('<td class="">' + data[i].username + '</td>');
         tr.append('<td class="">' + data[i].class_name + '</td>');
@@ -283,7 +283,7 @@ function submit_edit_student(data) {
 //     var list = $('#list_students');
 //     var tr = $('<tr class="fadeIn" id="student-' + data.student_id + '"></tr>');
 //     tr.append('<td class="">' + data.student_id + '</td>');
-//     tr.append('<td class=""><img src="../res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
+//     tr.append('<td class=""><img src="res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
 //     tr.append('<td class="">' + data.name + '</td>');
 //     tr.append('<td class="">' + data.username + '</td>');
 //     tr.append('<td class="">' + data.class_name + '</td>');

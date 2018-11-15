@@ -6,14 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title><?=Config::TITLE?>
 	</title>
-	<link rel="stylesheet" href="../res/css/normalize.css">
-	<link rel="stylesheet" href="../res/css/style.min.css">
-	<link rel="stylesheet" href="../res/css/font-awesome.css">
-	<link rel="stylesheet" href="../res/css/materialize.min.css">
-	<link rel="stylesheet" href="../res/libs/DataTables/css/jquery.dataTables.css">
-	<script src="../res/js/jquery.js"></script>
-	<script src="../res/js/materialize.min.js"></script>
-	<script src="../res/js/admin_functions.js"></script>
+	<link rel="stylesheet" href="res/css/normalize.css">
+	<link rel="stylesheet" href="res/css/style.min.css">
+	<link rel="stylesheet" href="res/css/font-awesome.css">
+	<link rel="stylesheet" href="res/css/materialize.min.css">
+	<link rel="stylesheet" href="res/libs/DataTables/css/jquery.dataTables.css">
+	<script src="res/js/jquery.js"></script>
+	<script src="res/js/materialize.min.js"></script>
+	<script src="res/js/admin_functions.js"></script>
 </head>
 
 <body class="body-login overflow scrollbar">
@@ -29,7 +29,7 @@
 	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
 		<div class="card reset-margin">
 			<div class="card-image">
-				<img src="../res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
+				<img src="res/img/avatar/<?=$info['avatar']?>" height="155" id="user-avatar">
 				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
 					<a href="index.php?action=show_profiles" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>

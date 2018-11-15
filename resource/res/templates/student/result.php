@@ -4,7 +4,7 @@
 	<div class="block-content overflow scrollbar">
 		<div class="content">
 			<div class="preload hidden" id="preload">
-				<img src="../res/img/loading.gif" alt="">
+				<img src="res/img/loading.gif" alt="">
 			</div>
 			<div id="recent_list" style="padding-bottom: 20px;">
 				<span class="title" style="color: #02796e;"><?=$score->score_number?> Điểm</span><br />

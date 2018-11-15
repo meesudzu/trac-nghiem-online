@@ -4,7 +4,7 @@
 <div class="block-content overflow scrollbar">
 	<div class="content">
 		<div class="preload hidden" id="preload">
-			<img src="../res/img/loading.gif" alt="">
+			<img src="res/img/loading.gif" alt="">
 		</div>
 		<table class="striped centered responsive-table" id="questions">
 			<thead>
@@ -31,7 +31,7 @@
 	</div>
 </div>
 </div>
-<script src="../res/libs/DataTables/js/jquery.dataTables.js"></script>
+<script src="res/libs/DataTables/js/jquery.dataTables.js"></script>
 <script>
 	$('#questions').DataTable( {
 		"language": {

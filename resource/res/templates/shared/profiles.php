@@ -5,7 +5,7 @@
 	<div class="content">
 		<div class="row col l12" style="padding-top: 50px;">
 			<div class="col l3 s12">
-				<img src="../res/img/avatar/avatar-default.jpg" alt="Avatar" width="100%" height="200" id="profiles-avatar">
+				<img src="res/img/avatar/avatar-default.jpg" alt="Avatar" width="100%" height="200" id="profiles-avatar">
 				<div class="file-field input-field">
 					<div class="btn">
 						<span>File</span>
@@ -14,7 +14,7 @@
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text">
-						<img src="../res/img/loading.gif" width="50" height="50" class="valid-img hidden" id="avatar_uploading">
+						<img src="res/img/loading.gif" width="50" height="50" class="valid-img hidden" id="avatar_uploading">
 					</div>
 				</div>
 				<span class="help">Ảnh JPG,PNG nhỏ hơn 2mb</span>
@@ -65,8 +65,8 @@
 						<label for="email" class="active">Email</label>
 						<input type="hidden" id="profiles-current-email" value="">
 						<input type="email" id="profiles-new-email" name="email" oninput="valid_email_on_profiles()" value="<?=$profile->email?>" required>
-						<img src="../res/img/true.png" class="valid-img" id="valid-email-true">
-						<img src="../res/img/false.png" class="valid-img hidden" id="valid-email-false">
+						<img src="res/img/true.png" class="valid-img" id="valid-email-true">
+						<img src="res/img/false.png" class="valid-img hidden" id="valid-email-false">
 					</div>
 					<div class="input-field">
 						<label for="password" class="active">Mật Khẩu</label>
@@ -81,4 +81,4 @@
 	</div>
 </div>
 </div>
-<script type="text/javascript" src="../res/js/profiles.js"></script>
+<script type="text/javascript" src="res/js/profiles.js"></script>

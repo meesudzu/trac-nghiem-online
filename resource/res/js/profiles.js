@@ -19,12 +19,12 @@ function get_profiles() {
 }
 
 function set_profiles_sidebar(data) {
-    $('#user-avatar').attr('src', '../res/img/avatar/' + data.avatar + '');
+    $('#user-avatar').attr('src', 'res/img/avatar/' + data.avatar + '');
     $('#user-name').text(data.name);
 }
 
 function update_profiles(data) {
-    $('#profiles-avatar').attr('src', '../res/img/avatar/' + data.avatar + '');
+    $('#profiles-avatar').attr('src', 'res/img/avatar/' + data.avatar + '');
     $('#profiles-name').val(data.name);
     $('#profiles-username').val(data.username);
     $('#username_avatar').val(data.username);
