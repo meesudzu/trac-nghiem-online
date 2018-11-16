@@ -43,6 +43,7 @@
 					<div class="collapsible-body list" id="list_classes_sidebar">
 					</div>
 				</li>
+				<a href="index.php?action=list_test" class="collapsible-header font-color cursor"><i class="material-icons">list</i>Xem Danh Sách Điểm</a>
 				<a href="index.php?action=show_notifications" class="collapsible-header font-color cursor"><i class="material-icons">send</i>Gửi/Xem Thông Báo</a>
 				<a href="index.php?action=show_about" class="collapsible-header font-color cursor"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 			</ul>

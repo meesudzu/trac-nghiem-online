@@ -1,9 +1,11 @@
 <?php
+
 /**
  * View Teacher
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 class View_Teacher
 {
     public function show_head_left($info)
@@ -22,6 +24,15 @@ class View_Teacher
     public function show_notifications()
     {
         include 'res/templates/teacher/notifications.html';
+    }
+    
+    public function show_list_test($tests)
+    {
+        include 'res/templates/teacher/list_test.php';
+    }
+    public function show_test_score($scores)
+    {
+        include 'res/templates/teacher/test_score.php';
     }
     public function show_about()
     {

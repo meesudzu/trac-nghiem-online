@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 05, 2018 lúc 02:42 PM
+-- Thời gian đã tạo: Th10 16, 2018 lúc 05:10 AM
 -- Phiên bản máy phục vụ: 10.1.31-MariaDB
 -- Phiên bản PHP: 7.2.4
 
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'admin@ikun.org', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 1, '2018-11-05 15:17:35', 1, 'avatar-default.jpg', '0000-00-00');
+(1, 'admin', 'admin@ikun.org', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 1, '2018-11-16 10:47:53', 1, 'avatar-default.jpg', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -62,6 +62,14 @@ CREATE TABLE `chats` (
   `chat_content` text COLLATE utf8_unicode_ci NOT NULL,
   `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chats`
+--
+
+INSERT INTO `chats` (`ID`, `username`, `name`, `time_sent`, `chat_content`, `class_id`) VALUES
+(1, '2017HS1', 'Trần Phúc An', '2018-11-06 14:24:48', 'fsdfsds', 1),
+(2, '2017HS1', 'Trần Phúc An', '2018-11-06 16:12:02', 'gdfgdf', 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +89,8 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`class_id`, `grade_id`, `class_name`, `teacher_id`) VALUES
-(1, 1, 'Lớp 1A', 1);
+(1, 1, 'Lớp 1A', 1),
+(2, 1, 'Lớp 1B', 1);
 
 -- --------------------------------------------------------
 
@@ -146,6 +155,15 @@ CREATE TABLE `notifications` (
   `notification_content` text COLLATE utf8_unicode_ci NOT NULL,
   `time_sent` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `notifications`
+--
+
+INSERT INTO `notifications` (`notification_id`, `username`, `name`, `notification_title`, `notification_content`, `time_sent`) VALUES
+(1, 'giaovien', 'giaovien', 'fsd', 'fsdfsd', '2018-11-06 16:13:48'),
+(2, 'giaovien', 'giaovien', 'fsdfsd', 'sdfsdfsdf', '2018-11-06 16:14:02'),
+(3, 'giaovien', 'giaovien', 'fsdf', 'fsdfsdfsd', '2018-11-06 16:14:10');
 
 -- --------------------------------------------------------
 
@@ -240,9 +258,8 @@ INSERT INTO `questions` (`grade_id`, `unit`, `question_content`, `answer_a`, `an
 --
 
 CREATE TABLE `quest_of_test` (
-  `ID` int(11) NOT NULL,
-  `test_code` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL,
+  `test_code` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
   `timest` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -250,27 +267,47 @@ CREATE TABLE `quest_of_test` (
 -- Đang đổ dữ liệu cho bảng `quest_of_test`
 --
 
-INSERT INTO `quest_of_test` (`ID`, `test_code`, `question_id`, `timest`) VALUES
-(42, 493205, 2, '2018-11-03 15:53:43'),
-(43, 493205, 9, '2018-11-03 15:53:43'),
-(44, 493205, 3, '2018-11-03 15:53:43'),
-(45, 493205, 8, '2018-11-03 15:53:43'),
-(46, 493205, 1, '2018-11-03 15:53:43'),
-(47, 493205, 19, '2018-11-03 15:53:43'),
-(48, 493205, 11, '2018-11-03 15:53:43'),
-(49, 493205, 12, '2018-11-03 15:53:43'),
-(50, 493205, 15, '2018-11-03 15:53:43'),
-(51, 493205, 17, '2018-11-03 15:53:43'),
-(52, 493205, 23, '2018-11-03 15:53:43'),
-(53, 493205, 26, '2018-11-03 15:53:43'),
-(54, 493205, 20, '2018-11-03 15:53:43'),
-(55, 493205, 29, '2018-11-03 15:53:43'),
-(56, 493205, 21, '2018-11-03 15:53:43'),
-(57, 493205, 40, '2018-11-03 15:53:43'),
-(58, 493205, 41, '2018-11-03 15:53:43'),
-(59, 493205, 36, '2018-11-03 15:53:43'),
-(60, 493205, 30, '2018-11-03 15:53:43'),
-(61, 493205, 31, '2018-11-03 15:53:43');
+INSERT INTO `quest_of_test` (`test_code`, `question_id`, `timest`) VALUES
+(294005, 2, '2018-11-06 07:41:09'),
+(294005, 3, '2018-11-06 07:41:09'),
+(294005, 4, '2018-11-06 07:41:09'),
+(294005, 6, '2018-11-06 07:41:09'),
+(294005, 8, '2018-11-06 07:41:09'),
+(294005, 11, '2018-11-06 07:41:09'),
+(294005, 12, '2018-11-06 07:41:09'),
+(294005, 13, '2018-11-06 07:41:09'),
+(294005, 15, '2018-11-06 07:41:09'),
+(294005, 19, '2018-11-06 07:41:09'),
+(294005, 21, '2018-11-06 07:41:09'),
+(294005, 22, '2018-11-06 07:41:09'),
+(294005, 24, '2018-11-06 07:41:09'),
+(294005, 27, '2018-11-06 07:41:09'),
+(294005, 28, '2018-11-06 07:41:09'),
+(294005, 32, '2018-11-06 07:41:09'),
+(294005, 34, '2018-11-06 07:41:09'),
+(294005, 38, '2018-11-06 07:41:09'),
+(294005, 39, '2018-11-06 07:41:09'),
+(294005, 40, '2018-11-06 07:41:09'),
+(607315, 4, '2018-11-16 03:46:28'),
+(607315, 6, '2018-11-16 03:46:28'),
+(607315, 7, '2018-11-16 03:46:28'),
+(607315, 8, '2018-11-16 03:46:28'),
+(607315, 9, '2018-11-16 03:46:28'),
+(607315, 11, '2018-11-16 03:46:28'),
+(607315, 12, '2018-11-16 03:46:28'),
+(607315, 15, '2018-11-16 03:46:28'),
+(607315, 17, '2018-11-16 03:46:28'),
+(607315, 18, '2018-11-16 03:46:28'),
+(607315, 21, '2018-11-16 03:46:28'),
+(607315, 22, '2018-11-16 03:46:28'),
+(607315, 24, '2018-11-16 03:46:28'),
+(607315, 27, '2018-11-16 03:46:28'),
+(607315, 28, '2018-11-16 03:46:28'),
+(607315, 31, '2018-11-16 03:46:28'),
+(607315, 33, '2018-11-16 03:46:28'),
+(607315, 34, '2018-11-16 03:46:28'),
+(607315, 37, '2018-11-16 03:46:28'),
+(607315, 38, '2018-11-16 03:46:28');
 
 -- --------------------------------------------------------
 
@@ -285,6 +322,15 @@ CREATE TABLE `scores` (
   `score_detail` varchar(50) NOT NULL,
   `completion_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `scores`
+--
+
+INSERT INTO `scores` (`student_id`, `test_code`, `score_number`, `score_detail`, `completion_time`) VALUES
+(2, 294005, '0.5', '1/20', '2018-11-15 19:37:14'),
+(3, 294005, '2.5', '5/20', '2018-11-16 08:50:02'),
+(23, 607315, '3', '6/20', '2018-11-16 10:48:33');
 
 -- --------------------------------------------------------
 
@@ -334,9 +380,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `permission`, `class_id`, `last_login`, `gender_id`, `avatar`, `birthday`, `doing_exam`, `starting_time`, `time_remaining`) VALUES
-(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-11-05 17:58:12', 1, 'avatar-default.jpg', '2008-01-25', NULL, NULL, NULL),
-(2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '2018-09-16 09:16:12', 1, 'avatar-default.jpg', '2008-09-07', NULL, NULL, NULL),
-(3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '2018-09-27 08:31:24', 1, 'avatar-default.jpg', '2008-12-01', NULL, NULL, NULL),
+(1, '2017HS1', 'example1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Phúc An', 3, 1, '2018-11-08 14:25:09', 3, 'avatar-default.jpg', '2008-01-25', 294005, '2018-11-08 14:25:07', '20:00'),
+(2, '2017HS2', 'example2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Lều Tuấn Anh', 3, 1, '2018-11-15 19:37:31', 1, 'avatar-default.jpg', '2008-09-07', NULL, NULL, NULL),
+(3, '2017HS3', 'example3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Phạm Văn Bội', 3, 1, '2018-11-16 08:50:02', 1, 'avatar-default.jpg', '2008-12-01', NULL, NULL, NULL),
 (4, '2017HS4', 'example4@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Khánh Duy', 3, 1, '2018-09-20 04:19:27', 1, 'avatar-default.jpg', '2008-05-10', NULL, NULL, NULL),
 (5, '2017HS5', 'example5@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Thành Đạt', 3, 1, '2018-09-19 04:09:18', 1, 'avatar-default.jpg', '2008-05-03', NULL, NULL, NULL),
 (6, '2017HS6', 'example6@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Quang Điện', 3, 1, '2018-09-24 06:13:23', 1, 'avatar-default.jpg', '2008-10-10', NULL, NULL, NULL),
@@ -356,7 +402,7 @@ INSERT INTO `students` (`student_id`, `username`, `email`, `password`, `name`, `
 (20, '2017HS20', 'example20@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Vũ Huy Hoàng', 3, 1, '2018-09-28 13:12:12', 1, 'avatar-default.jpg', '2008-01-02', NULL, NULL, NULL),
 (21, '2017HS21', 'example21@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Hoàng Văn Thịnh', 3, 1, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL, NULL),
 (22, '2017HS22', 'example22@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thi', 3, 1, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL, NULL),
-(23, '2017HS23', 'example23@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thu', 3, 1, '2018-01-26 02:06:09', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL, NULL);
+(23, '2017HS23', 'example23@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Thị Thu', 3, 2, '2018-11-16 10:48:33', 1, 'avatar-default.jpg', '2008-01-26', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -369,6 +415,14 @@ CREATE TABLE `student_notifications` (
   `notification_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `student_notifications`
+--
+
+INSERT INTO `student_notifications` (`ID`, `notification_id`, `class_id`) VALUES
+(2, 2, 1),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -388,6 +442,92 @@ CREATE TABLE `student_test_detail` (
   `student_answer` text COLLATE utf8_unicode_ci,
   `timest` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `student_test_detail`
+--
+
+INSERT INTO `student_test_detail` (`ID`, `student_id`, `test_code`, `question_id`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `student_answer`, `timest`) VALUES
+(699365356, 1, 294005, 2, '11', '14', '12', '13', NULL, '2018-11-06 07:41:36'),
+(343414991, 1, 294005, 3, '13', '15', '17', '14', NULL, '2018-11-06 07:41:36'),
+(542662526, 1, 294005, 4, '4', '1', '3', '2', NULL, '2018-11-06 07:41:36'),
+(450837748, 1, 294005, 6, '21', '22', '20', '23', NULL, '2018-11-06 07:41:36'),
+(286400670, 1, 294005, 8, '9', '7', '10', '8', NULL, '2018-11-06 07:41:36'),
+(1379351060, 1, 294005, 11, '6', '9', '7', '8', NULL, '2018-11-06 07:41:36'),
+(472119203, 1, 294005, 12, '10', '4', '15', '5', NULL, '2018-11-06 07:41:36'),
+(808664468, 1, 294005, 13, '12', '14', '16', '18', NULL, '2018-11-06 07:41:36'),
+(1164902165, 1, 294005, 15, '14', '21', '16', '18', NULL, '2018-11-06 07:41:36'),
+(1417214909, 1, 294005, 19, '20', '30', '03', '10', NULL, '2018-11-06 07:41:36'),
+(660579040, 1, 294005, 21, '16', '10', '14', '12', NULL, '2018-11-06 07:41:36'),
+(125942593, 1, 294005, 22, '29', '30', '27', '28', NULL, '2018-11-06 07:41:36'),
+(747328301, 1, 294005, 24, '27', '28', '20', '29', NULL, '2018-11-06 07:41:36'),
+(436989982, 1, 294005, 27, '63', '61', '65', '67', NULL, '2018-11-06 07:41:36'),
+(1448475645, 1, 294005, 28, '41', '45', '43', '49', NULL, '2018-11-06 07:41:36'),
+(1338764864, 1, 294005, 32, '8', '7', '6', '5', NULL, '2018-11-06 07:41:36'),
+(1356122610, 1, 294005, 34, '8', '7', '6', '9', NULL, '2018-11-06 07:41:36'),
+(1067443496, 1, 294005, 38, '8', '3', '7', '4', NULL, '2018-11-06 07:41:36'),
+(270354166, 1, 294005, 39, '9', '8', '81', '7', NULL, '2018-11-06 07:41:36'),
+(817766306, 1, 294005, 40, '2', '3', '5', '4', NULL, '2018-11-06 07:41:36'),
+(1124225112, 2, 294005, 2, '13', '12', '14', '11', NULL, '2018-11-15 12:36:28'),
+(1171063655, 2, 294005, 3, '14', '15', '17', '13', NULL, '2018-11-15 12:36:28'),
+(62405982, 2, 294005, 4, '3', '2', '1', '4', NULL, '2018-11-15 12:36:28'),
+(682921276, 2, 294005, 6, '22', '20', '23', '21', NULL, '2018-11-15 12:36:28'),
+(741056118, 2, 294005, 8, '10', '8', '9', '7', NULL, '2018-11-15 12:36:28'),
+(995158141, 2, 294005, 11, '8', '6', '9', '7', NULL, '2018-11-15 12:36:28'),
+(1168023809, 2, 294005, 12, '5', '15', '4', '10', NULL, '2018-11-15 12:36:28'),
+(162098473, 2, 294005, 13, '14', '16', '18', '12', NULL, '2018-11-15 12:36:28'),
+(9441170, 2, 294005, 15, '21', '16', '14', '18', '21', '2018-11-15 12:36:35'),
+(842734937, 2, 294005, 19, '03', '10', '20', '30', NULL, '2018-11-15 12:36:28'),
+(264194709, 2, 294005, 21, '12', '16', '10', '14', NULL, '2018-11-15 12:36:28'),
+(411822707, 2, 294005, 22, '28', '27', '30', '29', NULL, '2018-11-15 12:36:28'),
+(1358509098, 2, 294005, 24, '29', '28', '20', '27', NULL, '2018-11-15 12:36:28'),
+(1250256822, 2, 294005, 27, '67', '61', '65', '63', NULL, '2018-11-15 12:36:28'),
+(125044076, 2, 294005, 28, '41', '49', '45', '43', NULL, '2018-11-15 12:36:28'),
+(234481787, 2, 294005, 32, '8', '6', '7', '5', NULL, '2018-11-15 12:36:28'),
+(1131614951, 2, 294005, 34, '8', '7', '9', '6', NULL, '2018-11-15 12:36:28'),
+(1204289755, 2, 294005, 38, '3', '8', '7', '4', NULL, '2018-11-15 12:36:28'),
+(124745437, 2, 294005, 39, '8', '9', '81', '7', NULL, '2018-11-15 12:36:28'),
+(152984221, 2, 294005, 40, '4', '3', '5', '2', NULL, '2018-11-15 12:36:28'),
+(725481410, 3, 294005, 2, '11', '12', '14', '13', '11', '2018-11-16 01:49:44'),
+(956643423, 3, 294005, 3, '13', '14', '17', '15', '17', '2018-11-16 01:49:49'),
+(933924874, 3, 294005, 4, '1', '4', '3', '2', '4', '2018-11-16 01:49:47'),
+(972941471, 3, 294005, 6, '23', '20', '22', '21', '23', '2018-11-16 01:49:50'),
+(190029045, 3, 294005, 8, '8', '10', '7', '9', '9', '2018-11-16 01:49:39'),
+(1242021003, 3, 294005, 11, '9', '6', '8', '7', '6', '2018-11-16 01:49:53'),
+(1387696544, 3, 294005, 12, '15', '10', '4', '5', '10', '2018-11-16 01:49:54'),
+(1388474118, 3, 294005, 13, '16', '12', '18', '14', '12', '2018-11-16 01:49:55'),
+(365413750, 3, 294005, 15, '16', '14', '21', '18', '14', '2018-11-16 01:49:41'),
+(616556902, 3, 294005, 19, '30', '20', '03', '10', '20', '2018-11-16 01:49:43'),
+(4698384, 3, 294005, 21, '12', '16', '10', '14', '10', '2018-11-16 01:49:36'),
+(509280545, 3, 294005, 22, '27', '29', '30', '28', '28', '2018-11-16 01:49:42'),
+(1473641031, 3, 294005, 24, '28', '20', '29', '27', '28', '2018-11-16 01:50:00'),
+(1453081883, 3, 294005, 27, '67', '61', '63', '65', '63', '2018-11-16 01:49:59'),
+(1115091839, 3, 294005, 28, '41', '49', '45', '43', '49', '2018-11-16 01:49:52'),
+(981955747, 3, 294005, 32, '8', '5', '7', '6', '6', '2018-11-16 01:49:51'),
+(312348534, 3, 294005, 34, '7', '9', '6', '8', '8', '2018-11-16 01:49:40'),
+(911207132, 3, 294005, 38, '3', '7', '8', '4', '8', '2018-11-16 01:49:45'),
+(169516863, 3, 294005, 39, '81', '7', '8', '9', '7', '2018-11-16 01:49:37'),
+(1442637997, 3, 294005, 40, '4', '5', '2', '3', '3', '2018-11-16 01:49:58'),
+(1208186219, 23, 607315, 4, '3', '2', '1', '4', '3', '2018-11-16 03:48:27'),
+(438702149, 23, 607315, 6, '22', '20', '23', '21', '23', '2018-11-16 03:48:16'),
+(34348690, 23, 607315, 7, '22', '23', '21', '20', '22', '2018-11-16 03:48:10'),
+(1397933449, 23, 607315, 8, '8', '7', '9', '10', '7', '2018-11-16 03:48:28'),
+(236533864, 23, 607315, 9, '8', '7', '5', '6', '5', '2018-11-16 03:48:11'),
+(471146233, 23, 607315, 11, '9', '8', '7', '6', '7', '2018-11-16 03:48:17'),
+(834462403, 23, 607315, 12, '4', '15', '5', '10', '4', '2018-11-16 03:48:21'),
+(471203469, 23, 607315, 15, '21', '14', '18', '16', '16', '2018-11-16 03:48:18'),
+(1113378242, 23, 607315, 17, '4', '40', '10', '1', '4', '2018-11-16 03:48:26'),
+(511354923, 23, 607315, 18, '18', '16', '14', '20', '20', '2018-11-16 03:48:19'),
+(352746548, 23, 607315, 21, '10', '16', '12', '14', '12', '2018-11-16 03:48:13'),
+(349676011, 23, 607315, 22, '28', '29', '30', '27', '27', '2018-11-16 03:48:12'),
+(964155246, 23, 607315, 24, '29', '28', '20', '27', '20', '2018-11-16 03:48:25'),
+(24753220, 23, 607315, 27, '63', '65', '61', '67', '67', '2018-11-16 03:48:09'),
+(407287587, 23, 607315, 28, '41', '45', '43', '49', '49', '2018-11-16 03:48:15'),
+(1495520790, 23, 607315, 31, '61', '54', '65', '63', '65', '2018-11-16 03:48:30'),
+(1472597789, 23, 607315, 33, '2', '1', '4', '3', '4', '2018-11-16 03:48:29'),
+(1108014412, 23, 607315, 34, '7', '8', '9', '6', '6', '2018-11-16 03:48:22'),
+(589028259, 23, 607315, 37, '4', '6', '3', '5', '6', '2018-11-16 03:48:20'),
+(406859792, 23, 607315, 38, '3', '7', '8', '4', '8', '2018-11-16 03:48:14');
 
 -- --------------------------------------------------------
 
@@ -432,7 +572,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'giaovien', 'giaovien@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'giaovien', 2, '2018-11-04 21:39:44', 3, 'avatar-default.jpg', '1997-01-01');
+(1, 'giaovien', 'giaovien@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'giaovien', 2, '2018-11-16 11:10:31', 3, 'avatar-default.jpg', '1997-01-01');
 
 -- --------------------------------------------------------
 
@@ -470,7 +610,8 @@ CREATE TABLE `tests` (
 --
 
 INSERT INTO `tests` (`test_code`, `test_name`, `password`, `subject_id`, `grade_id`, `total_questions`, `time_to_do`, `note`, `status_id`, `timest`) VALUES
-(493205, 'Thi Thử', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 20, 20, 'Thi Thử', 1, '2018-11-04 13:21:55');
+(294005, 'Thử', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 20, 20, 'Thử', 1, '2018-11-06 07:41:27'),
+(607315, 'Thử 2', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 20, 15, 'Thử 2', 1, '2018-11-16 03:47:44');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -539,7 +680,8 @@ ALTER TABLE `questions`
 -- Chỉ mục cho bảng `quest_of_test`
 --
 ALTER TABLE `quest_of_test`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`test_code`,`question_id`),
+  ADD KEY `question_id` (`question_id`);
 
 --
 -- Chỉ mục cho bảng `scores`
@@ -629,7 +771,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT cho bảng `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `classes`
@@ -653,7 +795,7 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `permissions`
@@ -666,12 +808,6 @@ ALTER TABLE `permissions`
 --
 ALTER TABLE `questions`
   MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT cho bảng `quest_of_test`
---
-ALTER TABLE `quest_of_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT cho bảng `statuses`
@@ -689,7 +825,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT cho bảng `student_notifications`
 --
 ALTER TABLE `student_notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `subjects`
@@ -713,7 +849,7 @@ ALTER TABLE `teacher_notifications`
 -- AUTO_INCREMENT cho bảng `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `test_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=493206;
+  MODIFY `test_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=607316;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -745,6 +881,13 @@ ALTER TABLE `classes`
 ALTER TABLE `questions`
   ADD CONSTRAINT `k9` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`grade_id`),
   ADD CONSTRAINT `subjects_key` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`);
+
+--
+-- Các ràng buộc cho bảng `quest_of_test`
+--
+ALTER TABLE `quest_of_test`
+  ADD CONSTRAINT `quest_of_test_ibfk_1` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`),
+  ADD CONSTRAINT `quest_of_test_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`);
 
 --
 -- Các ràng buộc cho bảng `scores`

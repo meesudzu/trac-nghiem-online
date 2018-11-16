@@ -1,14 +1,18 @@
 <?php
+
 /**
  * Controller Admin
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 require_once('models/model_admin.php');
 require_once('views/view_admin.php');
 //load thư viện PhpSpreadSheet
 require 'res/libs/SpreadSheet/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Controller_Admin
 {
@@ -1100,6 +1104,39 @@ class Controller_Admin
         }
         echo json_encode($result);
     }
+    public function export_score()
+    {
+        $test_code = isset($_GET['test_code']) ? htmlspecialchars($_GET['test_code']) : '';
+
+        $model = new Model_Admin();
+        $scores = $model->get_test_score($test_code);
+
+        //Create Excel Data
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1','Danh Sách Điểm Bài Thi '.$test_code);
+        $sheet->setCellValue('A3','STT');
+        $sheet->setCellValue('B3','Tên');
+        $sheet->setCellValue('C3','Tài Khoản');
+        $sheet->setCellValue('D3','Lớp');
+        $sheet->setCellValue('E3','Điểm');
+
+        for ($i = 0; $i < count($scores); $i++) {
+            $sheet->setCellValue('A'.($i+4),$i+1);
+            $sheet->setCellValue('B'.($i+4),$scores[$i]->name);
+            $sheet->setCellValue('C'.($i+4),$scores[$i]->username);
+            $sheet->setCellValue('D'.($i+4),$scores[$i]->class_name);
+            $sheet->setCellValue('E'.($i+4),$scores[$i]->score_number);
+        }
+
+        //Output File
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attactment;filename="danh-sach-diem-'.$test_code.'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+    }
     public function logout()
     {
         $result = array();
@@ -1167,6 +1204,15 @@ class Controller_Admin
         $test_code = htmlspecialchars($_GET['test_code']);
         $view->show_head_left($this->info);
         $view->show_tests_detail($model->get_quest_of_test($test_code));
+        $view->show_foot();
+    }
+    public function test_score()
+    {
+        $view = new View_Admin();
+        $model = new Model_Admin();
+        $test_code = htmlspecialchars($_GET['test_code']);
+        $view->show_head_left($this->info);
+        $view->show_test_score($model->get_test_score($test_code));
         $view->show_foot();
     }
     public function show_subjects_panel()

@@ -5,6 +5,7 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 class View_Student
 {
 	public function show_head_left($info)

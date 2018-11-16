@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Controller Login
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 require_once 'views/view_login.php';
 require_once 'models/model_login.php';
 class Controller_Login

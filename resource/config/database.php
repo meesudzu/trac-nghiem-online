@@ -1,14 +1,16 @@
 <?php
+
 /**
  * DATABASE
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 class Database
 {
     private $db = '';
     private $sql = '';
-    // hàm kết nối cơ sở dữ liệu
+    //kết nối cơ sở dữ liệu
     public function __construct()
     {
         $connect = include ('connect.php');

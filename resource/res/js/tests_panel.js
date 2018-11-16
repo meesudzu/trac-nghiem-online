@@ -32,7 +32,7 @@ function show_list_tests(data) {
         tr.append('<td class="">' + data[i].grade + '</td>');
         tr.append('<td class="">' + data[i].total_questions + ' câu hỏi, thời gian ' + data[i].time_to_do + ' phút <br />Ghi chú: ' + data[i].note + '</td>');
         tr.append('<td class="">' + data[i].status + '</td>');
-        tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '</td>');
+        tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i])+ '<br />' + test_score_button(data[i]) + '</td>');
         list.append(tr);
     }
     $('#table_tests').DataTable( {
@@ -65,7 +65,11 @@ function toggle_status_button(data) {
 }
 
 function test_detail_button(data) {
-    return btn = '<a class="waves-effect waves-light btn" href="index.php?action=test_detail&test_code=' + data.test_code + '">Chi Tiết Đề</a>';
+    return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" href="index.php?action=test_detail&test_code=' + data.test_code + '">Chi Tiết Đề</a>';
+}
+
+function test_score_button(data) {
+    return btn = '<a class="waves-effect waves-light btn" href="index.php?action=test_score&test_code=' + data.test_code + '">Xem Điểm</a>';
 }
 
 function submit_add_test(data) {

@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Index Site
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 require_once 'config/config.php';
 date_default_timezone_set(Config::TIMEZONE);
 session_start();

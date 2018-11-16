@@ -1,9 +1,11 @@
 <?php 
+
 /**
 * INSTALL WIZARD
 * Author: Dzu
 * Mail: dzu6996@gmail.com
 **/
+
 error_reporting(0);
 ini_set('display_errors', 0);
 
@@ -167,17 +169,13 @@ class install
 	{
 		//write config file
 		$writer="<?php
-/**
-* CONNECT STRING
-* Author: Dzu
- * Mail: dzu6996@gmail.com
- **/
 return (object) array('host' => '".$this->connect_info['host']."','user' => '".$this->connect_info['user']."','password' => '".$this->connect_info['password']."','dbname' => '".$this->connect_info['dbname']."','INSTALL_MODE' => FALSE);
 ?>";
 		$write=fopen('config/connect.php' , 'w');
 		$a = fwrite($write,$writer);
 		fclose($write);
-		unlink('install.php');
+		chmod('install.php',0777);
+		rename('install.php','reinstall.php');
 	}
 }
 ?>

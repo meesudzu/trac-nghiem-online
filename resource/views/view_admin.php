@@ -1,4 +1,5 @@
 <?php
+
 /**
  * View Admin
  * Author: Dzu
@@ -52,6 +53,10 @@ class View_Admin
     public function show_tests_detail($questions)
     {
         include 'res/templates/admin/tests_detail.php';
+    }
+    public function show_test_score($scores)
+    {
+        include 'res/templates/admin/test_score.php';
     }
     public function show_notifications_panel()
     {

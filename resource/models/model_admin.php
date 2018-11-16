@@ -5,6 +5,7 @@
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 include_once('config/database.php');
 
 class Model_Admin extends Database
@@ -419,6 +420,14 @@ class Model_Admin extends Database
         SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
         INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
         INNER JOIN classes ON classes.class_id = student_notifications.class_id";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_test_score($test_code)
+    {
+        $sql = "SELECT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id 
+        INNER JOIN classes ON students.class_id = classes.class_id
+        WHERE test_code = '$test_code'";
         $this->set_query($sql);
         return $this->load_rows();
     }

@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Model Teacher
  * Author: Dzu
  * Mail: dzu6996@gmail.com
  **/
+
 include_once('config/database.php');
 
 class Model_Teacher extends Database
@@ -33,6 +35,25 @@ class Model_Teacher extends Database
         } else {
             return true;
         }
+    }
+    public function get_list_test($teacher_id)
+    {
+        $sql = "SELECT tests.test_code,tests.test_name,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail FROM `tests`
+        INNER JOIN grades ON grades.grade_id = tests.grade_id
+        INNER JOIN subjects ON subjects.subject_id = tests.subject_id
+        WHERE `test_code` IN (SELECT DISTINCT test_code FROM `scores`
+        INNER JOIN students ON scores.student_id = students.student_id
+        WHERE students.class_id IN (SELECT DISTINCT class_id FROM classes WHERE classes.teacher_id = '$teacher_id'))";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_test_score($test_code)
+    {
+        $sql = "SELECT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id 
+        INNER JOIN classes ON students.class_id = classes.class_id
+        WHERE test_code = '$test_code'";
+        $this->set_query($sql);
+        return $this->load_rows();
     }
     public function update_avatar($avatar, $username)
     {

@@ -1,9 +1,10 @@
-v3.3.0 (0x/11/2018)
+v3.3.0 (16/11/2018)
 
-	- Thêm chức năng xem danh sách điểm của tất cả các bài thi/kiểm tra cho Admin
-	- Thêm chức năng xem danh sách điểm của các bài thi mà có lớp giáo viên đó đang quản lý tham gia 
+	- Thêm chức năng xem danh sách điểm của tất cả các bài thi/kiểm tra và xuất file excel cho Admin ✓
+	- Thêm chức năng xem danh sách điểm của các bài thi và xuất file excel mà có lớp giáo viên đó đang quản lý tham gia ✓
 	- Thêm chức năng xem chi tiết đề thi cho Admin ✓
 	- Fix file path ✓
+	- Optimize code ✓
 v3.2.1 (07/11/2018)
 
 	- Fix chức năng làm bài của học sinh ✓
