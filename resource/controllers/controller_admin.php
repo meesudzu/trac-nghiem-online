@@ -396,6 +396,11 @@ class Controller_Admin
                 $gender = 3;
             else
                 $gender = 1;
+            $add = $this->add_admin($name, $username, $password, $email, $birthday, $gender);
+            if($add)
+                $count++;
+            else
+                $err_list += $stt.' ';
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
