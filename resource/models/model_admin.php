@@ -381,17 +381,11 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->execute_return_status();
     }
-    public function insert_notification($username, $name, $notification_title, $notification_content)
+    public function insert_notification($notification_id,$username, $name, $notification_title, $notification_content)
     {
-        $sql = "SELECT `AUTO_INCREMENT`
-        FROM  INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_NAME   = 'notifications'";
+        $sql="INSERT INTO notifications (notification_id,username,name,notification_title,notification_content,time_sent) VALUES ($notification_id,'$username','$name','$notification_title','$notification_content',NOW())";
         $this->set_query($sql);
-        $ID = $this->load_row();
-        $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
-        $this->set_query($sql);
-        $this->execute_return_status();
-        return $ID->AUTO_INCREMENT;
+        return $this->execute_return_status();
     }
     public function notify_teacher($ID, $teacher_id)
     {
@@ -410,7 +404,8 @@ class Model_Admin extends Database
         $sql = "
         SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
         INNER JOIN notifications ON notifications.notification_id = teacher_notifications.notification_id
-        INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id";
+        INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id
+        ORDER BY `ID` DESC";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -419,7 +414,8 @@ class Model_Admin extends Database
         $sql = "
         SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
         INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
-        INNER JOIN classes ON classes.class_id = student_notifications.class_id";
+        INNER JOIN classes ON classes.class_id = student_notifications.class_id
+        ORDER BY `ID` DESC";
         $this->set_query($sql);
         return $this->load_rows();
     }

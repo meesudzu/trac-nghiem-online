@@ -106,10 +106,10 @@ class Controller_Teacher
         }
         echo json_encode($result);
     }
-    public function insert_notification($notification_title, $notification_content)
+    public function insert_notification($notification_id,$notification_title, $notification_content)
     {
         $notification = new Model_Teacher();
-        return $notification->insert_notification($this->info['username'], $this->info['name'], $notification_title, $notification_content);
+        return $notification->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
     public function notify_class($ID, $class_id)
     {
@@ -130,9 +130,12 @@ class Controller_Teacher
                 $result['status_value'] = "Chưa lớp người nhận!";
                 $result['status'] = 0;
             } else {
-                $ID = $this->insert_notification($notification_title, $notification_content);
+                do {
+                    $notification_id = rand(1,999999)+rand(1,111111);
+                    $insert = $this->insert_notification($notification_id,$notification_title, $notification_content);
+                } while($insert == false);
                 foreach ($class_id as $class_id_) {
-                    $this->notify_class($ID, $class_id_);
+                    $this->notify_class($notification_id, $class_id_);
                 }
                 $result['status_value'] = "Gửi thành công!";
                 $result['status'] = 1;

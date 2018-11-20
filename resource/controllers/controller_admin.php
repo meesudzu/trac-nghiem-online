@@ -251,10 +251,10 @@ class Controller_Admin
         $notifications = new Model_Admin();
         echo json_encode($notifications->get_student_notifications());
     }
-    public function insert_notification($notification_title, $notification_content)
+    public function insert_notification($notification_id,$notification_title, $notification_content)
     {
         $notification = new Model_Admin();
-        return $notification->insert_notification($this->info['username'], $this->info['name'], $notification_title, $notification_content);
+        return $notification->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
     public function edit_subject($subject_id, $subject_detail)
     {
@@ -849,13 +849,16 @@ class Controller_Admin
                 $result['status_value'] = "Chưa chọn người nhận!";
                 $result['status'] = 0;
             } else {
-                $ID = $this->insert_notification($notification_title, $notification_content);
+                do {
+                    $notification_id = rand(1,999999)+rand(1,111111);
+                    $insert = $this->insert_notification($notification_id,$notification_title, $notification_content);
+                } while($insert == false);
                 foreach ($teacher_id as $teacher_id_) {
-                    $this->notify_teacher($ID, $teacher_id_);
+                    $this->notify_teacher($notification_id, $teacher_id_);
                 }
                 foreach ($class_id as $class_id_) {
-                    $this->notify_class($ID, $class_id_);
-                }
+                    $this->notify_class($notification_id, $class_id_);
+                };
                 $result['status_value'] = "Gửi thành công!";
                 $result['status'] = 1;
             }

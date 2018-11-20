@@ -87,28 +87,21 @@ class Model_Teacher extends Database
     }
     public function get_notifications_to_student($teacher_id)
     {
-        $sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM student_notifications WHERE student_notifications.class_id IN (SELECT classes.class_id FROM classes WHERE teacher_id = '$teacher_id'))";
+        $sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM student_notifications WHERE student_notifications.class_id IN (SELECT classes.class_id FROM classes WHERE teacher_id = '$teacher_id')) ORDER BY `time_sent` DESC";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_notifications_by_admin($teacher_id)
     {
-        $sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM teacher_notifications WHERE teacher_id = '$teacher_id')";
+        $sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM teacher_notifications WHERE teacher_id = '$teacher_id') ORDER BY `time_sent` DESC";
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function insert_notification($username, $name, $notification_title, $notification_content)
+    public function insert_notification($notification_id,$username, $name, $notification_title, $notification_content)
     {
-        //get ID current notification
-        $sql = "SELECT `AUTO_INCREMENT`
-        FROM  INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_NAME   = 'notifications'";
+        $sql="INSERT INTO notifications (notification_id,username,name,notification_title,notification_content,time_sent) VALUES ($notification_id,'$username','$name','$notification_title','$notification_content',NOW())";
         $this->set_query($sql);
-        $ID = $this->load_row();
-        $sql="INSERT INTO notifications (username,name,notification_title,notification_content,time_sent) VALUES ('$username','$name','$notification_title','$notification_content',NOW())";
-        $this->set_query($sql);
-        $this->execute_return_status();
-        return $ID->AUTO_INCREMENT;
+        return $this->execute_return_status();
     }
     public function notify_class($ID, $class_id)
     {

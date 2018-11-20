@@ -33,7 +33,7 @@ class Model_Student extends Database
 	}
 	public function get_notifications($class_id)
 	{
-		$sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM student_notifications WHERE class_id = '$class_id')";
+		$sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM student_notifications WHERE class_id = '$class_id') ORDER BY `time_sent` DESC";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}

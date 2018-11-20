@@ -80,7 +80,6 @@ function send_notification() {
         notification_content: notification_content
     };
     var success = function(result) {
-        console.log(result);
         var json_data = $.parseJSON(result);
         show_status(json_data);
         get_student_notifications();
