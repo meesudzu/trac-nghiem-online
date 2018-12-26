@@ -6,6 +6,7 @@ Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ## Sắp Có
 
+	- Thêm tùy chọn nhập bộ câu hỏi từ file word.
 	- Nâng cấp thuật toán tạo đề thi
 	- Hiển thị số tin nhắn chat, thông báo chưa đọc
 	- Thêm logs lưu vết tất cả các thông tin liên quan đến việc thay đổi dữ liệu trong cơ sở dữ liệu
