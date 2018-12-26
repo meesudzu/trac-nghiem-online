@@ -4,6 +4,15 @@
 
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
 
+## Bản Quyền
+
+Toàn bộ dự án và các gói liên quan thuộc bản quyền tác giả:  
+Nông Văn Du  
+Email: dzu6996@gmail.com  
+Dự án được phát triển và phát hành với mục đích phi thương mại.  
+Bản quyền cấp bởi [MIT Licensed](LICENSE)  
+Mọi đóng góp xin liên hệ tác giả.
+
 ## Tính Năng
 
 Xem tại [CHANGELOG](CHANGELOG.md)<br />
@@ -39,15 +48,6 @@ Xem tại [CHANGELOG](CHANGELOG.md)<br />
 ![DEMO](demo-images/10.png)
 ![DEMO](demo-images/11.png)
 ![DEMO](demo-images/12.png)
-
-## Bản Quyền
-
-Toàn bộ dự án và các gói liên quan thuộc bản quyền tác giả:  
-Nông Văn Du  
-Email: dzu6996@gmail.com  
-Dự án được phát triển và phát hành với mục đích phi thương mại.  
-Bản quyền cấp bởi ![MIT Licensed](LICENSE)  
-Mọi đóng góp xin liên hệ tác giả.
 
 ## Lưu ý
 
