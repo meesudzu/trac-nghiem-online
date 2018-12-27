@@ -11,7 +11,7 @@ Nông Văn Du
 Email: dzu6996@gmail.com  
 Dự án được phát triển và phát hành với mục đích phi thương mại.  
 Bản quyền thuộc [MIT License](LICENSE)  
-Chân thành cảm ơn những email đóng góp ý kiến và báo lỗi của mọi người. Hy vọng sẽ ngày càng nhận được nhiều hơn nữa những email góp ý, nhất là những người đang làm và tiếp xúc trực tiếp với môi truờng giáo dục. Một lần nữa, chân thành cảm ơn mọi người.
+Chân thành cảm ơn những email đóng góp ý kiến và báo lỗi của mọi người. Hy vọng sẽ ngày càng nhận được nhiều hơn nữa những email góp ý, nhất là những người đang làm và tiếp xúc trực tiếp với môi truờng giáo dục. Một lần nữa, chân thành cảm ơn mọi người.  
 Mọi đóng góp xin liên hệ email tác giả.
 
 ## Tính Năng
