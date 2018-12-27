@@ -4,7 +4,7 @@
 
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
 
-## Bản Quyền
+## Đóng Góp & Bản Quyền
 
 Toàn bộ dự án và các gói liên quan thuộc bản quyền tác giả:  
 Nông Văn Du  
