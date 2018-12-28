@@ -4,15 +4,19 @@
 
 Mục tiêu: Xây dựng hệ thống trắc nghiệm online cho các trường THPT THCS, thay thế cách thức làm bài tập và kiểm tra truyền thống
 
-## Đóng Góp & Bản Quyền
+## Đóng Góp & Bản Quyền  
 
-Toàn bộ dự án và các gói liên quan thuộc bản quyền tác giả:  
+Bản quyền tác giả:  
 Nông Văn Du  
 Email: dzu6996@gmail.com  
 Dự án được phát triển và chia sẻ với mục đích phi lợi nhuận.  
 Bản quyền thuộc [MIT License](LICENSE)  
 Chân thành cảm ơn những email đóng góp ý kiến và báo lỗi của mọi người. Hy vọng sẽ ngày càng nhận được nhiều hơn nữa những email góp ý, nhất là những người đang làm và tiếp xúc trực tiếp với môi trường giáo dục. Một lần nữa, chân thành cảm ơn mọi người.  
-Mọi đóng góp xin liên hệ email tác giả.
+Mọi đóng góp xin liên hệ email tác giả.  
+Dự án có sử dụng một số sản phẩm mã nguồn mở:  
+- https://github.com/Dogfalo/materialize  
+- https://github.com/DataTables/DataTables  
+Thanks to @[Dogfalo](https://github.com/Dogfalo) @[DataTables](https://github.com/DataTables)  
 
 ## Tính Năng
 
