@@ -16,7 +16,8 @@ Mọi đóng góp xin liên hệ email tác giả.
 Dự án có sử dụng một số sản phẩm mã nguồn mở:  
 - https://github.com/Dogfalo/materialize  
 - https://github.com/DataTables/DataTables  
-Thanks to @[Dogfalo](https://github.com/Dogfalo) @[DataTables](https://github.com/DataTables)  
+
+Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.com/DataTables)  
 
 ## Tính Năng
 
