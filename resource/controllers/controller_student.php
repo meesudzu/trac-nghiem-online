@@ -2,7 +2,7 @@
 
 /**
 * Controller Student
-* Author: Dzu 
+* Author: Nong Van Du (Dzu) 
 * Mail: dzu6996@gmail.com
 **/
 

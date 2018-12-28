@@ -16,8 +16,10 @@ Mọi đóng góp xin liên hệ email tác giả.
 Dự án có sử dụng một số sản phẩm mã nguồn mở:  
 - https://github.com/Dogfalo/materialize  
 - https://github.com/DataTables/DataTables  
+- https://github.com/PHPMailer/PHPMailer
+- https://github.com/PHPOffice/PhpSpreadsheet
 
-Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.com/DataTables)  
+Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.com/DataTables) [@PHPMailer](https://github.com/PHPMailer) [@PHPOffice](https://github.com/PHPOffice)  
 
 ## Tính Năng
 
