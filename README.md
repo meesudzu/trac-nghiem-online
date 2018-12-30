@@ -28,9 +28,9 @@ Xem tại [CHANGELOG](CHANGELOG.md)
 
 ## Sắp Có
 
-    - Thêm phân loại câu hỏi theo mức độ: Biết, Hiểu, Vận dụng (Cảm ơn bạn có email tranphong965@gmail.com đã góp ý )
-    - Tích hợp thêm các công cụ hỗ trợ nhập liệu editor (Cảm ơn bạn có email tranphong965@gmail.com đã góp ý)
-    - Thêm tùy chọn nhập bộ câu hỏi từ file word. (Cảm ơn bạn có email tranphong965@gmail.com đã góp ý)
+    - Thêm phân loại câu hỏi theo mức độ: Biết, Hiểu, Vận dụng (Cảm ơn bạn tranphong965@gmail.com )
+    - Tích hợp thêm các công cụ hỗ trợ nhập liệu editor (Cảm ơn bạn tranphong965@gmail.com)
+    - Thêm tùy chọn nhập bộ câu hỏi từ file word. (Cảm ơn bạn tranphong965@gmail.com)
     - Nâng cấp thuật toán tạo đề thi
     - Hiển thị số tin nhắn chat, thông báo chưa đọc
     - Thêm logs lưu vết tất cả các thông tin liên quan đến việc thay đổi dữ liệu trong cơ sở dữ liệu
