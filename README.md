@@ -28,6 +28,7 @@ Xem tại [CHANGELOG](CHANGELOG.md)
 
 ## Sắp Có
 
+    - Thêm phân loại câu hỏi theo mức độ: Biết, Hiểu, Vận dụng
     - Tích hợp thêm các công cụ hỗ trợ nhập liệu editor
     - Thêm tùy chọn nhập bộ câu hỏi từ file word.
     - Nâng cấp thuật toán tạo đề thi
