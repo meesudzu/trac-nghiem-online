@@ -35,6 +35,7 @@ Xem tại [CHANGELOG](CHANGELOG.md)
     - Hiển thị số tin nhắn chat, thông báo chưa đọc
     - Thêm logs lưu vết tất cả các thông tin liên quan đến việc thay đổi dữ liệu trong cơ sở dữ liệu
     - Giáo viên có thể thêm câu hỏi vào ngân hàng đề
+    - Thêm tự động cập nhật phiên bản phần mềm
     - Thêm nhiều dạng bài tập trắc nghiệm hơn
     - Hỡ trợ nhiều dạng thông tin có trong câu hỏi hơn như hình ảnh, âm thanh, video...
 
