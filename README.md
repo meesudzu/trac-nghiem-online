@@ -66,5 +66,5 @@ Xem tại [CHANGELOG](CHANGELOG.md)
 ## Lưu ý
 
 Trên GitHub chỉ lưu từ v2.0.1 trở đi.  
-[Download v2.0 (19/09/2017)!](https://drive.google.com/file/d/0B2XjHVJwd5PSbWhXZWdOcDgyYXM/view?usp=sharing)  
-[Download v1.0 (16/05/2017)!](https://drive.google.com/file/d/0B2XjHVJwd5PSejNmN0FfR0N1Tms/view?usp=sharing)
+v2.0 (19/09/2017)  
+v1.0 (16/05/2017)
