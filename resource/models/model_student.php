@@ -6,7 +6,7 @@
  * Mail: dzu6996@gmail.com
  **/ 
 
-include_once('config/database.php');
+require_once('config/database.php');
 
 class Model_Student extends Database
 {
