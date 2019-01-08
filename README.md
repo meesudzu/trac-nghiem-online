@@ -27,6 +27,9 @@ Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.co
 
 ## Tính Năng
 
+    - Thêm hỗ trợ nhập công thức bằng LaTeX  
+    - ...  
+
 Xem tại [CHANGELOG](CHANGELOG.md)  
 
 ## Sắp Có
