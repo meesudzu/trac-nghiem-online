@@ -21,8 +21,9 @@ Dự án có sử dụng một số sản phẩm mã nguồn mở:
 -   <https://github.com/DataTables/DataTables>  
 -   <https://github.com/PHPMailer/PHPMailer>
 -   <https://github.com/PHPOffice/PhpSpreadsheet>
+-   <https://github.com/mathjax/MathJax>
 
-Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.com/DataTables) [@PHPMailer](https://github.com/PHPMailer) [@PHPOffice](https://github.com/PHPOffice)  
+Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.com/DataTables) [@PHPMailer](https://github.com/PHPMailer) [@PHPOffice](https://github.com/PHPOffice) [@mathjax](https://github.com/mathjax)  
 
 ## Tính Năng
 

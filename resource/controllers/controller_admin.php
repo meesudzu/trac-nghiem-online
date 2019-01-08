@@ -372,7 +372,7 @@ class Controller_Admin
 
     public function check_add_admin_via_file()
     {
-        $inputFileType = 'Xlsx';      
+        $inputFileType = 'Xlsx';
         $result = array();
         $reader = IOFactory::createReader($inputFileType);
         move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
@@ -481,7 +481,7 @@ class Controller_Admin
 
     public function check_add_teacher_via_file()
     {
-        $inputFileType = 'Xlsx';      
+        $inputFileType = 'Xlsx';
         $result = array();
         $reader = IOFactory::createReader($inputFileType);
         move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
@@ -648,7 +648,7 @@ class Controller_Admin
 
     public function check_add_student_via_file()
     {
-        $inputFileType = 'Xlsx';      
+        $inputFileType = 'Xlsx';
         $result = array();
         $class_id = isset($_POST['class_id']) ? Htmlspecialchars(addslashes($_POST['class_id'])) : '';
         $reader = IOFactory::createReader($inputFileType);
@@ -730,7 +730,7 @@ class Controller_Admin
     public function check_add_question()
     {
         $result = array();
-        $question_detail = isset($_POST['question_detail']) ? $_POST['question_detail'] : '';
+        $question_detail = isset($_POST['question_detail']) ? addslashes($_POST['question_detail']) : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
         $subject_id = isset($_POST['subject_id']) ? addslashes($_POST['subject_id']) : '';
@@ -738,7 +738,7 @@ class Controller_Admin
         $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
         $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
         $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
-        $correct_answer = isset($_POST['correct_answer']) ? Htmlspecialchars(addslashes($_POST['correct_answer'])) : '';
+        $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
         if (empty($question_detail)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập";
             $result['status'] = 0;
@@ -757,7 +757,7 @@ class Controller_Admin
 
     public function check_add_question_via_file()
     {
-        $inputFileType = 'Xlsx';      
+        $inputFileType = 'Xlsx';
         $result = array();
         $shuffle = array();
         $subject_id = isset($_POST['subject_id']) ? Htmlspecialchars(addslashes($_POST['subject_id'])) : '';
@@ -768,23 +768,23 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for($i = 4; $i < count($sheetData); $i++) {
+        for($i = 4; $i <= count($sheetData); $i++) {
             if($sheetData[$i]['A'] == '')
                 continue;
             $stt = $sheetData[$i]['A'];
-            $question_content = $sheetData[$i]['B'];
-            $answer_a = $sheetData[$i]['C'];
-            $answer_b = $sheetData[$i]['D'];
-            $answer_c = $sheetData[$i]['E'];
-            $answer_d = $sheetData[$i]['F'];
-            $correct_answer = $sheetData[$i]['G'];
+            $question_content = addslashes($sheetData[$i]['B']);
+            $answer_a = addslashes($sheetData[$i]['C']);
+            $answer_b = addslashes($sheetData[$i]['D']);
+            $answer_c = addslashes($sheetData[$i]['E']);
+            $answer_d = addslashes($sheetData[$i]['F']);
+            $correct_answer = addslashes($sheetData[$i]['G']);
             $grade_id = $sheetData[$i]['G'];
             $unit = $sheetData[$i]['G'];
             $add = $this->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
             if($add)
                 $count++;
             else
-                $err_list += $stt.' ';
+                $err_list += ' '.$stt.',';
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' câu hỏi!';
@@ -809,16 +809,15 @@ class Controller_Admin
     {
         $result = array();
         $question_id = isset($_POST['question_id']) ? Htmlspecialchars($_POST['question_id']) : '';
-        $question_content = isset($_POST['question_content']) ? $_POST['question_content'] : '';
+        $question_content = isset($_POST['question_content']) ? addslashes($_POST['question_content']) : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars($_POST['grade_id']) : '';
         $subject_id = isset($_POST['subject_id']) ? Htmlspecialchars($_POST['subject_id']) : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
-        $answer_a = isset($_POST['answer_a']) ? Htmlspecialchars($_POST['answer_a']) : '';
-        $answer_b = isset($_POST['answer_b']) ? Htmlspecialchars($_POST['answer_b']) : '';
-        $answer_c = isset($_POST['answer_c']) ? Htmlspecialchars($_POST['answer_c']) : '';
-        $answer_d = isset($_POST['answer_d']) ? Htmlspecialchars($_POST['answer_d']) : '';
-        $correct_answer = isset($_POST['correct_answer']) ? Htmlspecialchars($_POST['correct_answer']) : '';
-        $correct_answer = addslashes($_POST['correct_answer']);
+        $answer_a = isset($_POST['answer_a']) ? addslashes($_POST['answer_a']) : '';
+        $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
+        $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
+        $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
+        $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
         if (empty($question_content)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập!";
             $result['status'] = 0;

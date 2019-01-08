@@ -1,130 +1,132 @@
 <div class="title-content">
-	<span class="title">Quản Lý Thông Tin Câu Hỏi</span>
-	<div class="action hidden" id="select_action">
-		<a class="waves-effect waves-light btn" onclick="delete_check()">Xóa
-			<i class="material-icons right">delete</i>
-		</a>	
-	</div>
+    <span class="title">Quản Lý Thông Tin Câu Hỏi</span>
+    <div class="action hidden" id="select_action">
+        <a class="waves-effect waves-light btn" onclick="delete_check()">Xóa
+            <i class="material-icons right">delete</i>
+        </a>
+    </div>
 </div>
 <div class="block-content overflow scrollbar">
-	<div class="content">
-		<div class="preload hidden" id="preload">
-			<img src="res/img/loading.gif" alt="">
-		</div>
-		<table class="striped centered responsive-table" id="table_questions">
-			<thead>
-				<tr>
-					<th class="">
-						<p><label><input type="checkbox" id="select_all" /><span></span></label></p>
-					</th>
-					<th class="">ID</th>
-					<th class="">Câu Hỏi</th>
-					<th class="">Thông Tin</th>
-					<th class="">A</th>
-					<th class="">B</th>
-					<th class="">C</th>
-					<th class="">D</th>
-					<th class="">Đúng</th>
-					<th class=""><i class="material-icons">settings</i></th>
-				</tr>
-			</thead>
-			<tbody class="scrollbar" id="list_questions">
-			</tbody>
-		</table>
-	</div>
-	<div class="content">
-		<div class="row">
-			<div class="col s12">
-				<ul class="tabs">
-					<li class="tab col s6"><a href="#add_normal" style="color: #02796e; font-weight: bold;">Thêm Câu Hỏi</a></li>
-					<li class="tab col s6"><a href="#_add_via_file" class="active" style="color: #02796e; font-weight: bold;">Thêm Bằng File</a></li>
-				</ul>
-			</div>
-			<div id="add_normal" class="col s12">
-				<form action="" method="POST" role="form" id="add_question_form">
-					<span class="title">để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
-					<xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
+    <div class="content">
+        <div class="preload hidden" id="preload">
+            <img src="res/img/loading.gif" alt="">
+        </div>
+        <table class="striped centered responsive-table" id="table_questions">
+            <thead>
+                <tr>
+                    <th class="">
+                        <p><label><input type="checkbox" id="select_all" /><span></span></label></p>
+                    </th>
+                    <th class="">ID</th>
+                    <th class="">Câu Hỏi</th>
+                    <th class="">Thông Tin</th>
+                    <th class="">A</th>
+                    <th class="">B</th>
+                    <th class="">C</th>
+                    <th class="">D</th>
+                    <th class="">Đúng</th>
+                    <th class=""><i class="material-icons">settings</i></th>
+                </tr>
+            </thead>
+            <tbody class="scrollbar" id="list_questions">
+            </tbody>
+        </table>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s6"><a href="#add_normal" style="color: #02796e; font-weight: bold;">Thêm Câu Hỏi</a></li>
+                    <li class="tab col s6"><a href="#_add_via_file" class="active" style="color: #02796e; font-weight: bold;">Thêm Bằng File</a></li>
+                </ul>
+            </div>
+            <div id="add_normal" class="col s12">
+                <form action="" method="POST" role="form" id="add_question_form">
+                    <span class="title">Hỗ trợ nhập công thức bằng LaTeX</span><br />
+                    <span class="title">Để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
+                    <xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
 
-					<div class="col l12 s12" style="padding-top: 20px">
-						<div class="input-field">
-							<textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
-							<label for="question_detail">Câu Hỏi</label>
-						</div>
-					</div>
-					<div class="row col l12">
-						<div class="input-field">
-							<label for="answer_a">A</label>
-							<textarea id="answer_a" name="answer_a" class="materialize-textarea" required></textarea>
-						</div>
-						<div class="input-field">
-							<label for="answer_b">B</label>
-							<textarea id="answer_b" name="answer_b" class="materialize-textarea" required></textarea>
-						</div>
-						<div class="input-field">
-							<label for="answer_c">C</label>
-							<textarea id="answer_c" name="answer_c" class="materialize-textarea" required></textarea>
-						</div>
-						<div class="input-field">
-							<label for="answer_d">D</label>
-							<textarea id="answer_d" name="answer_d" class="materialize-textarea" required></textarea>
-						</div>
-						<div class="input-field">
-							<label for="correct_answer">Đúng</label>
-							<textarea id="correct_answer" name="correct_answer" class="materialize-textarea" required></textarea>
-						</div>
-						<div class="input-field">
-							<select name="grade_id" id="grade_id">
-							</select>
-							<label>Khối</label>
-						</div>
-						<div class="input-field">
-							<select name="subject_id" id="subject_id">
-							</select>
-							<label>Môn</label>
-						</div>
-						<div class="input-field">
-							<input name="unit" type="number" required="">
-							<label>Chương</label>
-						</div>
-						<div class="col l12 s12">
-							<button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div id="_add_via_file" class="col s12">
-				<span class="title">Tải File Mẫu: <a href="res/files/mau-them-danh-sach-cau-hoi.xlsx">TẠI ĐÂY</a></span><br />
-				<span class="title">Lưu Ý: <br />1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.</span>
-				<br />
-				<span class="title">2, Chỉ hỗ trợ câu hỏi nội dung ký tự, không hỗ trợ câu hỏi bao gồm nội dung âm thanh, hình ảnh.</span>
-				<br />
-				<span class="title">3, Để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
-				<xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
-				<br />
-				<span id="error" class="title" style="color: red"></span>
-				<form id="add_via_file" enctype="multipart/form-data">
-					<div class="file-field input-field col s6">
-						<div class="input-field">
-							<select name="subject_id" id="_subject">
-							</select>
-							<label>Môn</label>
-						</div>
-						<div class="input-field btn">
-							<span>File</span>
-							<input type="file" name="file_data" id="file_data" required="">
-						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text">
-						</div>
-						<br />
-						<div class="input-field" style="padding-left: 0">
-							<button class="btn" type="submit" name="submit">Thêm</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                    <div class="col l12 s12" style="padding-top: 20px">
+                        <div class="input-field">
+                            <textarea id="question_detail" name="question_detail" class="materialize-textarea" required></textarea>
+                            <label for="question_detail">Câu Hỏi</label>
+                        </div>
+                    </div>
+                    <div class="row col l12">
+                        <div class="input-field">
+                            <label for="answer_a">A</label>
+                            <textarea id="answer_a" name="answer_a" class="materialize-textarea" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="answer_b">B</label>
+                            <textarea id="answer_b" name="answer_b" class="materialize-textarea" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="answer_c">C</label>
+                            <textarea id="answer_c" name="answer_c" class="materialize-textarea" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="answer_d">D</label>
+                            <textarea id="answer_d" name="answer_d" class="materialize-textarea" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="correct_answer">Đúng</label>
+                            <textarea id="correct_answer" name="correct_answer" class="materialize-textarea" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <select name="grade_id" id="grade_id">
+                            </select>
+                            <label>Khối</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="subject_id" id="subject_id">
+                            </select>
+                            <label>Môn</label>
+                        </div>
+                        <div class="input-field">
+                            <input name="unit" type="number" required="">
+                            <label>Chương</label>
+                        </div>
+                        <div class="col l12 s12">
+                            <button type="submit" class="btn" id="add_question" name="add-question">Thêm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="_add_via_file" class="col s12">
+                <span class="title">Tải File Mẫu: <a href="res/files/mau-them-danh-sach-cau-hoi.xlsx">TẠI ĐÂY</a></span><br />
+                <span class="title">Hỗ trợ nhập công thức bằng LaTeX</span><br />
+                <span class="title">Lưu Ý: <br />1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.</span>
+                <br />
+                <span class="title">2, Chỉ hỗ trợ câu hỏi nội dung ký tự, không hỗ trợ câu hỏi bao gồm nội dung âm thanh, hình ảnh.</span>
+                <br />
+                <span class="title">3, Để thêm ảnh vào nội dung câu hỏi, sử dụng cú pháp:</span>
+                <xmp><img src="đường dẫn ảnh" alt="" style="max-width: 400px;max-height: 200px"></xmp>
+                <br />
+                <span id="error" class="title" style="color: red"></span>
+                <form id="add_via_file" enctype="multipart/form-data">
+                    <div class="file-field input-field col s6">
+                        <div class="input-field">
+                            <select name="subject_id" id="_subject">
+                            </select>
+                            <label>Môn</label>
+                        </div>
+                        <div class="input-field btn">
+                            <span>File</span>
+                            <input type="file" name="file_data" id="file_data" required="">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                        <br />
+                        <div class="input-field" style="padding-left: 0">
+                            <button class="btn" type="submit" name="submit">Thêm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 <script src="res/libs/DataTables/js/jquery.dataTables.js"></script>
