@@ -326,7 +326,7 @@ class Model_Admin extends Database
     public function get_list_questions()
     {
         $sql = "
-        SELECT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
+        SELECT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id
         INNER JOIN subjects ON subjects.subject_id = questions.subject_id";
         $this->set_query($sql);
@@ -421,7 +421,7 @@ class Model_Admin extends Database
     }
     public function get_test_score($test_code)
     {
-        $sql = "SELECT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id 
+        $sql = "SELECT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id
         INNER JOIN classes ON students.class_id = classes.class_id
         WHERE test_code = '$test_code'";
         $this->set_query($sql);
