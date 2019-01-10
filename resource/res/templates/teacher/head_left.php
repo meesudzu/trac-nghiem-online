@@ -15,7 +15,7 @@
 	<script src="res/js/materialize.min.js"></script>
 	<script src="res/libs/DataTables/js/jquery.dataTables.js"></script>
 	<script src="res/js/teacher_functions.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 </head>
 
 <body class="body-login  overflow scrollbar">
