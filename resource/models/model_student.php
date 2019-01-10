@@ -4,7 +4,7 @@
  * Model Student
  * Author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
- **/ 
+ **/
 
 require_once('config/database.php');
 
@@ -12,7 +12,7 @@ class Model_Student extends Database
 {
 	public function get_profiles($username)
 	{
-		$sql = "SELECT students.student_id as ID,students.username,students.name,students.email,students.avatar,students.class_id,students.birthday,students.last_login,genders.gender_id,genders.gender_detail,classes.grade_id,students.doing_exam,students.time_remaining FROM `students`
+		$sql = "SELECT DISTINCT students.student_id as ID,students.username,students.name,students.email,students.avatar,students.class_id,students.birthday,students.last_login,genders.gender_id,genders.gender_detail,classes.grade_id,students.doing_exam,students.time_remaining FROM `students`
 		INNER JOIN genders ON genders.gender_id = students.gender_id
 		INNER JOIN classes ON classes.class_id = students.class_id
 		WHERE username = '$username'";
@@ -21,31 +21,31 @@ class Model_Student extends Database
 	}
 	public function get_score($student_id,$test_code)
 	{
-		$sql = "SELECT * FROM `scores` WHERE student_id = $student_id AND test_code = $test_code";
+		$sql = "SELECT DISTINCT * FROM `scores` WHERE student_id = $student_id AND test_code = $test_code";
 		$this->set_query($sql);
 		return $this->load_row();
 	}
 	public function get_scores($student_id)
 	{
-		$sql = "SELECT * FROM `scores` WHERE student_id = $student_id";
+		$sql = "SELECT DISTINCT * FROM `scores` WHERE student_id = $student_id";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
 	public function get_notifications($class_id)
 	{
-		$sql = "SELECT * FROM notifications WHERE notification_id IN (SELECT notification_id FROM student_notifications WHERE class_id = '$class_id') ORDER BY `time_sent` DESC";
+		$sql = "SELECT DISTINCT * FROM notifications WHERE notification_id IN (SELECT DISTINCT notification_id FROM student_notifications WHERE class_id = '$class_id') ORDER BY `time_sent` DESC";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
 	public function get_chats($class_id)
 	{
-		$sql = "SELECT * FROM `chats` WHERE class_id = '$class_id' ORDER BY ID DESC LIMIT 10";
+		$sql = "SELECT DISTINCT * FROM `chats` WHERE class_id = '$class_id' ORDER BY ID DESC LIMIT 10";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
 	public function get_chat_all($class_id)
 	{
-		$sql = "SELECT * FROM `chats` WHERE class_id = '$class_id' ORDER BY ID DESC";
+		$sql = "SELECT DISTINCT * FROM `chats` WHERE class_id = '$class_id' ORDER BY ID DESC";
 		$this->set_query($sql);
 		return $this->load_rows();
 	}
@@ -75,9 +75,9 @@ class Model_Student extends Database
 	}
 	public function valid_email_on_profiles($curren_email, $new_email)
 	{
-		$sql = "SELECT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')
-		UNION SELECT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
-		UNION SELECT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
+		$sql = "SELECT DISTINCT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+		UNION SELECT DISTINCT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+		UNION SELECT DISTINCT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
 		$this->set_query($sql);
 		if ($this->load_row() != '') {
 			return false;
@@ -101,7 +101,7 @@ class Model_Student extends Database
 	public function get_list_tests()
 	{
 		$sql = "
-		SELECT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,statuses.detail as status FROM `tests`
+		SELECT DISTINCT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,statuses.detail as status FROM `tests`
 		INNER JOIN grades ON grades.grade_id = tests.grade_id
 		INNER JOIN subjects ON subjects.subject_id = tests.subject_id
 		INNER JOIN statuses ON statuses.status_id = tests.status_id";
@@ -110,13 +110,13 @@ class Model_Student extends Database
 	}
 	public function get_test($test_code)
 	{
-		$sql = "SELECT * FROM tests WHERE test_code = '$test_code'";
+		$sql = "SELECT DISTINCT * FROM tests WHERE test_code = '$test_code'";
 		$this->set_query($sql);
 		return $this->load_row();
 	}
 	public function get_quest_of_test($test_code)
 	{
-		$sql = "SELECT * FROM quest_of_test
+		$sql = "SELECT DISTINCT * FROM quest_of_test
 		INNER JOIN questions ON questions.question_id = quest_of_test.question_id
 		WHERE test_code = $test_code ORDER BY RAND()";
 		$this->set_query($sql);
@@ -130,7 +130,7 @@ class Model_Student extends Database
 	}
 	public function get_doing_quest($test_code,$student_id)
 	{
-		$sql = "SELECT *,questions.question_content FROM student_test_detail
+		$sql = "SELECT DISTINCT *,questions.question_content FROM student_test_detail
 		INNER JOIN questions ON student_test_detail.question_id = questions.question_id
 		WHERE test_code = $test_code AND student_id = $student_id ORDER BY ID";
 		$this->set_query($sql);
@@ -138,7 +138,7 @@ class Model_Student extends Database
 	}
 	public function get_result_quest($test_code,$student_id)
 	{
-		$sql = "SELECT * FROM student_test_detail
+		$sql = "SELECT DISTINCT * FROM student_test_detail
 		INNER JOIN questions ON student_test_detail.question_id = questions.question_id
 		INNER JOIN tests ON student_test_detail.test_code = tests.test_code
 		WHERE student_test_detail.test_code = $test_code AND student_id = $student_id ORDER BY ID";

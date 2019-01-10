@@ -13,7 +13,7 @@ class Model_Admin extends Database
     public function get_admin_info($username)
     {
         $sql = "
-        SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail,genders.gender_id FROM admins
+        SELECT DISTINCT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail,genders.gender_id FROM admins
         INNER JOIN permissions ON admins.permission = permissions.permission
         INNER JOIN genders ON admins.gender_id = genders.gender_id
         WHERE username = '$username'";
@@ -23,7 +23,7 @@ class Model_Admin extends Database
     public function get_teacher_info($username)
     {
         $sql = "
-        SELECT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
+        SELECT DISTINCT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
         INNER JOIN permissions ON teachers.permission = permissions.permission
         INNER JOIN genders ON teachers.gender_id = genders.gender_id WHERE username = '$username'";
         $this->set_query($sql);
@@ -32,7 +32,7 @@ class Model_Admin extends Database
     public function get_student_info($username)
     {
         $sql = "
-        SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
+        SELECT DISTINCT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
         INNER JOIN classes ON students.class_id = classes.class_id
         INNER JOIN genders ON students.gender_id = genders.gender_id WHERE username = '$username'";
         $this->set_query($sql);
@@ -41,7 +41,7 @@ class Model_Admin extends Database
     public function get_class_info($class_name)
     {
         $sql = "
-        SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
+        SELECT DISTINCT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
         INNER JOIN grades ON classes.grade_id = grades.grade_id
         INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id
         WHERE class_name = '$class_name'";
@@ -50,7 +50,7 @@ class Model_Admin extends Database
     }
     public function get_list_admins()
     {
-        $sql = "SELECT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
+        $sql = "SELECT DISTINCT admin_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM admins
         INNER JOIN permissions ON admins.permission = permissions.permission
         INNER JOIN genders ON admins.gender_id = genders.gender_id";
         $this->set_query($sql);
@@ -58,13 +58,13 @@ class Model_Admin extends Database
     }
     public function get_list_grades()
     {
-        $sql = "SELECT * FROM grades";
+        $sql = "SELECT DISTINCT * FROM grades";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function get_list_subjects()
     {
-        $sql = "SELECT * FROM subjects";
+        $sql = "SELECT DISTINCT * FROM subjects";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -76,11 +76,11 @@ class Model_Admin extends Database
     }
     public function valid_username_or_email($data)
     {
-        $sql = "SELECT name FROM students WHERE username = '$data' OR email = '$data'
+        $sql = "SELECT DISTINCT name FROM students WHERE username = '$data' OR email = '$data'
         UNION
-        SELECT name FROM teachers WHERE username = '$data' OR email = '$data'
+        SELECT DISTINCT name FROM teachers WHERE username = '$data' OR email = '$data'
         UNION
-        SELECT name FROM admins WHERE username = '$data' OR email = '$data'";
+        SELECT DISTINCT name FROM admins WHERE username = '$data' OR email = '$data'";
         $this->set_query($sql);
         if ($this->load_row() != '') {
             return false;
@@ -90,7 +90,7 @@ class Model_Admin extends Database
     }
     public function valid_class_name($class_name)
     {
-        $sql = "SELECT class_id FROM classes WHERE class_name = '$class_name'";
+        $sql = "SELECT DISTINCT class_id FROM classes WHERE class_name = '$class_name'";
         $this->set_query($sql);
         if ($this->load_row() != '') {
             return false;
@@ -100,9 +100,9 @@ class Model_Admin extends Database
     }
     public function valid_email_on_profiles($curren_email, $new_email)
     {
-        $sql = "SELECT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')
-        UNION SELECT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
-        UNION SELECT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
+        $sql = "SELECT DISTINCT name FROM students WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+        UNION SELECT DISTINCT name FROM admins WHERE email = '$new_email' AND email NOT IN ('$curren_email')
+        UNION SELECT DISTINCT name FROM teachers WHERE email = '$new_email' AND email NOT IN ('$curren_email')";
         $this->set_query($sql);
         if ($this->load_row() != '') {
             return false;
@@ -112,7 +112,7 @@ class Model_Admin extends Database
     }
     public function edit_admin($admin_id, $password, $name, $gender_id, $birthday)
     {
-        $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
+        $sql = "SELECT DISTINCT username FROM admins WHERE admin_id = '$admin_id'";
         $this->set_query($sql);
         if ($this->load_row()=='') {
             return false;
@@ -127,7 +127,7 @@ class Model_Admin extends Database
         $sql="DELETE FROM admins where admin_id='$admin_id'";
         $this->set_query($sql);
         $this->execute_return_status();
-        $sql = "SELECT username FROM admins WHERE admin_id = '$admin_id'";
+        $sql = "SELECT DISTINCT username FROM admins WHERE admin_id = '$admin_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -136,7 +136,7 @@ class Model_Admin extends Database
     }
     public function add_admin($name, $username, $password, $email, $birthday, $gender)
     {
-        $sql = "SELECT admin_id FROM admins WHERE username = '$username' OR email = '$email'";
+        $sql = "SELECT DISTINCT admin_id FROM admins WHERE username = '$username' OR email = '$email'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -152,7 +152,7 @@ class Model_Admin extends Database
     }
     public function get_list_teachers()
     {
-        $sql = "SELECT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
+        $sql = "SELECT DISTINCT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail FROM teachers
         INNER JOIN permissions ON teachers.permission = permissions.permission
         INNER JOIN genders ON teachers.gender_id = genders.gender_id";
         $this->set_query($sql);
@@ -160,7 +160,7 @@ class Model_Admin extends Database
     }
     public function edit_teacher($teacher_id, $password, $name, $gender_id, $birthday)
     {
-        $sql = "SELECT username FROM teachers WHERE teacher_id = '$teacher_id'";
+        $sql = "SELECT DISTINCT username FROM teachers WHERE teacher_id = '$teacher_id'";
         $this->set_query($sql);
         if ($this->load_row()=='') {
             return false;
@@ -178,7 +178,7 @@ class Model_Admin extends Database
         $sql="DELETE FROM teachers where teacher_id='$teacher_id'";
         $this->set_query($sql);
         $this->execute_return_status();
-        $sql = "SELECT username FROM teachers WHERE teacher_id = '$teacher_id'";
+        $sql = "SELECT DISTINCT username FROM teachers WHERE teacher_id = '$teacher_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -187,7 +187,7 @@ class Model_Admin extends Database
     }
     public function add_teacher($name, $username, $password, $email, $birthday, $gender)
     {
-        $sql = "SELECT teacher_id FROM teachers WHERE username = '$username' or email = '$email'";
+        $sql = "SELECT DISTINCT teacher_id FROM teachers WHERE username = '$username' or email = '$email'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -204,7 +204,7 @@ class Model_Admin extends Database
     public function get_list_students()
     {
         $sql = "
-        SELECT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
+        SELECT DISTINCT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
         INNER JOIN classes ON students.class_id = classes.class_id
         INNER JOIN genders ON students.gender_id = genders.gender_id";
         $this->set_query($sql);
@@ -227,7 +227,7 @@ class Model_Admin extends Database
         $sql="DELETE FROM students where student_id='$student_id'";
         $this->set_query($sql);
         $this->execute_return_status();
-        $sql = "SELECT username FROM students WHERE student_id = '$student_id'";
+        $sql = "SELECT DISTINCT username FROM students WHERE student_id = '$student_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -236,7 +236,7 @@ class Model_Admin extends Database
     }
     public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
-        $sql = "SELECT student_id FROM students WHERE username = '$username' OR email = '$email";
+        $sql = "SELECT DISTINCT student_id FROM students WHERE username = '$username' OR email = '$email";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -253,7 +253,7 @@ class Model_Admin extends Database
     public function get_list_classes()
     {
         $sql = "
-        SELECT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
+        SELECT DISTINCT class_id,class_name,name as teacher_name, detail as grade_detail FROM classes
         INNER JOIN grades ON classes.grade_id = grades.grade_id
         INNER JOIN teachers ON classes.teacher_id = teachers.teacher_id";
         $this->set_query($sql);
@@ -261,13 +261,13 @@ class Model_Admin extends Database
     }
     public function get_list_units($grade_id,$subject_id)
     {
-        $sql = "SELECT DISTINCT unit, COUNT(unit) as total FROM questions WHERE subject_id = $subject_id and grade_id = $grade_id GROUP BY unit";
+        $sql = "SELECT DISTINCT DISTINCT unit, COUNT(unit) as total FROM questions WHERE subject_id = $subject_id and grade_id = $grade_id GROUP BY unit";
         $this->set_query($sql);
         return $this->load_rows();
     }
     public function list_quest_of_unit($grade_id,$subject_id,$unit,$limit)
     {
-        $sql = "SELECT * FROM `questions` WHERE `grade_id` = $grade_id and `subject_id` = $subject_id and `unit` = $unit ORDER BY RAND() LIMIT $limit";
+        $sql = "SELECT DISTINCT * FROM `questions` WHERE `grade_id` = $grade_id and `subject_id` = $subject_id and `unit` = $unit ORDER BY RAND() LIMIT $limit";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -294,7 +294,7 @@ class Model_Admin extends Database
         $sql="DELETE FROM classes where class_id='$class_id'";
         $this->set_query($sql);
         $this->execute_return_status();
-        $sql = "SELECT class_name FROM classes WHERE class_id = '$class_id'";
+        $sql = "SELECT DISTINCT class_name FROM classes WHERE class_id = '$class_id'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -303,7 +303,7 @@ class Model_Admin extends Database
     }
     public function add_class($grade_id, $class_name, $teacher_id)
     {
-        $sql = "SELECT class_id FROM classes WHERE class_name = '$class_name'";
+        $sql = "SELECT DISTINCT class_id FROM classes WHERE class_name = '$class_name'";
         $this->set_query($sql);
         if ($this->load_row()!='') {
             return false;
@@ -326,7 +326,7 @@ class Model_Admin extends Database
     public function get_list_questions()
     {
         $sql = "
-        SELECT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
+        SELECT DISTINCT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id
         INNER JOIN subjects ON subjects.subject_id = questions.subject_id";
         $this->set_query($sql);
@@ -335,7 +335,7 @@ class Model_Admin extends Database
     public function get_list_tests()
     {
         $sql = "
-        SELECT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,statuses.detail as status FROM `tests`
+        SELECT DISTINCT tests.test_code,tests.test_name,tests.password,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail,statuses.status_id,statuses.detail as status FROM `tests`
         INNER JOIN grades ON grades.grade_id = tests.grade_id
         INNER JOIN subjects ON subjects.subject_id = tests.subject_id
         INNER JOIN statuses ON statuses.status_id = tests.status_id";
@@ -345,7 +345,7 @@ class Model_Admin extends Database
     public function get_question_info($ID)
     {
         $sql = "
-        SELECT questions.ID,questions.question_detail,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
+        SELECT DISTINCT questions.ID,questions.question_detail,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id";
         $this->set_query($sql);
         return $this->load_row();
@@ -353,7 +353,7 @@ class Model_Admin extends Database
     public function get_list_statuses()
     {
         $sql = "
-        SELECT * FROM `statuses`";
+        SELECT DISTINCT * FROM `statuses`";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -402,7 +402,7 @@ class Model_Admin extends Database
     public function get_teacher_notifications()
     {
         $sql = "
-        SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
+        SELECT DISTINCT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,teachers.name as receive_name,teachers.username as receive_username,notifications.time_sent FROM teacher_notifications
         INNER JOIN notifications ON notifications.notification_id = teacher_notifications.notification_id
         INNER JOIN teachers ON teachers.teacher_id = teacher_notifications.teacher_id
         ORDER BY `ID` DESC";
@@ -412,7 +412,7 @@ class Model_Admin extends Database
     public function get_student_notifications()
     {
         $sql = "
-        SELECT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
+        SELECT DISTINCT notifications.notification_id, notifications.notification_title, notifications.notification_content, notifications.username,notifications.name,classes.class_name,notifications.time_sent FROM student_notifications
         INNER JOIN notifications ON notifications.notification_id = student_notifications.notification_id
         INNER JOIN classes ON classes.class_id = student_notifications.class_id
         ORDER BY `ID` DESC";
@@ -421,7 +421,7 @@ class Model_Admin extends Database
     }
     public function get_test_score($test_code)
     {
-        $sql = "SELECT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id
+        $sql = "SELECT DISTINCT * FROM `scores` INNER JOIN students ON scores.student_id = students.student_id
         INNER JOIN classes ON students.class_id = classes.class_id
         WHERE test_code = '$test_code'";
         $this->set_query($sql);
@@ -442,55 +442,55 @@ class Model_Admin extends Database
     }
     public function get_total_student()
     {
-        $sql = "SELECT COUNT(student_id) as total FROM students";
+        $sql = "SELECT DISTINCT COUNT(student_id) as total FROM students";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_admin()
     {
-        $sql = "SELECT COUNT(admin_id) as total FROM admins";
+        $sql = "SELECT DISTINCT  COUNT(admin_id) as total FROM admins";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_teacher()
     {
-        $sql = "SELECT COUNT(teacher_id) as total FROM teachers";
+        $sql = "SELECT DISTINCT  COUNT(teacher_id) as total FROM teachers";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_class()
     {
-        $sql = "SELECT COUNT(class_id) as total FROM classes";
+        $sql = "SELECT DISTINCT COUNT(class_id) as total FROM classes";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_subject()
     {
-        $sql = "SELECT COUNT(subject_id) as total FROM subjects";
+        $sql = "SELECT DISTINCT COUNT(subject_id) as total FROM subjects";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_question()
     {
-        $sql = "SELECT COUNT(question_id) as total FROM questions";
+        $sql = "SELECT DISTINCT COUNT(question_id) as total FROM questions";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_grade()
     {
-        $sql = "SELECT COUNT(grade_id) as total FROM grades";
+        $sql = "SELECT DISTINCT COUNT(grade_id) as total FROM grades";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function get_total_test()
     {
-        $sql = "SELECT COUNT(test_code) as total FROM tests";
+        $sql = "SELECT DISTINCT COUNT(test_code) as total FROM tests";
         $this->set_query($sql);
         return $this->load_row()->total;
     }
     public function edit_subject($subject_id, $subject_detail)
     {
-        $sql = "SELECT subject_detail FROM subjects WHERE subject_id = '$subject_id'";
+        $sql = "SELECT DISTINCT subject_detail FROM subjects WHERE subject_id = '$subject_id'";
         $this->set_query($sql);
         if ($this->load_row()=='') {
             return false;
@@ -513,7 +513,7 @@ class Model_Admin extends Database
     }
     public function get_quest_of_test($test_code)
     {
-        $sql = "SELECT * FROM `quest_of_test`
+        $sql = "SELECT DISTINCT * FROM `quest_of_test`
         INNER JOIN questions ON quest_of_test.question_id = questions.question_id
         WHERE test_code = $test_code";
         $this->set_query($sql);
