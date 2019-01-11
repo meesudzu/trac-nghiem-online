@@ -40,7 +40,7 @@ Thanks to [@Dogfalo](https://github.com/Dogfalo) [@DataTables](https://github.co
 
 Còn rất nhiều tính năng nữa mà mình không thể liệt kê hết được, mọi người tự trải nghiệm nhé.  
 
-Xem tại [CHANGELOG](CHANGELOG.md)  
+Xem thêm tại [CHANGELOG](CHANGELOG.md)  
 
 ## Sắp Có
 
