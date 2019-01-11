@@ -21,6 +21,7 @@ $(document).ready(function() {
     });
 
 });
+
 function show_status(json_data) {
     if (json_data.status) {
         $('#status').addClass('success');
@@ -84,9 +85,14 @@ function select_teacher() {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=teacher_id]');
         sl.empty();
-        $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.teacher_id + '">' + value.name + '</option>');
-        });
+        if (json_data.length != 0) {
+            $('#teacher_error').addClass('hidden');
+            $.each(json_data, function(key, value) {
+                sl.append('<option value="' + value.teacher_id + '">' + value.name + '</option>');
+            });
+        } else {
+            $('#teacher_error').removeClass('hidden');
+        }
         $('select').select();
     };
     $.get(url, success);
@@ -112,23 +118,33 @@ function select_subject() {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=subject_id]');
         sl.empty();
-        $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.subject_id + '">' + value.subject_detail + '</option>');
-        });
+        if (json_data.length != 0) {
+            $('#subject_error').addClass('hidden');
+            $.each(json_data, function(key, value) {
+                sl.append('<option value="' + value.subject_id + '">' + value.subject_detail + '</option>');
+            });
+        } else {
+            $('#class_error').removeClass('hidden');
+        }
         $('select').select();
     };
     $.get(url, success);
 }
 
-function select_class(data) {
+function select_class() {
     var url = "index.php?action=get_list_classes";
     var success = function(result) {
         var json_data = $.parseJSON(result);
         var sl = $('select[name=class_id]');
         sl.empty();
-        $.each(json_data, function(key, value) {
-            sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
-        });
+        if (json_data.length != 0) {
+            $('#class_error').addClass('hidden');
+            $.each(json_data, function(key, value) {
+                sl.append('<option value="' + value.class_id + '">' + value.class_name + '</option>');
+            });
+        } else {
+            $('#class_error').removeClass('hidden');
+        }
         $('select').select();
     };
     $.get(url, success);

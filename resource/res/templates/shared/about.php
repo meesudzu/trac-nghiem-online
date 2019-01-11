@@ -30,8 +30,11 @@
                 <li>
         		    <a href="https://github.com/mathjax/MathJax">https://github.com/mathjax/MathJax</a>
         		</li>
+                <li>
+        		    <a href="https://github.com/ckeditor/ckeditor-dev">https://github.com/ckeditor/ckeditor-dev</a>
+        		</li>
 			</ul>
-			Thanks to <a href="https://github.com/Dogfalo">@Dogfalo</a> <a href="https://github.com/DataTables">@DataTables</a> <a href="https://github.com/PHPMailer">@PHPMailer</a> <a href="https://github.com/PHPOffice">@PHPOffice</a> <a href="https://github.com/mathjax">@mathjax</a>
+			Thanks to <a href="https://github.com/Dogfalo">@Dogfalo</a> <a href="https://github.com/DataTables">@DataTables</a> <a href="https://github.com/PHPMailer">@PHPMailer</a> <a href="https://github.com/PHPOffice">@PHPOffice</a> <a href="https://github.com/mathjax">@mathjax</a> <a href="https://github.com/ckeditor">@ckeditor</a>
 		</div>
 	</div>
 </div>

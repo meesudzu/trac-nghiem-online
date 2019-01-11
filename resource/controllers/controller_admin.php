@@ -62,11 +62,6 @@ class Controller_Admin
         $info = new Model_Admin();
         return $info->get_class_info($class_name);
     }
-    public function get_question_info($ID)
-    {
-        $info = new Model_Admin();
-        return $info->get_question_info($ID);
-    }
     public function update_last_login()
     {
         $info = new Model_Admin();
@@ -226,20 +221,20 @@ class Controller_Admin
         $list_tests = new Model_Admin();
         echo json_encode($list_tests->get_list_tests());
     }
-    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
     {
         $edit = new Model_Admin();
-        return $edit->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+        return $edit->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id);
     }
     public function del_question($question_id)
     {
         $del = new Model_Admin();
-        $del->del_question($question_id);
+        return $del->del_question($question_id);
     }
-    public function add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    public function add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
     {
         $add_question = new Model_Admin();
-        return $add_question->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+        return $add_question->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id,$this->info["username"]);
     }
     public function get_teacher_notifications()
     {
@@ -416,15 +411,21 @@ class Controller_Admin
     {
         $result = array();
         $admin_id = isset($_POST['admin_id']) ? Htmlspecialchars($_POST['admin_id']) : '';
-        $del = $this->del_admin($admin_id);
-        if ($del) {
-            $result['status_value'] = "Xóa thành công!";
-            $result['status'] = 1;
-            $result['admin_id'] = $admin_id;
-        } else {
-            $result['status_value'] = "Không thể xóa!";
+        if($admin_id == $this->info["admin_id"]){
+            $result['status_value'] = "Không thể tự xóa bản thân!";
             $result['status'] = 0;
             $result['admin_id'] = $admin_id;
+        } else {
+            $del = $this->del_admin($admin_id);
+            if ($del) {
+                $result['status_value'] = "Xóa thành công!";
+                $result['status'] = 1;
+                $result['admin_id'] = $admin_id;
+            } else {
+                $result['status_value'] = "Không thể xóa!";
+                $result['status'] = 0;
+                $result['admin_id'] = $admin_id;
+            }
         }
         echo json_encode($result);
     }
@@ -531,7 +532,7 @@ class Controller_Admin
             $result['status'] = 1;
             $result['teacher_id'] = $teacher_id;
         } else {
-            $result['status_value'] = "Không thể xóa!";
+            $result['status_value'] = "Không thể xóa giáo viên đang chủ nhiệm lớp!";
             $result['status'] = 0;
             $result['teacher_id'] = $teacher_id;
         }
@@ -594,7 +595,7 @@ class Controller_Admin
             $result['status'] = 1;
             $result['class_id'] = $class_id;
         } else {
-            $result['status_value'] = "Không thể xóa!";
+            $result['status_value'] = "Không thể xóa lớp đang có học sinh!";
             $result['status'] = 0;
             $result['class_id'] = $class_id;
 
@@ -720,7 +721,7 @@ class Controller_Admin
             $result['status'] = 1;
             $result['student_id'] = $student_id;
         } else {
-            $result['status_value'] = "Không thể xóa!";
+            $result['status_value'] = "Không thể xóa học sinh đang có điểm trên hệ thống!";
             $result['status'] = 0;
             $result['student_id'] = $student_id;
 
@@ -731,19 +732,33 @@ class Controller_Admin
     {
         $result = array();
         $question_detail = isset($_POST['question_detail']) ? addslashes($_POST['question_detail']) : '';
-        $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
-        $unit = isset($_POST['unit']) ? Htmlspecialchars(addslashes($_POST['unit'])) : '';
+        $grade_id = isset($_POST['grade_id']) ? addslashes($_POST['grade_id']) : '';
+        $unit = isset($_POST['unit']) ? addslashes($_POST['unit']) : '';
         $subject_id = isset($_POST['subject_id']) ? addslashes($_POST['subject_id']) : '';
         $answer_a = isset($_POST['answer_a']) ? addslashes($_POST['answer_a']) : '';
         $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
         $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
         $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
         $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
+        $level_id = isset($_POST['level_id']) ? addslashes($_POST['level_id']) : '';
+        $true_correct_answer = "";
         if (empty($question_detail)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập";
             $result['status'] = 0;
         } else {
-            $res = $this->add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+            if($correct_answer == "A"){
+                $true_correct_answer = $answer_a;
+            }
+            if($correct_answer == "B"){
+                $true_correct_answer = $answer_b;
+            }
+            if($correct_answer == "C"){
+                $true_correct_answer = $answer_c;
+            }
+            if($correct_answer == "D"){
+                $true_correct_answer = $answer_d;
+            }
+            $res = $this->add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
             if($res) {
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
@@ -778,9 +793,23 @@ class Controller_Admin
             $answer_c = addslashes($sheetData[$i]['E']);
             $answer_d = addslashes($sheetData[$i]['F']);
             $correct_answer = addslashes($sheetData[$i]['G']);
-            $grade_id = $sheetData[$i]['G'];
-            $unit = $sheetData[$i]['G'];
-            $add = $this->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+            $true_correct_answer = "";
+            if($correct_answer == "A"){
+                $true_correct_answer = $answer_a;
+            }
+            if($correct_answer == "B"){
+                $true_correct_answer = $answer_b;
+            }
+            if($correct_answer == "C"){
+                $true_correct_answer = $answer_c;
+            }
+            if($correct_answer == "D"){
+                $true_correct_answer = $answer_d;
+            }
+            $grade_id = $sheetData[$i]['H'];
+            $unit = $sheetData[$i]['I'];
+            $level_id = $sheetData[$i]['J'];
+            $add = $this->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
             if($add)
                 $count++;
             else
@@ -799,35 +828,54 @@ class Controller_Admin
     {
         $return = array();
         $question_id = isset($_POST['question_id']) ? Htmlspecialchars($_POST['question_id']) : '';
-        $this->del_question($question_id);
-        $result['status_value'] = "Xóa thành công!";
-        $result['status'] = 1;
-        $result['question_id'] = $question_id;
+        $del = $this->del_question($question_id);
+        if($del){
+            $result['status_value'] = "Xóa thành công!";
+            $result['status'] = 1;
+            $result['question_id'] = $question_id;
+        } else {
+            $result['status_value'] = "Không thể xóa câu hỏi đang có trong đề thi!";
+            $result['status'] = 0;
+            $result['question_id'] = $question_id;
+        }
         echo json_encode($result);
     }
     public function check_edit_question()
     {
         $result = array();
-        $question_id = isset($_POST['question_id']) ? Htmlspecialchars($_POST['question_id']) : '';
-        $question_content = isset($_POST['question_content']) ? addslashes($_POST['question_content']) : '';
-        $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars($_POST['grade_id']) : '';
-        $subject_id = isset($_POST['subject_id']) ? Htmlspecialchars($_POST['subject_id']) : '';
+        $question_id = isset($_POST['question_id']) ? $_POST['question_id'] : '';
+        $question_content = isset($_POST['question_detail']) ? addslashes($_POST['question_detail']) : '';
+        $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
+        $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
         $answer_a = isset($_POST['answer_a']) ? addslashes($_POST['answer_a']) : '';
         $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
         $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
         $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
+        $level_id = isset($_POST['level_id']) ? $_POST['level_id'] : '';
         $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
         if (empty($question_content)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập!";
             $result['status'] = 0;
         } else {
-            $res = $this->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer);
+            if($correct_answer == "A"){
+                $true_correct_answer = $answer_a;
+            }
+            if($correct_answer == "B"){
+                $true_correct_answer = $answer_b;
+            }
+            if($correct_answer == "C"){
+                $true_correct_answer = $answer_c;
+            }
+            if($correct_answer == "D"){
+                $true_correct_answer = $answer_d;
+            }
+            $res = $this->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
             if($res) {
-                $result['status_value'] = "Sửa thành công!";
+                $result['status_value'] = "Sửa thành công, chuẩn bị chuyển trang!";
                 $result['status'] = 1;
             } else {
-                $result['status_value'] = "Sửa thất bại!";
+                $result['status_value'] = "Sửa thất bại, vui lòng kiểm tra lại!";
                 $result['status'] = 0;
             }
         }
@@ -933,9 +981,13 @@ class Controller_Admin
         $list_check = explode(',', $data);
         for ($i = 0; $i < count($list_check) - 1; $i++)
         {
-            $del = $this->del_admin($list_check[$i]);
-            if (!$del) {
+            if($list_check[$i] == $this->info["admin_id"]) {
                 $list_del = $list_del." ".$list_check[$i];
+            } else {
+                $del = $this->del_admin($list_check[$i]);
+                if (!$del) {
+                    $list_del = $list_del." ".$list_check[$i];
+                }
             }
         }
         if ($list_del == '') {
@@ -943,7 +995,7 @@ class Controller_Admin
             $result['status_value'] = "Xóa thành công";
         } else {
             $result['status'] = 0;
-            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del.", vui lòng kiểm tra lại!";
         }
         echo json_encode($result);
     }
@@ -965,7 +1017,7 @@ class Controller_Admin
             $result['status_value'] = "Xóa thành công";
         } else {
             $result['status'] = 0;
-            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del.", Giáo viên đang chủ nhiệm lớp!";
         }
         echo json_encode($result);
     }
@@ -987,7 +1039,7 @@ class Controller_Admin
             $result['status_value'] = "Xóa thành công";
         } else {
             $result['status'] = 0;
-            $result['status_value'] = "Không thể xóa ID: ".$list_del;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del.", lớp đang có học sinh!";
         }
         echo json_encode($result);
     }
@@ -996,12 +1048,21 @@ class Controller_Admin
         $result = array();
         $data = $_POST['list_check'];
         $list_check = explode(',', $data);
+        $list_del == '';
         for ($i = 0; $i < count($list_check) - 1; $i++)
         {
-            $this->del_question($list_check[$i]);
+            $del = $this->del_question($list_check[$i]);
+            if (!$del) {
+                $list_del = $list_del." ".$list_check[$i];
+            }
         }
-        $result['status'] = 1;
-        $result['status_value'] = "Xóa thành công";
+        if ($list_del == '') {
+            $result['status'] = 1;
+            $result['status_value'] = "Xóa thành công";
+        } else {
+            $result['status'] = 0;
+            $result['status_value'] = "Không thể xóa ID: ".$list_del.", câu hỏi đang có trong đề thi!";
+        }
         echo json_encode($result);
     }
 
@@ -1034,7 +1095,7 @@ class Controller_Admin
             $result['status'] = 1;
             $result['subject_id'] = $subject_id;
         } else {
-            $result['status_value'] = "Không thể xóa!";
+            $result['status_value'] = "Không thể xóa môn học đang có câu hỏi và đề thi trên hệ thống!";
             $result['status'] = 0;
             $result['subject_id'] = $subject_id;
         }
@@ -1196,6 +1257,29 @@ class Controller_Admin
         $view->show_head_left($this->info);
         $view->show_questions_panel();
         $view->show_foot();
+    }
+    public function show_add_question()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_add_question();
+        $view->show_foot();
+    }
+    public function show_edit_question()
+    {
+        $id = addslashes($_GET['id']);
+        if($id == null) {
+            $this->show_404();
+        } else {
+            $model = new Model_Admin();
+            $question = $model->get_question($id);
+            $grades = $model->get_list_grades();
+            $subjects = $model->get_list_subjects();
+            $view = new View_Admin();
+            $view->show_head_left($this->info);
+            $view->show_edit_question($question,$grades,$subjects);
+            $view->show_foot();
+        }
     }
     public function show_tests_panel()
     {

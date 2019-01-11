@@ -1,36 +1,31 @@
 /* fallback */
-
 @font-face {
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/material-icon.woff2) format('woff2');
+    src: url("../fonts/material-icon.woff2") format('woff2');
 }
-
 @font-face {
     font-family: 'roboto-thin';
-    src: url('../fonts/roboto/Roboto-Thin.woff2');
+    src: url("../fonts/roboto/Roboto-Thin.woff2");
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'roboto-bold';
-    src: url('../fonts/roboto/Roboto-Bold.woff2');
+    src: url("../fonts/roboto/Roboto-Bold.woff2");
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'roboto-regular';
-    src: url('../fonts/roboto/Roboto-Regular.woff2');
+    src: url("../fonts/roboto/Roboto-Regular.woff2");
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'roboto-light';
-    src: url('../fonts/roboto/Roboto-Light.woff2');
+    src: url("../fonts/roboto/Roboto-Light.woff2");
     font-weight: normal;
     font-style: normal;
 }

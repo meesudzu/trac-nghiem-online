@@ -261,7 +261,7 @@ class Model_Admin extends Database
     }
     public function get_list_units($grade_id,$subject_id)
     {
-        $sql = "SELECT DISTINCT DISTINCT unit, COUNT(unit) as total FROM questions WHERE subject_id = $subject_id and grade_id = $grade_id GROUP BY unit";
+        $sql = "SELECT DISTINCT unit, COUNT(unit) as total FROM questions WHERE subject_id = $subject_id and grade_id = $grade_id GROUP BY unit";
         $this->set_query($sql);
         return $this->load_rows();
     }
@@ -326,8 +326,9 @@ class Model_Admin extends Database
     public function get_list_questions()
     {
         $sql = "
-        SELECT DISTINCT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail FROM `questions`
+        SELECT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail,levels.level_detail FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id
+        INNER JOIN levels ON levels.level_id = questions.level_id
         INNER JOIN subjects ON subjects.subject_id = questions.subject_id";
         $this->set_query($sql);
         return $this->load_rows();
@@ -342,11 +343,10 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function get_question_info($ID)
+    public function get_question($question_id)
     {
         $sql = "
-        SELECT DISTINCT questions.ID,questions.question_detail,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer FROM `questions`
-        INNER JOIN grades ON grades.grade_id = questions.grade_id";
+        SELECT * FROM `questions` WHERE question_id = $question_id";
         $this->set_query($sql);
         return $this->load_row();
     }
@@ -357,9 +357,9 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
     {
-        $sql="UPDATE questions set question_content='$question_content', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer',subject_id='$subject_id' where question_id = '$question_id'";
+        $sql="UPDATE questions set question_content='$question_content', grade_id='$grade_id', unit ='$unit',answer_a ='$answer_a',answer_b ='$answer_b',answer_c ='$answer_c',answer_d ='$answer_d',correct_answer ='$correct_answer',subject_id='$subject_id',level_id='$level_id' where question_id = '$question_id'";
         $this->set_query($sql);
         return $this->execute_return_status();
     }
@@ -369,9 +369,9 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->execute_return_status();
     }
-    public function add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer)
+    public function add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id,$sent_by)
     {
-        $sql="INSERT INTO questions (subject_id,grade_id,unit,question_content,answer_a,answer_b,answer_c,answer_d,correct_answer) VALUES ($subject_id,$grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer')";
+        $sql="INSERT INTO questions (subject_id,grade_id,unit,question_content,answer_a,answer_b,answer_c,answer_d,correct_answer,level_id,sent_by,status_id) VALUES ($subject_id,$grade_id,$unit,'$question_detail','$answer_a','$answer_b','$answer_c','$answer_d','$correct_answer','$level_id','$sent_by',4)";
         $this->set_query($sql);
         return $this->execute_return_status();
     }

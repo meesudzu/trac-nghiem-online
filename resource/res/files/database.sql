@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 05, 2018 lúc 12:22 PM
--- Phiên bản máy phục vụ: 10.1.31-MariaDB
--- Phiên bản PHP: 7.2.4
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th1 11, 2019 lúc 07:19 PM
+-- Phiên bản máy phục vụ: 10.1.29-MariaDB
+-- Phiên bản PHP: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `kt`
+-- Cơ sở dữ liệu: `test`
 --
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `name`, `permission`, `last_login`, `gender_id`, `avatar`, `birthday`) VALUES
-(1, 'admin', 'admin@ikun.org', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 1, '2018-11-05 15:17:35', 1, 'avatar-default.jpg', '0000-00-00');
+(1, 'admin', 'admin@ikun.org', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 1, '2019-01-12 01:17:23', 1, 'avatar-default.jpg', '1997-01-01');
 
 -- --------------------------------------------------------
 
@@ -128,6 +128,26 @@ INSERT INTO `grades` (`grade_id`, `detail`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `levels`
+--
+
+CREATE TABLE `levels` (
+  `level_id` int(11) NOT NULL,
+  `level_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `levels`
+--
+
+INSERT INTO `levels` (`level_id`, `level_detail`) VALUES
+(1, 'Dễ'),
+(2, 'Trung Bình'),
+(3, 'Khó');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `notifications`
 --
 
@@ -169,6 +189,7 @@ INSERT INTO `permissions` (`permission`, `permission_detail`) VALUES
 CREATE TABLE `questions` (
   `grade_id` int(10) NOT NULL,
   `unit` int(2) NOT NULL,
+  `level_id` int(11) NOT NULL,
   `question_content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `answer_a` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `answer_b` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -176,7 +197,9 @@ CREATE TABLE `questions` (
   `answer_d` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `correct_answer` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `question_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL DEFAULT '1'
+  `subject_id` int(11) NOT NULL DEFAULT '1',
+  `sent_by` varchar(255) NOT NULL,
+  `status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -186,8 +209,8 @@ CREATE TABLE `questions` (
 --
 
 CREATE TABLE `quest_of_test` (
-  `test_code` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL,
+  `test_code` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
   `timest` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -222,7 +245,9 @@ CREATE TABLE `statuses` (
 
 INSERT INTO `statuses` (`status_id`, `detail`) VALUES
 (1, 'Mở'),
-(2, 'Đóng');
+(2, 'Đóng'),
+(3, 'Chờ Duyệt'),
+(4, 'Đã Duyệt');
 
 -- --------------------------------------------------------
 
@@ -288,13 +313,6 @@ CREATE TABLE `subjects` (
   `subject_id` int(11) NOT NULL,
   `subject_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `subjects`
---
-
-INSERT INTO `subjects` (`subject_id`, `subject_detail`) VALUES
-(1, 'Toán Lớp 5');
 
 -- --------------------------------------------------------
 
@@ -389,6 +407,12 @@ ALTER TABLE `grades`
   ADD PRIMARY KEY (`grade_id`);
 
 --
+-- Chỉ mục cho bảng `levels`
+--
+ALTER TABLE `levels`
+  ADD PRIMARY KEY (`level_id`);
+
+--
 -- Chỉ mục cho bảng `notifications`
 --
 ALTER TABLE `notifications`
@@ -407,7 +431,9 @@ ALTER TABLE `questions`
   ADD PRIMARY KEY (`question_id`),
   ADD KEY `k9` (`grade_id`),
   ADD KEY `unit` (`unit`),
-  ADD KEY `subjects_key` (`subject_id`);
+  ADD KEY `subjects_key` (`subject_id`),
+  ADD KEY `level_id` (`level_id`),
+  ADD KEY `status_id` (`status_id`);
 
 --
 -- Chỉ mục cho bảng `quest_of_test`
@@ -526,6 +552,12 @@ ALTER TABLE `grades`
   MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT cho bảng `levels`
+--
+ALTER TABLE `levels`
+  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
@@ -544,16 +576,10 @@ ALTER TABLE `questions`
   MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `quest_of_test`
---
-ALTER TABLE `quest_of_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `students`
@@ -571,7 +597,7 @@ ALTER TABLE `student_notifications`
 -- AUTO_INCREMENT cho bảng `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `teachers`
@@ -589,7 +615,7 @@ ALTER TABLE `teacher_notifications`
 -- AUTO_INCREMENT cho bảng `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `test_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=493206;
+  MODIFY `test_code` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -620,7 +646,16 @@ ALTER TABLE `classes`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `k9` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`grade_id`),
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`level_id`) REFERENCES `levels` (`level_id`),
+  ADD CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`status_id`),
   ADD CONSTRAINT `subjects_key` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`);
+
+--
+-- Các ràng buộc cho bảng `quest_of_test`
+--
+ALTER TABLE `quest_of_test`
+  ADD CONSTRAINT `quest_of_test_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`),
+  ADD CONSTRAINT `quest_of_test_ibfk_2` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`);
 
 --
 -- Các ràng buộc cho bảng `scores`
@@ -628,13 +663,6 @@ ALTER TABLE `questions`
 ALTER TABLE `scores`
   ADD CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`),
   ADD CONSTRAINT `scores_ibfk_2` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`);
-
---
--- Các ràng buộc cho bảng `scores`
---
-ALTER TABLE `quest_of_test`
-  ADD CONSTRAINT `quest_of_test_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`),
-  ADD CONSTRAINT `quest_of_test_ibfk_2` FOREIGN KEY (`test_code`) REFERENCES `tests` (`test_code`);
 
 --
 -- Các ràng buộc cho bảng `students`

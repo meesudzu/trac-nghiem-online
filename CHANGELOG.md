@@ -1,7 +1,12 @@
 v3.4.0 (xx/xx/2019)
 
-    - Thêm hỗ trợ nhập công thức bằng LaTeX ✓
-    - Fix một số lỗi ✓
+    - Thêm hỗ trợ nhập công thức bằng LaTeX (ckeditor + mathjax add-on) (Cảm ơn bạn tranphong965@gmail.com, Hoang Duong đã góp ý) ✓
+    - Thêm phân loại: dễ, trung bình, khó (Cảm ơn bạn tranphong965@gmail.com, Hoang Duong đã góp ý) ✓
+    - Tách trang thêm câu hỏi và sửa câu hỏi ra trang riêng ✓
+    - Thêm thông báo lỗi ở một số chỗ (thêm học sinh, thêm lớp,...) ✓
+    - Chỉnh lại phần chọn đáp án đúng cho thêm câu hỏi (chọn A, B, C, D thay vì phải nhập lại đáp án, giảm thiểu lỗi do nhập lỗi nhập liệu) ✓
+    - Sửa và thêm lại comments trong code để mọi người dễ đọc hơn
+    - Fix một số lỗi từ các phiên bản trước ✓
 
 v3.3.0 (16/11/2018)
 

@@ -1,17 +1,7 @@
 $(function() {
     $('#table_questions').DataTable().destroy();
     get_list_questions();
-    $('.tabs').tabs();
-    $('#add_question_form').on('submit', function() {
-        submit_add_question($('#add_question_form').serializeArray());
-        $('#add_question_form')[0].reset();
-    });
-    $('#add_via_file').on('submit', function() {
-        $('#preload').removeClass('hidden');
-        submit_add_question_via_file();
-        $('#add_via_file')[0].reset();
-        $('#preload').removeClass('hidden');
-    });
+    $('select').select();
     $('#select_all').on('change', function() {
         if (this.checked) {
             $('.checkbox').each(function() {
@@ -26,9 +16,6 @@ $(function() {
         }
     });
     $('table').on('click', 'a.modal-trigger', function() {
-        $('select').select();
-        select_grade();
-        select_subject();
         var elem = document.querySelector(this.id);
         var instance = M.Modal.init(elem);
         var instance = M.Modal.getInstance(elem);
@@ -77,8 +64,6 @@ function get_list_questions() {
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_list_questions(json_data);
-        select_grade();
-        select_subject();
         $('.modal').modal();
         $('select').select();
         $('#preload').addClass('hidden');
@@ -94,7 +79,7 @@ function show_list_questions(data) {
         tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].question_id + '" /><span></span></label></p></td>');
         tr.append('<td class="">' + data[i].question_id + '</td>');
         tr.append('<td class="">' + data[i].question_content + '</td>');
-        tr.append('<td class="">Môn ' + data[i].subject_detail + '<br />Chương ' + data[i].unit + ' ' + data[i].grade_detail + '</td>');
+        tr.append('<td class="">Môn ' + data[i].subject_detail + ', Chương ' + data[i].unit + ', ' + data[i].level_detail + ', ' + data[i].grade_detail + '</td>');
         tr.append('<td class="">' + data[i].answer_a + '</td>');
         tr.append('<td class="">' + data[i].answer_b + '</td>');
         tr.append('<td class="">' + data[i].answer_c + '</td>');
@@ -137,59 +122,7 @@ function show_list_questions(data) {
 }
 
 function question_edit_button(data) {
-    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.question_id + '" id="#edit-' + data.question_id + '">Sửa</a>' +
-        '<div id="edit-' + data.question_id + '" class="modal modal-edit">' +
-        '<div class="row col l12">' +
-        '<form action="" method="POST" role="form" id="form-edit-question-' + data.question_id + '">' +
-        '<div class="modal-content"><h5>Sửa: ' + data.question_content + '</h5>' +
-        '<div class="modal-body">' +
-        '<div class="col l12 s12" style="padding-top: 20px">' +
-        '<div class="input-field">' +
-        '<input type="hidden" id="question_id" name="question_id" value="' + data.question_id + '">' +
-        '<textarea id="question_content" name="question_content" class="materialize-textarea" required>' + data.question_content + '</textarea>' +
-        '<label for="question_content" class="active">Câu Hỏi</label>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<label for="answer_a" class="active">A</label>' +
-        '<input type="text" id="answer_a" name="answer_a" value="' + data.answer_a + '" required>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<label for="answer_b" class="active">B</label>' +
-        '<input type="text" id="answer_b" name="answer_b" value="' + data.answer_b + '" required>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<label for="answer_c" class="active">C</label>' +
-        '<input type="text" id="answer_c" name="answer_c" value="' + data.answer_c + '" required>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<label for="answer_d" class="active">D</label>' +
-        '<input type="text" id="answer_d" name="answer_d" value="' + data.answer_d + '" required>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<label for="correct_answer" class="active">Đúng</label>' +
-        '<input type="text" id="correct_answer" name="correct_answer" value="' + data.correct_answer + '" required>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<select name="grade_id" id="grade_id">' +
-        '</select>' +
-        '<label>Khối</label>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<select name="subject_id" id="subject_id">' +
-        '</select>' +
-        '<label>Môn</label>' +
-        '</div>' +
-        '<div class="input-field">' +
-        '<input name="unit" type="number" required value="' + data.unit + '">' +
-        '<label class="active">Chương</label>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div></div>' +
-        '<div class="row col l12 s12 modal-footer">' +
-        '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-        '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_question(' + data.question_id + ')">Đồng Ý</button>' +
-        '</div></form></div></div>';
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="/index.php?action=show_edit_question&id=' + data.question_id + '"">Sửa</a>';
 }
 
 function question_del_button(data) {
@@ -202,56 +135,6 @@ function question_del_button(data) {
         '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close">Đồng Ý</button></div></form></div>';
 }
 
-function submit_add_question(data) {
-    $('#preload').removeClass('hidden');
-    var url = "index.php?action=check_add_question";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        show_status(json_data);
-        if (json_data.status) {
-            $('#table_questions').DataTable().destroy();
-            get_list_questions();
-        }
-        $('#preload').addClass('hidden');
-    };
-    $.post(url, data, success);
-}
-
-function submit_add_question_via_file() {
-    $('#preload').removeClass('hidden');
-    $('#error').text('');
-    var file_data = $('#file_data').prop('files')[0];
-    var subject = $('#_subject').val();
-    var type = file_data.type;
-    var size = file_data.size;
-    var match = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel", "application/wps-office.xlsx"];
-    if (type == match[0] || type == match[1] || type == match[2]) {
-        var form_data = new FormData();
-        form_data.append('file', file_data);
-        form_data.append('subject_id', subject);
-        $.ajax({
-            url: 'index.php?action=check_add_question_via_file',
-            dataType: 'text',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(result) {
-                var json_data = $.parseJSON(result);
-                show_status(json_data);
-                $('#table_questions').DataTable().destroy();
-                get_list_questions();
-                $('.modal').modal();
-                $('select').select();
-            }
-        });
-    } else {
-        $('#error').text('Sai định dạng mẫu, yêu cầu file excel đuôi .xlsx theo mẫu. Nếu file lỗi vui lòng tải lại mẫu và điền lại.');
-    }
-    $('#preload').addClass('hidden');
-}
-
 function submit_del_question(data) {
     $('#preload').removeClass('hidden');
     data = $('#' + data).serializeArray();
@@ -262,24 +145,6 @@ function submit_del_question(data) {
         if (json_data.status) {
             $('#table_questions').DataTable().destroy();
             get_list_questions();
-        }
-        $('#preload').addClass('hidden');
-    };
-    $.post(url, data, success);
-}
-
-function submit_edit_question(data) {
-    $('#preload').removeClass('hidden');
-    form = $('#form-edit-question-' + data);
-    data = $('#form-edit-question-' + data).serializeArray();
-    var url = "index.php?action=check_edit_question";
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        show_status(json_data);
-        if (json_data.status) {
-            $('#table_questions').DataTable().destroy();
-            get_list_questions();
-            form[0].reset();
         }
         $('#preload').addClass('hidden');
     };

@@ -42,6 +42,14 @@ class View_Admin
     {
         include 'res/templates/admin/questions_panel.html';
     }
+    public function show_add_question()
+    {
+        include 'res/templates/admin/add_question.html';
+    }
+    public function show_edit_question($question,$grades,$subjects)
+    {
+        include 'res/templates/admin/edit_question.php';
+    }
     public function show_subjects_panel()
     {
         include 'res/templates/admin/subjects_panel.html';
@@ -61,10 +69,6 @@ class View_Admin
     public function show_notifications_panel()
     {
         include 'res/templates/admin/notifications_panel.html';
-    }
-    public function show_units_panel()
-    {
-        include 'res/templates/admin/units_panel.html';
     }
     public function show_about()
     {
