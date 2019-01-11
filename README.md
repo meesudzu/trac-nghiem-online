@@ -45,7 +45,7 @@ Xem tại [CHANGELOG](CHANGELOG.md)
 ## Sắp Có
 
     - Thêm tùy chọn nhập bộ câu hỏi từ file word. (Cảm ơn bạn tranphong965@gmail.com)
-    - __Nâng cấp thuật toán tạo đề thi__
+    - ~~Nâng cấp thuật toán tạo đề thi~~
     - Giáo viên có thể thêm câu hỏi vào ngân hàng đề (admin sẽ duyệt câu hỏi)
     - Hiển thị số tin nhắn chat, thông báo chưa đọc
     - Thêm tự động cập nhật phiên bản phần mềm
