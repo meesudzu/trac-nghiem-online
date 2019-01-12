@@ -265,9 +265,17 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function list_quest_of_unit($grade_id,$subject_id,$unit,$limit)
+    public function get_list_levels_of_unit($grade_id, $subject_id,$unit)
     {
-        $sql = "SELECT DISTINCT * FROM `questions` WHERE `grade_id` = $grade_id and `subject_id` = $subject_id and `unit` = $unit ORDER BY RAND() LIMIT $limit";
+        $sql = "SELECT DISTINCT level_detail,questions.level_id, COUNT(questions.level_id) as total FROM questions
+        INNER JOIN levels ON levels.level_id = questions.level_id
+        WHERE subject_id = $subject_id and grade_id = $grade_id and unit = $unit GROUP BY questions.level_id";
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function list_quest_of_unit($grade_id,$subject_id,$unit,$level_id,$limit)
+    {
+        $sql = "SELECT DISTINCT * FROM `questions` WHERE `grade_id` = $grade_id and `subject_id` = $subject_id and `unit` = $unit and `level_id` = $level_id ORDER BY RAND() LIMIT $limit";
         $this->set_query($sql);
         return $this->load_rows();
     }

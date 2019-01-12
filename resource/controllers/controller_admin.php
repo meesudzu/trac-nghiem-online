@@ -278,10 +278,18 @@ class Controller_Admin
     }
     public function get_list_units()
     {
-        $grade_id = $_POST['grade_id'];
-        $subject_id = $_POST['subject_id'];
+        $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
+        $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $unit = new Model_Admin();
         echo json_encode($unit->get_list_units($grade_id,$subject_id));
+    }
+    public function get_list_levels_of_unit()
+    {
+        $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
+        $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
+        $unit = isset($_POST['unit']) ? $_POST['unit'] : '';
+        $levels = new Model_Admin();
+        echo json_encode($levels->get_list_levels_of_unit($grade_id,$subject_id,$unit));
     }
     public function get_dashboard_info()
     {
@@ -1131,28 +1139,29 @@ class Controller_Admin
         $total_questions = isset($_POST['total_questions']) ? Htmlspecialchars(addslashes($_POST['total_questions'])) : '';
         $time_to_do = isset($_POST['time_to_do']) ? Htmlspecialchars(addslashes($_POST['time_to_do'])) : '';
         $note = isset($_POST['note']) ? Htmlspecialchars(addslashes($_POST['note'])) : '';
-        $test_code = rand(100000,999999);
+        $test_code = "";
         if (empty($test_name)||empty($time_to_do)||empty($password)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập!";
             $result['status'] = 0;
         } else {
-            $add = $this->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
-            if ($add) {
-                $result['status_value'] = "Thêm thành công!";
-                $result['status'] = 1;
-                //Tạo bộ câu hỏi cho đề thi
-                $model = new Model_Admin();
-                $list_unit = $model->get_list_units($grade_id,$subject_id);
-                foreach ($list_unit as $unit) {
-                    $limit = $_POST[$unit->unit];
-                    $list_quest = $model->list_quest_of_unit($grade_id,$subject_id,$unit->unit,$limit);
-                    foreach ($list_quest as $quest) {
-                        $model->add_quest_to_test($test_code,$quest->question_id);
-                    }
+            do {
+                $test_code = rand(100000,999999);
+                $add = $this->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
+            } while (!$add);
+            $result['status_value'] = "Thêm thành công!";
+            $result['status'] = 1;
+            //Tạo bộ câu hỏi cho đề thi
+            $model = new Model_Admin();
+            $list_unit = $model->get_list_units($grade_id,$subject_id);
+            foreach ($list_unit as $unit) {
+                $list_lvl_of_unit = $model->get_list_levels_of_unit($grade_id, $subject_id,$unit->unit);
+                foreach ($list_lvl_of_unit as $level) {
+                   $limit = $_POST["unit_".$unit->unit."_level_".$level->level_id];
+                   $list_quest = $model->list_quest_of_unit($grade_id,$subject_id,$unit->unit,$level->level_id,$limit);
+                   foreach ($list_quest as $quest) {
+                       $model->add_quest_to_test($test_code,$quest->question_id);
+                   }
                 }
-            } else {
-                $result['status_value'] = "Thêm thất bại!";
-                $result['status'] = 0;
             }
         }
         echo json_encode($result);

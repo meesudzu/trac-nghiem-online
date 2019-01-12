@@ -436,18 +436,24 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 .item-quest .quest-title {
     color: black;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .item-quest .quest-content {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
+}
+
+.item-quest .quest-answer {
+    font-weight: bold;
+    font-size: 19px;
 }
 
 .item-quest .quest-answer > p > label > span {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 19px;
     color: #676a6c;
+    display: inline-block;
 }
 
 #tests_list {

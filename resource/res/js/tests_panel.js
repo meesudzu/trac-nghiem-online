@@ -32,10 +32,10 @@ function show_list_tests(data) {
         tr.append('<td class="">' + data[i].grade + '</td>');
         tr.append('<td class="">' + data[i].total_questions + ' câu hỏi, thời gian ' + data[i].time_to_do + ' phút <br />Ghi chú: ' + data[i].note + '</td>');
         tr.append('<td class="">' + data[i].status + '</td>');
-        tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i])+ '<br />' + test_score_button(data[i]) + '</td>');
+        tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
         list.append(tr);
     }
-    $('#table_tests').DataTable( {
+    $('#table_tests').DataTable({
         "language": {
             "lengthMenu": "Hiển thị _MENU_",
             "zeroRecords": "Không tìm thấy",
@@ -45,16 +45,18 @@ function show_list_tests(data) {
             "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
             "sSearch": "Tìm kiếm",
             "paginate": {
-                "first":      "Đầu",
-                "last":       "Cuối",
-                "next":       "Sau",
-                "previous":   "Trước"
+                "first": "Đầu",
+                "last": "Cuối",
+                "next": "Sau",
+                "previous": "Trước"
             },
         },
-        "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 5 ] }, //hide sort icon on header of column 0, 5
+        "aoColumnDefs": [{
+                "bSortable": false,
+                "aTargets": [5]
+            }, //hide sort icon on header of column 0, 5
         ]
-    } );
+    });
     $("form").on('submit', function(event) {
         event.preventDefault();
     });
@@ -77,6 +79,7 @@ function submit_add_test(data) {
     var url = "index.php?action=check_add_test";
     var success = function(result) {
         var json_data = $.parseJSON(result);
+        console.log(json_data)
         show_status(json_data);
         if (json_data.status) {
             $('#table_tests').DataTable().destroy();
@@ -88,17 +91,17 @@ function submit_add_test(data) {
     $.post(url, data, success);
 }
 
-function toggle_status(test_code,status_id) {
+function toggle_status(test_code, status_id) {
     $('#preload').removeClass('hidden');
-    if(status_id == 1)
-        var data  = {
+    if (status_id == 1)
+        var data = {
             test_code: test_code,
-            status_id : 2
+            status_id: 2
         }
-    if(status_id == 2)
-        var data  = {
+    if (status_id == 2)
+        var data = {
             test_code: test_code,
-            status_id : 1
+            status_id: 1
         }
     var url = "index.php?action=check_toggle_test_status";
     var success = function(result) {
@@ -113,14 +116,14 @@ function toggle_status(test_code,status_id) {
     };
     $.post(url, data, success);
 }
-
+//sử dụng hàm ajax thay vì post() để gửi dữ liệu vì trong hàm list_unit có gửi 2 ajax lồng nhau, phải set async = false
 function list_unit() {
     $('#preload').removeClass('hidden');
     var grade_id = $('#grade_id').val();
-    if(grade_id == null)
+    if (grade_id == null)
         grade_id = 1;
     var subject_id = $('#subject_id').val();
-    if(subject_id == null)
+    if (subject_id == null)
         subject_id = 1;
     var data = {
         grade_id: grade_id,
@@ -131,33 +134,55 @@ function list_unit() {
     var success = function(result) {
         div.empty();
         var json_data = $.parseJSON(result);
-        if(json_data == "")
-            div.append('<span class="title">Chưa có câu hỏi cho khối và môn đã chọn!</span>');
+        if (json_data == "")
+            div.append('<span class="title" style="color:red">Chưa có câu hỏi cho khối và môn đã chọn, vui lòng thêm câu hỏi trước khi tạo đề thi, thêm câu hỏi <a href="/index.php?action=show_add_question">tại đây</a>!</span>');
         else {
             for (var i = 0; i < json_data.length; i++) {
-                var ip = '<div class="input-field">' +
-                        '<label for="'+ json_data[i].unit +'">Chương '+ json_data[i].unit +' (tổng số '+ json_data[i].total +' câu)</label>' +
-                        '<input class="unit" type="number" id="'+ json_data[i].unit +'" name="'+ json_data[i].unit +'" onchange="update_total()" max="'+ json_data[i].total +'" min="0">' +
-                        '</div>';
-                div.append(ip);
+                var unit_div = $('<div class="input-level row col s12" id="unit_' + json_data[i].unit + '"><span class="col s12"><b>Chương ' + json_data[i].unit + ' (đang có ' + json_data[i].total + ' câu trong cơ sở dữ liệu)</b></span></div>');
+                //Lấy danh sách câu hỏi phân loại theo độ khó của từng chương
+                var get_levels_url = "/index.php?action=get_list_levels_of_unit";
+                var unit_data = {
+                    grade_id: grade_id,
+                    subject_id: subject_id,
+                    unit: json_data[i].unit
+                }
+                var get_success = function(res) {
+                    var jsondata = $.parseJSON(res);
+                    for (var j = 0; j < jsondata.length; j++) {
+                        var inp = '<div class="input-field col s3"><label for="unit_' + unit_data.unit + '_level_' + jsondata[j].level_id + '">' + jsondata[j].level_detail + ' (' + jsondata[j].total + ')</label><input type="number" id="unit_' + unit_data.unit + '_level_' + jsondata[j].level_id + '" name="unit_' + unit_data.unit + '_level_' + jsondata[j].level_id + '" required min="0" max="' + jsondata[j].total + '" class="unit" onchange="update_total()"></div>';
+                        unit_div.append(inp)
+                    }
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: get_levels_url,
+                    data: unit_data,
+                    success: get_success,
+                    async: false
+                });
+                div.append(unit_div);
             }
         }
         $('#preload').addClass('hidden');
     };
-    $.post(url, data, success);
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: success,
+        async: false
+    });
 }
 
 function update_total() {
     var sum = 0;
-    $('.unit').each(function () {
-        if (parseInt(this.value) > parseInt(this.getAttribute("max")))
-            {
-                alert("Nhập quá số câu hỏi đang có, vui lòng kiểm tra lại");
-                this.value = this.getAttribute("max");
-                sum += parseInt(this.value);
-            }
-        else if (this.value != "")
+    $('.unit').each(function() {
+        if (parseInt(this.value) > parseInt(this.getAttribute("max"))) {
+            alert("Nhập quá số câu hỏi đang có, vui lòng kiểm tra lại");
+            this.value = this.getAttribute("max");
             sum += parseInt(this.value);
-        });
+        } else if (this.value != "")
+            sum += parseInt(this.value);
+    });
     $('#total_questions').val(sum);
 }
