@@ -49,7 +49,7 @@
 						<span><?=$test[$i]->question_content?></span>
 					</div>
 					<div class="quest-answer">
-                            <p>
+                            <div class="answer">
     							<label>
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_a))
@@ -63,8 +63,8 @@
     								?>
     								<span><?=$test[$i]->answer_a?></span>
     							</label>
-    						</p>
-                            <p>
+    						</div class="answer">
+                            <div class="answer">
     							<label>
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_b))
@@ -78,8 +78,8 @@
     								?>
     								<span><?=$test[$i]->answer_b?></span>
     							</label>
-    						</p>
-                            <p>
+    						</div class="answer">
+                            <div class="answer">
     							<label>
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_c))
@@ -93,8 +93,8 @@
     								?>
     								<span><?=$test[$i]->answer_c?></span>
     							</label>
-    						</p>
-                            <p>
+    						</div class="answer">
+                            <div class="answer">
     							<label>
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_d))
@@ -108,7 +108,7 @@
     								?>
     								<span><?=$test[$i]->answer_d?></span>
     							</label>
-    						</p>
+    						</div class="answer">
 					</div>
 				</div>
 				<?php

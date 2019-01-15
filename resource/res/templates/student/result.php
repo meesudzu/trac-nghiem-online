@@ -15,7 +15,7 @@
 			</div>
 			<div id="recent">
 				<?php
-             for($i = 0; $i < count($result); $i++) {
+               for($i = 0; $i < count($result); $i++) {
                 ?>
                 <div id="quest-<?=($i+1)?>" class="item-quest">
                     <div class="quest-title">Câu <?=($i+1)?>:</div>
@@ -27,26 +27,26 @@
                         	<?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
-                                echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                echo '<input name="" type="radio" checked disabled />
                                 <span style="color:green">'.$result[$i]->answer_a.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
-                                    echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                    echo '<input name="" type="radio" checked disabled />
                                     <span style="color:red">'.$result[$i]->answer_a.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_a) == trim($result[$i]->correct_answer))
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                        echo '<input name="" type="radio" checked disabled />
                                         <span style="color:green">'.$result[$i]->answer_a.'</span>';
                                     }
                                     else
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" disabled />
+                                        echo '<input name="" type="radio" disabled />
                                         <span>'.$result[$i]->answer_a.'</span>';
                                     }
                                 }
@@ -57,26 +57,26 @@
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
-                                echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                echo '<input name="" type="radio" checked disabled />
                                 <span style="color:green">'.$result[$i]->answer_b.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
-                                    echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                    echo '<input name="" type="radio" checked disabled />
                                     <span style="color:red">'.$result[$i]->answer_b.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_b) == trim($result[$i]->correct_answer))
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                        echo '<input name="" type="radio" checked disabled />
                                         <span style="color:green">'.$result[$i]->answer_b.'</span>';
                                     }
                                     else
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" disabled />
+                                        echo '<input name="" type="radio" disabled />
                                         <span>'.$result[$i]->answer_b.'</span>';
                                     }
                                 }
@@ -87,26 +87,26 @@
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
-                                echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                echo '<input name="" type="radio" checked disabled />
                                 <span style="color:green">'.$result[$i]->answer_c.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
-                                    echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                    echo '<input name="" type="radio" checked disabled />
                                     <span style="color:red">'.$result[$i]->answer_c.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_c) == trim($result[$i]->correct_answer))
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                        echo '<input name="" type="radio" checked disabled />
                                         <span style="color:green">'.$result[$i]->answer_c.'</span>';
                                     }
                                     else
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" disabled />
+                                        echo '<input name="" type="radio" disabled />
                                         <span>'.$result[$i]->answer_c.'</span>';
                                     }
                                 }
@@ -117,26 +117,26 @@
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
-                                echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                echo '<input name="" type="radio" checked disabled />
                                 <span style="color:green">'.$result[$i]->answer_d.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
-                                    echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                    echo '<input name="" type="radio" checked disabled />
                                     <span style="color:red">'.$result[$i]->answer_d.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_d) == trim($result[$i]->correct_answer))
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" checked disabled />
+                                        echo '<input name="" type="radio" checked disabled />
                                         <span style="color:green">'.$result[$i]->answer_d.'</span>';
                                     }
                                     else
                                     {
-                                        echo '<input name="'.$result[$i]->question_id.'" type="radio" disabled />
+                                        echo '<input name="" type="radio" disabled />
                                         <span>'.$result[$i]->answer_d.'</span>';
                                     }
                                 }
