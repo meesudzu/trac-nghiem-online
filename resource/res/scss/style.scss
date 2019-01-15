@@ -456,6 +456,15 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
     display: inline-block;
 }
 
+.answer span>p {
+    display: inline;
+    font-size: 20px;
+}
+
+.answer {
+    padding: 5px;
+}
+
 #tests_list {
     display: inline-block;
     width: 100%;

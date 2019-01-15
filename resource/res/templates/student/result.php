@@ -15,16 +15,15 @@
 			</div>
 			<div id="recent">
 				<?php
-			for($i = 0; $i < count($result); $i++) {
-				?>
-				<div id="quest-<?=($i+1)?>" class="item-quest">
-                <div class="quest-title">Câu <?=($i+1)?>:</div>
-                <div class="quest-content">
-                    <span><?=$result[$i]->question_content?></span>
-                </div>
-                <div class="quest-answer">
-                    <p>
-                        <label>
+             for($i = 0; $i < count($result); $i++) {
+                ?>
+                <div id="quest-<?=($i+1)?>" class="item-quest">
+                    <div class="quest-title">Câu <?=($i+1)?>:</div>
+                    <div class="quest-content">
+                        <span><?=$result[$i]->question_content?></span>
+                    </div>
+                    <div class="quest-answer">
+                        <div class='answer'>
                         	<?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
@@ -53,10 +52,8 @@
                                 }
                             }
                             ?>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
+                        </div>
+                        <div class='answer'>
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
@@ -85,10 +82,8 @@
                                 }
                             }
                             ?>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
+                        </div>
+                        <div class='answer'>
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
@@ -117,10 +112,8 @@
                                 }
                             }
                             ?>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
+                        </div>
+                        <div class='answer'>
                             <?php
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
@@ -149,14 +142,13 @@
                                 }
                             }
                             ?>
-                        </label>
-                    </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-				<?php
-			}
-			?>
-			</div>
-		</div>
-	</div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
 </div>
