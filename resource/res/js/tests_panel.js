@@ -140,7 +140,7 @@ function list_unit() {
             for (var i = 0; i < json_data.length; i++) {
                 var unit_div = $('<div class="input-level row col s12" id="unit_' + json_data[i].unit + '"><span class="col s12"><b>Chương ' + json_data[i].unit + ' (đang có ' + json_data[i].total + ' câu trong cơ sở dữ liệu)</b></span></div>');
                 //Lấy danh sách câu hỏi phân loại theo độ khó của từng chương
-                var get_levels_url = "/index.php?action=get_list_levels_of_unit";
+                var get_levels_url = "index.php?action=get_list_levels_of_unit";
                 var unit_data = {
                     grade_id: grade_id,
                     subject_id: subject_id,
