@@ -80,6 +80,7 @@ function get_list_students() {
         $('.modal').modal();
         $('select').select();
         $('#preload').addClass('hidden');
+        $('body').attr('style', 'overflow: auto;');
     };
     $.get(url, success);
 }
@@ -178,7 +179,7 @@ function student_edit_button(data) {
         '</div><div class="col l12 s12">' +
         '<div class="modal-footer">' +
         '<a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trở Lại</a>' +
-        '<button type="submit" class="waves-effect waves-green btn-flat" onclick="submit_edit_student(' + data.student_id + ')">Đồng Ý</button>' +
+        '<button type="submit" class="waves-effect waves-green btn-flat modal-action modal-close" onclick="submit_edit_student(' + data.student_id + ')">Đồng Ý</button>' +
         '</div></div></form></div></div>';
 }
 
