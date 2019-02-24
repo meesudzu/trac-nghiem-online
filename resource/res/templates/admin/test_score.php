@@ -1,6 +1,6 @@
 <div class="title-content">
 	<span class="title">Danh Sách Điểm Bài Thi <?=$scores[0]->test_code?></span>
-	<a class="title" href="index.php?action=export_score&test_code=294005">Xuất File Excel</a>
+	<a class="title" href="index.php?action=export_score&test_code=<?=$scores[0]->test_code?>">Xuất File Excel</a>
 </div>
 <div class="block-content overflow scrollbar">
 	<div class="content">
