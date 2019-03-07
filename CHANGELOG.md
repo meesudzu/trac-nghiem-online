@@ -1,3 +1,7 @@
+v3.4.1 (xx/xx/2019)
+
+    - Fix upload ảnh ✓
+
 v3.4.0 (18/02/2019)
 
     - Thêm hỗ trợ nhập công thức bằng LaTeX (ckeditor + mathjax add-on) (Cảm ơn bạn tranphong965@gmail.com, Hoang Duong đã góp ý) ✓

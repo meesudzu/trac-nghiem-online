@@ -5,12 +5,11 @@
 	<div class="content">
 		<div class="row col l12" style="padding-top: 50px;">
 			<div class="col l3 s12">
-				<img src="res/img/avatar/avatar-default.jpg" alt="Avatar" width="100%" height="200" id="profiles-avatar">
+				<img src="res/img/avatar/<?=$profile->avatar?>" alt="Avatar" width="100%" height="200" id="profiles-avatar">
 				<div class="file-field input-field">
 					<div class="btn">
 						<span>File</span>
 						<input type="file" id="file" onchange="update_avatar()">
-						<input type="hidden" id="username_avatar" value="">
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text">

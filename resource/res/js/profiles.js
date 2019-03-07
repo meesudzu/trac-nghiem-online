@@ -11,7 +11,6 @@ function get_profiles() {
     var url = "index.php?action=get_profiles";
     var success = function(result) {
         var json_data = $.parseJSON(result);
-        console.log(result)
         update_profiles(json_data);
         set_profiles_sidebar(json_data);
     };
@@ -27,7 +26,6 @@ function update_profiles(data) {
     $('#profiles-avatar').attr('src', 'res/img/avatar/' + data.avatar + '');
     $('#profiles-name').val(data.name);
     $('#profiles-username').val(data.username);
-    $('#username_avatar').val(data.username);
     $('#profiles-new-email').val(data.email);
     $('#profiles-current-email').val(data.email);
     $('#profiles-birthday').val(data.birthday);
@@ -52,14 +50,12 @@ function submit_update_profiles(data) {
 function update_avatar() {
     $('#avatar_uploading').removeClass('hidden');
     var file_data = $('#file').prop('files')[0];
-    var username = $('#username_avatar').val();
     var type = file_data.type;
     var size = file_data.size;
     var match = ["image/png", "image/jpg", "image/jpeg"];
     if ((type == match[0] && size < 2048000) || (type == match[1] && size < 2048000) || (type == match[2] && size < 2048000)) {
         var form_data = new FormData();
         form_data.append('file', file_data);
-        form_data.append('username', username);
         $.ajax({
             url: 'index.php?action=submit_update_avatar',
             dataType: 'text',
