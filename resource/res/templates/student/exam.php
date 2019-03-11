@@ -134,7 +134,6 @@
 			}
 			var url = "index.php?action=update_answer";
 			var success = function (result) {
-				console.log(result);
 				$('#tick-' + stt).text("✓");
 			};
 			$.post(url, data, success);

@@ -10,7 +10,12 @@
 				<span class="title" style="color: #02796e;"><?=$score->score_number?> Điểm</span><br />
 				<span class="title" style="color: #02796e;">Đúng <?=$score->score_detail?> Câu</span><br />
 				<span class="title">Hoàn Thành Lúc: <?=$score->completion_time?></span><br />
-				<span class="title">CHI TIẾT BÀI THI</span>
+				<span class="title">CHI TIẾT BÀI THI</span><br />
+                <span class="title">Chú thích:<br />
+                    <span style="color: green;">Màu xanh </span>là đáp án đúng <br />
+                    <span style="color: red;">Màu đỏ </span> là đáp án học sinh trả lời sai<br />
+                    <span style="color: blue;">Màu xanh dương </span> là đáp án đúng câu hỏi học sinh bỏ trống
+                </span>
 				<hr>
 			</div>
 			<div id="recent">
@@ -28,21 +33,21 @@
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
                                 echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green">'.$result[$i]->answer_a.'</span>';
+                                <span style="color:green;" class="correct">'.$result[$i]->answer_a.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
                                     echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red">'.$result[$i]->answer_a.'</span>';
+                                    <span style="color:red;" class="incorrect">'.$result[$i]->answer_a.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_a) == trim($result[$i]->correct_answer))
                                     {
                                         echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:green">'.$result[$i]->answer_a.'</span>';
+                                        <span style="color:blue;" class="notanswer">'.$result[$i]->answer_a.'</span>';
                                     }
                                     else
                                     {
@@ -58,21 +63,21 @@
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
                                 echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green">'.$result[$i]->answer_b.'</span>';
+                                <span style="color:green" class="correct">'.$result[$i]->answer_b.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
                                     echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red">'.$result[$i]->answer_b.'</span>';
+                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_b.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_b) == trim($result[$i]->correct_answer))
                                     {
                                         echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:green">'.$result[$i]->answer_b.'</span>';
+                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_b.'</span>';
                                     }
                                     else
                                     {
@@ -88,21 +93,21 @@
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
                                 echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green">'.$result[$i]->answer_c.'</span>';
+                                <span style="color:green" class="correct">'.$result[$i]->answer_c.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
                                     echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red">'.$result[$i]->answer_c.'</span>';
+                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_c.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_c) == trim($result[$i]->correct_answer))
                                     {
                                         echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:green">'.$result[$i]->answer_c.'</span>';
+                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_c.'</span>';
                                     }
                                     else
                                     {
@@ -118,21 +123,21 @@
                             if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
                             {
                                 echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green">'.$result[$i]->answer_d.'</span>';
+                                <span style="color:green" class="correct">'.$result[$i]->answer_d.'</span>';
                             }
                             else
                             {
                                 if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
                                 {
                                     echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red">'.$result[$i]->answer_d.'</span>';
+                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_d.'</span>';
                                 }
                                 else
                                 {
                                     if (trim($result[$i]->answer_d) == trim($result[$i]->correct_answer))
                                     {
                                         echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:green">'.$result[$i]->answer_d.'</span>';
+                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_d.'</span>';
                                     }
                                     else
                                     {

@@ -1,6 +1,8 @@
 v3.4.1 (xx/xx/2019)
 
     - Fix upload ảnh ✓
+    - Fix nhập câu hỏi trực tiếp trên web bị mã hóa 1 số ký tự ✓
+    - Sửa lại giao diện xem lại bài trực quan hơn ✓
 
 v3.4.0 (18/02/2019)
 

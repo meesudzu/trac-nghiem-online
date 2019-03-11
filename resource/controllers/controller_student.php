@@ -55,7 +55,7 @@ class Controller_Student
 		$student_answer = $_POST['answer'];
 		$update = new Model_Student();
 		$update->update_answer($this->info['ID'], $this->info['doing_exam'], $question_id,$student_answer);
-		echo $time = $_POST['min'].':'.$_POST['sec'];
+		$time = $_POST['min'].':'.$_POST['sec'];
 		$update->update_timing($this->info['ID'], $time);
 	}
 	public function update_timing()

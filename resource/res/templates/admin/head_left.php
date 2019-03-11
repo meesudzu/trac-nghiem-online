@@ -33,7 +33,7 @@
 			<div class="card-image">
 				<img src="res/img/avatar/<?=$info['avatar']?>" id="user-avatar" style="width: 215px; height: 155px;">
                     
-                </style>>
+                </style>
 				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>
 					<a href="index.php?action=show_profiles" class="cursor blue-text text-darken-2"><i class="material-icons">create</i></a>
 				</span>

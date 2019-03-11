@@ -74,4 +74,11 @@ CKEDITOR.editorConfig = function(config) {
     config.extraPlugins = 'floatpanel';
     config.extraPlugins = 'panel';
     config.extraPlugins = 'listblock';
+    config.entities_latin = false;
+    config.basicEntities = false;
+    config.entities = false;
+    config.entities_greek = false;
+    config.forceSimpleAmpersand = false;
+    config.entities_processNumerical = true;
+    config.htmlEncodeOutput = false;
 };
