@@ -33,7 +33,7 @@ class View_Student
 	{
 		include 'res/templates/student/exam.php';
 	}
-	public function show_result($score,$result)
+	public function show_result($test_code,$score,$result)
 	{
 		include 'res/templates/student/result.php';
 	}

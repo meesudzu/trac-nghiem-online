@@ -54,11 +54,11 @@
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_a))
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_a).'" checked />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="a" checked />';
     								}
     								else
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_a).'" />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="a" />';
     								}
     								?>
     								<span><?=$test[$i]->answer_a?></span>
@@ -69,11 +69,11 @@
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_b))
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_b).'" checked />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="b" checked />';
     								}
     								else
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_b).'" />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="b" />';
     								}
     								?>
     								<span><?=$test[$i]->answer_b?></span>
@@ -84,11 +84,11 @@
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_c))
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_c).'" checked />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="c" checked />';
     								}
     								else
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_c).'" />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="c" />';
     								}
     								?>
     								<span><?=$test[$i]->answer_c?></span>
@@ -99,11 +99,11 @@
     								<?php
     								if (trim($test[$i]->student_answer) == trim($test[$i]->answer_d))
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_d).'" checked />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="d" checked />';
     								}
     								else
     								{
-    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="'.trim($test[$i]->answer_d).'" />';
+    									echo '<input name="'.$test[$i]->question_id.'" data-idquest="'.$test[$i]->question_id.'" type="radio" data-stt="'.($i+1).'" value="d" />';
     								}
     								?>
     								<span><?=$test[$i]->answer_d?></span>

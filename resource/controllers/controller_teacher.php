@@ -27,29 +27,29 @@ class Controller_Teacher
     }
     public function profiles()
     {
-        $profiles = new Model_Teacher();
-        return $profiles->get_profiles($_SESSION['username']);
+        $model = new Model_Teacher();
+        return $model->get_profiles($_SESSION['username']);
     }
     public function update_last_login()
     {
-        $info = new Model_Teacher();
-        $info->update_last_login($this->info['ID']);
+        $model = new Model_Teacher();
+        $model->update_last_login($this->info['ID']);
     }
     public function get_profiles()
     {
-        $profiles = new Model_Teacher();
-        echo json_encode($profiles->get_profiles($this->info['username']));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_profiles($this->info['username']));
     }
     public function valid_email_on_profiles()
     {
         $result = array();
-        $valid = new Model_Teacher();
+        $model = new Model_Teacher();
         $new_email = isset($_POST['new_email']) ? htmlspecialchars($_POST['new_email']) : '';
         $curren_email = isset($_POST['curren_email']) ? htmlspecialchars($_POST['curren_email']) : '';
         if (empty($new_email)) {
             $result['status'] = 0;
         } else {
-            if ($valid->valid_email_on_profiles($curren_email, $new_email)) {
+            if ($model->valid_email_on_profiles($curren_email, $new_email)) {
                 $result['status'] = 1;
             } else {
                 $result['status'] = 0;
@@ -59,8 +59,8 @@ class Controller_Teacher
     }
     public function update_avatar($avatar, $username)
     {
-        $info = new Model_Teacher();
-        return $info->update_avatar($avatar, $username);
+        $model = new Model_Teacher();
+        return $model->update_avatar($avatar, $username);
     }
     public function submit_update_avatar()
     {
@@ -77,8 +77,8 @@ class Controller_Teacher
     }
     public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
-        $info = new Model_Teacher();
-        return $info->update_profiles($username, $name, $email, $password, $gender, $birthday);
+        $model = new Model_Teacher();
+        return $model->update_profiles($username, $name, $email, $password, $gender, $birthday);
     }
     public function submit_update_profiles()
     {
@@ -107,13 +107,13 @@ class Controller_Teacher
     }
     public function insert_notification($notification_id,$notification_title, $notification_content)
     {
-        $notification = new Model_Teacher();
-        return $notification->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
+        $model = new Model_Teacher();
+        return $model->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
     public function notify_class($ID, $class_id)
     {
-        $send = new Model_Teacher();
-        $send->notify_class($ID, $class_id);
+        $model = new Model_Teacher();
+        $model->notify_class($ID, $class_id);
     }
     public function send_notification()
     {
@@ -144,30 +144,30 @@ class Controller_Teacher
     }
     public function get_list_classes_by_teacher()
     {
-        $list = new Model_Teacher();
-        echo json_encode($list->get_list_classes_by_teacher($this->info['ID']));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_list_classes_by_teacher($this->info['ID']));
     }
     public function get_notifications_to_student()
     {
-        $list = new Model_Teacher();
-        echo json_encode($list->get_notifications_to_student($this->info['ID']));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_notifications_to_student($this->info['ID']));
     }
     public function get_notifications_by_admin()
     {
-        $list = new Model_Teacher();
-        echo json_encode($list->get_notifications_by_admin($this->info['ID']));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_notifications_by_admin($this->info['ID']));
     }
     public function get_score()
     {
         $student_id = isset($_POST['student_id']) ? $_POST['student_id'] : '1';
-        $score = new Model_Teacher();
-        echo json_encode($score->get_score($student_id));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_score($student_id));
     }
     public function get_class_detail()
     {
         $ID = isset($_GET['ID']) ? $_GET['ID'] : '1';
-        $class = new Model_Teacher();
-        echo json_encode($class->get_class_detail($ID));
+        $model = new Model_Teacher();
+        echo json_encode($model->get_class_detail($ID));
     }
     public function export_score()
     {

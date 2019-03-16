@@ -3,6 +3,9 @@ v3.4.1 (xx/xx/2019)
     - Fix upload ảnh ✓
     - Fix nhập câu hỏi trực tiếp trên web bị mã hóa 1 số ký tự ✓
     - Sửa lại giao diện xem lại bài trực quan hơn ✓
+    - Thêm chức năng sau khi Admin xác nhận, học sinh mới có thể xem chi tiết bài thi (formype@gmail.com) ✓
+    - Thêm nhập nội dung ảnh cho câu hỏi và câu trả lời
+    - Thay đổi cách thức gửi đáp án của học sinh (sữa lỗi đáp án chọn không trùng với đáp án trong bảng câu hỏi và đáp án có nội dung ảnh) ✓
 
 v3.4.0 (18/02/2019)
 

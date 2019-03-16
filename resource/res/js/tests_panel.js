@@ -32,7 +32,10 @@ function show_list_tests(data) {
         tr.append('<td class="">' + data[i].grade + '</td>');
         tr.append('<td class="">' + data[i].total_questions + ' câu hỏi, thời gian ' + data[i].time_to_do + ' phút <br />Ghi chú: ' + data[i].note + '</td>');
         tr.append('<td class="">' + data[i].status + '</td>');
-        tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
+        if(data[i].status_id == 5)
+            tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
+        else
+            tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + accept_permission_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
         list.append(tr);
     }
     $('#table_tests').DataTable({
@@ -64,6 +67,10 @@ function show_list_tests(data) {
 
 function toggle_status_button(data) {
     return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" onclick="toggle_status(' + data.test_code + ', ' + data.status_id + ')">Đóng/Mở</a>';
+}
+
+function accept_permission_button(data) {
+    return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" onclick="accept_permission(' + data.test_code + ', ' + data.status_id + ')" style="letter-spacing: unset;">Cho Xem Đáp Án</a>';
 }
 
 function test_detail_button(data) {
@@ -103,6 +110,11 @@ function toggle_status(test_code, status_id) {
             test_code: test_code,
             status_id: 1
         }
+    if (status_id == 5)
+        var data = {
+            test_code: test_code,
+            status_id: 2
+        }
     var url = "index.php?action=check_toggle_test_status";
     var success = function(result) {
         var json_data = $.parseJSON(result);
@@ -116,6 +128,34 @@ function toggle_status(test_code, status_id) {
     };
     $.post(url, data, success);
 }
+
+function accept_permission(test_code, status_id) {
+    $('#preload').removeClass('hidden');
+    if (status_id == 1)
+        var data = {
+            test_code: test_code,
+            status_id: 5
+        }
+    if (status_id == 2) {
+        alert('Đề thi đang đóng, không thể mở xem đáp án!');
+        $('#preload').addClass('hidden');
+        return 0;
+    }
+
+    var url = "index.php?action=check_toggle_test_status";
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        show_status(json_data);
+        if (json_data.status) {
+            $('#table_tests').DataTable().destroy();
+            get_list_tests();
+            $('select').select();
+        }
+        $('#preload').addClass('hidden');
+    };
+    $.post(url, data, success);
+}
+
 //sử dụng hàm ajax thay vì post() để gửi dữ liệu vì trong hàm list_unit có gửi 2 ajax lồng nhau, phải set async = false
 function list_unit() {
     $('#preload').removeClass('hidden');

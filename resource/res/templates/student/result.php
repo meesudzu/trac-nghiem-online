@@ -1,5 +1,5 @@
 	<div class="title-content">
-		<span class="title">Kết Quả Bài Làm <?=$result[0]->test_code?></span>
+		<span class="title">Kết Quả Bài Làm <?=$test_code?></span>
 	</div>
 	<div class="block-content overflow scrollbar">
 		<div class="content">
@@ -16,141 +16,146 @@
                     <span style="color: red;">Màu đỏ </span> là đáp án học sinh trả lời sai<br />
                     <span style="color: blue;">Màu xanh dương </span> là đáp án đúng câu hỏi học sinh bỏ trống
                 </span>
-				<hr>
-			</div>
-			<div id="recent">
-				<?php
-               for($i = 0; $i < count($result); $i++) {
-                ?>
-                <div id="quest-<?=($i+1)?>" class="item-quest">
-                    <div class="quest-title">Câu <?=($i+1)?>:</div>
-                    <div class="quest-content">
-                        <span><?=$result[$i]->question_content?></span>
-                    </div>
-                    <div class="quest-answer">
-                        <div class='answer'>
-                        	<?php
-                            if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
-                            {
-                                echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green;" class="correct">'.$result[$i]->answer_a.'</span>';
-                            }
-                            else
-                            {
-                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
-                                {
-                                    echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red;" class="incorrect">'.$result[$i]->answer_a.'</span>';
-                                }
-                                else
-                                {
-                                    if (trim($result[$i]->answer_a) == trim($result[$i]->correct_answer))
-                                    {
-                                        echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:blue;" class="notanswer">'.$result[$i]->answer_a.'</span>';
-                                    }
-                                    else
-                                    {
-                                        echo '<input name="" type="radio" disabled />
-                                        <span>'.$result[$i]->answer_a.'</span>';
-                                    }
-                                }
-                            }
-                            ?>
-                        </div>
-                        <div class='answer'>
-                            <?php
-                            if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
-                            {
-                                echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green" class="correct">'.$result[$i]->answer_b.'</span>';
-                            }
-                            else
-                            {
-                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
-                                {
-                                    echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_b.'</span>';
-                                }
-                                else
-                                {
-                                    if (trim($result[$i]->answer_b) == trim($result[$i]->correct_answer))
-                                    {
-                                        echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_b.'</span>';
-                                    }
-                                    else
-                                    {
-                                        echo '<input name="" type="radio" disabled />
-                                        <span>'.$result[$i]->answer_b.'</span>';
-                                    }
-                                }
-                            }
-                            ?>
-                        </div>
-                        <div class='answer'>
-                            <?php
-                            if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
-                            {
-                                echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green" class="correct">'.$result[$i]->answer_c.'</span>';
-                            }
-                            else
-                            {
-                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
-                                {
-                                    echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_c.'</span>';
-                                }
-                                else
-                                {
-                                    if (trim($result[$i]->answer_c) == trim($result[$i]->correct_answer))
-                                    {
-                                        echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_c.'</span>';
-                                    }
-                                    else
-                                    {
-                                        echo '<input name="" type="radio" disabled />
-                                        <span>'.$result[$i]->answer_c.'</span>';
-                                    }
-                                }
-                            }
-                            ?>
-                        </div>
-                        <div class='answer'>
-                            <?php
-                            if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
-                            {
-                                echo '<input name="" type="radio" checked disabled />
-                                <span style="color:green" class="correct">'.$result[$i]->answer_d.'</span>';
-                            }
-                            else
-                            {
-                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
-                                {
-                                    echo '<input name="" type="radio" checked disabled />
-                                    <span style="color:red" class="incorrect">'.$result[$i]->answer_d.'</span>';
-                                }
-                                else
-                                {
-                                    if (trim($result[$i]->answer_d) == trim($result[$i]->correct_answer))
-                                    {
-                                        echo '<input name="" type="radio" checked disabled />
-                                        <span style="color:blue" class="notanswer">'.$result[$i]->answer_d.'</span>';
-                                    }
-                                    else
-                                    {
-                                        echo '<input name="" type="radio" disabled />
-                                        <span>'.$result[$i]->answer_d.'</span>';
-                                    }
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
+                <hr>
+            </div>
+            <div id="recent">
                 <?php
+                if($result == null) {
+                    echo '<span class="title">Bài Thi/Kiểm tra chưa được mở xem đáp án. Vui lòng liên hệ Giáo viên hoặc Quản trị viên.</span>';
+                } else {
+
+                 for($i = 0; $i < count($result); $i++) {
+                    ?>
+                    <div id="quest-<?=($i+1)?>" class="item-quest">
+                        <div class="quest-title">Câu <?=($i+1)?>:</div>
+                        <div class="quest-content">
+                            <span><?=$result[$i]->question_content?></span>
+                        </div>
+                        <div class="quest-answer">
+                            <div class='answer'>
+                                <?php
+                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
+                                {
+                                    echo '<input name="" type="radio" checked disabled />
+                                    <span style="color:green;" class="correct">'.$result[$i]->answer_a.'</span>';
+                                }
+                                else
+                                {
+                                    if (trim($result[$i]->student_answer) == trim($result[$i]->answer_a) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
+                                    {
+                                        echo '<input name="" type="radio" checked disabled />
+                                        <span style="color:red;" class="incorrect">'.$result[$i]->answer_a.'</span>';
+                                    }
+                                    else
+                                    {
+                                        if (trim($result[$i]->answer_a) == trim($result[$i]->correct_answer))
+                                        {
+                                            echo '<input name="" type="radio" checked disabled />
+                                            <span style="color:blue;" class="notanswer">'.$result[$i]->answer_a.'</span>';
+                                        }
+                                        else
+                                        {
+                                            echo '<input name="" type="radio" disabled />
+                                            <span>'.$result[$i]->answer_a.'</span>';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class='answer'>
+                                <?php
+                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
+                                {
+                                    echo '<input name="" type="radio" checked disabled />
+                                    <span style="color:green" class="correct">'.$result[$i]->answer_b.'</span>';
+                                }
+                                else
+                                {
+                                    if (trim($result[$i]->student_answer) == trim($result[$i]->answer_b) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
+                                    {
+                                        echo '<input name="" type="radio" checked disabled />
+                                        <span style="color:red" class="incorrect">'.$result[$i]->answer_b.'</span>';
+                                    }
+                                    else
+                                    {
+                                        if (trim($result[$i]->answer_b) == trim($result[$i]->correct_answer))
+                                        {
+                                            echo '<input name="" type="radio" checked disabled />
+                                            <span style="color:blue" class="notanswer">'.$result[$i]->answer_b.'</span>';
+                                        }
+                                        else
+                                        {
+                                            echo '<input name="" type="radio" disabled />
+                                            <span>'.$result[$i]->answer_b.'</span>';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class='answer'>
+                                <?php
+                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
+                                {
+                                    echo '<input name="" type="radio" checked disabled />
+                                    <span style="color:green" class="correct">'.$result[$i]->answer_c.'</span>';
+                                }
+                                else
+                                {
+                                    if (trim($result[$i]->student_answer) == trim($result[$i]->answer_c) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
+                                    {
+                                        echo '<input name="" type="radio" checked disabled />
+                                        <span style="color:red" class="incorrect">'.$result[$i]->answer_c.'</span>';
+                                    }
+                                    else
+                                    {
+                                        if (trim($result[$i]->answer_c) == trim($result[$i]->correct_answer))
+                                        {
+                                            echo '<input name="" type="radio" checked disabled />
+                                            <span style="color:blue" class="notanswer">'.$result[$i]->answer_c.'</span>';
+                                        }
+                                        else
+                                        {
+                                            echo '<input name="" type="radio" disabled />
+                                            <span>'.$result[$i]->answer_c.'</span>';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class='answer'>
+                                <?php
+                                if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) == trim($result[$i]->correct_answer))
+                                {
+                                    echo '<input name="" type="radio" checked disabled />
+                                    <span style="color:green" class="correct">'.$result[$i]->answer_d.'</span>';
+                                }
+                                else
+                                {
+                                    if (trim($result[$i]->student_answer) == trim($result[$i]->answer_d) && trim($result[$i]->student_answer) != trim($result[$i]->correct_answer))
+                                    {
+                                        echo '<input name="" type="radio" checked disabled />
+                                        <span style="color:red" class="incorrect">'.$result[$i]->answer_d.'</span>';
+                                    }
+                                    else
+                                    {
+                                        if (trim($result[$i]->answer_d) == trim($result[$i]->correct_answer))
+                                        {
+                                            echo '<input name="" type="radio" checked disabled />
+                                            <span style="color:blue" class="notanswer">'.$result[$i]->answer_d.'</span>';
+                                        }
+                                        else
+                                        {
+                                            echo '<input name="" type="radio" disabled />
+                                            <span>'.$result[$i]->answer_d.'</span>';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
             }
             ?>
         </div>

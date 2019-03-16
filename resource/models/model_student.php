@@ -151,6 +151,12 @@ class Model_Student extends Database
 		$this->set_query($sql);
 		$this->execute_return_status();
 	}
+    public function get_student_quest_of_testcode($student_id, $test_code, $question_id)
+    {
+        $sql="SELECT * FROM student_test_detail where student_id=$student_id AND test_code=$test_code AND question_id=$question_id";
+        $this->set_query($sql);
+        return $this->load_row();
+    }
 	public function update_timing($student_id, $time)
 	{
 		$sql="UPDATE students set time_remaining='$time' where student_id=$student_id";

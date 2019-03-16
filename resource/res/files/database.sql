@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.6
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th1 11, 2019 lúc 07:19 PM
--- Phiên bản máy phục vụ: 10.1.29-MariaDB
--- Phiên bản PHP: 7.2.0
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th3 16, 2019 lúc 07:40 AM
+-- Phiên bản máy phục vụ: 10.1.31-MariaDB
+-- Phiên bản PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `test`
+-- Cơ sở dữ liệu: `tno_test`
 --
 
 -- --------------------------------------------------------
@@ -247,7 +247,9 @@ INSERT INTO `statuses` (`status_id`, `detail`) VALUES
 (1, 'Mở'),
 (2, 'Đóng'),
 (3, 'Chờ Duyệt'),
-(4, 'Đã Duyệt');
+(4, 'Đã Duyệt'),
+(5, 'Cho Phép Xem Đáp Án'),
+(6, 'Kết Thúc');
 
 -- --------------------------------------------------------
 
@@ -579,7 +581,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT cho bảng `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `status_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `students`

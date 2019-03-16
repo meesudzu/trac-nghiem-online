@@ -27,13 +27,13 @@ class Controller_Student
 	}
 	public function profiles()
 	{
-		$profiles = new Model_Student();
-		return $profiles->get_profiles($_SESSION['username']);
+		$model = new Model_Student();
+		return $model->get_profiles($_SESSION['username']);
 	}
 	public function get_question($ID)
 	{
-		$answer = new Model_Student();
-		return $answer->get_question($ID);
+		$model = new Model_Student();
+		return $model->get_question($ID);
 	}
 	public function get_doing_exam()
 	{
@@ -41,64 +41,65 @@ class Controller_Student
 	}
 	public function update_last_login()
 	{
-		$info = new Model_Student();
-		$info->update_last_login($this->info['ID']);
+		$model = new Model_Student();
+		$model->update_last_login($this->info['ID']);
 	}
 	public function update_doing_exam($exam,$time)
 	{
-		$info = new Model_Student();
-		$info->update_doing_exam($exam,$time,$this->info['ID']);
+		$model = new Model_Student();
+		$model->update_doing_exam($exam,$time,$this->info['ID']);
 	}
 	public function update_answer()
 	{
+        $model = new Model_Student();
 		$question_id = $_POST['id'];
-		$student_answer = $_POST['answer'];
-		$update = new Model_Student();
-		$update->update_answer($this->info['ID'], $this->info['doing_exam'], $question_id,$student_answer);
+		$answer = 'answer_'.$_POST['answer'];
+        $student_answer = $model->get_student_quest_of_testcode($this->info['ID'],$this->info['doing_exam'],$question_id)->$answer;
+		$model->update_answer($this->info['ID'], $this->info['doing_exam'], $question_id,$student_answer);
 		$time = $_POST['min'].':'.$_POST['sec'];
-		$update->update_timing($this->info['ID'], $time);
+		$model->update_timing($this->info['ID'], $time);
 	}
 	public function update_timing()
 	{
-		$update = new Model_Student();
+		$model = new Model_Student();
 		$time = $_POST['min'].':'.$_POST['sec'];
-		$update->update_timing($this->info['ID'], $time);
+		$model->update_timing($this->info['ID'], $time);
 	}
 	public function reset_doing_exam()
 	{
-		$info = new Model_Student();
-		$info->reset_doing_exam($this->info['ID']);
+		$model = new Model_Student();
+		$model->reset_doing_exam($this->info['ID']);
 	}
 	public function get_profiles()
 	{
-		$profiles = new Model_Student();
-		echo json_encode($profiles->get_profiles($this->info['username']));
+		$model = new Model_Student();
+		echo json_encode($model->get_profiles($this->info['username']));
 	}
 	public function get_notifications()
 	{
-		$noti = new Model_Student();
-		echo json_encode($noti->get_notifications($this->info['class_id']));
+		$model = new Model_Student();
+		echo json_encode($model->get_notifications($this->info['class_id']));
 	}
 	public function get_chats()
 	{
-		$chats = new Model_Student();
-		echo json_encode($chats->get_chats($this->info['class_id']));
+		$model = new Model_Student();
+		echo json_encode($model->get_chats($this->info['class_id']));
 	}
 	public function get_chat_all()
 	{
-		$chat_all = new Model_Student();
-		echo json_encode($chat_all->get_chat_all($this->info['class_id']));
+		$model = new Model_Student();
+		echo json_encode($model->get_chat_all($this->info['class_id']));
 	}
 	public function valid_email_on_profiles()
 	{
 		$result = array();
-		$valid = new Model_Student();
+		$model = new Model_Student();
 		$new_email = isset($_POST['new_email']) ? htmlspecialchars($_POST['new_email']) : '';
 		$curren_email = isset($_POST['curren_email']) ? htmlspecialchars($_POST['curren_email']) : '';
 		if (empty($new_email)) {
 			$result['status'] = 0;
 		} else {
-			if ($valid->valid_email_on_profiles($curren_email, $new_email)) {
+			if ($model->valid_email_on_profiles($curren_email, $new_email)) {
 				$result['status'] = 1;
 			} else {
 				$result['status'] = 0;
@@ -108,8 +109,8 @@ class Controller_Student
 	}
 	public function update_avatar($avatar, $username)
 	{
-		$info = new Model_Student();
-		return $info->update_avatar($avatar, $username);
+		$model = new Model_Student();
+		return $model->update_avatar($avatar, $username);
 	}
 	public function submit_update_avatar()
 	{
@@ -161,8 +162,8 @@ class Controller_Student
 			$result['status_value'] = "Nội dung trống";
 			$result['status'] = 0;
 		} else {
-			$m = new Model_Student();
-			$m->chat($this->info['username'], $this->info['name'], $this->info['class_id'], $content);
+			$model = new Model_Student();
+			$model->chat($this->info['username'], $this->info['name'], $this->info['class_id'], $content);
 			$result['status_value'] = "Thành công";
 			$result['status'] = 1;
 		}
@@ -170,8 +171,8 @@ class Controller_Student
 	}
 	public function update_profiles($username, $name, $email, $password, $gender, $birthday)
 	{
-		$info = new Model_Student();
-		return $info->update_profiles($username, $name, $email, $password, $gender, $birthday);
+		$model = new Model_Student();
+		return $model->update_profiles($username, $name, $email, $password, $gender, $birthday);
 	}
 	public function submit_update_profiles()
 	{
@@ -285,11 +286,15 @@ class Controller_Student
 			$model = new Model_Student();
 			$test_code = htmlspecialchars($_GET['test_code']);
 			$score = $model->get_score($this->info['ID'],$test_code);
-			$result = $model->get_result_quest($test_code,$this->info['ID']);
-			if($score && $result)
+            $test_status = $model->get_test($test_code)->status_id;
+            if($test_status != 5)
+                $result = null;
+            else
+                $result = $model->get_result_quest($test_code,$this->info['ID']);
+			if($score)
 			{
 				$view->show_head_left($this->info);
-				$view->show_result($score,$result);
+				$view->show_result($test_code,$score,$result);
 				$view->show_foot();
 			} else {
 				$this->show_404();

@@ -29,73 +29,73 @@ class Controller_Admin
     }
     public function get_profiles()
     {
-        $info = new Model_Admin();
-        echo json_encode($info->get_admin_info($this->info['username']));
+        $model = new Model_Admin();
+        echo json_encode($model->get_admin_info($this->info['username']));
     }
     public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
-        $info = new Model_Admin();
-        return $info->update_profiles($username, $name, $email, $password, $gender, $birthday);
+        $model = new Model_Admin();
+        return $model->update_profiles($username, $name, $email, $password, $gender, $birthday);
     }
     public function update_avatar($avatar, $username)
     {
-        $info = new Model_Admin();
-        return $info->update_avatar($avatar, $username);
+        $model = new Model_Admin();
+        return $model->update_avatar($avatar, $username);
     }
     public function get_admin_info($username)
     {
-        $info = new Model_Admin();
-        return $info->get_admin_info($username);
+        $model = new Model_Admin();
+        return $model->get_admin_info($username);
     }
     public function get_teacher_info($username)
     {
-        $info = new Model_Admin();
-        return $info->get_teacher_info($username);
+        $model = new Model_Admin();
+        return $model->get_teacher_info($username);
     }
     public function get_student_info($username)
     {
-        $info = new Model_Admin();
-        return $info->get_student_info($username);
+        $model = new Model_Admin();
+        return $model->get_student_info($username);
     }
     public function get_class_info($class_name)
     {
-        $info = new Model_Admin();
-        return $info->get_class_info($class_name);
+        $model = new Model_Admin();
+        return $model->get_class_info($class_name);
     }
     public function update_last_login()
     {
-        $info = new Model_Admin();
-        $info->update_last_login($this->info['admin_id']);
+        $model = new Model_Admin();
+        $model->update_last_login($this->info['admin_id']);
     }
     public function get_list_admins()
     {
-        $list_admins = new Model_Admin();
-        echo json_encode($list_admins->get_list_admins());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_admins());
     }
     public function get_list_grades()
     {
-        $list_grades = new Model_Admin();
-        echo json_encode($list_grades->get_list_grades());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_grades());
     }
     public function get_list_subjects()
     {
-        $list_grades = new Model_Admin();
-        echo json_encode($list_grades->get_list_subjects());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_subjects());
     }
     public function get_list_statuses()
     {
-        $list_statuses = new Model_Admin();
-        echo json_encode($list_statuses->get_list_statuses());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_statuses());
     }
     public function valid_username_or_email()
     {
         $result = array();
-        $valid = new Model_Admin();
+        $model = new Model_Admin();
         $usr_or_email = isset($_GET['usr_or_email']) ? htmlspecialchars($_GET['usr_or_email']) : '';
         if (empty($usr_or_email)) {
             $result['status'] = 0;
         } else {
-            if ($valid->valid_username_or_email($usr_or_email)) {
+            if ($model->valid_username_or_email($usr_or_email)) {
                 $result['status'] = 1;
             } else {
                 $result['status'] = 0;
@@ -106,13 +106,13 @@ class Controller_Admin
     public function valid_email_on_profiles()
     {
         $result = array();
-        $valid = new Model_Admin();
+        $model = new Model_Admin();
         $new_email = isset($_POST['new_email']) ? htmlspecialchars($_POST['new_email']) : '';
         $curren_email = isset($_POST['curren_email']) ? htmlspecialchars($_POST['curren_email']) : '';
         if (empty($new_email)) {
             $result['status'] = 0;
         } else {
-            if ($valid->valid_email_on_profiles($curren_email, $new_email)) {
+            if ($model->valid_email_on_profiles($curren_email, $new_email)) {
                 $result['status'] = 1;
             } else {
                 $result['status'] = 0;
@@ -123,12 +123,12 @@ class Controller_Admin
     public function valid_class_name()
     {
         $result = array();
-        $valid = new Model_Admin();
+        $model = new Model_Admin();
         $class_name = isset($_GET['class_name']) ? htmlspecialchars($_GET['class_name']) : '';
         if (empty($class_name)) {
             $result['status'] = 0;
         } else {
-            if ($valid->valid_class_name($class_name)) {
+            if ($model->valid_class_name($class_name)) {
                 $result['status'] = 1;
             } else {
                 $result['status'] = 0;
@@ -138,199 +138,199 @@ class Controller_Admin
     }
     public function edit_admin($admin_id, $password, $name, $gender_id, $birthday)
     {
-        $edit = new Model_Admin();
-        return $edit->edit_admin($admin_id, $password, $name, $gender_id, $birthday);
+        $model = new Model_Admin();
+        return $model->edit_admin($admin_id, $password, $name, $gender_id, $birthday);
     }
     public function del_admin($admin_id)
     {
-        $del = new Model_Admin();
-        return $del->del_admin($admin_id);
+        $model = new Model_Admin();
+        return $model->del_admin($admin_id);
     }
     public function add_admin($name, $username, $password, $email, $birthday, $gender)
     {
-        $add = new Model_Admin();
-        return $add->add_admin($name, $username, $password, $email, $birthday, $gender);
+        $model = new Model_Admin();
+        return $model->add_admin($name, $username, $password, $email, $birthday, $gender);
     }
     public function get_list_teachers()
     {
-        $list_teachers = new Model_Admin();
-        echo json_encode($list_teachers->get_list_teachers());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_teachers());
     }
     public function edit_teacher($teacher_id, $password, $name, $gender_id, $birthday)
     {
-        $edit = new Model_Admin();
-        return $edit->edit_teacher($teacher_id, $password, $name, $gender_id, $birthday);
+        $model = new Model_Admin();
+        return $model->edit_teacher($teacher_id, $password, $name, $gender_id, $birthday);
     }
     public function del_teacher($teacher_id)
     {
-        $del = new Model_Admin();
-        return $del->del_teacher($teacher_id);
+        $model = new Model_Admin();
+        return $model->del_teacher($teacher_id);
     }
     public function add_teacher($name, $username, $password, $email, $birthday, $gender)
     {
-        $add = new Model_Admin();
-        return $add->add_teacher($name, $username, $password, $email, $birthday, $gender);
+        $model = new Model_Admin();
+        return $model->add_teacher($name, $username, $password, $email, $birthday, $gender);
     }
     public function get_list_students()
     {
-        $list_students = new Model_Admin();
-        echo json_encode($list_students->get_list_students());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_students());
     }
     public function edit_student($student_id, $birthday, $password, $name, $class_id, $gender)
     {
-        $edit = new Model_Admin();
-        $edit->edit_student($student_id, $birthday, $password, $name, $class_id, $gender);
+        $model = new Model_Admin();
+        $model->edit_student($student_id, $birthday, $password, $name, $class_id, $gender);
     }
     public function del_student($student_id)
     {
-        $del = new Model_Admin();
-        return $del->del_student($student_id);
+        $model = new Model_Admin();
+        return $model->del_student($student_id);
     }
     public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
-        $add_student = new Model_Admin();
-        return $add_student->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
+        $model = new Model_Admin();
+        return $model->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
     }
     public function get_list_classes()
     {
-        $list_classes = new Model_Admin();
-        echo json_encode($list_classes->get_list_classes());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_classes());
     }
     public function edit_class($class_id, $grade_id, $class_name, $teacher_id)
     {
-        $edit = new Model_Admin();
-        $edit->edit_class($class_id, $grade_id, $class_name, $teacher_id);
+        $model = new Model_Admin();
+        $model->edit_class($class_id, $grade_id, $class_name, $teacher_id);
     }
     public function del_class($class_id)
     {
-        $del = new Model_Admin();
-        return $del->del_class($class_id);
+        $model = new Model_Admin();
+        return $model->del_class($class_id);
     }
     public function add_class($grade_id, $class_name, $teacher_id)
     {
-        $add = new Model_Admin();
-        return $add->add_class($grade_id, $class_name, $teacher_id);
+        $model = new Model_Admin();
+        return $model->add_class($grade_id, $class_name, $teacher_id);
     }
     public function get_list_questions()
     {
-        $list_questions = new Model_Admin();
-        echo json_encode($list_questions->get_list_questions());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_questions());
     }
     public function get_list_tests()
     {
-        $list_tests = new Model_Admin();
-        echo json_encode($list_tests->get_list_tests());
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_tests());
     }
     public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
     {
-        $edit = new Model_Admin();
-        return $edit->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id);
+        $model = new Model_Admin();
+        return $model->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id);
     }
     public function del_question($question_id)
     {
-        $del = new Model_Admin();
-        return $del->del_question($question_id);
+        $model = new Model_Admin();
+        return $model->del_question($question_id);
     }
     public function add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
     {
-        $add_question = new Model_Admin();
-        return $add_question->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id,$this->info["username"]);
+        $model = new Model_Admin();
+        return $model->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id,$this->info["username"]);
     }
     public function get_teacher_notifications()
     {
-        $notifications = new Model_Admin();
-        echo json_encode($notifications->get_teacher_notifications());
+        $model = new Model_Admin();
+        echo json_encode($model->get_teacher_notifications());
     }
     public function get_student_notifications()
     {
-        $notifications = new Model_Admin();
-        echo json_encode($notifications->get_student_notifications());
+        $model = new Model_Admin();
+        echo json_encode($model->get_student_notifications());
     }
     public function insert_notification($notification_id,$notification_title, $notification_content)
     {
-        $notification = new Model_Admin();
-        return $notification->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
+        $model = new Model_Admin();
+        return $model->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
     public function edit_subject($subject_id, $subject_detail)
     {
-        $edit = new Model_Admin();
-        return $edit->edit_subject($subject_id, $subject_detail);
+        $model = new Model_Admin();
+        return $model->edit_subject($subject_id, $subject_detail);
     }
     public function del_subject($subject_id)
     {
-        $del = new Model_Admin();
-        return $del->del_subject($subject_id);
+        $model = new Model_Admin();
+        return $model->del_subject($subject_id);
     }
     public function add_subject($subject_detail)
     {
-        $add = new Model_Admin();
-        return $add->add_subject($subject_detail);
+        $model = new Model_Admin();
+        return $model->add_subject($subject_detail);
     }
     public function add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note)
     {
-        $test = new Model_Admin();
-        return $test->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
+        $model = new Model_Admin();
+        return $model->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
     }
     public function toggle_test_status($test_code, $status_id)
     {
-        $toggle = new Model_Admin();
-        return $toggle->toggle_test_status($test_code, $status_id);
+        $model = new Model_Admin();
+        return $model->toggle_test_status($test_code, $status_id);
     }
     public function get_list_units()
     {
         $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
         $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
-        $unit = new Model_Admin();
-        echo json_encode($unit->get_list_units($grade_id,$subject_id));
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_units($grade_id,$subject_id));
     }
     public function get_list_levels_of_unit()
     {
         $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
         $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $unit = isset($_POST['unit']) ? $_POST['unit'] : '';
-        $levels = new Model_Admin();
-        echo json_encode($levels->get_list_levels_of_unit($grade_id,$subject_id,$unit));
+        $model = new Model_Admin();
+        echo json_encode($model->get_list_levels_of_unit($grade_id,$subject_id,$unit));
     }
     public function get_dashboard_info()
     {
-        $get_total = new Model_Admin();
+        $model = new Model_Admin();
         $admin = new stdclass();
-        $admin->count = $get_total->get_total_admin();
+        $admin->count = $model->get_total_admin();
         $admin->name = "Quản Trị Viên";
         $admin->icon = "fa-user";
         $admin->actionlink = "show_admins_panel";
         $teacher = new stdclass();
-        $teacher->count = $get_total->get_total_teacher();
+        $teacher->count = $model->get_total_teacher();
         $teacher->name = "Giáo Viên";
         $teacher->icon = "fa-user";
         $teacher->actionlink = "show_teachers_panel";
         $student = new stdclass();
-        $student->count = $get_total->get_total_student();
+        $student->count = $model->get_total_student();
         $student->name = "Học Sinh";
         $student->icon = "fa-user";
         $student->actionlink = "show_students_panel";
         $grade = new stdclass();
-        $grade->count = $get_total->get_total_grade();
+        $grade->count = $model->get_total_grade();
         $grade->name = "Khối";
         $grade->icon = "fa-archive";
         $grade->actionlink = "show_classes_panel";
         $class = new stdclass();
-        $class->count = $get_total->get_total_class();
+        $class->count = $model->get_total_class();
         $class->name = "Lớp";
         $class->icon = "fa-archive";
         $class->actionlink = "show_classes_panel";
         $subject = new stdclass();
-        $subject->count = $get_total->get_total_subject();
+        $subject->count = $model->get_total_subject();
         $subject->name = "Môn Học";
         $subject->icon = "fa-book";
         $subject->actionlink = "show_subjects_panel";
         $question = new stdclass();
-        $question->count = $get_total->get_total_question();
+        $question->count = $model->get_total_question();
         $question->name = "Câu Hỏi";
         $question->icon = "fa-question";
         $question->actionlink = "show_questions_panel";
         $test = new stdclass();
-        $test->count = $get_total->get_total_test();
+        $test->count = $model->get_total_test();
         $test->name = "Bài Thi";
         $test->icon = "fa-edit";
         $test->actionlink = "show_tests_panel";
@@ -339,13 +339,13 @@ class Controller_Admin
     }
     public function notify_teacher($ID, $teacher_id)
     {
-        $send = new Model_Admin();
-        $send->notify_teacher($ID, $teacher_id);
+        $model = new Model_Admin();
+        $model->notify_teacher($ID, $teacher_id);
     }
     public function notify_class($ID, $class_id)
     {
-        $send = new Model_Admin();
-        $send->notify_class($ID, $class_id);
+        $model = new Model_Admin();
+        $model->notify_class($ID, $class_id);
     }
     public function check_add_admin()
     {
