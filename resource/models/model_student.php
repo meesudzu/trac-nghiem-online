@@ -130,7 +130,7 @@ class Model_Student extends Database
 	}
 	public function get_doing_quest($test_code,$student_id)
 	{
-		$sql = "SELECT DISTINCT *,questions.question_content FROM student_test_detail
+		$sql = "SELECT DISTINCT student_test_detail.answer_a,student_test_detail.answer_b,student_test_detail.answer_c,student_test_detail.answer_d,student_test_detail.student_answer,questions.question_id,questions.question_content FROM student_test_detail
 		INNER JOIN questions ON student_test_detail.question_id = questions.question_id
 		WHERE test_code = $test_code AND student_id = $student_id ORDER BY ID";
 		$this->set_query($sql);
