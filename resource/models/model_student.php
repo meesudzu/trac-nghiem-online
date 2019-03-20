@@ -138,7 +138,7 @@ class Model_Student extends Database
 	}
 	public function get_result_quest($test_code,$student_id)
 	{
-		$sql = "SELECT DISTINCT * FROM student_test_detail
+		$sql = "SELECT DISTINCT student_test_detail.answer_a,student_test_detail.answer_b,student_test_detail.answer_c,student_test_detail.answer_d,student_test_detail.student_answer,questions.question_id,student_test_detail.test_code,questions.question_content,questions.correct_answer FROM student_test_detail
 		INNER JOIN questions ON student_test_detail.question_id = questions.question_id
 		INNER JOIN tests ON student_test_detail.test_code = tests.test_code
 		WHERE student_test_detail.test_code = $test_code AND student_id = $student_id ORDER BY ID";
