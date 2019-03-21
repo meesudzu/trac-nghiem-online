@@ -12,9 +12,9 @@
 				<span class="title">Hoàn Thành Lúc: <?=$score->completion_time?></span><br />
 				<span class="title">CHI TIẾT BÀI THI</span><br />
                 <span class="title">Chú thích:<br />
-                    <span style="color: green;">Màu xanh </span>là đáp án đúng <br />
-                    <span style="color: red;">Màu đỏ </span> là đáp án học sinh trả lời sai<br />
-                    <span style="color: blue;">Màu xanh dương </span> là đáp án đúng câu hỏi học sinh bỏ trống
+                    <span style="color: green;">Màu xanh </span>là học sinh chọn đúng đáp án <br />
+                    <span style="color: red;">Màu đỏ </span> là đáp án học sinh chọn sai<br />
+                    <span style="color: blue;">Màu xanh dương </span> là đáp án đúng của câu hỏi
                 </span>
                 <hr>
             </div>
