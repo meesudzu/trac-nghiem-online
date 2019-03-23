@@ -200,7 +200,6 @@ function submit_add_student(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // student_insert_data(json_data);
             $('#table_students').DataTable().destroy();
             get_list_students();
             $('.modal').modal();

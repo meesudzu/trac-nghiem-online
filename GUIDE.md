@@ -4,7 +4,7 @@
         1, Cấp quyền ghi cho thư mục cài đặt (htdocs, www, ...)
         2, Xem lại kết nối tới database, ví dụ tên user, tên database, mật khẩu....  
     Nếu đã kiểm tra lại và vẫn lỗi, vui lòng liên hệ báo lỗi tới email: dzu6996@gmail.com  
--   Sửa tài khoản gửi email quên mật khẩu tại /controllers/controller_login.php dòng 110 và 111  
+-   Sửa tài khoản gửi email quên mật khẩu tại /controllers/controller_login.php dòng 127 và 128  
 -   Tài khoản mặc định:
     		tài khoản: admin
     		mật khẩu: 123456

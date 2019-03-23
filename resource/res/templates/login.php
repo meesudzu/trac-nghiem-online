@@ -42,7 +42,7 @@
 						</div>
 						<div class="login-btn">
 							<button type="submit" class="btn waves-effect waves-light green darken-4" onclick="submit_login()" id="btn-login">Đăng Nhập</button>
-							<button class="btn waves-effect waves-light orange darken-1" onclick="submit_forgot_password()" id="btn-fotgot">Quên MK?
+							<button class="btn waves-effect waves-light orange darken-1" onclick="submit_forgot_password()" id="btn-forgot">Quên MK?
 							</button>
 						</div>
 					</form>

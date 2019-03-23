@@ -1,4 +1,14 @@
-#3412  
+#3413  
+v3.4.2 (xx/xx/2019)
+
+    - Thay đổi lại cách thức thực hiện truy vấn SQL -> hạn chế lỗi SQL Injection ✓
+    - Fix lỗi bị lag khi thực hiện thêm, sửa, xóa với các mục có nhiều dữ liệu
+    - Fix lỗi không cài đặt được ở 1 số máy
+    - Fix lỗi không hiện công thức toán khi làm bài
+    - Tối ưu lại một số code
+    - Rewrite URL
+    - Thêm comment cho các hàm phục vụ cho việc bảo trì, nâng cấp sau này
+
 v3.4.1 (17/03/2019)
 
     - Fix upload ảnh ✓

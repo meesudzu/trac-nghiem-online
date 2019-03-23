@@ -4,8 +4,13 @@ $(document).ready(function() {
     });
 });
 
+/**
+ * Call ajax to Controller_Login > submit_login()
+ * click event in button #btn-login (res/templates/login.php)
+ */
+
 function submit_login() {
-    $('#loading').css('display', 'inline');
+    $('#loading').removeClass('hidden');
     var url = "index.php?action=submit_login";
     var data = {
         username: $("#username").val()
@@ -20,23 +25,36 @@ function submit_login() {
             $('#hi').css('display', 'inline');
             $('#hi-text').text(""+ json_data.name +"");
             $('#btn-login').html("Tiếp Tục").css('width', '100%').attr('onclick', 'submit_password()');
-            $('#btn-fotgot').css('display', 'none');
+            $('#btn-forgot').css('display', 'none');
             $('#reload').css('display', 'inline');
         }
-        $('#loading').css('display', 'none');
+        $('#loading').addClass('hidden');
     };
     $.post(url, data, success);
 }
+
+/**
+ * Click event in button #reload (res/templates/login.php)
+ */
+
 function reload() {
     $('#reload').css('display', 'none');
     $('#field_username').css('display', 'inline');
     $('#hi').css('display', 'none');
     $('#lbl_pw').addClass('hidden');
     $('#password').addClass('hidden');
-    $('#btn-login').html("Tiếp Tục").css('width', '100%').attr('onclick', 'submit_login()');
+    $('#btn-login').html("Đăng Nhập").css('width', '49%').attr('onclick', 'submit_login()');
+    $('#btn-forgot').css('display', 'inline');
 }
+
+/**
+ * Call ajax to Controller_Login > submit_password()
+ * Change onclick #btn-login in submit_login
+ * Click event in button #btn-login (res/templates/login.php)
+ */
+
 function submit_password() {
-    $('#loading').css('display', 'inline');
+    $('#loading').removeClass('hidden');
     var url = "index.php?action=submit_password";
     var data = {
         password: $("#password").val()
@@ -49,13 +67,18 @@ function submit_password() {
                 location.reload('index.php');
             }, 1500);
         }
-        $('#loading').css('display', 'none');
+        $('#loading').addClass('hidden');
     };
     $.post(url, data, success);
 }
 
+/**
+ * Call ajax to Controller_Login > submit_forgot_password()
+ * click event in button #btn-forgot (res/templates/login.php)
+ */
+
 function submit_forgot_password() {
-    $('#loading').css('display', 'inline');
+    $('#loading').removeClass('hidden');
     var url = "index.php?action=submit_forgot_password";
     var data = {
         username: $("#username").val()
@@ -63,7 +86,7 @@ function submit_forgot_password() {
     var success = function(result) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
-        $('#loading').css('display', 'none');
+        $('#loading').addClass('hidden');
     };
     $.post(url, data, success);
 }

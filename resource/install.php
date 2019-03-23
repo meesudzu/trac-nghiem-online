@@ -1,10 +1,10 @@
 <?php
 
 /**
-* INSTALL WIZARD
-* Author: Nong Van Du (Dzu)
-* Mail: dzu6996@gmail.com
-**/
+ * Install Wizard
+ * Author: Nong Van Du (Dzu)
+ * Mail: dzu6996@gmail.com
+ */
 
 error_reporting(0);
 ini_set('display_errors', 0);
@@ -13,9 +13,15 @@ class install
 {
 	private $connect = '';
 	private $connect_info = array();
+
 	function step_0()
 	{
-		$require_check = true;
+		$php_version_check = true;
+        $ext_xml_check = true;
+        $ext_xmlwriter_check = true;
+        $ext_mbstring_check = true;
+        $ext_zip_check = true;
+
 		echo '<div class="box">';
 		echo '<div class="title-install">Kiểm Tra Hệ Thống</div>';
 		echo '<div class="content-install">';
@@ -25,31 +31,31 @@ class install
 			$php_version = '<span class="pass">ĐẠT</span>';
 		} else {
 			$php_version = '<span class="failed">KHÔNG ĐẠT</span>';
-			$require_check = false;
+			$php_version_check = false;
 		}
 		if(extension_loaded('xml')) {
 			$ext_xml = '<span class="pass">ĐẠT</span>';
 		} else {
 			$ext_xml = '<span class="failed">KHÔNG ĐẠT</span>';
-			$require_check = false;
+			$ext_xml_check = false;
 		}
 		if(extension_loaded('xmlwriter')) {
 			$ext_xmlwriter = '<span class="pass">ĐẠT</span>';
 		} else {
 			$ext_xmlwriter = '<span class="failed">KHÔNG ĐẠT</span>';
-			$require_check = false;
+			$ext_xmlwriter_check = false;
 		}
 		if(extension_loaded('mbstring')) {
 			$ext_mbstring = '<span class="pass">ĐẠT</span>';
 		} else {
 			$ext_mbstring = '<span class="failed">KHÔNG ĐẠT</span>';
-			$require_check = false;
+			$ext_mbstring_check = false;
 		}
 		if(extension_loaded('zip')) {
 			$ext_zip = '<span class="pass">ĐẠT</span>';
 		} else {
 			$ext_zip = '<span class="failed">KHÔNG ĐẠT</span>';
-			$require_check = false;
+			$ext_zip_check = false;
 		}
 		$ext_gd = extension_loaded('gd') ? '<span class="pass">ĐẠT</span>' : '<span class="failed">KHÔNG ĐẠT</span>';
 		$ext_dom = extension_loaded('dom') ? '<span class="pass">ĐẠT</span>' : '<span class="failed">KHÔNG ĐẠT</span>';
@@ -62,10 +68,11 @@ class install
 		echo 'PHP extension GD (tùy chọn): '.$ext_gd.'<br />';
 		echo 'PHP extension dom (tùy chọn): '.$ext_dom.'<br />';
 
-		if($require_check) {
+		if($ext_zip_check && $ext_mbstring_check && $ext_xmlwriter_check && $ext_xml_check && $php_version_check) {
 			echo '</div>';
 			echo '</div>';
 			$this->step_1();
+
 		} else {
 			echo '<span class="failed">Máy chủ không đạt đủ yêu cầu, liên hệ nhà cung cấp để biết thêm chi tiết.</span>';
 			echo '</div>';
@@ -90,7 +97,12 @@ class install
 				echo '<span class="failed">Kết nối cơ sở dữ liệu lỗi, vui lòng kiểm tra lại.</span>';
 			else {
 				$this->import_database();
-				$this->step_2();
+                if(is_writable('config/connect.php')) {
+                    $this->save_config();
+                    $this->step_2();
+                }
+                else
+                    $this->step_error();
 			}
 		} else {
 			echo '<strong>Nhập các thông số kết nối cơ sở dữ liệu (Hãy chắc chắn bạn đã tạo sẵn 1 database).</strong><br />';
@@ -125,7 +137,6 @@ class install
 
 	function step_2()
 	{
-		$this->save_config();
 		echo "<span class='pass'>Cài đặt Hệ Thống Trắc Nghiệm Online thành công.</span><br />";
 		echo "File install.php sẽ bị xóa sau quá trình cài đặt để đảm bảo vấn đề bảo mật.<br />";
 		echo "Tài khoản mặc định: <b>admin</b><br />";
@@ -136,6 +147,25 @@ class install
 		<br /><br />";
 		echo '<a href="index.php" class="waves-effect waves-light btn">KẾT THÚC</a>';
 	}
+
+    function step_error()
+    {
+        echo "<span class='failed'>Cài đặt Hệ Thống Trắc Nghiệm Online không thành thành công.</span><br />";
+        echo "Vui lòng cấp quyền ghi file cho hệ thống và thực hiện lại.<br />";
+        echo "Hoặc truy cập vào thư mục cài đặt, sửa trực tiếp file config/connect.php và điền theo mẫu:<br /><br />";
+        echo "'host' => '".$this->connect_info['host']."', <br />";
+        echo "'user' => '".$this->connect_info['user']."', <br />";
+        echo "'password' => '".$this->connect_info['password']."', <br />";
+        echo "'dbname' => '".$this->connect_info['dbname']."', <br />";
+        echo "'INSTALL_MODE' => FALSE <br /><br />";
+        echo "Tài khoản mặc định: <b>admin</b><br />";
+        echo "Mật khẩu: <b>123456</b> <br />";
+        echo "Vui lòng đăng nhập và đổi mật khẩu ngay sau khi đăng nhập. <br />";
+        echo 'Mọi thông tin chi tiết, hỗ trợ, góp ý, báo lỗi,<br />';
+        echo"vui lòng liên hệ <span class='pass'>dzu6996@gmail.com</span> hoặc trực tiếp trang chính thức sản phẩm <a href='https://github.com/meesudzu/trac-nghiem-online'>TẠI ĐÂY</a>
+        <br /><br />";
+        echo '<a href="index.php" class="waves-effect waves-light btn">KẾT THÚC</a>';
+    }
 
 	function import_database()
 	{
@@ -167,14 +197,15 @@ class install
 	}
 	function save_config()
 	{
-		//write config file
+		//write config.php file
 		$writer="<?php
 return (object) array('host' => '".$this->connect_info['host']."','user' => '".$this->connect_info['user']."','password' => '".$this->connect_info['password']."','dbname' => '".$this->connect_info['dbname']."','INSTALL_MODE' => FALSE);
 ?>";
 		$write=fopen('config/connect.php' , 'w');
-		$a = fwrite($write,$writer);
+		fwrite($write,$writer);
 		fclose($write);
-		rename('install.php','reinstall.php');
+        chmod('config/connect.php', 0666);
+        chmod('install.php', 0666);
 	}
 }
 ?>

@@ -8,58 +8,64 @@
 
 class Database
 {
-    private $db = '';
+    private $db = null;
     private $sql = '';
-    //kết nối cơ sở dữ liệu
+    private $stmt = null;
+
     public function __construct()
     {
         $connect = include ('connect.php');
         try {
-            $db = 'mysql:host='.$connect->host.'; dbname='.$connect->dbname.'';
-            $this->db = new PDO($db, $connect->user, $connect->password);
+            $connect_string = 'mysql:host='.$connect->host.'; dbname='.$connect->dbname.'';
+            $this->db = new PDO($connect_string, $connect->user, $connect->password);
             $this->db->query('set names "utf8"');
         } catch (PDOException $ex) {
             echo $ex->getMessage();
             die();
         }
     }
-    public function set_query($sql)
+
+    public function set_query($sql='', array $param=null)
     {
         $this->sql = $sql;
+        $this->param = $param;
     }
-    // hàm thực hiện câu lệnh SQL và trả về 1 mảng đối tượng có các thuộc tính là key
+    // Return an object array
     public function load_rows()
     {
         try {
-            $query = $this->db->prepare($this->sql);
-            $query->setFetchMode(PDO::FETCH_OBJ);
-            $query->execute();
+            $this->stmt = $this->db->prepare($this->sql);
+            $this->stmt->setFetchMode(PDO::FETCH_OBJ);
+            $this->stmt->execute($this->param);
         } catch (PDOException $e) {
             echo $e->getMessage();
+            die();
         }
-        return $query->fetchAll();
+        return $this->stmt->fetchAll();
     }
-    // hàm thực hiện câu lệnh SQL và trả về 1 đối tượng có các thuộc tính là key
+    // Return an object
     public function load_row()
     {
         try {
-            $query = $this->db->prepare($this->sql);
-            $query->setFetchMode(PDO::FETCH_OBJ);
-            $query->execute();
+            $this->stmt = $this->db->prepare($this->sql);
+            $this->stmt->setFetchMode(PDO::FETCH_OBJ);
+            $this->stmt->execute($this->param);
         } catch (PDOException $e) {
             echo $e->getMessage();
+            die();
         }
-        return $query->fetch();
+        return $this->stmt->fetch();
     }
-    //thực thi insert hoặc update và return true false
+    //Return boolean
     public function execute_return_status()
     {
         try {
-            $query = $this->db->prepare($this->sql);
-            $query->setFetchMode(PDO::FETCH_OBJ);
-            $status = $query->execute();
+            $this->stmt = $this->db->prepare($this->sql);
+            $this->stmt->setFetchMode(PDO::FETCH_OBJ);
+            $status = $this->stmt->execute($this->param);
         } catch (PDOException $e) {
             echo $e->getMessage();
+            die();
         }
         return $status;
     }

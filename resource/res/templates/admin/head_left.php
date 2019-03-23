@@ -31,7 +31,7 @@
 	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
 		<div class="card reset-margin">
 			<div class="card-image">
-				<img src="res/img/avatar/<?=$info['avatar']?>" id="user-avatar" style="width: 215px; height: 155px;">
+				<img src="res/img/avatar/<?=$info['avatar']?>" id="user-avatar" style="width: 220px; height: 155px;">
                     
                 </style>
 				<span class="card-title" style="padding: 20px; "><i  id="user-name"><?=$info['name']?></i>

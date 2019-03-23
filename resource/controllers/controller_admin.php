@@ -1311,7 +1311,7 @@ class Controller_Admin
         $model = new Model_Admin();
         $test_code = htmlspecialchars($_GET['test_code']);
         $view->show_head_left($this->info);
-        $view->show_test_score($model->get_test_score($test_code));
+        $view->show_test_score($test_code, $model->get_test_score($test_code));
         $view->show_foot();
     }
     public function show_subjects_panel()

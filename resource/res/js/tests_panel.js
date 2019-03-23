@@ -86,7 +86,6 @@ function submit_add_test(data) {
     var url = "index.php?action=check_add_test";
     var success = function(result) {
         var json_data = $.parseJSON(result);
-        console.log(json_data)
         show_status(json_data);
         if (json_data.status) {
             $('#table_tests').DataTable().destroy();

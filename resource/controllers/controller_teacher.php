@@ -1,10 +1,10 @@
 <?php
 
 /**
-* Controller Teacher
-* Author: Nong Van Du (Dzu)
-* Mail: dzu6996@gmail.com
-**/ 
+ * Controller Teacher
+ * Author: Nong Van Du (Dzu)
+ * Mail: dzu6996@gmail.com
+ */ 
 
 require_once('models/model_teacher.php');
 require_once 'views/view_teacher.php';

@@ -62,7 +62,7 @@ class View_Admin
     {
         include 'res/templates/admin/tests_detail.php';
     }
-    public function show_test_score($scores)
+    public function show_test_score($test_code, $scores)
     {
         include 'res/templates/admin/test_score.php';
     }
