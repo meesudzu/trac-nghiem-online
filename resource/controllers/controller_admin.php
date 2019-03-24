@@ -739,16 +739,16 @@ class Controller_Admin
     public function check_add_question()
     {
         $result = array();
-        $question_detail = isset($_POST['question_detail']) ? addslashes($_POST['question_detail']) : '';
-        $grade_id = isset($_POST['grade_id']) ? addslashes($_POST['grade_id']) : '';
-        $unit = isset($_POST['unit']) ? addslashes($_POST['unit']) : '';
-        $subject_id = isset($_POST['subject_id']) ? addslashes($_POST['subject_id']) : '';
-        $answer_a = isset($_POST['answer_a']) ? addslashes($_POST['answer_a']) : '';
-        $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
-        $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
-        $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
-        $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
-        $level_id = isset($_POST['level_id']) ? addslashes($_POST['level_id']) : '';
+        $question_detail = isset($_POST['question_detail']) ? $_POST['question_detail'] : '';
+        $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
+        $unit = isset($_POST['unit']) ? $_POST['unit'] : '';
+        $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
+        $answer_a = isset($_POST['answer_a']) ? $_POST['answer_a'] : '';
+        $answer_b = isset($_POST['answer_b']) ? $_POST['answer_b'] : '';
+        $answer_c = isset($_POST['answer_c']) ? $_POST['answer_c'] : '';
+        $answer_d = isset($_POST['answer_d']) ? $_POST['answer_d'] : '';
+        $correct_answer = isset($_POST['correct_answer']) ? $_POST['correct_answer'] : '';
+        $level_id = isset($_POST['level_id']) ? $_POST['level_id'] : '';
         $true_correct_answer = "";
         if (empty($question_detail)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập";
@@ -783,7 +783,7 @@ class Controller_Admin
         $inputFileType = 'Xlsx';
         $result = array();
         $shuffle = array();
-        $subject_id = isset($_POST['subject_id']) ? Htmlspecialchars(addslashes($_POST['subject_id'])) : '';
+        $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $reader = IOFactory::createReader($inputFileType);
         move_uploaded_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
         $spreadsheet = $reader->load($_FILES['file']['name']);
@@ -795,12 +795,12 @@ class Controller_Admin
             if($sheetData[$i]['A'] == '')
                 continue;
             $stt = $sheetData[$i]['A'];
-            $question_content = addslashes($sheetData[$i]['B']);
-            $answer_a = addslashes($sheetData[$i]['C']);
-            $answer_b = addslashes($sheetData[$i]['D']);
-            $answer_c = addslashes($sheetData[$i]['E']);
-            $answer_d = addslashes($sheetData[$i]['F']);
-            $correct_answer = addslashes($sheetData[$i]['G']);
+            $question_content = $sheetData[$i]['B'];
+            $answer_a = $sheetData[$i]['C'];
+            $answer_b = $sheetData[$i]['D'];
+            $answer_c = $sheetData[$i]['E'];
+            $answer_d = $sheetData[$i]['F'];
+            $correct_answer = $sheetData[$i]['G'];
             $true_correct_answer = "";
             if($correct_answer == "A"){
                 $true_correct_answer = $answer_a;
@@ -852,16 +852,16 @@ class Controller_Admin
     {
         $result = array();
         $question_id = isset($_POST['question_id']) ? $_POST['question_id'] : '';
-        $question_content = isset($_POST['question_detail']) ? addslashes($_POST['question_detail']) : '';
+        $question_content = isset($_POST['question_detail']) ? $_POST['question_detail'] : '';
         $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
         $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
-        $unit = isset($_POST['unit']) ? Htmlspecialchars($_POST['unit']) : '';
-        $answer_a = isset($_POST['answer_a']) ? addslashes($_POST['answer_a']) : '';
-        $answer_b = isset($_POST['answer_b']) ? addslashes($_POST['answer_b']) : '';
-        $answer_c = isset($_POST['answer_c']) ? addslashes($_POST['answer_c']) : '';
-        $answer_d = isset($_POST['answer_d']) ? addslashes($_POST['answer_d']) : '';
+        $unit = isset($_POST['unit']) ? $_POST['unit'] : '';
+        $answer_a = isset($_POST['answer_a']) ? $_POST['answer_a'] : '';
+        $answer_b = isset($_POST['answer_b']) ? $_POST['answer_b'] : '';
+        $answer_c = isset($_POST['answer_c']) ? $_POST['answer_c'] : '';
+        $answer_d = isset($_POST['answer_d']) ? $_POST['answer_d'] : '';
         $level_id = isset($_POST['level_id']) ? $_POST['level_id'] : '';
-        $correct_answer = isset($_POST['correct_answer']) ? addslashes($_POST['correct_answer']) : '';
+        $correct_answer = isset($_POST['correct_answer']) ? $_POST['correct_answer'] : '';
         if (empty($question_content)||empty($grade_id)||empty($unit)||empty($answer_a)||empty($answer_b)||empty($answer_c)||empty($answer_d)||empty($correct_answer)) {
             $result['status_value'] = "Không được bỏ trống các trường nhập!";
             $result['status'] = 0;

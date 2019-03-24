@@ -130,13 +130,13 @@ function toggle_status(test_code, status_id) {
 
 function accept_permission(test_code, status_id) {
     $('#preload').removeClass('hidden');
-    if (status_id == 1)
+    if (status_id == 2)
         var data = {
             test_code: test_code,
             status_id: 5
         }
-    if (status_id == 2) {
-        alert('Đề thi đang đóng, không thể mở xem đáp án!');
+    if (status_id == 1) {
+        alert('Đề thi đang mở, không thể mở xem đáp án!');
         $('#preload').addClass('hidden');
         return 0;
     }
