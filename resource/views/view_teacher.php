@@ -17,9 +17,9 @@ class View_Teacher
     {
         include 'res/templates/teacher/dashboard.html';
     }
-    public function show_class_detail()
+    public function show_class_detail($class_name, $students)
     {
-        include 'res/templates/teacher/class_detail.html';
+        include 'res/templates/teacher/class_detail.php';
     }
     public function show_notifications()
     {

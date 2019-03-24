@@ -19,7 +19,7 @@ function submit_edit_question(data) {
         show_status(json_data);
         if (json_data.status) {
             window.setTimeout(function() {
-                window.location.href = "/index.php?action=show_questions_panel";
+                window.location.href = "quan-ly-ngan-hang-cau-hoi";
             }, 2000);
         }
         $('#preload').addClass('hidden');

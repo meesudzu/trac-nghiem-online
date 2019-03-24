@@ -74,11 +74,11 @@ function accept_permission_button(data) {
 }
 
 function test_detail_button(data) {
-    return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" href="index.php?action=test_detail&test_code=' + data.test_code + '">Chi Tiết Đề</a>';
+    return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" href="chi-tiet-de-thi-' + data.test_code + '">Chi Tiết Đề</a>';
 }
 
 function test_score_button(data) {
-    return btn = '<a class="waves-effect waves-light btn" href="index.php?action=test_score&test_code=' + data.test_code + '">Xem Điểm</a>';
+    return btn = '<a class="waves-effect waves-light btn" href="diem-de-thi-' + data.test_code + '">Xem Điểm</a>';
 }
 
 function submit_add_test(data) {
@@ -174,7 +174,7 @@ function list_unit() {
         div.empty();
         var json_data = $.parseJSON(result);
         if (json_data == "")
-            div.append('<span class="title" style="color:red">Chưa có câu hỏi cho khối và môn đã chọn, vui lòng thêm câu hỏi trước khi tạo đề thi, thêm câu hỏi <a href="/index.php?action=show_add_question">tại đây</a>!</span>');
+            div.append('<span class="title" style="color:red">Chưa có câu hỏi cho khối và môn đã chọn, vui lòng thêm câu hỏi trước khi tạo đề thi, thêm câu hỏi <a href="them-cau-hoi">tại đây</a>!</span>');
         else {
             for (var i = 0; i < json_data.length; i++) {
                 var unit_div = $('<div class="input-level row col s12" id="unit_' + json_data[i].unit + '"><span class="col s12"><b>Chương ' + json_data[i].unit + ' (đang có ' + json_data[i].total + ' câu trong cơ sở dữ liệu)</b></span></div>');

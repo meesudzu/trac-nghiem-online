@@ -163,11 +163,15 @@ class Controller_Teacher
         $model = new Model_Teacher();
         echo json_encode($model->get_score($student_id));
     }
-    public function get_class_detail()
+    public function get_class_detail($ID)
     {
-        $ID = isset($_GET['ID']) ? $_GET['ID'] : '1';
         $model = new Model_Teacher();
-        echo json_encode($model->get_class_detail($ID));
+        return $model->get_class_detail($ID);
+    }
+    public function get_class_name($ID)
+    {
+        $model = new Model_Teacher();
+        return $model->get_class_name($ID);
     }
     public function export_score()
     {
@@ -224,7 +228,11 @@ class Controller_Teacher
     {
         $view = new View_Teacher();
         $view->show_head_left($this->info);
-        $view->show_class_detail();
+        $class_id = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+        if($class_id == '')
+            $view->show_404();
+        else
+            $view->show_class_detail($this->get_class_name($class_id), $this->get_class_detail($class_id));
         $view->show_foot();
     }
     public function show_notifications()

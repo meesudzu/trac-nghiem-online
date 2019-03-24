@@ -28,7 +28,7 @@
 						<td><?=$tests[$i]->subject_detail?></td>
 						<td><?=$tests[$i]->grade?></td>
 						<td><?=$tests[$i]->total_questions?> câu hỏi, thời gian <?=$tests[$i]->time_to_do?> phút</td>
-						<td><a href="index.php?action=test_score&test_code=<?=$tests[$i]->test_code?>" class="btn">Xem Điểm</a></td>
+						<td><a href="diem-de-thi-<?=$tests[$i]->test_code?>" class="btn">Xem Điểm</a></td>
 					</tr>
 					<?php
 				}

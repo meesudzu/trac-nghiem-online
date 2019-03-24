@@ -121,6 +121,16 @@ class Model_Teacher extends Database
         return $this->load_rows();
     }
 
+    public function get_class_name($class_id)
+    {
+        $sql = "SELECT class_name FROM classes WHERE class_id = :class_id";
+
+        $param = [ ':class_id' => $class_id ];
+
+        $this->set_query($sql, $param);
+        return $this->load_row()->class_name;
+    }
+
     public function get_notifications_to_student($teacher_id)
     {
         $sql = "SELECT DISTINCT * FROM notifications WHERE notification_id IN (SELECT DISTINCT notification_id FROM student_notifications WHERE student_notifications.class_id IN (SELECT DISTINCT classes.class_id FROM classes WHERE teacher_id = :teacher_id)) ORDER BY `time_sent` DESC";

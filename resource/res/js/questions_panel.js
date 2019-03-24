@@ -122,7 +122,7 @@ function show_list_questions(data) {
 }
 
 function question_edit_button(data) {
-    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="index.php?action=show_edit_question&id=' + data.question_id + '"">Sửa</a>';
+    return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="sua-cau-hoi-' + data.question_id + '"">Sửa</a>';
 }
 
 function question_del_button(data) {

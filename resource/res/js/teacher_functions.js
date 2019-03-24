@@ -22,74 +22,6 @@ $(document).ready(function() {
     });
 });
 
-function get_url_parameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam)
-        {
-            return sParameterName[1];
-        }
-    }
-}
-
-function get_class_detail(ID) {
-    var url = "index.php?action=get_class_detail";
-    data = {
-        ID:ID
-    }
-    var success = function(result) {
-        var json_data = $.parseJSON(result);
-        insert_class_detail(json_data);
-    };
-    $.get(url, data, success);
-}
-
-function insert_class_detail(data) {
-    var list = $('#class_detail');
-    $('#class_name_detail').text(data[0].class_name);
-    $.each(data, function(key, value) {
-        var tr = $('<tr id="student-id-' + value.student_id + '"></tr>');
-        tr.append('<td>' + value.student_id + '</td>');
-        tr.append('<td><img src="res/img/avatar/' + value.avatar + '"" alt="avatar" class="avatar" /></td>');
-        tr.append('<td>' + value.username + '</td>');
-        tr.append('<td>' + value.name + '</td>');
-        if(value.birthday == '' || value.birthday == '0000-00-00')
-            value.birthday = 'Chưa Xác Định';
-        tr.append('<td>' + value.birthday + '</td>');
-        tr.append('<td>' + value.gender_detail + '</td>');
-        if(value.last_login == '' || value.last_login == '0000-00-00 00:00:00')
-            value.last_login = 'Chưa Đăng Nhập';
-        tr.append('<td>' + value.last_login + '</td>');
-        tr.append('<td>' + view_score_btn(value) + '</td>');
-        list.append(tr);
-    });
-    $('#table_classes_detail').DataTable( {
-        "language": {
-            "lengthMenu": "Hiển thị _MENU_",
-            "zeroRecords": "Không tìm thấy",
-            "info": "Hiển thị trang _PAGE_/_PAGES_",
-            "infoEmpty": "Không có dữ liệu",
-            "emptyTable": "Không có dữ liệu",
-            "infoFiltered": "(tìm kiếm trong tất cả _MAX_ mục)",
-            "sSearch": "Tìm kiếm",
-            "paginate": {
-                "first":      "Đầu",
-                "last":       "Cuối",
-                "next":       "Sau",
-                "previous":   "Trước"
-            },
-        },
-        "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 7 ] }, //hide sort icon on header of column 7
-        ]
-    } );
-    $('.modal').modal();
-    $('select').select();
-}
 
 function show_status(json_data) {
     if (json_data.status) {
@@ -172,23 +104,15 @@ function show_list_classes(data) {
         tr.append('<td>' + value.class_name + '</td>');
         tr.append('<td>' + value.grade + '</td>');
         tr.append('<td>' + view_btn(value.class_id) + '</td>');
-        sidebar.append('<a href="index.php?action=show_class_detail&class_id=' + value.class_id + '" class="menu-list cursor">' + value.class_name + '</a>');
+        sidebar.append('<a href="thong-tin-lop-' + value.class_id + '" class="menu-list cursor">' + value.class_name + '</a>');
         list.append(tr);
     });
 }
 
 function view_btn(data) {
-    return '<a href="index.php?action=show_class_detail&class_id=' + data + '" class="btn">Xem</a>';
+    return '<a href="thong-tin-lop-' + data + '" class="btn">Xem</a>';
 }
 
-function view_score_btn(data) {
-    return btn = '<a class="waves-effect waves-light btn modal-trigger" href="#view_score-' + data.student_id + '" onclick="get_score(' + data.student_id + ')">Chi Tiết</a>' +
-    '<div id="view_score-' + data.student_id + '" class="modal"><div class="modal-content">' +
-    '<h5>Chi tiết điểm học sinh </h5><span style="font-weight: bold; font-size: 1.2em">' + data.name + '</span></div>' +
-    '<div class="modal-body" id="_score-' + data.student_id + '">' +
-    '</div><div class="modal-footer"><a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Trờ Lại</a></div>' +
-    '</div></div>';
-}
 
 function get_score(id) {
     $('#preload').removeClass('hidden');

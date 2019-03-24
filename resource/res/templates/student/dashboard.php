@@ -28,7 +28,7 @@
 								}
 							}
 							if($flag)
-								echo '<a href="index.php?action=show_result&test_code='.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
+								echo '<a href="xem-ket-qua-'.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
 							else {
 								?>
 								<a class="waves-effect waves-light btn modal-trigger full-width" style="margin-bottom: 7px;" href="#do-test-<?=$tests[$i]->test_code?>" id="do_test">Làm Bài</a>
@@ -63,7 +63,7 @@
 								}
 							}
 							if($flag_2)
-								echo '<a href="index.php?action=show_result&test_code='.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
+								echo '<a href="xem-ket-qua-'.$tests[$i]->test_code.'" class="btn full-width">Chi Tiết Bài Làm</a>';
 							else
 								echo '<button class="btn full-width" disabled>Chi Tiết Bài Làm</button>';
 						}

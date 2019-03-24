@@ -1,1 +1,32 @@
 php_flag display_errors off
+RewriteEngine On
+
+RewriteRule ^quan-ly-admin$ index.php?action=show_admins_panel [L]
+RewriteRule ^quan-ly-giao-vien$ index.php?action=show_teachers_panel [L]
+RewriteRule ^quan-ly-lop$ index.php?action=show_classes_panel [L]
+RewriteRule ^quan-ly-hoc-sinh$ index.php?action=show_students_panel [L]
+RewriteRule ^quan-ly-mon-hoc$ index.php?action=show_subjects_panel [L]
+RewriteRule ^quan-ly-ngan-hang-cau-hoi$ index.php?action=show_questions_panel [L]
+RewriteRule ^quan-ly-de-thi$ index.php?action=show_tests_panel [L]
+RewriteRule ^gui-thong-bao$ index.php?action=show_notifications_panel [L]
+RewriteRule ^them-cau-hoi$ index.php?action=show_add_question [L]
+RewriteRule ^sua-cau-hoi-(.*)$ index.php?action=show_edit_question&id=$1 [L]
+RewriteRule ^chi-tiet-de-thi-(.*)$ index.php?action=test_detail&test_code=$1 [L]
+
+RewriteRule ^thong-tin-lop-(.*)$ /index.php?action=show_class_detail&class_id=$1 [L]
+RewriteRule ^diem-de-thi-(.*)$ index.php?action=test_score&test_code=$1 [L]
+RewriteRule ^xuat-diem-de-thi-(.*)$ index.php?action=export_score&test_code=$1 [L]
+RewriteRule ^danh-sach-de-thi$ /index.php?action=list_test [L]
+
+RewriteRule ^xem-ket-qua-(.*)$ /index.php?action=show_result&test_code=$1 [L]
+RewriteRule ^chat$ /index.php?action=show_chat [L]
+RewriteRule ^lich-su-chat$ /index.php?action=show_all_chat [L]
+RewriteRule ^nop-bai$ /index.php?action=accept_test [L]
+
+RewriteRule ^404$ /index.php?action=show_404 [L]
+RewriteRule ^thong-tin$ /index.php?action=show_about [L]
+RewriteRule ^trang-ca-nhan$ /index.php?action=show_profiles [L]
+RewriteRule ^trang-chu$ /index.php?action=show_dashboard [L]
+RewriteRule ^thong-bao$ /index.php?action=show_notifications [L]
+
+ErrorDocument 404 /404

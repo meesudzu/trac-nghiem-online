@@ -114,7 +114,7 @@
 				<?php
 			}
 			?>
-			<a href="index.php?action=accept_test" class="btn" onclick="return confirm('Xác nhận nộp bài?')" style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a>
+			<a href="nop-bai" class="btn" onclick="return confirm('Xác nhận nộp bài?')" style="width: 300px;margin-left: 40%;margin-bottom: 20px;">Nộp</a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -158,7 +158,7 @@
 				$('#timer').text(min_text + ':' + sec_text);
 				if (min < 0) {
 					alert('Hết giờ, hệ thống sẽ tự động nộp bài!');
-					window.location.replace("index.php?action=accept_test");
+					window.location.replace("nop-bai");
 				}
 			}, 1000);
 		}

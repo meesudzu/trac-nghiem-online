@@ -1,6 +1,6 @@
 <div class="title-content">
     <span class="title">Sửa Câu Hỏi</span>
-    <a href="index.php?action=show_questions_panel" class="cursor"><span class="title">Quản Lý Câu Hỏi</span></a>
+    <a href="quan-ly-ngan-hang-cau-hoi" class="cursor"><span class="title">Quản Lý Câu Hỏi</span></a>
 </div>
 <div class="block-content overflow scrollbar">
     <div class="content">

@@ -270,8 +270,6 @@ function submit_edit_student(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#student-' + json_data.student_id).remove();
-            // student_insert_data(json_data);
             $('#table_students').DataTable().destroy();
             get_list_students();
             form[0].reset();
