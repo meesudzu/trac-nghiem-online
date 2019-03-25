@@ -256,8 +256,6 @@ function submit_edit_admin(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#admin-' + json_data.admin_id).remove();
-            // admin_insert_data(json_data);
             $('#table_admins').DataTable().destroy();
             get_list_admins();
             form[0].reset();

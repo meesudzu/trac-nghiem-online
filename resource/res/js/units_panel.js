@@ -117,22 +117,8 @@ function show_list_units(data) {
         ],
         'aaSorting': [[1, 'asc']] // start to sort data in second column
     }  );
-    // $('select').select();
 }
 
-// function unit_insert_data(value) {
-//     var list = $('#list_units');
-//     var tr = $('<tr question="fadeIn" id="unit-' + value[0].unit + '"></tr>');
-//     tr.append('<td>' + value[0].unit + '</td>');
-//     tr.append('<td>' + value[0].detail + '</td>');
-//     tr.append('<td>' + value[0].status_detail + '</td>');
-//     tr.append('<td>' + value[0].close_time + '</td>');
-//     tr.append('<td>' + unit_edit_button(value[0]) + '<br />' + unit_del_button(value[0]) + '</td>');
-//     list.append(tr);
-//     $("form").on('submit', function(event) {
-//         event.preventDefault();
-//     });
-// }
 
 function unit_edit_button(data) {
     return btn = '<a class="waves-effect waves-light btn modal-trigger" style="margin-bottom: 7px;" href="#edit-' + data.unit + '" id="#edit-' + data.unit + '">Sửa</a>' +
@@ -193,10 +179,6 @@ function submit_add_unit(data) {
         if (json_data.status) {
             $('#table_units').DataTable().destroy();
             get_list_units();
-            // unit_insert_data(json_data);
-            // $('.modal').modal();
-            // $('select').select();
-            // select_status();
         }
         $('#preload').addClass('hidden');
     };
@@ -213,11 +195,6 @@ function submit_edit_unit(data) {
         if (json_data.status) {
             $('#table_units').DataTable().destroy();
             get_list_units();
-            // $('#unit-' + json_data[0].unit + '').remove();
-            // unit_insert_data(json_data);
-            // $('.modal').modal();
-            // $('select').select();
-            // select_status();
         }
         $('#preload').addClass('hidden');
     };
@@ -232,9 +209,6 @@ function submit_del_unit(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#unit-' + json_data.unit).hide('400', function() {
-            //     this.remove();
-            // });
             $('#table_units').DataTable().destroy();
             get_list_units();
         }

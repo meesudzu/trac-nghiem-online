@@ -187,7 +187,6 @@ function submit_add_teacher(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // teacher_insert_data(json_data);
             $('#table_teachers').DataTable().destroy();
             get_list_teachers();
             $('.modal').modal();
@@ -256,8 +255,6 @@ function submit_edit_teacher(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#teacher-' + json_data.teacher_id).remove();
-            // teacher_insert_data(json_data);
             $('#table_teachers').DataTable().destroy();
             get_list_teachers();
             form[0].reset();
@@ -268,21 +265,3 @@ function submit_edit_teacher(data) {
     };
     $.post(url, data, success);
 }
-
-// function teacher_insert_data(data) {
-//     var list = $('#list_teachers');
-//     var tr = $('<tr class="fadeIn" id="teacher-' + data.teacher_id + '"></tr>');
-//     tr.append('<td class="">' + data.teacher_id + '</td>');
-//     tr.append('<td class=""><img src="res/img/avatar/' + data.avatar + '" alt="avatar" class="avatar" /></td>');
-//     tr.append('<td class="">' + data.name + '</td>');
-//     tr.append('<td class="">' + data.username + '</td>');
-//     tr.append('<td class="">' + data.email + '</td>');
-//     tr.append('<td class="">' + data.gender_detail + '</td>');
-//     tr.append('<td class="">' + data.birthday + '</td>');
-//     tr.append('<td class="">' + data.last_login + '</td>');
-//     tr.append('<td class="">' + teacher_edit_button(data) + '<br />' + teacher_del_button(data) + '</td>');
-//     list.append(tr);
-//     $("form").on('submit', function(event) {
-//         event.preventDefault();
-//     });
-// }

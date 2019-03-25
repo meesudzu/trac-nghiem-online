@@ -210,8 +210,6 @@ function submit_edit_class(data) {
         var json_data = $.parseJSON(result);
         show_status(json_data);
         if (json_data.status) {
-            // $('#class-' + json_data.class_id).remove();
-            // class_insert_data(json_data);
             $('#table_classes').DataTable().destroy();
             get_list_classes();
             form[0].reset();
@@ -224,17 +222,3 @@ function submit_edit_class(data) {
     };
     $.post(url, data, success);
 }
-
-// function class_insert_data(data) {
-//     var list = $('#list_classes');
-//     var tr = $('<tr class="fadeIn" id="class-' + data.class_id + '"></tr>');
-//     tr.append('<td class="">' + data.class_id + '</td>');
-//     tr.append('<td class="">' + data.class_name + '</td>');
-//     tr.append('<td class="">' + data.grade_detail + '</td>');
-//     tr.append('<td class="">' + data.teacher_name + '</td>');
-//     tr.append('<td class="">' + class_edit_button(data) + '<br />' + class_del_button(data) + '</td>');
-//     list.append(tr);
-//     $("form").on('submit', function(event) {
-//         event.preventDefault();
-//     });
-// }

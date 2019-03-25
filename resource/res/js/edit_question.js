@@ -11,7 +11,6 @@ function submit_edit_question(data) {
     data[2]['value'] = CKEDITOR.instances.answer_b.getData();
     data[3]['value'] = CKEDITOR.instances.answer_c.getData();
     data[4]['value'] = CKEDITOR.instances.answer_d.getData();
-    console.log(data)
     $('#preload').removeClass('hidden');
     var url = "index.php?action=check_edit_question";
     var success = function(result) {

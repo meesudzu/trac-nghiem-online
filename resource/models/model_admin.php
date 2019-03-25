@@ -273,17 +273,39 @@ class Model_Admin extends Database
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();
-        // return true;
     }
-    public function get_list_students()
+    public function get_list_students($column_order, $sort_order, $start, $offset)
     {
         $sql = "
         SELECT DISTINCT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
         INNER JOIN classes ON students.class_id = classes.class_id
-        INNER JOIN genders ON students.gender_id = genders.gender_id";
+        INNER JOIN genders ON students.gender_id = genders.gender_id
+        ORDER BY $column_order $sort_order LIMIT $start, $offset";
 
         $this->set_query($sql);
         return $this->load_rows();
+    }
+    public function get_list_students_search($keyword, $column_order, $sort_order, $start, $offset)
+    {
+        $sql = "
+        SELECT DISTINCT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name FROM `students`
+        INNER JOIN classes ON students.class_id = classes.class_id
+        INNER JOIN genders ON students.gender_id = genders.gender_id
+        WHERE students.student_id LIKE '%$keyword%' OR students.username LIKE '%$keyword%' OR students.name LIKE '%$keyword%' OR students.email LIKE '%$keyword%' OR students.birthday LIKE '%$keyword%' OR genders.gender_detail LIKE '%$keyword%' OR classes.class_name LIKE '%$keyword%'
+        ORDER BY students.$column_order $sort_order LIMIT $start, $offset";
+
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_total_students_search($keyword)
+    {
+        $sql = "SELECT DISTINCT count(students.student_id) as total FROM `students`
+        INNER JOIN classes ON students.class_id = classes.class_id
+        INNER JOIN genders ON students.gender_id = genders.gender_id
+        WHERE students.student_id LIKE '%$keyword%' OR students.username LIKE '%$keyword%' OR students.name LIKE '%$keyword%' OR students.email LIKE '%$keyword%' OR students.birthday LIKE '%$keyword%' OR genders.gender_detail LIKE '%$keyword%' OR classes.class_name LIKE '%$keyword%'";
+
+        $this->set_query($sql);
+        return $this->load_row()->total;
     }
     public function edit_student($student_id, $birthday, $password, $name, $class_id, $gender)
     {
