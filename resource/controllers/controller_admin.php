@@ -1223,18 +1223,18 @@ class Controller_Admin
             foreach ($list_unit as $unit) {
                 $list_lvl_of_unit = $model->get_list_levels_of_unit($grade_id, $subject_id,$unit->unit);
                 foreach ($list_lvl_of_unit as $level) {
-                   $limit = $_POST["unit_".$unit->unit."_level_".$level->level_id];
-                   $list_quest = $model->list_quest_of_unit($grade_id,$subject_id,$unit->unit,$level->level_id,$limit);
-                   foreach ($list_quest as $quest) {
-                       $model->add_quest_to_test($test_code,$quest->question_id);
-                   }
-               }
-           }
-       }
-       echo json_encode($result);
-   }
-   public function check_toggle_test_status()
-   {
+                 $limit = $_POST["unit_".$unit->unit."_level_".$level->level_id];
+                 $list_quest = $model->list_quest_of_unit($grade_id,$subject_id,$unit->unit,$level->level_id,$limit);
+                 foreach ($list_quest as $quest) {
+                     $model->add_quest_to_test($test_code,$quest->question_id);
+                 }
+             }
+         }
+     }
+     echo json_encode($result);
+ }
+ public function check_toggle_test_status()
+ {
     $result = array();
     $status_id = Htmlspecialchars($_POST['status_id']);
     $test_code = Htmlspecialchars($_POST['test_code']);

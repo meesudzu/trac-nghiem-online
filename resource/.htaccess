@@ -1,6 +1,11 @@
 php_flag display_errors off
 RewriteEngine On
 
+RewriteBase /
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^quan-ly-admin$ index.php?action=show_admins_panel [L]
 RewriteRule ^quan-ly-giao-vien$ index.php?action=show_teachers_panel [L]
 RewriteRule ^quan-ly-lop$ index.php?action=show_classes_panel [L]

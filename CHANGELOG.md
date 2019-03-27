@@ -1,4 +1,10 @@
 #3420  
+v3.4.3 (xx/xx/2019)
+
+    - Thay đổi cấu trúc thư mục theo chuẩn PSR
+    - Thay đổi lại tên các phương thức, lớp... theo chuẩn PSR
+    - Lưu lại trạng thái ẩn/hiện menu trái
+    
 v3.4.2 (27/03/2019)
 
     - Thay đổi lại cách thức thực hiện truy vấn SQL -> hạn chế lỗi SQL Injection ✓
