@@ -2,7 +2,7 @@
 
 /**
  * Controller Admin
- * Author: Nong Van Du (Dzu)
+ * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
  **/
 
@@ -201,6 +201,36 @@ class Controller_Admin
 
         echo json_encode($res);
     }
+    public function list_questions()
+    {
+        $model = new Model_Admin();
+        $res = array();
+        $res["draw"] = isset($_POST['draw']) ? intval($_POST['draw']) : 1;
+
+        $totalRecords = $model->get_total_question();
+        $totalRecordwithFilter = $totalRecords;
+
+        $start = isset($_POST['start']) ? $_POST['start'] : 0;
+        $offset = isset($_POST['length']) ? $_POST['length'] : 10;
+
+        $column_index = isset($_POST['order']) ? $_POST['order'][0]['column'] : 0;
+        $column_order = isset($_POST['columns']) ? $_POST['columns'][$column_index]['data'] : 'question_id';
+        $sort_order = isset($_POST['order']) ? $_POST['order'][0]['dir'] : 'asc';
+
+        $keyword = isset($_POST['search']['value']) ? $_POST['search']['value'] : '';
+
+        if($keyword != '') {
+            $res["aaData"] = $model->get_list_questions_search($keyword, $column_order, $sort_order, $start, $offset);
+            $totalRecordwithFilter = $model->get_total_questions_search($keyword);
+        } else {
+            $res["aaData"] = $model->get_list_questions($column_order, $sort_order, $start, $offset);
+        }
+
+        $res["iTotalRecords"] = $totalRecords;
+        $res["iTotalDisplayRecords"] = $totalRecordwithFilter;
+
+        echo json_encode($res);
+    }
     public function edit_student($student_id, $birthday, $password, $name, $class_id, $gender)
     {
         $model = new Model_Admin();
@@ -235,11 +265,6 @@ class Controller_Admin
     {
         $model = new Model_Admin();
         return $model->add_class($grade_id, $class_name, $teacher_id);
-    }
-    public function get_list_questions()
-    {
-        $model = new Model_Admin();
-        echo json_encode($model->get_list_questions());
     }
     public function get_list_tests()
     {

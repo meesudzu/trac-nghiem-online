@@ -116,6 +116,7 @@
 </div>
 </div>
 <script src="res/js/edit_question.js"></script>
+<script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 <script type="text/javascript">
     CKEDITOR.replace('question_detail', {
         extraPlugins: 'mathjax,format',

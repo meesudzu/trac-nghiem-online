@@ -2,7 +2,7 @@
 
 /**
  * Model Admin
- * Author: Nong Van Du (Dzu)
+ * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
  **/
 
@@ -495,16 +495,42 @@ class Model_Admin extends Database
         $this->set_query($sql, $param);
         return $this->execute_return_status();
     }
-    public function get_list_questions()
+    public function get_list_questions($column_order, $sort_order, $start, $offset)
     {
         $sql = "
         SELECT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail,levels.level_detail FROM `questions`
         INNER JOIN grades ON grades.grade_id = questions.grade_id
         INNER JOIN levels ON levels.level_id = questions.level_id
-        INNER JOIN subjects ON subjects.subject_id = questions.subject_id";
+        INNER JOIN subjects ON subjects.subject_id = questions.subject_id
+        ORDER BY $column_order $sort_order LIMIT $start, $offset";
 
         $this->set_query($sql);
         return $this->load_rows();
+    }
+    public function get_list_questions_search($keyword, $column_order, $sort_order, $start, $offset)
+    {
+        $sql = "
+        SELECT DISTINCT questions.question_id,questions.question_content,questions.unit,grades.detail as grade_detail, questions.answer_a,questions.answer_b,questions.answer_c,questions.answer_d,questions.correct_answer,subjects.subject_detail,levels.level_detail FROM `questions`
+        INNER JOIN grades ON grades.grade_id = questions.grade_id
+        INNER JOIN levels ON levels.level_id = questions.level_id
+        INNER JOIN subjects ON subjects.subject_id = questions.subject_id
+        WHERE questions.question_id LIKE '%$keyword%' OR questions.question_content LIKE '%$keyword%' OR questions.unit LIKE '%$keyword%' OR grades.detail LIKE '%$keyword%' OR questions.answer_a LIKE '%$keyword%' OR questions.answer_b LIKE '%$keyword%' OR questions.answer_c LIKE '%$keyword%' OR questions.answer_d LIKE '%$keyword%' OR questions.correct_answer LIKE '%$keyword%' OR subjects.subject_detail LIKE '%$keyword%' OR levels.level_detail LIKE '%$keyword%'
+        ORDER BY $column_order $sort_order LIMIT $start, $offset";
+
+        $this->set_query($sql);
+        return $this->load_rows();
+    }
+    public function get_total_questions_search($keyword)
+    {
+        $sql = "
+        SELECT DISTINCT count(questions.question_id) as total FROM `questions`
+        INNER JOIN grades ON grades.grade_id = questions.grade_id
+        INNER JOIN levels ON levels.level_id = questions.level_id
+        INNER JOIN subjects ON subjects.subject_id = questions.subject_id
+        WHERE questions.question_id LIKE '%$keyword%' OR questions.question_content LIKE '%$keyword%' OR questions.unit LIKE '%$keyword%' OR grades.detail LIKE '%$keyword%' OR questions.answer_a LIKE '%$keyword%' OR questions.answer_b LIKE '%$keyword%' OR questions.answer_c LIKE '%$keyword%' OR questions.answer_d LIKE '%$keyword%' OR questions.correct_answer LIKE '%$keyword%' OR subjects.subject_detail LIKE '%$keyword%' OR levels.level_detail LIKE '%$keyword%'";
+
+        $this->set_query($sql);
+        return $this->load_row()->total;
     }
     public function get_list_tests()
     {

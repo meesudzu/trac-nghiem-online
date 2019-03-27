@@ -2,7 +2,7 @@
 
 /**
  * Controller Student
- * Author: Nong Van Du (Dzu)
+ * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
  */
 
@@ -216,7 +216,7 @@ class Controller_Student
 		$score_detail = $correct.'/'.$total_questions;
 		$model->insert_score($this->info['ID'],$test_code,$score,$score_detail);
 		$model->reset_doing_exam($this->info['ID']);
-		header("Location: index.php?action=show_result&test_code=".$test_code);
+		header("Location: xem-ket-qua-".$test_code);
 	}
 	public function logout()
 	{

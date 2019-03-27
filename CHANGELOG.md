@@ -1,8 +1,8 @@
-#3415  
+#3416  
 v3.4.2 (xx/xx/2019)
 
     - Thay đổi lại cách thức thực hiện truy vấn SQL -> hạn chế lỗi SQL Injection ✓
-    - Fix lỗi bị lag khi thực hiện thêm, sửa, xóa với các mục có nhiều dữ liệu
+    - Fix lỗi bị lag khi thực hiện thêm, sửa, xóa với các mục có nhiều dữ liệu ✓
     - Fix lỗi không cài đặt được ở 1 số máy ✓
     - Fix lỗi không hiện công thức toán khi làm bài ✓
     - Rewrite URL ✓

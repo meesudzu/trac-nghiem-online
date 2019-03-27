@@ -188,5 +188,5 @@
 		}
 	</script>
 </body>
-
+<script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 </html>

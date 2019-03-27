@@ -2,7 +2,7 @@
 
 /**
  * DATABASE ACTION
- * Author: Nong Van Du (Dzu)
+ * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
  **/
 

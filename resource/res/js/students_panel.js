@@ -169,16 +169,20 @@ function get_list_students() {
             "targets":10,
             "render": function(data, type, meta) 
             {
-                return student_edit_button(meta) + '<br />' + student_del_button(meta);
+                var button = student_edit_button(meta) + '<br />' + student_del_button(meta);
+                $("form").on('submit', function(event) {
+                    event.preventDefault();
+                });
+                return button;
             }
         },
         {
             "bSortable": false,
             "aTargets": [0, 2, 10]
-            },
-            ],
-            'aaSorting': [
-            [1, 'asc']
+        },
+        ],
+        'aaSorting': [
+        [1, 'asc']
         ],
         "language": {
             "lengthMenu": "Hiển thị _MENU_",
@@ -197,9 +201,6 @@ function get_list_students() {
             },
         }
     } );
-    $("form").on('submit', function(event) {
-        event.preventDefault();
-    });
     $('.modal').modal();
     $('select').select();
     $('body').attr('style', 'overflow: auto;');
