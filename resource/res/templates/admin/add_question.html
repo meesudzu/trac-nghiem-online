@@ -13,27 +13,44 @@
             </div>
             <div id="add_normal" class="col s12">
                 <form action="" method="POST" role="form" id="add_question_form">
-                    <span class="title">Hỗ trợ nhập công thức bằng LaTeX</span>
+                    <div class="col l12 s12 file-field input-field" style="margin-top: 35px;">
+                        <div class="btn">
+                            <span>Thêm ảnh</span>
+                            <input type="file" id="file" onchange="upload_image()">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                            <img src="res/img/loading.gif" width="50" height="50" class="valid-img hidden" id="uploading">
+                        </div>
+                        <span class="help">Ảnh JPG,PNG nhỏ hơn 2mb</span>
+                    </div>
+                    <div class="col l12 s12 hidden" id="div-url">
+                        <span class="title" style="margin: 0">Copy đường dẫn phía dưới và chọn icon <img src="res/img/image_btn.png" alt="">, sau đó dán vào ô URL, chỉnh sửa thông tin nếu cần và nhấn Đồng ý.</span><br />
+                        <span class="title" style="margin: 0">URL Ảnh:</span>
+                        <div class="input-field">
+                            <textarea id="url" readonly onclick="this.select()"></textarea>
+                        </div>
+                    </div>
                     <div class="col l12 s12" style="padding-top: 20px">
-                        <span class="title">Nhập Câu Hỏi:</span>
+                        <span class="title" style="margin: 0">Nhập Câu Hỏi (Hỗ trợ nhập bằng LaTeX):</span>
                         <div class="input-field">
                             <textarea id="question_detail" name="question_detail" class="" required></textarea>
                         </div>
                     </div>
                     <div class="row col l12">
-                        <span class="title">Đáp Án A:</span>
+                        <span class="title" style="margin: 0">Đáp Án A:</span>
                         <div class="input-field">
                             <textarea id="answer_a" name="answer_a" class="" required></textarea>
                         </div>
-                        <span class="title">Đáp Án B:</span>
+                        <span class="title" style="margin: 0">Đáp Án B:</span>
                         <div class="input-field">
                             <textarea id="answer_b" name="answer_b" class="" required></textarea>
                         </div>
-                        <span class="title">Đáp Án C:</span>
+                        <span class="title" style="margin: 0">Đáp Án C:</span>
                         <div class="input-field">
                             <textarea id="answer_c" name="answer_c" class="" required></textarea>
                         </div>
-                        <span class="title">Đáp Án D:</span>
+                        <span class="title" style="margin: 0">Đáp Án D:</span>
                         <div class="input-field">
                             <textarea id="answer_d" name="answer_d" class="" required></textarea>
                         </div><br />
@@ -80,7 +97,7 @@
                 <span class="title">Hỗ trợ nhập công thức bằng LaTeX</span><br />
                 <span class="title">Lưu Ý: <br />1, Không sửa file mẫu tránh gây lỗi khi nhập dữ liệu.</span>
                 <br />
-                <span class="title">2, Hiện tại chưa hỗ trợ thêm nội dung hình ảnh, âm thanh,... vào câu hỏi.</span>
+                <span class="title">2, Nếu nội dung câu hỏi hoặc đáp án có sử dụng ảnh, vui lòng sử dụng chức năng thêm từng câu để đạt hiểu quả tốt nhất.</span>
                 <br />
                 <span id="error" class="title" style="color: red"></span>
                 <form id="add_via_file" enctype="multipart/form-data">
@@ -112,23 +129,23 @@
 <script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 <script type="text/javascript">
     CKEDITOR.replace('question_detail', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
         entities : false
     });
     CKEDITOR.replace('answer_a', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
         entities : false
     });
     CKEDITOR.replace('answer_b', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
         entities : false
     });
     CKEDITOR.replace('answer_c', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
         entities : false
     });
     CKEDITOR.replace('answer_d', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
         entities : false
     });
 </script>

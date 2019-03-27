@@ -6,6 +6,8 @@
  * Mail: dzu6996@gmail.com
  **/
 
+require_once('core/Base.php');
+require_once('config/config.php');
 require_once('models/model_admin.php');
 require_once('views/view_admin.php');
 //load thư viện PhpSpreadSheet
@@ -1001,11 +1003,27 @@ class Controller_Admin
             $duoi = explode('.', $_FILES['file']['name']);
             $duoi = $duoi[(count($duoi)-1)];
             if ($duoi === 'jpg' || $duoi === 'png') {
-                if (move_uploaded_file($_FILES['file']['tmp_name'], 'res/img/avatar/'.$this->info['username'].'_' . $_FILES['file']['name'])) {
+                if (move_uploaded_file($_FILES['file']['tmp_name'], 'upload/avatar/'.$this->info['username'].'_' . $_FILES['file']['name'])) {
                     $avatar = $this->info['username'] .'_' . $_FILES['file']['name'];
                     $update = $this->update_avatar($avatar, $this->info['username']);
                 }
             }
+        }
+    }
+    public function uploadImage()
+    {
+        if (isset($_FILES['file'])) {
+            $base = new Base();
+            $res = array();
+            $path = 'upload/question_images/';
+            $upload = $base->uploadImage($_FILES['file'],$path);
+            if($upload != false) {
+                $res['url'] = Config::APP_URL . $path . $upload;
+                $res['stt'] = true;
+            }
+            else
+                $res['stt'] = false;
+            echo json_encode($res);
         }
     }
     public function delete_check_students()

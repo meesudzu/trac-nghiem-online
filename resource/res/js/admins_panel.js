@@ -89,7 +89,7 @@ function show_list_admins(data) {
         var tr = $('<tr class="fadeIn" id="admin-' + data[i].admin_id + '"></tr>');
         tr.append('<td class=""><p><label><input type="checkbox" name="checkbox_students" class="checkbox" onchange="check_box();" value="' + data[i].admin_id + '" /><span></span></label></p></td>');
         tr.append('<td class="">' + data[i].admin_id + '</td>');
-        tr.append('<td class=""><img src="res/img/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
+        tr.append('<td class=""><img src="upload/avatar/' + data[i].avatar + '" alt="avatar" class="avatar" /></td>');
         tr.append('<td class="">' + data[i].name + '</td>');
         tr.append('<td class="">' + data[i].username + '</td>');
         tr.append('<td class="">' + data[i].email + '</td>');

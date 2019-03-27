@@ -36,6 +36,9 @@ $(function() {
         var instance = M.Modal.getInstance(elem);
         instance.open();
     });
+    $("form").on('submit', function(event) {
+        event.preventDefault();
+    });
 });
 
 function check_box() {
@@ -142,7 +145,7 @@ function get_list_students() {
             "targets":2,
             "render": function(data) 
             {
-                return '<img src="res/img/avatar/' + data + '" alt="avatar" class="avatar" />';
+                return '<img src="upload/avatar/' + data + '" alt="avatar" class="avatar" />';
             }
         },
         {
@@ -204,6 +207,9 @@ function get_list_students() {
     $('.modal').modal();
     $('select').select();
     $('body').attr('style', 'overflow: auto;');
+    $("form").on('submit', function(event) {
+        event.preventDefault();
+    });
 }
 
 function student_edit_button(data) {

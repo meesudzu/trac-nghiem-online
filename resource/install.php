@@ -161,6 +161,7 @@ class install
         echo "Tài khoản mặc định: <b>admin</b><br />";
         echo "Mật khẩu: <b>123456</b> <br />";
         echo "Vui lòng đăng nhập và đổi mật khẩu ngay sau khi đăng nhập. <br />";
+        echo "Sửa URL trang web trong config/config.php <br />";
         echo 'Mọi thông tin chi tiết, hỗ trợ, góp ý, báo lỗi,<br />';
         echo"vui lòng liên hệ <span class='pass'>dzu6996@gmail.com</span> hoặc trực tiếp trang chính thức sản phẩm <a href='https://github.com/meesudzu/trac-nghiem-online'>TẠI ĐÂY</a>
         <br /><br />";

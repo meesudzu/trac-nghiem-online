@@ -57,7 +57,7 @@ CKEDITOR.editorConfig = function(config) {
 
     // The default plugins included in the basic setup define some buttons that
     // are not needed in a basic editor. They are removed here.
-    config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+    config.removeButtons = 'Anchor,Link,Unlink';
 
     // Dialog windows are also simplified.
     config.removeDialogTabs = 'link:advanced';
@@ -74,6 +74,7 @@ CKEDITOR.editorConfig = function(config) {
     config.extraPlugins = 'floatpanel';
     config.extraPlugins = 'panel';
     config.extraPlugins = 'listblock';
+    config.extraPlugins = 'image';
     config.entities_latin = false;
     config.basicEntities = false;
     config.entities = false;

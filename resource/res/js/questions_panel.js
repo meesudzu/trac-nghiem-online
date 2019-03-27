@@ -20,6 +20,9 @@ $(function() {
         var instance = M.Modal.getInstance(elem);
         instance.open();
     });
+    $("form").on('submit', function(event) {
+        event.preventDefault();
+    });
 });
 
 function check_box() {
@@ -167,6 +170,9 @@ function get_list_questions() {
     $('.modal').modal();
     $('select').select();
     $('body').attr('style', 'overflow: auto;');
+    $("form").on('submit', function(event) {
+        event.preventDefault();
+    });
 }
 
 function question_edit_button(data) {

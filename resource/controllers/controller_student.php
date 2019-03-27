@@ -119,7 +119,7 @@ class Controller_Student
 			$duoi = explode('.', $_FILES['file']['name']);
 			$duoi = $duoi[(count($duoi)-1)];
 			if ($duoi === 'jpg' || $duoi === 'png') {
-				if (move_uploaded_file($_FILES['file']['tmp_name'], 'res/img/avatar/'.$this->info['username'].'_' . $_FILES['file']['name'])) {
+				if (move_uploaded_file($_FILES['file']['tmp_name'], 'upload/avatar/'.$this->info['username'].'_' . $_FILES['file']['name'])) {
 					$avatar = $this->info['username'] .'_' . $_FILES['file']['name'];
 					$update = $this->update_avatar($avatar, $this->info['username']);
 				}

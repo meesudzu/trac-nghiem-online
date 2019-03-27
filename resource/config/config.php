@@ -16,4 +16,5 @@ class Config
 	const EMAIL = "dzu6996@gmail.com";
 	const RELEASE = "27/03/2019";
 	const TIMEZONE = "Asia/Bangkok";
+    const APP_URL = "http://localhost/";
 }

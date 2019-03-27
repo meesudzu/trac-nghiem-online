@@ -9,6 +9,7 @@
     Nếu đã kiểm tra lại và vẫn lỗi, bạn có thể mở file config/connect.php sửa trực tiếp kết nối trong đó,
     hoặc liên hệ báo lỗi tới email: dzu6996@gmail.com  
 
+-   Sửa URL trang web trong config/config.php
 -   Sửa tài khoản gửi email quên mật khẩu tại /controllers/controller_login.php dòng 127, 128  
 
 -   Tài khoản mặc định:

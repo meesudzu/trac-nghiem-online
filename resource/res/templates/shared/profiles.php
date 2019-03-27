@@ -5,7 +5,7 @@
 	<div class="content">
 		<div class="row col l12" style="padding-top: 50px;">
 			<div class="col l3 s12">
-				<img src="res/img/avatar/<?=$profile->avatar?>" alt="Avatar" width="100%" height="200" id="profiles-avatar">
+				<img src="upload/avatar/<?=$profile->avatar?>" alt="Avatar" width="100%" height="200" id="profiles-avatar">
 				<div class="file-field input-field">
 					<div class="btn">
 						<span>File</span>

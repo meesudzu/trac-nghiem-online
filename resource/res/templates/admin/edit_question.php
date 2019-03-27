@@ -7,6 +7,24 @@
         <div class="row">
             <div class="col s12">
                 <form action="" method="POST" role="form" id="edit_question_form">
+                    <div class="col l12 s12 file-field input-field" style="margin-top: 35px;">
+                        <div class="btn">
+                            <span>Thêm ảnh</span>
+                            <input type="file" id="file" onchange="upload_image()">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                            <img src="res/img/loading.gif" width="50" height="50" class="valid-img hidden" id="uploading">
+                        </div>
+                        <span class="help">Ảnh JPG,PNG nhỏ hơn 2mb</span>
+                    </div>
+                    <div class="col l12 s12 hidden" id="div-url">
+                        <span class="title" style="margin: 0">Copy đường dẫn phía dưới và chọn icon <img src="res/img/image_btn.png" alt="">, sau đó dán vào ô URL, chỉnh sửa thông tin nếu cần và nhấn Đồng ý.</span><br />
+                        <span class="title" style="margin: 0">URL Ảnh:</span>
+                        <div class="input-field">
+                            <textarea id="url" readonly onclick="this.select()"></textarea>
+                        </div>
+                    </div>
                     <div class="col l12 s12" style="padding-top: 20px">
                         <span class="title">Nội Dung Câu Hỏi:</span>
                         <div class="input-field">
@@ -119,19 +137,19 @@
 <script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 <script type="text/javascript">
     CKEDITOR.replace('question_detail', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
     });
     CKEDITOR.replace('answer_a', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
     });
     CKEDITOR.replace('answer_b', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
     });
     CKEDITOR.replace('answer_c', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
     });
     CKEDITOR.replace('answer_d', {
-        extraPlugins: 'mathjax,format',
+        extraPlugins: 'mathjax,format,image',
     });
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>

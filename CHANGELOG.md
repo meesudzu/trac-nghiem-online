@@ -6,7 +6,8 @@ v3.4.2 (27/03/2019)
     - Fix lỗi không cài đặt được ở 1 số máy ✓
     - Fix lỗi không hiện công thức toán khi làm bài ✓
     - Rewrite URL ✓
-    - Tối ưu lại một số code ✗
+    - Thêm upload ảnh trong nội dung câu hỏi ✓
+    - Tối ưu lại một số code ✓
     - Thêm comment cho các hàm phục vụ cho việc bảo trì, nâng cấp ✗
 
 v3.4.1 (17/03/2019)
