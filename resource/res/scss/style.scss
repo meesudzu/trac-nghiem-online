@@ -64,7 +64,7 @@ $box-shadow-sidebar: 2px 0 1px #e8e8e8;
 }
 
 .overflow {
-    overflow-y: auto;
+    overflow: auto !important;
 }
 
 .sidebar-left {

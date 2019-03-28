@@ -12,7 +12,8 @@ class Model_Teacher extends Database
 {
     public function get_profiles($username)
     {
-        $sql = "SELECT DISTINCT teachers.teacher_id as ID,teachers.username,teachers.name,teachers.email,teachers.avatar,teachers.birthday,teachers.last_login,genders.gender_id,genders.gender_detail FROM `teachers`
+        $sql = "SELECT DISTINCT teachers.teacher_id as ID,teachers.username,teachers.name,teachers.email,
+        teachers.avatar,teachers.birthday,teachers.last_login,genders.gender_id,genders.gender_detail FROM `teachers`
         INNER JOIN genders ON genders.gender_id = teachers.gender_id
         WHERE username = :username";
 
@@ -50,7 +51,8 @@ class Model_Teacher extends Database
 
     public function get_list_test($teacher_id)
     {
-        $sql = "SELECT DISTINCT tests.test_code,tests.test_name,tests.total_questions,tests.time_to_do,tests.note,grades.detail as grade,subjects.subject_detail FROM `tests`
+        $sql = "SELECT DISTINCT tests.test_code,tests.test_name,tests.total_questions,tests.time_to_do,
+        tests.note,grades.detail as grade,subjects.subject_detail FROM `tests`
         INNER JOIN grades ON grades.grade_id = tests.grade_id
         INNER JOIN subjects ON subjects.subject_id = tests.subject_id
         WHERE `test_code` IN (SELECT DISTINCT test_code FROM `scores`
@@ -82,14 +84,16 @@ class Model_Teacher extends Database
         $param = [ ':avatar' => $avatar, ':username' => $username ];
 
         $this->set_query($sql, $param);
-        $this->execute_return_status();
+        return $this->execute_return_status();
     }
 
     public function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
-        $sql="UPDATE teachers set email = :email, password = :password, name = :name, gender_id = :gender, birthday = :birthday where username = :username";
+        $sql="UPDATE teachers set email = :email, password = :password, name = :name, gender_id = :gender, 
+        birthday = :birthday where username = :username";
 
-        $param = [ ':username' => $username, ':name' => $name, ':email' => $email, ':password' => $password, ':gender' => $gender, ':birthday' => $birthday ];
+        $param = [ ':username' => $username, ':name' => $name, ':email' => $email,
+        ':password' => $password, ':gender' => $gender, ':birthday' => $birthday ];
 
         $this->set_query($sql, $param);
         $this->execute_return_status();
@@ -110,7 +114,8 @@ class Model_Teacher extends Database
 
     public function get_class_detail($class_id)
     {
-        $sql = "SELECT DISTINCT students.student_id,students.avatar,students.username,students.name,students.birthday,genders.gender_detail,students.last_login,class_name FROM students
+        $sql = "SELECT DISTINCT students.student_id,students.avatar,students.username,students.name,
+        students.birthday,genders.gender_detail,students.last_login,class_name FROM students
         INNER JOIN genders ON genders.gender_id = students.gender_id
         INNER JOIN classes ON students.class_id =classes.class_id
         WHERE students.class_id = :class_id";
@@ -133,7 +138,9 @@ class Model_Teacher extends Database
 
     public function get_notifications_to_student($teacher_id)
     {
-        $sql = "SELECT DISTINCT * FROM notifications WHERE notification_id IN (SELECT DISTINCT notification_id FROM student_notifications WHERE student_notifications.class_id IN (SELECT DISTINCT classes.class_id FROM classes WHERE teacher_id = :teacher_id)) ORDER BY `time_sent` DESC";
+        $sql = "SELECT DISTINCT * FROM notifications WHERE notification_id 
+        IN (SELECT DISTINCT notification_id FROM student_notifications WHERE student_notifications.class_id
+        IN (SELECT DISTINCT classes.class_id FROM classes WHERE teacher_id = :teacher_id)) ORDER BY `time_sent` DESC";
 
         $param = [ ':teacher_id' => $teacher_id ];
 
@@ -143,7 +150,9 @@ class Model_Teacher extends Database
 
     public function get_notifications_by_admin($teacher_id)
     {
-        $sql = "SELECT DISTINCT * FROM notifications WHERE notification_id IN (SELECT DISTINCT notification_id FROM teacher_notifications WHERE teacher_id = :teacher_id) ORDER BY `time_sent` DESC";
+        $sql = "SELECT DISTINCT * FROM notifications WHERE notification_id 
+        IN (SELECT DISTINCT notification_id FROM teacher_notifications 
+        WHERE teacher_id = :teacher_id) ORDER BY `time_sent` DESC";
 
         $param = [ ':teacher_id' => $teacher_id ];
 
@@ -153,9 +162,13 @@ class Model_Teacher extends Database
 
     public function insert_notification($notification_id,$username, $name, $notification_title, $notification_content)
     {
-        $sql="INSERT INTO notifications (notification_id,username,name,notification_title,notification_content,time_sent) VALUES (:notification_id,:username,:name,:notification_title,:notification_content,NOW())";
+        $sql="INSERT INTO notifications 
+        (notification_id,username,name,notification_title,notification_content,time_sent) 
+        VALUES (:notification_id,:username,:name,:notification_title,:notification_content,NOW())";
 
-        $param = [ ':notification_id' => $notification_id, ':username' => $username, ':name' => $name, ':notification_title' => $notification_title, ':notification_content' => $notification_content ];
+        $param = [ ':notification_id' => $notification_id, ':username' => $username,
+        ':name' => $name, ':notification_title' => $notification_title,
+        ':notification_content' => $notification_content ];
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();

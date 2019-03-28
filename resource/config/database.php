@@ -14,7 +14,7 @@ class Database
 
     public function __construct()
     {
-        $connect = include ('connect.php');
+        $connect = include 'connect.php';
         try {
             $connect_string = 'mysql:host='.$connect->host.'; dbname='.$connect->dbname.'';
             $this->db = new PDO($connect_string, $connect->user, $connect->password);
@@ -25,7 +25,7 @@ class Database
         }
     }
 
-    public function set_query($sql='', array $param=null)
+    public function set_query($sql = '', array $param = null)
     {
         $this->sql = $sql;
         $this->param = $param;

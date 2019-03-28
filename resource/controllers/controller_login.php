@@ -193,5 +193,4 @@ class Controller_Login
 
         echo json_encode($result);
     }
-    
 }

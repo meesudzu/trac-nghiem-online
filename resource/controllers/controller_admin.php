@@ -34,37 +34,37 @@ class Controller_Admin
         $model = new Model_Admin();
         echo json_encode($model->get_admin_info($this->info['username']));
     }
-    public function update_profiles($username, $name, $email, $password, $gender, $birthday)
+    private function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
         $model = new Model_Admin();
         return $model->update_profiles($username, $name, $email, $password, $gender, $birthday);
     }
-    public function update_avatar($avatar, $username)
+    private function update_avatar($avatar, $username)
     {
         $model = new Model_Admin();
         return $model->update_avatar($avatar, $username);
     }
-    public function get_admin_info($username)
+    private function get_admin_info($username)
     {
         $model = new Model_Admin();
         return $model->get_admin_info($username);
     }
-    public function get_teacher_info($username)
+    private function get_teacher_info($username)
     {
         $model = new Model_Admin();
         return $model->get_teacher_info($username);
     }
-    public function get_student_info($username)
+    private function get_student_info($username)
     {
         $model = new Model_Admin();
         return $model->get_student_info($username);
     }
-    public function get_class_info($class_name)
+    private function get_class_info($class_name)
     {
         $model = new Model_Admin();
         return $model->get_class_info($class_name);
     }
-    public function update_last_login()
+    private function update_last_login()
     {
         $model = new Model_Admin();
         $model->update_last_login($this->info['admin_id']);
@@ -138,17 +138,17 @@ class Controller_Admin
         }
         echo json_encode($result);
     }
-    public function edit_admin($admin_id, $password, $name, $gender_id, $birthday)
+    private function edit_admin($admin_id, $password, $name, $gender_id, $birthday)
     {
         $model = new Model_Admin();
         return $model->edit_admin($admin_id, $password, $name, $gender_id, $birthday);
     }
-    public function del_admin($admin_id)
+    private function del_admin($admin_id)
     {
         $model = new Model_Admin();
         return $model->del_admin($admin_id);
     }
-    public function add_admin($name, $username, $password, $email, $birthday, $gender)
+    private function add_admin($name, $username, $password, $email, $birthday, $gender)
     {
         $model = new Model_Admin();
         return $model->add_admin($name, $username, $password, $email, $birthday, $gender);
@@ -158,17 +158,17 @@ class Controller_Admin
         $model = new Model_Admin();
         echo json_encode($model->get_list_teachers());
     }
-    public function edit_teacher($teacher_id, $password, $name, $gender_id, $birthday)
+    private function edit_teacher($teacher_id, $password, $name, $gender_id, $birthday)
     {
         $model = new Model_Admin();
         return $model->edit_teacher($teacher_id, $password, $name, $gender_id, $birthday);
     }
-    public function del_teacher($teacher_id)
+    private function del_teacher($teacher_id)
     {
         $model = new Model_Admin();
         return $model->del_teacher($teacher_id);
     }
-    public function add_teacher($name, $username, $password, $email, $birthday, $gender)
+    private function add_teacher($name, $username, $password, $email, $birthday, $gender)
     {
         $model = new Model_Admin();
         return $model->add_teacher($name, $username, $password, $email, $birthday, $gender);
@@ -191,7 +191,7 @@ class Controller_Admin
 
         $keyword = isset($_POST['search']['value']) ? $_POST['search']['value'] : '';
 
-        if($keyword != '') {
+        if ($keyword != '') {
             $res["aaData"] = $model->get_list_students_search($keyword, $column_order, $sort_order, $start, $offset);
             $totalRecordwithFilter = $model->get_total_students_search($keyword);
         } else {
@@ -221,7 +221,7 @@ class Controller_Admin
 
         $keyword = isset($_POST['search']['value']) ? $_POST['search']['value'] : '';
 
-        if($keyword != '') {
+        if ($keyword != '') {
             $res["aaData"] = $model->get_list_questions_search($keyword, $column_order, $sort_order, $start, $offset);
             $totalRecordwithFilter = $model->get_total_questions_search($keyword);
         } else {
@@ -233,17 +233,17 @@ class Controller_Admin
 
         echo json_encode($res);
     }
-    public function edit_student($student_id, $birthday, $password, $name, $class_id, $gender)
+    private function edit_student($student_id, $birthday, $password, $name, $class_id, $gender)
     {
         $model = new Model_Admin();
         $model->edit_student($student_id, $birthday, $password, $name, $class_id, $gender);
     }
-    public function del_student($student_id)
+    private function del_student($student_id)
     {
         $model = new Model_Admin();
         return $model->del_student($student_id);
     }
-    public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
+    private function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
         $model = new Model_Admin();
         return $model->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
@@ -253,17 +253,17 @@ class Controller_Admin
         $model = new Model_Admin();
         echo json_encode($model->get_list_classes());
     }
-    public function edit_class($class_id, $grade_id, $class_name, $teacher_id)
+    private function edit_class($class_id, $grade_id, $class_name, $teacher_id)
     {
         $model = new Model_Admin();
         $model->edit_class($class_id, $grade_id, $class_name, $teacher_id);
     }
-    public function del_class($class_id)
+    private function del_class($class_id)
     {
         $model = new Model_Admin();
         return $model->del_class($class_id);
     }
-    public function add_class($grade_id, $class_name, $teacher_id)
+    private function add_class($grade_id, $class_name, $teacher_id)
     {
         $model = new Model_Admin();
         return $model->add_class($grade_id, $class_name, $teacher_id);
@@ -273,20 +273,67 @@ class Controller_Admin
         $model = new Model_Admin();
         echo json_encode($model->get_list_tests());
     }
-    public function edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
+    private function edit_question(
+        $question_id,
+        $subject_id,
+        $question_content,
+        $grade_id,
+        $unit,
+        $answer_a,
+        $answer_b,
+        $answer_c,
+        $answer_d,
+        $correct_answer,
+        $level_id
+    )
     {
         $model = new Model_Admin();
-        return $model->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id);
+        return $model->edit_question(
+            $question_id,
+            $subject_id,
+            $question_content,
+            $grade_id,
+            $unit,
+            $answer_a,
+            $answer_b,
+            $answer_c,
+            $answer_d,
+            $correct_answer,
+            $level_id
+        );
     }
-    public function del_question($question_id)
+    private function del_question($question_id)
     {
         $model = new Model_Admin();
         return $model->del_question($question_id);
     }
-    public function add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id)
+    private function add_question(
+        $subject_id,
+        $question_content,
+        $grade_id,
+        $unit,
+        $answer_a,
+        $answer_b,
+        $answer_c,
+        $answer_d,
+        $correct_answer,
+        $level_id
+    )
     {
         $model = new Model_Admin();
-        return $model->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $correct_answer,$level_id,$this->info["username"]);
+        return $model->add_question(
+            $subject_id,
+            $question_content,
+            $grade_id,
+            $unit,
+            $answer_a,
+            $answer_b,
+            $answer_c,
+            $answer_d,
+            $correct_answer,
+            $level_id,
+            $this->info["username"]
+        );
     }
     public function get_teacher_notifications()
     {
@@ -298,32 +345,56 @@ class Controller_Admin
         $model = new Model_Admin();
         echo json_encode($model->get_student_notifications());
     }
-    public function insert_notification($notification_id,$notification_title, $notification_content)
+    private function insert_notification($notification_id, $notification_title, $notification_content)
     {
         $model = new Model_Admin();
-        return $model->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
+        return $model->insert_notification(
+            $notification_id,
+            $this->info['username'],
+            $this->info['name'],
+            $notification_title,
+            $notification_content
+        );
     }
-    public function edit_subject($subject_id, $subject_detail)
+    private function edit_subject($subject_id, $subject_detail)
     {
         $model = new Model_Admin();
         return $model->edit_subject($subject_id, $subject_detail);
     }
-    public function del_subject($subject_id)
+    private function del_subject($subject_id)
     {
         $model = new Model_Admin();
         return $model->del_subject($subject_id);
     }
-    public function add_subject($subject_detail)
+    private function add_subject($subject_detail)
     {
         $model = new Model_Admin();
         return $model->add_subject($subject_detail);
     }
-    public function add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note)
+    private function add_test(
+        $test_code,
+        $test_name,
+        $password,
+        $grade_id,
+        $subject_id,
+        $total_questions,
+        $time_to_do,
+        $note
+    )
     {
         $model = new Model_Admin();
-        return $model->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
+        return $model->add_test(
+            $test_code,
+            $test_name,
+            $password,
+            $grade_id,
+            $subject_id,
+            $total_questions,
+            $time_to_do,
+            $note
+        );
     }
-    public function toggle_test_status($test_code, $status_id)
+    private function toggle_test_status($test_code, $status_id)
     {
         $model = new Model_Admin();
         return $model->toggle_test_status($test_code, $status_id);
@@ -333,7 +404,7 @@ class Controller_Admin
         $grade_id = isset($_POST['grade_id']) ? $_POST['grade_id'] : '';
         $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $model = new Model_Admin();
-        echo json_encode($model->get_list_units($grade_id,$subject_id));
+        echo json_encode($model->get_list_units($grade_id, $subject_id));
     }
     public function get_list_levels_of_unit()
     {
@@ -389,12 +460,12 @@ class Controller_Admin
         $total = array($admin,$teacher,$student,$grade,$class,$subject,$question,$test);
         return $total;
     }
-    public function notify_teacher($ID, $teacher_id)
+    private function notify_teacher($ID, $teacher_id)
     {
         $model = new Model_Admin();
         $model->notify_teacher($ID, $teacher_id);
     }
-    public function notify_class($ID, $class_id)
+    private function notify_class($ID, $class_id)
     {
         $model = new Model_Admin();
         $model->notify_class($ID, $class_id);
@@ -436,26 +507,29 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for($i = 4; $i < count($sheetData); $i++) {
-            if($sheetData[$i]['A'] == '')
+        for ($i = 4; $i < count($sheetData); $i++) {
+            if ($sheetData[$i]['A'] == '') {
                 continue;
+            }
             $stt = $sheetData[$i]['A'];
             $name = $sheetData[$i]['B'];
             $username = $sheetData[$i]['C'];
             $email = $sheetData[$i]['D'];
             $password = md5($sheetData[$i]['E']);
             $birthday = $sheetData[$i]['F'];
-            if($sheetData[$i]['G'] == 'Nam')
+            if ($sheetData[$i]['G'] == 'Nam') {
                 $gender = 2;
-            else if($sheetData[$i]['G'] == 'Nữ')
+            } elseif ($sheetData[$i]['G'] == 'Nữ') {
                 $gender = 3;
-            else
+            } else {
                 $gender = 1;
+            }
             $add = $this->add_admin($name, $username, $password, $email, $birthday, $gender);
-            if($add)
+            if ($add) {
                 $count++;
-            else
+            } else {
                 $err_list += $stt.' ';
+            }
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
@@ -471,7 +545,7 @@ class Controller_Admin
     {
         $result = array();
         $admin_id = isset($_POST['admin_id']) ? Htmlspecialchars($_POST['admin_id']) : '';
-        if($admin_id == $this->info["admin_id"]){
+        if ($admin_id == $this->info["admin_id"]) {
             $result['status_value'] = "Không thể tự xóa bản thân!";
             $result['status'] = 0;
             $result['admin_id'] = $admin_id;
@@ -551,26 +625,29 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for($i = 4; $i < count($sheetData); $i++) {
-            if($sheetData[$i]['A'] == '')
+        for ($i = 4; $i < count($sheetData); $i++) {
+            if ($sheetData[$i]['A'] == '') {
                 continue;
+            }
             $stt = $sheetData[$i]['A'];
             $name = $sheetData[$i]['B'];
             $username = $sheetData[$i]['C'];
             $email = $sheetData[$i]['D'];
             $password = md5($sheetData[$i]['E']);
             $birthday = $sheetData[$i]['F'];
-            if($sheetData[$i]['G'] == 'Nam')
+            if ($sheetData[$i]['G'] == 'Nam') {
                 $gender = 2;
-            else if($sheetData[$i]['G'] == 'Nữ')
+            } elseif ($sheetData[$i]['G'] == 'Nữ') {
                 $gender = 3;
-            else
+            } else {
                 $gender = 1;
+            }
             $add = $this->add_teacher($name, $username, $password, $email, $birthday, $gender);
-            if($add)
+            if ($add) {
                 $count++;
-            else
+            } else {
                 $err_list += $stt.' ';
+            }
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
@@ -658,7 +735,6 @@ class Controller_Admin
             $result['status_value'] = "Không thể xóa lớp đang có học sinh!";
             $result['status'] = 0;
             $result['class_id'] = $class_id;
-
         }
         echo json_encode($result);
     }
@@ -719,26 +795,29 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for($i = 4; $i < count($sheetData); $i++) {
-            if($sheetData[$i]['A'] == '')
+        for ($i = 4; $i < count($sheetData); $i++) {
+            if ($sheetData[$i]['A'] == '') {
                 continue;
+            }
             $stt = $sheetData[$i]['A'];
             $name = $sheetData[$i]['B'];
             $username = $sheetData[$i]['C'];
             $email = $sheetData[$i]['D'];
             $password = md5($sheetData[$i]['E']);
             $birthday = $sheetData[$i]['F'];
-            if($sheetData[$i]['G'] == 'Nam')
+            if ($sheetData[$i]['G'] == 'Nam') {
                 $gender = 2;
-            else if($sheetData[$i]['G'] == 'Nữ')
+            } elseif ($sheetData[$i]['G'] == 'Nữ') {
                 $gender = 3;
-            else
+            } else {
                 $gender = 1;
+            }
             $add = $this->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
-            if($add)
+            if ($add) {
                 $count++;
-            else
+            } else {
                 $err_list += $stt.' ';
+            }
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' tài khoản!';
@@ -776,7 +855,7 @@ class Controller_Admin
         $result = array();
         $student_id = isset($_POST['student_id']) ? Htmlspecialchars($_POST['student_id']) : '';
         $del = $this->del_student($student_id);
-        if($del) {
+        if ($del) {
             $result['status_value'] = "Xóa thành công!";
             $result['status'] = 1;
             $result['student_id'] = $student_id;
@@ -784,7 +863,6 @@ class Controller_Admin
             $result['status_value'] = "Không thể xóa học sinh đang có điểm trên hệ thống!";
             $result['status'] = 0;
             $result['student_id'] = $student_id;
-
         }
         echo json_encode($result);
     }
@@ -806,20 +884,31 @@ class Controller_Admin
             $result['status_value'] = "Không được bỏ trống các trường nhập";
             $result['status'] = 0;
         } else {
-            if($correct_answer == "A"){
+            if ($correct_answer == "A") {
                 $true_correct_answer = $answer_a;
             }
-            if($correct_answer == "B"){
+            if ($correct_answer == "B") {
                 $true_correct_answer = $answer_b;
             }
-            if($correct_answer == "C"){
+            if ($correct_answer == "C") {
                 $true_correct_answer = $answer_c;
             }
-            if($correct_answer == "D"){
+            if ($correct_answer == "D") {
                 $true_correct_answer = $answer_d;
             }
-            $res = $this->add_question($subject_id,$question_detail, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
-            if($res) {
+            $res = $this->add_question(
+                $subject_id,
+                $question_detail,
+                $grade_id,
+                $unit,
+                $answer_a,
+                $answer_b,
+                $answer_c,
+                $answer_d,
+                $true_correct_answer,
+                $level_id
+            );
+            if ($res) {
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
@@ -843,9 +932,10 @@ class Controller_Admin
         unlink($_FILES['file']['name']);
         $count = 0;
         $err_list = '';
-        for($i = 4; $i <= count($sheetData); $i++) {
-            if($sheetData[$i]['A'] == '')
+        for ($i = 4; $i <= count($sheetData); $i++) {
+            if ($sheetData[$i]['A'] == '') {
                 continue;
+            }
             $stt = $sheetData[$i]['A'];
             $question_content = $sheetData[$i]['B'];
             $answer_a = $sheetData[$i]['C'];
@@ -854,26 +944,38 @@ class Controller_Admin
             $answer_d = $sheetData[$i]['F'];
             $correct_answer = $sheetData[$i]['G'];
             $true_correct_answer = "";
-            if($correct_answer == "A"){
+            if ($correct_answer == "A") {
                 $true_correct_answer = $answer_a;
             }
-            if($correct_answer == "B"){
+            if ($correct_answer == "B") {
                 $true_correct_answer = $answer_b;
             }
-            if($correct_answer == "C"){
+            if ($correct_answer == "C") {
                 $true_correct_answer = $answer_c;
             }
-            if($correct_answer == "D"){
+            if ($correct_answer == "D") {
                 $true_correct_answer = $answer_d;
             }
             $grade_id = $sheetData[$i]['H'];
             $unit = $sheetData[$i]['I'];
             $level_id = $sheetData[$i]['J'];
-            $add = $this->add_question($subject_id,$question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
-            if($add)
+            $add = $this->add_question(
+                $subject_id,
+                $question_content,
+                $grade_id,
+                $unit,
+                $answer_a,
+                $answer_b,
+                $answer_c,
+                $answer_d,
+                $true_correct_answer,
+                $level_id
+            );
+            if ($add) {
                 $count++;
-            else
+            } else {
                 $err_list += ' '.$stt.',';
+            }
         }
         if ($err_list == '') {
             $result['status_value'] = "Thêm thành công ".$count.' câu hỏi!';
@@ -889,7 +991,7 @@ class Controller_Admin
         $return = array();
         $question_id = isset($_POST['question_id']) ? Htmlspecialchars($_POST['question_id']) : '';
         $del = $this->del_question($question_id);
-        if($del){
+        if ($del) {
             $result['status_value'] = "Xóa thành công!";
             $result['status'] = 1;
             $result['question_id'] = $question_id;
@@ -918,20 +1020,32 @@ class Controller_Admin
             $result['status_value'] = "Không được bỏ trống các trường nhập!";
             $result['status'] = 0;
         } else {
-            if($correct_answer == "A"){
+            if ($correct_answer == "A") {
                 $true_correct_answer = $answer_a;
             }
-            if($correct_answer == "B"){
+            if ($correct_answer == "B") {
                 $true_correct_answer = $answer_b;
             }
-            if($correct_answer == "C"){
+            if ($correct_answer == "C") {
                 $true_correct_answer = $answer_c;
             }
-            if($correct_answer == "D"){
+            if ($correct_answer == "D") {
                 $true_correct_answer = $answer_d;
             }
-            $res = $this->edit_question($question_id,$subject_id, $question_content, $grade_id, $unit, $answer_a, $answer_b, $answer_c, $answer_d, $true_correct_answer,$level_id);
-            if($res) {
+            $res = $this->edit_question(
+                $question_id,
+                $subject_id,
+                $question_content,
+                $grade_id,
+                $unit,
+                $answer_a,
+                $answer_b,
+                $answer_c,
+                $answer_d,
+                $true_correct_answer,
+                $level_id
+            );
+            if ($res) {
                 $result['status_value'] = "Sửa thành công, chuẩn bị chuyển trang!";
                 $result['status'] = 1;
             } else {
@@ -957,9 +1071,9 @@ class Controller_Admin
                 $result['status'] = 0;
             } else {
                 do {
-                    $notification_id = rand(1,999999)+rand(1,111111);
-                    $insert = $this->insert_notification($notification_id,$notification_title, $notification_content);
-                } while($insert == false);
+                    $notification_id = rand(1, 999999)+rand(1, 111111);
+                    $insert = $this->insert_notification($notification_id, $notification_title, $notification_content);
+                } while ($insert == false);
                 foreach ($teacher_id as $teacher_id_) {
                     $this->notify_teacher($notification_id, $teacher_id_);
                 }
@@ -1016,13 +1130,13 @@ class Controller_Admin
             $base = new Base();
             $res = array();
             $path = 'upload/question_images/';
-            $upload = $base->uploadImage($_FILES['file'],$path);
-            if($upload != false) {
+            $upload = $base->uploadImage($_FILES['file'], $path);
+            if ($upload != false) {
                 $res['url'] = Config::APP_URL . $path . $upload;
                 $res['stt'] = true;
-            }
-            else
+            } else {
                 $res['stt'] = false;
+            }
             echo json_encode($res);
         }
     }
@@ -1056,7 +1170,7 @@ class Controller_Admin
         $list_check = explode(',', $data);
         for ($i = 0; $i < count($list_check) - 1; $i++)
         {
-            if($list_check[$i] == $this->info["admin_id"]) {
+            if ($list_check[$i] == $this->info["admin_id"]) {
                 $list_del = $list_del." ".$list_check[$i];
             } else {
                 $del = $this->del_admin($list_check[$i]);
@@ -1203,7 +1317,7 @@ class Controller_Admin
         $password = isset($_POST['password']) ? md5($_POST['password']) : '';
         $grade_id = isset($_POST['grade_id']) ? Htmlspecialchars(addslashes($_POST['grade_id'])) : '';
         $subject_id = isset($_POST['subject_id']) ? Htmlspecialchars(addslashes($_POST['subject_id'])) : '';
-        $total_questions = isset($_POST['total_questions']) ? Htmlspecialchars(addslashes($_POST['total_questions'])) : '';
+        $total_questions = isset($_POST['total_questions']) ? addslashes($_POST['total_questions']) : '';
         $time_to_do = isset($_POST['time_to_do']) ? Htmlspecialchars(addslashes($_POST['time_to_do'])) : '';
         $note = isset($_POST['note']) ? Htmlspecialchars(addslashes($_POST['note'])) : '';
         $test_code = "";
@@ -1212,209 +1326,219 @@ class Controller_Admin
             $result['status'] = 0;
         } else {
             do {
-                $test_code = rand(100000,999999);
-                $add = $this->add_test($test_code,$test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note);
+                $test_code = rand(100000, 999999);
+                $add = $this->add_test(
+                    $test_code,
+                    $test_name,
+                    $password,
+                    $grade_id,
+                    $subject_id,
+                    $total_questions,
+                    $time_to_do,
+                    $note
+                );
             } while (!$add);
             $result['status_value'] = "Thêm thành công!";
             $result['status'] = 1;
             //Tạo bộ câu hỏi cho đề thi
             $model = new Model_Admin();
-            $list_unit = $model->get_list_units($grade_id,$subject_id);
+            $list_unit = $model->get_list_units($grade_id, $subject_id);
             foreach ($list_unit as $unit) {
-                $list_lvl_of_unit = $model->get_list_levels_of_unit($grade_id, $subject_id,$unit->unit);
+                $list_lvl_of_unit = $model->get_list_levels_of_unit($grade_id, $subject_id, $unit->unit);
                 foreach ($list_lvl_of_unit as $level) {
-                 $limit = $_POST["unit_".$unit->unit."_level_".$level->level_id];
-                 $list_quest = $model->list_quest_of_unit($grade_id,$subject_id,$unit->unit,$level->level_id,$limit);
-                 foreach ($list_quest as $quest) {
-                     $model->add_quest_to_test($test_code,$quest->question_id);
-                 }
-             }
-         }
-     }
-     echo json_encode($result);
- }
- public function check_toggle_test_status()
- {
-    $result = array();
-    $status_id = Htmlspecialchars($_POST['status_id']);
-    $test_code = Htmlspecialchars($_POST['test_code']);
-    $toggle = $this->toggle_test_status($test_code, $status_id);
-    if ($toggle) {
-        $result['status_value'] = "Đã thay đổi trạng thái!";
-        $result['status'] = 1;
-    } else {
-        $result['status_value'] = "Không thay đổi trạng thái!";
-        $result['status'] = 0;
+                    $limit = $_POST["unit_".$unit->unit."_level_".$level->level_id];
+                    $list_quest = $model->list_quest_of_unit(
+                        $grade_id,
+                        $subject_id,
+                        $unit->unit,
+                        $level->level_id,
+                        $limit
+                    );
+                    foreach ($list_quest as $quest) {
+                        $model->add_quest_to_test($test_code, $quest->question_id);
+                    }
+                }
+            }
+        }
+        echo json_encode($result);
     }
-    echo json_encode($result);
-}
-public function export_score()
-{
-    $test_code = isset($_GET['test_code']) ? htmlspecialchars($_GET['test_code']) : '';
-
-    $model = new Model_Admin();
-    $scores = $model->get_test_score($test_code);
-
-        //Create Excel Data
-    $spreadsheet = new Spreadsheet();
-    $sheet = $spreadsheet->getActiveSheet();
-    $sheet->setCellValue('A1','Danh Sách Điểm Bài Thi '.$test_code);
-    $sheet->setCellValue('A3','STT');
-    $sheet->setCellValue('B3','Tên');
-    $sheet->setCellValue('C3','Tài Khoản');
-    $sheet->setCellValue('D3','Lớp');
-    $sheet->setCellValue('E3','Điểm');
-
-    for ($i = 0; $i < count($scores); $i++) {
-        $sheet->setCellValue('A'.($i+4),$i+1);
-        $sheet->setCellValue('B'.($i+4),$scores[$i]->name);
-        $sheet->setCellValue('C'.($i+4),$scores[$i]->username);
-        $sheet->setCellValue('D'.($i+4),$scores[$i]->class_name);
-        $sheet->setCellValue('E'.($i+4),$scores[$i]->score_number);
+    public function check_toggle_test_status()
+    {
+        $result = array();
+        $status_id = Htmlspecialchars($_POST['status_id']);
+        $test_code = Htmlspecialchars($_POST['test_code']);
+        $toggle = $this->toggle_test_status($test_code, $status_id);
+        if ($toggle) {
+            $result['status_value'] = "Đã thay đổi trạng thái!";
+            $result['status'] = 1;
+        } else {
+            $result['status_value'] = "Không thay đổi trạng thái!";
+            $result['status'] = 0;
+        }
+        echo json_encode($result);
     }
-
-        //Output File
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attactment;filename="danh-sach-diem-'.$test_code.'.xlsx"');
-    header('Cache-Control: max-age=0');
-
-    $writer = new Xlsx($spreadsheet);
-    $writer->save('php://output');
-}
-public function logout()
-{
-    $result = array();
-    $confirm = isset($_POST['confirm']) ? $_POST['confirm'] : false;
-    if ($confirm) {
-        $result['status_value'] = "Đăng xuất thành công!";
-        $result['status'] = 1;
-        session_destroy();
-    }
-    echo json_encode($result);
-}
-public function show_admins_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_admins_panel();
-    $view->show_foot();
-}
-public function show_dashboard()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_dashboard($this->get_dashboard_info());
-    $view->show_foot();
-}
-public function show_teachers_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_teachers_panel();
-    $view->show_foot();
-}
-public function show_classes_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_classes_panel();
-    $view->show_foot();
-}
-public function show_students_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_students_panel();
-    $view->show_foot();
-}
-public function show_questions_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_questions_panel();
-    $view->show_foot();
-}
-public function show_add_question()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_add_question();
-    $view->show_foot();
-}
-public function show_edit_question()
-{
-    $id = addslashes($_GET['id']);
-    if($id == null) {
-        $this->show_404();
-    } else {
+    public function export_score()
+    {
+        $test_code = isset($_GET['test_code']) ? htmlspecialchars($_GET['test_code']) : '';
         $model = new Model_Admin();
-        $question = $model->get_question($id);
-        $grades = $model->get_list_grades();
-        $subjects = $model->get_list_subjects();
+        $scores = $model->get_test_score($test_code);
+        //Create Excel Data
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Danh Sách Điểm Bài Thi '.$test_code);
+        $sheet->setCellValue('A3', 'STT');
+        $sheet->setCellValue('B3', 'Tên');
+        $sheet->setCellValue('C3', 'Tài Khoản');
+        $sheet->setCellValue('D3', 'Lớp');
+        $sheet->setCellValue('E3', 'Điểm');
+        for ($i = 0; $i < count($scores); $i++) {
+            $sheet->setCellValue('A'.($i+4), $i+1);
+            $sheet->setCellValue('B'.($i+4), $scores[$i]->name);
+            $sheet->setCellValue('C'.($i+4), $scores[$i]->username);
+            $sheet->setCellValue('D'.($i+4), $scores[$i]->class_name);
+            $sheet->setCellValue('E'.($i+4), $scores[$i]->score_number);
+        }
+        //Output File
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attactment;filename="danh-sach-diem-'.$test_code.'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+    }
+    public function logout()
+    {
+        $result = array();
+        $confirm = isset($_POST['confirm']) ? $_POST['confirm'] : false;
+        if ($confirm) {
+            $result['status_value'] = "Đăng xuất thành công!";
+            $result['status'] = 1;
+            session_destroy();
+        }
+        echo json_encode($result);
+    }
+    public function show_admins_panel()
+    {
         $view = new View_Admin();
         $view->show_head_left($this->info);
-        $view->show_edit_question($question,$grades,$subjects);
+        $view->show_admins_panel();
         $view->show_foot();
     }
-}
-public function show_tests_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_tests_panel();
-    $view->show_foot();
-}
-public function test_detail()
-{
-    $view = new View_Admin();
-    $model = new Model_Admin();
-    $test_code = htmlspecialchars($_GET['test_code']);
-    $view->show_head_left($this->info);
-    $view->show_tests_detail($model->get_quest_of_test($test_code));
-    $view->show_foot();
-}
-public function test_score()
-{
-    $view = new View_Admin();
-    $model = new Model_Admin();
-    $test_code = htmlspecialchars($_GET['test_code']);
-    $view->show_head_left($this->info);
-    $view->show_test_score($test_code, $model->get_test_score($test_code));
-    $view->show_foot();
-}
-public function show_subjects_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_subjects_panel();
-    $view->show_foot();
-}
-public function show_notifications_panel()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_notifications_panel();
-    $view->show_foot();
-}
-public function show_about()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_about();
-    $view->show_foot();
-}
-public function show_profiles()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_profiles($this->get_admin_info($this->info['username']));
-    $view->show_foot();
-}
-public function show_404()
-{
-    $view = new View_Admin();
-    $view->show_head_left($this->info);
-    $view->show_404();
-    $view->show_foot();
-}
+    public function show_dashboard()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_dashboard($this->get_dashboard_info());
+        $view->show_foot();
+    }
+    public function show_teachers_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_teachers_panel();
+        $view->show_foot();
+    }
+    public function show_classes_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_classes_panel();
+        $view->show_foot();
+    }
+    public function show_students_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_students_panel();
+        $view->show_foot();
+    }
+    public function show_questions_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_questions_panel();
+        $view->show_foot();
+    }
+    public function show_add_question()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_add_question();
+        $view->show_foot();
+    }
+    public function show_edit_question()
+    {
+        $id = addslashes($_GET['id']);
+        if ($id == null) {
+            $this->show_404();
+        } else {
+            $model = new Model_Admin();
+            $question = $model->get_question($id);
+            $grades = $model->get_list_grades();
+            $subjects = $model->get_list_subjects();
+            $view = new View_Admin();
+            $view->show_head_left($this->info);
+            $view->show_edit_question($question, $grades, $subjects);
+            $view->show_foot();
+        }
+    }
+    public function show_tests_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_tests_panel();
+        $view->show_foot();
+    }
+    public function test_detail()
+    {
+        $view = new View_Admin();
+        $model = new Model_Admin();
+        $test_code = htmlspecialchars($_GET['test_code']);
+        $view->show_head_left($this->info);
+        $view->show_tests_detail($model->get_quest_of_test($test_code));
+        $view->show_foot();
+    }
+    public function test_score()
+    {
+        $view = new View_Admin();
+        $model = new Model_Admin();
+        $test_code = htmlspecialchars($_GET['test_code']);
+        $view->show_head_left($this->info);
+        $view->show_test_score($test_code, $model->get_test_score($test_code));
+        $view->show_foot();
+    }
+    public function show_subjects_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_subjects_panel();
+        $view->show_foot();
+    }
+    public function show_notifications_panel()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_notifications_panel();
+        $view->show_foot();
+    }
+    public function show_about()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_about();
+        $view->show_foot();
+    }
+    public function show_profiles()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_profiles($this->get_admin_info($this->info['username']));
+        $view->show_foot();
+    }
+    public function show_404()
+    {
+        $view = new View_Admin();
+        $view->show_head_left($this->info);
+        $view->show_404();
+        $view->show_foot();
+    }
 }

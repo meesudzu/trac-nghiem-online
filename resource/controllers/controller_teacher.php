@@ -15,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Controller_Teacher
 {
-    public $info =  array();
+    private $info =  array();
     public function __construct()
     {
         $user_info = $this->profiles();
@@ -25,12 +25,12 @@ class Controller_Teacher
         $this->info['name'] = $user_info->name;
         $this->info['avatar'] = $user_info->avatar;
     }
-    public function profiles()
+    private function profiles()
     {
         $model = new Model_Teacher();
         return $model->get_profiles($_SESSION['username']);
     }
-    public function update_last_login()
+    private function update_last_login()
     {
         $model = new Model_Teacher();
         $model->update_last_login($this->info['ID']);
@@ -57,7 +57,7 @@ class Controller_Teacher
         }
         echo json_encode($result);
     }
-    public function update_avatar($avatar, $username)
+    private function update_avatar($avatar, $username)
     {
         $model = new Model_Teacher();
         return $model->update_avatar($avatar, $username);
@@ -75,7 +75,7 @@ class Controller_Teacher
             }
         }
     }
-    public function update_profiles($username, $name, $email, $password, $gender, $birthday)
+    private function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
         $model = new Model_Teacher();
         return $model->update_profiles($username, $name, $email, $password, $gender, $birthday);
@@ -105,12 +105,12 @@ class Controller_Teacher
         }
         echo json_encode($result);
     }
-    public function insert_notification($notification_id,$notification_title, $notification_content)
+    private function insert_notification($notification_id,$notification_title, $notification_content)
     {
         $model = new Model_Teacher();
         return $model->insert_notification($notification_id,$this->info['username'], $this->info['name'], $notification_title, $notification_content);
     }
-    public function notify_class($ID, $class_id)
+    private function notify_class($ID, $class_id)
     {
         $model = new Model_Teacher();
         $model->notify_class($ID, $class_id);
@@ -163,12 +163,12 @@ class Controller_Teacher
         $model = new Model_Teacher();
         echo json_encode($model->get_score($student_id));
     }
-    public function get_class_detail($ID)
+    private function get_class_detail($ID)
     {
         $model = new Model_Teacher();
         return $model->get_class_detail($ID);
     }
-    public function get_class_name($ID)
+    private function get_class_name($ID)
     {
         $model = new Model_Teacher();
         return $model->get_class_name($ID);
@@ -183,19 +183,19 @@ class Controller_Teacher
         //Create Excel Data
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1','Danh Sách Điểm Bài Thi '.$test_code);
-        $sheet->setCellValue('A3','STT');
-        $sheet->setCellValue('B3','Tên');
-        $sheet->setCellValue('C3','Tài Khoản');
-        $sheet->setCellValue('D3','Lớp');
-        $sheet->setCellValue('E3','Điểm');
+        $sheet->setCellValue('A1', 'Danh Sách Điểm Bài Thi '. $test_code);
+        $sheet->setCellValue('A3', 'STT');
+        $sheet->setCellValue('B3', 'Tên');
+        $sheet->setCellValue('C3', 'Tài Khoản');
+        $sheet->setCellValue('D3', 'Lớp');
+        $sheet->setCellValue('E3', 'Điểm');
 
         for ($i = 0; $i < count($scores); $i++) {
-            $sheet->setCellValue('A'.($i+4),$i+1);
-            $sheet->setCellValue('B'.($i+4),$scores[$i]->name);
-            $sheet->setCellValue('C'.($i+4),$scores[$i]->username);
-            $sheet->setCellValue('D'.($i+4),$scores[$i]->class_name);
-            $sheet->setCellValue('E'.($i+4),$scores[$i]->score_number);
+            $sheet->setCellValue('A'.($i+4), $i+1);
+            $sheet->setCellValue('B'.($i+4), $scores[$i]->name);
+            $sheet->setCellValue('C'.($i+4), $scores[$i]->username);
+            $sheet->setCellValue('D'.($i+4), $scores[$i]->class_name);
+            $sheet->setCellValue('E'.($i+4), $scores[$i]->score_number);
         }
 
         //Output File
@@ -229,10 +229,11 @@ class Controller_Teacher
         $view = new View_Teacher();
         $view->show_head_left($this->info);
         $class_id = isset($_GET['class_id']) ? $_GET['class_id'] : '';
-        if($class_id == '')
+        if ($class_id == '') {
             $view->show_404();
-        else
+        } else {
             $view->show_class_detail($this->get_class_name($class_id), $this->get_class_detail($class_id));
+        }
         $view->show_foot();
     }
     public function show_notifications()

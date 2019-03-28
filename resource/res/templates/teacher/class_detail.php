@@ -1,32 +1,32 @@
 <div class="title-content">
-	<span class="title">Chi Tiết Lớp <span id="class_name_detail"><?=$class_name?></span></span>
+    <span class="title">Chi Tiết Lớp <span id="class_name_detail"><?=$class_name?></span></span>
 </div>
 <div class="block-content overflow scrollbar">
-	<div class="content">
-		<div class="preload hidden" id="preload">
-			<img src="res/img/loading.gif" alt="">
-		</div>
-		<table class="centered striped responsive-table" id="table_classes_detail">
-			<thead>
-				<tr>
-					<th class="">ID</th>
-					<th class="">Avatar</th>
-					<th class="">Mã Học Sinh</th>
-					<th class="">Tên</th>
-					<th class="">Ngày Sinh</th>
-					<th class="">Giới Tính</th>
-					<th class="">Online Cuối</th>
-					<th class=""><i class="material-icons">settings</i></th>
-				</tr>
-			</thead>
-			<tbody class="scrollbar" id="class_detail">
+    <div class="content">
+        <div class="preload hidden" id="preload">
+            <img src="res/img/loading.gif" alt="">
+        </div>
+        <table class="centered striped responsive-table" id="table_classes_detail">
+            <thead>
+                <tr>
+                    <th class="">ID</th>
+                    <th class="">Avatar</th>
+                    <th class="">Mã Học Sinh</th>
+                    <th class="">Tên</th>
+                    <th class="">Ngày Sinh</th>
+                    <th class="">Giới Tính</th>
+                    <th class="">Online Cuối</th>
+                    <th class=""><i class="material-icons">settings</i></th>
+                </tr>
+            </thead>
+            <tbody class="scrollbar" id="class_detail">
                 <?php
                     foreach ($students as $student) {
                         ?>
                         <tr id="student-id-<?=$student->student_id?>">
                             <td><?=$student->student_id?></td>
                             <td>
-                                <img src="res/img/avatar/<?=$student->avatar?>" alt="avatar" class="avatar" />
+                                <img src="upload/avatar/<?=$student->avatar?>" alt="avatar" class="avatar" />
                             </td>
                             <td><?=$student->username?></td>
                             <td><?=$student->name?></td>
@@ -54,13 +54,13 @@
                         <?php
                     }
                 ?>
-			</tbody>
-		</table>
-	</div>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 <script type="text/javascript">
-	$('#table_classes_detail').DataTable( {
+    $('#table_classes_detail').DataTable( {
         "language": {
             "lengthMenu": "Hiển thị _MENU_",
             "zeroRecords": "Không tìm thấy",

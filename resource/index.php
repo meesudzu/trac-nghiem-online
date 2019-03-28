@@ -17,7 +17,7 @@ $is_IM = include 'config/connect.php';
 
 if ($is_IM->INSTALL_MODE) {
     header("Refresh:0; url=install.php");
-} else if (isset($_SESSION['login'])) {
+} elseif (isset($_SESSION['login'])) {
     $controller = 'controller_'. $_SESSION['permission'];
     require_once 'controllers/'. $controller .'.php';
     $index = new $controller();

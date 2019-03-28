@@ -10,7 +10,6 @@ class Base
 {
     public function __construct()
     {
-
     }
     public function uploadImage($file, $path)
     {
@@ -26,9 +25,9 @@ class Base
                 return false;
             }
         }
-
     }
-    public function convertString($str) {
+    public function convertString($str)
+    {
         $str = trim(mb_strtolower($str));
         $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
         $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
@@ -42,5 +41,3 @@ class Base
         return $str;
     }
 }
-
-?>

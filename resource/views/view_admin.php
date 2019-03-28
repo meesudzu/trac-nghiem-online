@@ -46,7 +46,7 @@ class View_Admin
     {
         include 'res/templates/admin/add_question.html';
     }
-    public function show_edit_question($question,$grades,$subjects)
+    public function show_edit_question($question, $grades, $subjects)
     {
         include 'res/templates/admin/edit_question.php';
     }
