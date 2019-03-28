@@ -1,9 +1,11 @@
 <?php
 
 /**
+ * HỆ THỐNG TRẮC NGHIỆM ONLINE
  * Controller Student
  * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
+ * @link https://github.com/meesudzu/trac-nghiem-online
  */
 
 require_once 'models/model_student.php';

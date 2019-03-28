@@ -1,10 +1,12 @@
 <?php
 
 /**
+ * HỆ THỐNG TRẮC NGHIỆM ONLINE
  * Controller Teacher
  * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
- */ 
+ * @link https://github.com/meesudzu/trac-nghiem-online
+ */
 
 require_once('models/model_teacher.php');
 require_once 'views/view_teacher.php';

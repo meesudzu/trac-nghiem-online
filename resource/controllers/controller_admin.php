@@ -1,9 +1,11 @@
 <?php
 
 /**
+ * HỆ THỐNG TRẮC NGHIỆM ONLINE
  * Controller Admin
  * @author: Nong Van Du (Dzu)
  * Mail: dzu6996@gmail.com
+ * @link https://github.com/meesudzu/trac-nghiem-online
  **/
 
 require_once('core/Base.php');
