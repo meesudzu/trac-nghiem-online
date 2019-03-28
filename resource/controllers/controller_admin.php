@@ -1407,6 +1407,18 @@ class Controller_Admin
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     }
+    public function toggle_sidebar()
+    {
+        if ($_SESSION['sidebar-logout'] != '') {
+            $_SESSION['sidebar-logout'] = '';
+            $_SESSION['menu-icon'] = 'rot';
+            $_SESSION['box-content'] = '';
+        } else {
+            $_SESSION['sidebar-logout'] = 'sidebar-show';
+            $_SESSION['menu-icon'] = '';
+            $_SESSION['box-content'] = 'box-content-mini';
+        }
+    }
     public function logout()
     {
         $result = array();

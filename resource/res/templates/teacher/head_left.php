@@ -22,13 +22,13 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper nav-green">
-				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons" id="menu-icon" title="Ẩn/Hiện bảng điều hướng">menu</i></a></div>
+				<div class="left pad-left-20"><a class="cursor" id="trigger-sidebar"><i class="material-icons <?=$_SESSION['menu-icon']?>" id="menu-icon" title="Ẩn/Hiện bảng điều hướng">menu</i></a></div>
 				<a href="/" class="brand-logo right cursor"><i class="material-icons">home</i></a>
 			</div>
 		</nav>
 		<div id="status" class="status"></div>
 	</div>
-	<div class="sidebar-left sidebar-show menu-sidebar scrollbar" id="sidebar-left">
+	<div class="sidebar-left menu-sidebar scrollbar <?=$_SESSION['sidebar-logout']?>" id="sidebar-left">
 		<div class="card reset-margin">
 			<div class="card-image">
 				<img src="upload/avatar/<?=$info['avatar']?>" id="user-avatar" style="width: 220px; height: 155px;">
@@ -49,7 +49,7 @@
 				<a href="thong-tin" class="collapsible-header font-color cursor"><i class="material-icons">insert_comment</i>Liên Hệ</a>
 			</ul>
 		</div>
-		<a data-target="modal1" class="sidebar-show logout modal-trigger waves-effect" id="logout">Đăng Xuất</a>
+		<a data-target="modal1" class="logout modal-trigger waves-effect <?=$_SESSION['sidebar-logout']?>" id="logout">Đăng Xuất</a>
 		<div id="modal1" class="modal">
 			<div class="modal-content">
 				<h4>Đăng Xuất</h4>
@@ -60,4 +60,4 @@
 				<a class="modal-action modal-close waves-effect waves-green btn-flat" id="btn-logout">Có</a>
 			</div>
 		</div>
-		<div class="box-content right box-content-mini" id="box-content">
+		<div class="box-content right <?=$_SESSION['box-content']?>" id="box-content">

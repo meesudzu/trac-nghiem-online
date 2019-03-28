@@ -109,6 +109,9 @@ class Controller_Login
                     $_SESSION['permission'] = "student";
                 }
                 $_SESSION['login'] = true;
+                $_SESSION['sidebar-logout'] = 'sidebar-show';
+                $_SESSION['menu-icon'] = '';
+                $_SESSION['box-content'] = 'box-content-mini';
             } else {
                 $result['status_value'] = "Sai mật khẩu!";
                 $result['status'] = 0;

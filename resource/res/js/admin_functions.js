@@ -7,7 +7,9 @@ $(document).ready(function() {
         $('#menu-icon').toggleClass('rot');
         $('#logout').toggleClass('sidebar-show');
         $('#box-content').toggleClass('box-content-mini');
-        $('#footer').toggleClass('footer-mini');
+        // $('#footer').toggleClass('footer-mini');
+
+        togle_sidebar();
     });
     $('#menu').on('click', function() {
         $('#menu-arrow-up').toggleClass('hide');
@@ -201,4 +203,10 @@ function valid_email_on_profiles(data) {
         }
     };
     $.post(url, data1, success);
+}
+
+function togle_sidebar() {
+    var url = "index.php?action=toggle_sidebar";
+    var success = function(result) {};
+    $.get(url, success);
 }

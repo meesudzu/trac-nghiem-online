@@ -1,10 +1,10 @@
-#3423  
+#3424  
 v3.4.3 (xx/xx/2019)
 
     - Tối ưu lại một số code ✓
-    - Thêm comment cho các hàm phục vụ cho việc bảo trì, nâng cấp
-    - Lưu lại trạng thái ẩn/hiện menu trái
+    - Lưu lại trạng thái ẩn/hiện menu trái ✓
     - Fix lỗi update avatar ✓
+    - Thêm comment cho các hàm phục vụ cho việc bảo trì, nâng cấp
     
 v3.4.2 (27/03/2019)
 

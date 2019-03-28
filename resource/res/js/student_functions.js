@@ -5,7 +5,9 @@ $(document).ready(function() {
         $('#menu-icon').toggleClass('rot');
         $('#logout').toggleClass('sidebar-show');
         $('#box-content').toggleClass('box-content-mini');
-        $('#footer').toggleClass('footer-mini');
+        // $('#footer').toggleClass('footer-mini');
+
+        togle_sidebar();
     });
     $('#btn-logout').on('click', function() {
         logout();
@@ -94,4 +96,10 @@ function submit_test(id) {
         $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
+}
+
+function togle_sidebar() {
+    var url = "index.php?action=toggle_sidebar";
+    var success = function(result) {};
+    $.get(url, success);
 }
