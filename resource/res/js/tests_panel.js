@@ -171,6 +171,11 @@ function accept_permission(test_code, status_id) {
         $('#preload').addClass('hidden');
         return 0;
     }
+    if (status_id == 7) {
+        alert('Đề thi đang ẩn, không thể mở xem đáp án!');
+        $('#preload').addClass('hidden');
+        return 0;
+    }
 
     var url = "index.php?action=check_toggle_test_status";
     var success = function(result) {
