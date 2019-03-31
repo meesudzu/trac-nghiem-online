@@ -249,7 +249,8 @@ INSERT INTO `statuses` (`status_id`, `detail`) VALUES
 (3, 'Chờ Duyệt'),
 (4, 'Đã Duyệt'),
 (5, 'Cho Phép Xem Đáp Án'),
-(6, 'Kết Thúc');
+(6, 'Kết Thúc'),
+(7, 'Ẩn');
 
 -- --------------------------------------------------------
 

@@ -168,7 +168,9 @@ class Model_Student extends Database
         statuses.detail as status FROM `tests`
         INNER JOIN grades ON grades.grade_id = tests.grade_id
         INNER JOIN subjects ON subjects.subject_id = tests.subject_id
-        INNER JOIN statuses ON statuses.status_id = tests.status_id ORDER BY timest DESC";
+        INNER JOIN statuses ON statuses.status_id = tests.status_id 
+        WHERE statuses.status_id != 7
+        ORDER BY timest DESC";
 
         $this->set_query($sql);
         return $this->load_rows();

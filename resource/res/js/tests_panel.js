@@ -33,9 +33,9 @@ function show_list_tests(data) {
         tr.append('<td class="">' + data[i].total_questions + ' câu hỏi, thời gian ' + data[i].time_to_do + ' phút <br />Ghi chú: ' + data[i].note + '</td>');
         tr.append('<td class="">' + data[i].status + '</td>');
         if(data[i].status_id == 5)
-            tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
+            tr.append('<td class="">' + visibility_button(data[i]) + '<br />' + toggle_status_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
         else
-            tr.append('<td class="">' + toggle_status_button(data[i]) + '<br />' + accept_permission_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
+            tr.append('<td class="">' + visibility_button(data[i]) + '<br />' + toggle_status_button(data[i]) + '<br />' + accept_permission_button(data[i]) + '<br />' + test_detail_button(data[i]) + '<br />' + test_score_button(data[i]) + '</td>');
         list.append(tr);
     }
     $('#table_tests').DataTable({
@@ -71,6 +71,10 @@ function toggle_status_button(data) {
 
 function accept_permission_button(data) {
     return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" onclick="accept_permission(' + data.test_code + ', ' + data.status_id + ')" style="letter-spacing: unset;">Cho Xem Đáp Án</a>';
+}
+
+function visibility_button(data) {
+    return btn = '<a class="waves-effect waves-light btn" style="margin-bottom: 7px;" onclick="toggle_visibility(' + data.test_code + ', ' + data.status_id + ')" style="letter-spacing: unset;">Ẩn/Hiện</a>';
 }
 
 function test_detail_button(data) {
@@ -109,11 +113,38 @@ function toggle_status(test_code, status_id) {
             test_code: test_code,
             status_id: 1
         }
-    if (status_id == 5)
+    if (status_id == 5 || status_id == 7)
         var data = {
             test_code: test_code,
             status_id: 2
         }
+    var url = "index.php?action=check_toggle_test_status";
+    var success = function(result) {
+        var json_data = $.parseJSON(result);
+        show_status(json_data);
+        if (json_data.status) {
+            $('#table_tests').DataTable().destroy();
+            get_list_tests();
+            $('select').select();
+        }
+        $('#preload').addClass('hidden');
+    };
+    $.post(url, data, success);
+}
+
+function toggle_visibility(test_code, status_id) {
+    $('#preload').removeClass('hidden');
+    if (status_id == 7) {
+        var data = {
+            test_code: test_code,
+            status_id: 2
+        }
+    } else {
+        var data = {
+            test_code: test_code,
+            status_id: 7
+        }
+    }
     var url = "index.php?action=check_toggle_test_status";
     var success = function(result) {
         var json_data = $.parseJSON(result);
