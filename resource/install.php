@@ -23,6 +23,7 @@ class install
         $ext_xmlwriter_check = true;
         $ext_mbstring_check = true;
         $ext_zip_check = true;
+        $mod_rewrite_check = true;
 
         echo '<div class="box">';
         echo '<div class="title-install">Kiểm Tra Hệ Thống</div>';
@@ -34,6 +35,12 @@ class install
         } else {
             $php_version = '<span class="failed">KHÔNG ĐẠT</span>';
             $php_version_check = false;
+        }
+        if (in_array('mod_rewrite', apache_get_modules())) {
+            $mod_rewrite = '<span class="pass">ĐẠT</span>';
+        } else {
+            $mod_rewrite = '<span class="failed">KHÔNG ĐẠT</span>';
+            $mod_rewrite_check = false;
         }
         if (extension_loaded('xml')) {
             $ext_xml = '<span class="pass">ĐẠT</span>';
@@ -63,6 +70,7 @@ class install
         $ext_dom = extension_loaded('dom') ? '<span class="pass">ĐẠT</span>' : '<span class="failed">KHÔNG ĐẠT</span>';
 
         echo 'PHP 7.0.0: '.$php_version.'<br />';
+        echo 'PHP mod_rewrite: '.$mod_rewrite.'<br />';
         echo 'PHP extension XML: '.$ext_xml.'<br />';
         echo 'PHP extension xmlwriter: '.$ext_xmlwriter.'<br />';
         echo 'PHP extension mbstring: '.$ext_mbstring.'<br />';
@@ -70,7 +78,7 @@ class install
         echo 'PHP extension GD (tùy chọn): '.$ext_gd.'<br />';
         echo 'PHP extension dom (tùy chọn): '.$ext_dom.'<br />';
 
-        if ($ext_zip_check && $ext_mbstring_check && $ext_xmlwriter_check && $ext_xml_check && $php_version_check) {
+        if ($ext_zip_check && $ext_mbstring_check && $ext_xmlwriter_check && $ext_xml_check && $php_version_check && $mod_rewrite_check) {
             echo '</div>';
             echo '</div>';
             $this->step_1();
