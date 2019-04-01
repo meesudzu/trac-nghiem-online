@@ -31,11 +31,6 @@ class Controller_Admin
         $this->info['name'] = $user_info->name;
         $this->info['avatar'] = $user_info->avatar;
     }
-    public function get_profiles()
-    {
-        $model = new Model_Admin();
-        echo json_encode($model->get_admin_info($this->info['username']));
-    }
     private function update_profiles($username, $name, $email, $password, $gender, $birthday)
     {
         $model = new Model_Admin();
@@ -50,21 +45,6 @@ class Controller_Admin
     {
         $model = new Model_Admin();
         return $model->get_admin_info($username);
-    }
-    private function get_teacher_info($username)
-    {
-        $model = new Model_Admin();
-        return $model->get_teacher_info($username);
-    }
-    private function get_student_info($username)
-    {
-        $model = new Model_Admin();
-        return $model->get_student_info($username);
-    }
-    private function get_class_info($class_name)
-    {
-        $model = new Model_Admin();
-        return $model->get_class_info($class_name);
     }
     private function update_last_login()
     {
@@ -414,7 +394,7 @@ class Controller_Admin
         $subject_id = isset($_POST['subject_id']) ? $_POST['subject_id'] : '';
         $unit = isset($_POST['unit']) ? $_POST['unit'] : '';
         $model = new Model_Admin();
-        echo json_encode($model->get_list_levels_of_unit($grade_id,$subject_id,$unit));
+        echo json_encode($model->get_list_levels_of_unit($grade_id, $subject_id, $unit));
     }
     public function get_dashboard_info()
     {
@@ -487,7 +467,6 @@ class Controller_Admin
         } else {
             $add = $this->add_admin($name, $username, $password, $email, $birthday, $gender);
             if ($add) {
-                $result = json_decode(json_encode($this->get_admin_info($username)), true);
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
@@ -583,7 +562,6 @@ class Controller_Admin
                 $result['status_value'] = "Tài khoản không tồn tại!";
                 $result['status'] = 0;
             } else {
-                $result = json_decode(json_encode($this->get_admin_info($username)), true);
                 $result['status_value'] = "Sửa thành công!";
                 $result['status'] = 1;
             }
@@ -605,7 +583,6 @@ class Controller_Admin
         } else {
             $add = $this->add_teacher($name, $username, $password, $email, $birthday, $gender);
             if ($add) {
-                $result = json_decode(json_encode($this->get_teacher_info($username)), true);
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
@@ -695,7 +672,6 @@ class Controller_Admin
                 $result['status_value'] = "Tài khoản không tồn tại!";
                 $result['status'] = 0;
             } else {
-                $result = json_decode(json_encode($this->get_teacher_info($username)), true);
                 $result['status_value'] = "Sửa thành công!";
                 $result['status'] = 1;
             }
@@ -714,7 +690,6 @@ class Controller_Admin
         } else {
             $add = $this->add_class($grade_id, $class_name, $teacher_id);
             if ($add) {
-                $result = json_decode(json_encode($this->get_class_info($class_name)), true);
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
@@ -752,7 +727,6 @@ class Controller_Admin
             $result['status'] = 0;
         } else {
             $this->edit_class($class_id, $grade_id, $class_name, $teacher_id);
-            $result = json_decode(json_encode($this->get_class_info($class_name)), true);
             $result['status_value'] = "Sửa thành công!";
             $result['status'] = 1;
         }
@@ -774,7 +748,6 @@ class Controller_Admin
         } else {
             $add = $this->add_student($username, $password, $name, $class_id, $email, $birthday, $gender);
             if ($add) {
-                $result = json_decode(json_encode($this->get_student_info($username)), true);
                 $result['status_value'] = "Thêm thành công!";
                 $result['status'] = 1;
             } else {
@@ -846,7 +819,6 @@ class Controller_Admin
             $result['status'] = 0;
         } else {
             $this->edit_student($student_id, $birthday, $password, $name, $class_id, $gender);
-            $result = json_decode(json_encode($this->get_student_info($username)), true);
             $result['status_value'] = "Sửa thành công!";
             $result['status'] = 1;
         }
@@ -1106,7 +1078,6 @@ class Controller_Admin
                 $result['status_value'] = "Tài khoản không tồn tại!";
                 $result['status'] = 0;
             } else {
-                $result = json_decode(json_encode($this->get_admin_info($username)), true);
                 $result['status_value'] = "Sửa thành công!";
                 $result['status'] = 1;
             }

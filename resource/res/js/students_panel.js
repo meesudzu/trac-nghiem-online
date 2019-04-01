@@ -278,8 +278,8 @@ function submit_add_student(data) {
             $('#table_students').DataTable().ajax.reload();
             $('.modal').modal();
             $('select').select();
-            $('#preload').addClass('hidden');
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }
@@ -346,8 +346,8 @@ function submit_edit_student(data) {
             form[0].reset();
             $('.modal').modal();
             $('select').select();
-            $('#preload').addClass('hidden');
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }

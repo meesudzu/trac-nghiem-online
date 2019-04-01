@@ -191,8 +191,8 @@ function submit_add_teacher(data) {
             get_list_teachers();
             $('.modal').modal();
             $('select').select();
-            $('#preload').addClass('hidden');
         }
+        $('#preload').addClass('hidden');
     };
     $.post(url, data, success);
 }

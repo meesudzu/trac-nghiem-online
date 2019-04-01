@@ -26,32 +26,6 @@ class Model_Admin extends Database
         $this->set_query($sql, $param);
         return $this->load_row();
     }
-    public function get_teacher_info($username)
-    {
-        $sql = "
-        SELECT DISTINCT teacher_id,username,avatar,email,name,last_login,birthday,permission_detail,gender_detail 
-        FROM teachers
-        INNER JOIN permissions ON teachers.permission = permissions.permission
-        INNER JOIN genders ON teachers.gender_id = genders.gender_id WHERE username = :username";
-
-        $param = [ ':username' => $username ];
-
-        $this->set_query($sql, $param);
-        return $this->load_row();
-    }
-    public function get_student_info($username)
-    {
-        $sql = "
-        SELECT DISTINCT student_id,username,name,email,avatar,birthday,last_login,gender_detail,class_name 
-        FROM `students`
-        INNER JOIN classes ON students.class_id = classes.class_id
-        INNER JOIN genders ON students.gender_id = genders.gender_id WHERE username = :username";
-
-        $param = [ ':username' => $username ];
-
-        $this->set_query($sql, $param);
-        return $this->load_row();
-    }
     public function get_class_info($class_name)
     {
         $sql = "
@@ -159,7 +133,7 @@ class Model_Admin extends Database
         $sql="UPDATE admins set password = :password, name = :name, gender_id = :gender_id, 
         birthday = :birthday where admin_id = :admin_id";
 
-        $param = [ ':password' => $password, ':name' => $name, ':gender_id' => $gender_id, 
+        $param = [ ':password' => $password, ':name' => $name, ':gender_id' => $gender_id,
         ':birthday' => $birthday, ':admin_id' => $admin_id ];
 
         $this->set_query($sql, $param);
@@ -185,21 +159,6 @@ class Model_Admin extends Database
     }
     public function add_admin($name, $username, $password, $email, $birthday, $gender)
     {
-        $sql = "SELECT DISTINCT admin_id FROM admins WHERE username = :username OR email = :email";
-
-        $param = [ ':username' => $username, ':email' => $email ];
-
-        $this->set_query($sql, $param);
-        if ($this->load_row()!='') {
-            return false;
-        }
-
-        //reset AUTO_INCREMENT
-        $sql = "ALTER TABLE `admins` AUTO_INCREMENT=1";
-
-        $this->set_query($sql);
-        $this->execute_return_status();
-
         $sql="INSERT INTO admins (name, username, password, email, birthday, gender_id) 
         VALUES (:name, :username, :password, :email, :birthday, :gender)";
 
@@ -267,25 +226,10 @@ class Model_Admin extends Database
     }
     public function add_teacher($name, $username, $password, $email, $birthday, $gender)
     {
-        $sql = "SELECT DISTINCT teacher_id FROM teachers WHERE username = :username or email = :email";
-
-        $param = [ ':username' => $username, ':email' => $email ];
-
-        $this->set_query($sql, $param);
-        if ($this->load_row()!='') {
-            return false;
-        }
-
-        //reset AUTO_INCREMENT
-        $sql = "ALTER TABLE `teachers` AUTO_INCREMENT=1";
-
-        $this->set_query($sql);
-        $this->execute_return_status();
-
         $sql="INSERT INTO teachers (username,password,name,email,birthday,gender_id) 
         VALUES (:username,:password,:name,:email,:birthday,:gender)";
 
-        $param = [ ':username' => $username, ':password' => $password, 
+        $param = [ ':username' => $username, ':password' => $password,
         ':name' => $name, ':email' => $email, ':birthday' => $birthday, ':gender' => $gender ];
 
         $this->set_query($sql, $param);
@@ -339,7 +283,7 @@ class Model_Admin extends Database
         $sql="UPDATE students set birthday = :birthday, password = :password, name = :name, 
         class_id = :class_id, gender_id = :gender where student_id = :student_id";
 
-        $param = [ ':student_id' => $student_id, ':birthday' => $birthday, 
+        $param = [ ':student_id' => $student_id, ':birthday' => $birthday,
         ':password' => $password, ':name' => $name, ':class_id' => $class_id, ':gender' => $gender ];
 
         $this->set_query($sql, $param);
@@ -377,30 +321,14 @@ class Model_Admin extends Database
     }
     public function add_student($username, $password, $name, $class_id, $email, $birthday, $gender)
     {
-        $sql = "SELECT DISTINCT student_id FROM students WHERE username = :username OR email = :email";
-
-        $param = [ ':username' => $username, ':email' => $email ];
-
-        $this->set_query($sql, $param);
-        if ($this->load_row()!='') {
-            return false;
-        }
-
-        //reset AUTO_INCREMENT
-        $sql = "ALTER TABLE `students` AUTO_INCREMENT=1";
-
-        $this->set_query($sql);
-        $this->execute_return_status();
-
         $sql="INSERT INTO students (username,password,name,class_id,email,birthday,gender_id) 
         VALUES (:username,:password,:name,:class_id,:email,:birthday,:gender)";
 
-        $param = [ ':username' => $username, ':password' => $password, ':name' => 
+        $param = [ ':username' => $username, ':password' => $password, ':name' =>
         $name, ':class_id' => $class_id, ':email' => $email, ':birthday' => $birthday, ':gender' => $gender ];
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();
-        // return true;
     }
     public function get_list_classes()
     {
@@ -412,7 +340,7 @@ class Model_Admin extends Database
         $this->set_query($sql);
         return $this->load_rows();
     }
-    public function get_list_units($grade_id,$subject_id)
+    public function get_list_units($grade_id, $subject_id)
     {
         $sql = "SELECT DISTINCT unit, COUNT(unit) as total FROM questions 
         WHERE subject_id = :subject_id and grade_id = :grade_id GROUP BY unit";
@@ -422,7 +350,7 @@ class Model_Admin extends Database
         $this->set_query($sql, $param);
         return $this->load_rows();
     }
-    public function get_list_levels_of_unit($grade_id, $subject_id,$unit)
+    public function get_list_levels_of_unit($grade_id, $subject_id, $unit)
     {
         $sql = "SELECT DISTINCT level_detail,questions.level_id, COUNT(questions.level_id) as total 
         FROM questions
@@ -449,7 +377,8 @@ class Model_Admin extends Database
         $sql="UPDATE classes set grade_id = :grade_id, class_name = :class_name, teacher_id = :teacher_id 
         where class_id = :class_id";
 
-        $param = [ ':class_id' => $class_id, ':grade_id' => $grade_id, ':class_name' => $class_name, ':teacher_id' => $teacher_id ];
+        $param = [ ':class_id' => $class_id, ':grade_id' => $grade_id, ':class_name' => $class_name,
+        ':teacher_id' => $teacher_id ];
 
         $this->set_query($sql, $param);
         $this->execute_return_status();
@@ -498,28 +427,12 @@ class Model_Admin extends Database
     }
     public function add_class($grade_id, $class_name, $teacher_id)
     {
-        $sql = "SELECT DISTINCT class_id FROM classes WHERE class_name = :class_name";
-
-        $param = [ ':class_name' => $class_name ];
-
-        $this->set_query($sql, $param);
-        if ($this->load_row()!='') {
-            return false;
-        }
-
-        //reset AUTO_INCREMENT
-        $sql = "ALTER TABLE `classes` AUTO_INCREMENT=1";
-
-        $this->set_query($sql);
-        $this->execute_return_status();
-
         $sql="INSERT INTO classes (grade_id,class_name,teacher_id) VALUES (:grade_id,:class_name,:teacher_id)";
 
         $param = [ ':grade_id' => $grade_id, ':class_name' => $class_name, ':teacher_id' => $teacher_id ];
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();
-        // return true;
     }
     public function add_quest_to_test($test_code, $question_id)
     {
@@ -624,8 +537,7 @@ class Model_Admin extends Database
         $answer_d,
         $correct_answer,
         $level_id
-    )
-    {
+    ) {
         $sql="UPDATE questions set question_content = :question_content, grade_id = :grade_id, unit = :unit, 
         answer_a = :answer_a, answer_b = :answer_b, answer_c = :answer_c, answer_d = :answer_d, 
         correct_answer = :correct_answer, subject_id = :subject_id, level_id = :level_id 
@@ -661,8 +573,7 @@ class Model_Admin extends Database
         $correct_answer,
         $level_id,
         $sent_by
-    )
-    {
+    ) {
         $sql="INSERT INTO questions 
         (subject_id,grade_id,unit,question_content,answer_a,answer_b,
         answer_c,answer_d,correct_answer,level_id,sent_by,status_id) 
@@ -677,10 +588,20 @@ class Model_Admin extends Database
         $this->set_query($sql, $param);
         return $this->execute_return_status();
     }
-    public function add_test($test_code, $test_name, $password, $grade_id, $subject_id, $total_questions, $time_to_do, $note)
-    {
-        $sql="INSERT INTO tests (test_code,test_name,password,grade_id,subject_id,total_questions,time_to_do,note,status_id) 
-        VALUES (:test_code,:test_name,:password,:grade_id,:subject_id,:total_questions,:time_to_do,:note, 2)";
+    public function add_test(
+        $test_code,
+        $test_name,
+        $password,
+        $grade_id,
+        $subject_id,
+        $total_questions,
+        $time_to_do,
+        $note
+    ) {
+        $sql="INSERT INTO tests
+        (test_code,test_name,password,grade_id,subject_id,total_questions,time_to_do,note,status_id) 
+        VALUES
+        (:test_code,:test_name,:password,:grade_id,:subject_id,:total_questions,:time_to_do,:note, 2)";
 
         $param = [ ':test_code' => $test_code, ':test_name' => $test_name,
         ':password' => $password, ':grade_id' => $grade_id, ':subject_id' => $subject_id,
