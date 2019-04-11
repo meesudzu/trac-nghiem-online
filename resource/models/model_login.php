@@ -99,9 +99,9 @@ class Model_Login extends Database
     
     public function update_new_password($password, $permission, $username)
     {
-        $sql = "UPDATE :permission SET password = :password WHERE username = :username OR email = :username";
+        $sql = "UPDATE $permission SET password = :password WHERE username = :username OR email = :username";
         
-        $param = [ ':username' => $username, ':password' => $password, ':permission' => $permission];
+        $param = [ ':username' => $username, ':password' => $password];
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();

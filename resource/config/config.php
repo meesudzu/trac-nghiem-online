@@ -12,7 +12,7 @@ class Config
 {
     const TITLE = 'Hệ Thống Trắc Nghiệm Online';
     const COPYRIGHT = "Copyright © 2016 Nong Van Du";
-    const VERSION = "3.4.2 #7";
+    const VERSION = "3.4.2 #8";
     const OWNER = "Nông Văn Du (Dzu)";
     const CONTRIBUTOR = "";
     const EMAIL = "dzu6996@gmail.com";
