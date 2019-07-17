@@ -1,4 +1,4 @@
-php_flag display_errors off
+#php_flag display_errors off
 RewriteEngine On
 
 RewriteBase /
