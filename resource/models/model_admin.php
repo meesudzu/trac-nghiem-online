@@ -162,8 +162,7 @@ class Model_Admin extends Database
         $sql="INSERT INTO admins (name, username, password, email, birthday, gender_id) 
         VALUES (:name, :username, :password, :email, :birthday, :gender)";
 
-        $param = [ ':name' => $name, ':username' => $username, ':password' => $password,
-        ':username' => $email, ':email' => $username, ':birthday' => $birthday, ':gender' => $gender ];
+        $param = [ ':username' => $username, ':password' => $password, ':name' => $name, ':email' => $email, ':birthday' => $birthday, ':gender' => $gender ];
 
         $this->set_query($sql, $param);
         return $this->execute_return_status();
