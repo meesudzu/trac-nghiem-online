@@ -134,22 +134,20 @@
 </div>
 </div>
 <script src="res/js/edit_question.js"></script>
-<script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 <script type="text/javascript">
     CKEDITOR.replace('question_detail', {
-        extraPlugins: 'mathjax,format,image',
+        extraPlugins: 'format,image',
     });
     CKEDITOR.replace('answer_a', {
-        extraPlugins: 'mathjax,format,image',
+        extraPlugins: 'format,image',
     });
     CKEDITOR.replace('answer_b', {
-        extraPlugins: 'mathjax,format,image',
+        extraPlugins: 'format,image',
     });
     CKEDITOR.replace('answer_c', {
-        extraPlugins: 'mathjax,format,image',
+        extraPlugins: 'format,image',
     });
     CKEDITOR.replace('answer_d', {
-        extraPlugins: 'mathjax,format,image',
+        extraPlugins: 'format,image',
     });
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>

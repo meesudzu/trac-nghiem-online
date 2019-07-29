@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="res/css/materialize.min.css">
 	<script src="res/js/jquery.js"></script>
 	<script src="res/js/materialize.min.js"></script>
-    <script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 	<script src="res/js/student_functions.js"></script>
 </head>
 
@@ -188,5 +187,4 @@
 		}
 	</script>
 </body>
-<script src='res/libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 </html>
