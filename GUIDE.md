@@ -1,6 +1,6 @@
 -   Toàn bộ code trong thư mục resource  
 
--   Lưu ý: nên cho toàn bộ code trong thư mục resource ra thư mục gốc (htdocs nếu dùng xampp, www nếu dùng appserv...) và chạy theo đường dẫn localhost hoặc domain.com, không nên đặt trong thư mục con và chạy localhost/resource hoặc domain.com/resource để tránh lỗi.  
+-   Lưu ý: nên cho toàn bộ code trong thư mục resource ra thư mục gốc (htdocs nếu dùng xampp, www nếu dùng appserv,...) khi đó file index.php và install.php sẽ nằm trong thư mục htdocs (www, public_html,...) và chạy theo đường dẫn localhost hoặc domain.com, không nên đặt trong thư mục con và chạy localhost/resource hoặc domain.com/resource để tránh lỗi.  
 
 -   Chạy domain/install.php để tiến hành cài đặt và cấu hình hệ thống. Nếu quá trình cài đặt xảy ra lỗi, vui lòng kiểm tra các nguyên nhân dưới:
         1, Cấp quyền ghi cho thư mục cài đặt (htdocs, www, ...)
