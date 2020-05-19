@@ -1,5 +1,5 @@
 #3428  
-v3.4.3 (xx/xx/2019)
+v3.4.3 (15/05/2020)
 
     - Tối ưu lại một số code ✓
     - Lưu lại trạng thái ẩn/hiện menu trái ✓
