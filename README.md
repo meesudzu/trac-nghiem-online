@@ -44,9 +44,9 @@ Xem thêm tại [CHANGELOG](CHANGELOG.md)
 
 ## Sắp Có
 
-    - Thêm tùy chọn nhập bộ câu hỏi từ file word. (Cảm ơn bạn tranphong965@gmail.com)
+    - Thêm tùy chọn nhập bộ câu hỏi từ file word.
     - Giáo viên có thể thêm câu hỏi vào ngân hàng đề (admin sẽ duyệt câu hỏi)
-    - Thêm người dùng mới "Giáo viên bộ môn" (formype@gmail.com)
+    - Thêm người dùng mới "Giáo viên bộ môn"
     - Hiển thị số tin nhắn chat, thông báo chưa đọc
     - Thêm tự động cập nhật phiên bản phần mềm
     - Thêm logs lưu vết tất cả các thông tin liên quan đến việc thay đổi dữ liệu trong cơ sở dữ liệu
